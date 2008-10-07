@@ -61,7 +61,7 @@ import java.io.IOException;
 	/** 
 	* A filter is an object that performs filtering tasks on either the request to a resource (a servlet or static content), or on the response from a resource, or both.
         * <br><br>
-	* Filters perform filtering in the <code>doFilter</code> method. Every Filter has access to 
+	* Filters perform filtering in the <code>doFilter</code> method. Every Filter has access to
 	** a FilterConfig object from which it can obtain its initialization parameters, a
 	** reference to the ServletContext which it can use, for example, to load resources
 	** needed for filtering tasks.
