@@ -47,7 +47,7 @@
     <packaging>jar</packaging>
     <properties>
         <extension.name>javax.servlet</extension.name>
-        <spec.version>2.5</spec.version>
+        <spec.version>3.0</spec.version>
     </properties>
     <name>${extension.name} API v.${spec.version}</name>
     <url>http://jcp.org/en/jsr/detail?id=315</url>
