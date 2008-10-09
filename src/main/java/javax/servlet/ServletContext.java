@@ -52,8 +52,6 @@
  * limitations under the License.
  */
 
-
-
 package javax.servlet;
 
 import java.io.InputStream;
@@ -62,9 +60,7 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.Set;
 
-
 /**
- * 
  * Defines a set of methods that a servlet uses to communicate with its
  * servlet container, for example, to get the MIME type of a file, dispatch
  * requests, or write to a log file.
@@ -89,7 +85,6 @@ import java.util.Set;
  *
  * @see 	Servlet#getServletConfig
  * @see 	ServletConfig#getServletContext
- *
  */
 
 public interface ServletContext {
@@ -129,8 +124,8 @@ public interface ServletContext {
      * access to the context for various parts of the server, and as
      * needed obtain {@link RequestDispatcher} objects from the context.
      * The given path must be begin with "/", is interpreted relative 
-     * to the server's document root and is matched against the context roots of
-     * other web applications hosted on this container.
+     * to the server's document root and is matched against the context
+     * roots of other web applications hosted on this container.
      * 
      * <p>In a security conscious environment, the servlet container may
      * return <code>null</code> for a given URL.
@@ -143,11 +138,8 @@ public interface ServletContext {
      * 			this access.
      *
      * @see 		RequestDispatcher
-     *
      */
-
     public ServletContext getContext(String uripath);
-    
     
 
     /**
@@ -157,13 +149,10 @@ public interface ServletContext {
      * return the integer 2.
      *
      * @return 		2
-     *
      */
-    
     public int getMajorVersion();
     
     
-
     /**
      * Returns the minor version of the Servlet API that this
      * servlet container supports. All implementations that comply
@@ -171,13 +160,10 @@ public interface ServletContext {
      * return the integer 5.
      *
      * @return 		5
-     *
      */
-
     public int getMinorVersion();
     
-    
-
+   
     /**
      * Returns the MIME type of the specified file, or <code>null</code> if 
      * the MIME type is not known. The MIME type is determined
@@ -186,45 +172,48 @@ public interface ServletContext {
      * types are <code>"text/html"</code> and <code>"image/gif"</code>.
      *
      *
-     * @param   file    a <code>String</code> specifying the name
-     *			of a file
+     * @param file a <code>String</code> specifying the name of a file
      *
-     * @return 		a <code>String</code> specifying the file's MIME type
-     *
+     * @return a <code>String</code> specifying the file's MIME type
      */
-
     public String getMimeType(String file);
     
+
     /**
-    * Returns a directory-like listing of all the paths to resources within the web application whose longest sub-path
-    * matches the supplied path argument. Paths indicating subdirectory paths end with a '/'. The returned paths are all 
-    * relative to the root of the web application and have a leading '/'. For example, for a web application 
-    * containing<br><br>
-
-    * /welcome.html<br>
-    * /catalog/index.html<br>
-    * /catalog/products.html<br>
-    * /catalog/offers/books.html<br>
-    * /catalog/offers/music.html<br>
-    * /customer/login.jsp<br>
-    * /WEB-INF/web.xml<br>
-    * /WEB-INF/classes/com.acme.OrderServlet.class,<br><br>
-    *
-    * getResourcePaths("/") returns {"/welcome.html", "/catalog/", "/customer/", "/WEB-INF/"}<br>
-    * getResourcePaths("/catalog/") returns {"/catalog/index.html", "/catalog/products.html", "/catalog/offers/"}.<br>
-	   
-
-
-    *@param path		the partial path used to match the resources,
-    *				which must start with a /
-    *@return a Set containing the directory listing, or null if there are no resources in the web application whose path
-	* begins with the supplied path.
-
-    * @since Servlet 2.3
-    */
-    
+     * Returns a directory-like listing of all the paths to resources
+     * within the web application whose longest sub-path matches the
+     * supplied path argument.
+     *
+     * Paths indicating subdirectory paths end with a '/'.
+     *
+     * The returned paths are all relative to the root of the web application
+     * and have a leading '/'.
+     *
+     * For example, for a web application containing<br><br>
+     *
+     * /welcome.html<br>
+     * /catalog/index.html<br>
+     * /catalog/products.html<br>
+     * /catalog/offers/books.html<br>
+     * /catalog/offers/music.html<br>
+     * /customer/login.jsp<br>
+     * /WEB-INF/web.xml<br>
+     * /WEB-INF/classes/com.acme.OrderServlet.class,<br><br>
+     *
+     * getResourcePaths("/") returns {"/welcome.html", "/catalog/",
+     * "/customer/", "/WEB-INF/"}<br>
+     * getResourcePaths("/catalog/") returns {"/catalog/index.html",
+     * "/catalog/products.html", "/catalog/offers/"}.<br>
+     * 
+     * @param path		the partial path used to match the resources,
+     *				which must start with a /
+     * @return a Set containing the directory listing, or null if there
+     * are no resources in the web application whose path
+     * begins with the supplied path.
+     * 
+     * @since Servlet 2.3
+     */    
     public Set getResourcePaths(String path);
-    
     
 
     /**
@@ -257,20 +246,16 @@ public interface ServletContext {
      * which looks up resources based on a class loader. This
      * method does not use class loaders.
      * 
-     * @param path 				a <code>String</code> specifying
-     *						the path to the resource
+     * @param path a <code>String</code> specifying
+     * the path to the resource
      *
-     * @return 					the resource located at the named path,
-     * 						or <code>null</code> if there is no resource
-     *						at that path
+     * @return the resource located at the named path,
+     * or <code>null</code> if there is no resource at that path
      *
-     * @exception MalformedURLException 	if the pathname is not given in 
-     * 						the correct form
-     *
-     */
-    
+     * @exception MalformedURLException if the pathname is not given in 
+     * the correct form
+     */    
     public URL getResource(String path) throws MalformedURLException;
-    
     
 
     /**
@@ -304,14 +289,9 @@ public interface ServletContext {
      * @return 		the <code>InputStream</code> returned to the 
      *			servlet, or <code>null</code> if no resource
      *			exists at the specified path 
-     *
-     *
      */
-
     public InputStream getResourceAsStream(String path);
     
-
-
 
     /**
      * 
@@ -338,11 +318,8 @@ public interface ServletContext {
      *
      * @see 		RequestDispatcher
      * @see 		ServletContext#getContext
-     *
      */
-
     public RequestDispatcher getRequestDispatcher(String path);
-
 
 
     /**
@@ -369,12 +346,8 @@ public interface ServletContext {
      * @see 		RequestDispatcher
      * @see 		ServletContext#getContext
      * @see 		ServletConfig#getServletName
-     *
      */
-
     public RequestDispatcher getNamedDispatcher(String name);
-    
-    
     
     
     /**
@@ -392,32 +365,21 @@ public interface ServletContext {
      * by invoking methods on common non-servlet classes.
      *
      */
-
     public Servlet getServlet(String name) throws ServletException;
-    
-  
-  
-  
     
 
     /**
-     *
      * @deprecated	As of Java Servlet API 2.0, with no replacement.
      *
-     * <p>This method was originally defined to return an <code>Enumeration</code>
-     * of all the servlets known to this servlet context. In this
-     * version, this method always returns an empty enumeration and
+     * <p>This method was originally defined to return an
+     * <code>Enumeration</code> of all the servlets known to this servlet
+     * context.
+     * In this version, this method always returns an empty enumeration and
      * remains only to preserve binary compatibility. This method
      * will be permanently removed in a future version of the Java
      * Servlet API.
-     *
      */
-    
     public Enumeration getServlets();
-    
-    
-    
-    
     
 
     /**
@@ -429,31 +391,20 @@ public interface ServletContext {
      * this method always returns an empty <code>Enumeration</code> and 
      * remains only to preserve binary compatibility. This method will 
      * be permanently removed in a future version of the Java Servlet API.
-     *
      */
- 
     public Enumeration getServletNames();
     
-  
-  
-    
-    
+
     /**
      *
      * Writes the specified message to a servlet log file, usually
      * an event log. The name and type of the servlet log file is 
      * specific to the servlet container.
      *
-     *
      * @param msg 	a <code>String</code> specifying the 
      *			message to be written to the log file
-     *
      */
-     
     public void log(String msg);
-    
-    
-    
     
 
     /**
@@ -464,13 +415,8 @@ public interface ServletContext {
      * <p>This method was originally defined to write an 
      * exception's stack trace and an explanatory error message
      * to the servlet log file.
-     *
      */
-
     public void log(Exception exception, String msg);
-    
-    
-    
     
 
     /**
@@ -479,19 +425,13 @@ public interface ServletContext {
      * to the servlet log file. The name and type of the servlet log 
      * file is specific to the servlet container, usually an event log.
      *
-     *
      * @param message 		a <code>String</code> that 
      *				describes the error or exception
      *
      * @param throwable 	the <code>Throwable</code> error 
      *				or exception
-     *
      */
-    
     public void log(String message, Throwable throwable);
-    
-    
-    
     
     
     /**
@@ -515,14 +455,9 @@ public interface ServletContext {
      *
      * @return 		a <code>String</code> specifying the real path,
      *                  or null if the translation cannot be performed
-     *			
-     *
      */
-
     public String getRealPath(String path);
     
-    
-
 
     /**
      * Returns the name and version of the servlet container on which
@@ -540,13 +475,9 @@ public interface ServletContext {
      *
      * @return 		a <code>String</code> containing at least the 
      *			servlet container name and version number
-     *
      */
-
     public String getServerInfo();
     
-    
-
 
     /**
      * Returns a <code>String</code> containing the value of the named
@@ -566,10 +497,7 @@ public interface ServletContext {
      *
      * @see ServletConfig#getInitParameter
      */
-
     public String getInitParameter(String name);
-    
-    
 
 
     /**
@@ -584,9 +512,7 @@ public interface ServletContext {
      *
      * @see ServletConfig#getInitParameter
      */
-
     public Enumeration getInitParameterNames();
-    
     
 
     /**
@@ -616,12 +542,8 @@ public interface ServletContext {
      *			name
      *
      * @see 		ServletContext#getAttributeNames
-     *
      */
-  
     public Object getAttribute(String name);
-    
-    
     
 
     /**
@@ -635,16 +557,11 @@ public interface ServletContext {
      *			names
      *
      * @see		#getAttribute
-     *
      */
-
     public Enumeration getAttributeNames();
     
     
-    
-    
     /**
-     *
      * Binds an object to a given attribute name in this servlet context. If
      * the name specified is already used for an attribute, this
      * method will replace the attribute with the new to the new attribute.
@@ -665,44 +582,38 @@ public interface ServletContext {
      *
      * @param object 	an <code>Object</code> representing the
      *			attribute to be bound
-     *
-     *
-     *
      */
-    
     public void setAttribute(String name, Object object);
     
-    
-
-
 
     /**
      * Removes the attribute with the given name from 
      * the servlet context. After removal, subsequent calls to
      * {@link #getAttribute} to retrieve the attribute's value
      * will return <code>null</code>.
-
+     *
      * <p>If listeners are configured on the <code>ServletContext</code> the 
      * container notifies them accordingly.
-
+     *
      *
      *
      * @param name	a <code>String</code> specifying the name 
      * 			of the attribute to be removed
-     *
      */
-
     public void removeAttribute(String name);
+
     
     /**
-     * Returns the name of this web application corresponding to this ServletContext as specified in the deployment
-     * descriptor for this web application by the display-name element.
+     * Returns the name of this web application corresponding to this
+     * ServletContext as specified in the deployment descriptor for this
+     * web application by the display-name element.
      *
      *
-     * @return	    The name of the web application or null if no name has been declared in the deployment descriptor.
+     * @return The name of the web application or null if no name has been
+     * declared in the deployment descriptor.
+     * 
      * @since Servlet 2.3
      */
-    
     public String getServletContextName();
 }
 
