@@ -436,6 +436,33 @@ public class ServletRequestWrapper implements ServletRequest {
     public int getLocalPort(){
         return this.request.getLocalPort();
     }
-    
+
+
+    /**
+     * Gets the servlet context to which the wrapped servlet request was last
+     * dispatched.
+     *
+     * @return the servlet context to which the wrapped servlet request was
+     * last dispatched
+     *
+     * @since 3.0
+     */
+    public ServletContext getServletContext() {
+        return request.getServletContext();
+    }
+
+
+    /**
+     * Gets the servlet response with which the wrapped servlet request has
+     * been associated.
+     *
+     * @return the servlet response with which the wrapped servlet request
+     * has been associated
+     *
+     * @since 3.0
+     */
+    public ServletResponse getServletResponse() {
+        return request.getServletResponse();
+    }
 }
 

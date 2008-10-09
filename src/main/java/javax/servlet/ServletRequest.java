@@ -635,5 +635,28 @@ public interface ServletRequest {
      */
     public int getLocalPort();
 
+
+    /**
+     * Gets the servlet context to which this servlet request was last
+     * dispatched.
+     *
+     * @return the servlet context to which this servlet request was last
+     * dispatched
+     *
+     * @since 3.0
+     */
+    public ServletContext getServletContext();
+
+
+    /**
+     * Gets the servlet response with which this servlet request has been
+     * associated.
+     *
+     * @return the servlet response with which this servlet request has been
+     * associated
+     *
+     * @since 3.0
+     */
+    public ServletResponse getServletResponse();
 }
 
