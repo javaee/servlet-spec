@@ -58,6 +58,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -615,6 +616,67 @@ public interface ServletContext {
      * @since Servlet 2.3
      */
     public String getServletContextName();
+
+
+    /*
+     * Adds the servlet with the given name, description, and class name to
+     * this servlet context.
+     *
+     * <p>If <tt>loadOnStartup</tt> is a positive integer or zero, it
+     * indicates to the container the initialization priority of the
+     * servlet. In this case, the container must instantiate and initialize
+     * the servlet during the initialization phase of this servlet context,
+     * that is, after it has invoked all of the ServletContextListeners
+     * configured for this servlet context at their
+     * {@link ServletContextListener#contextInitialized} method.
+     *
+     * <p>If <tt>loadOnStartup</tt> is a negative integer, the container
+     * is free to instantiate and initialize the servlet lazily.
+     *
+     * @param servletName the name of the servlet
+     * @param description the description of the servlet
+     * @param className the fully qualified class name of the servlet
+     * @param initParameters the initialization parameters of the servlet,
+     * or null if the servlet does not need any
+     * @param loadOnStartup the initialization priority of the servlet
+     *
+     * @throws IllegalArgumentException if a servlet with the given
+     * <tt>servletName</tt> already exists in this servlet context
+     * @throws IllegalStateException if this servlet context has already
+     * been initialized
+     *
+     * @since 3.0
+     */
+    public void addServlet(String servletName,
+                           String description,
+                           String className,
+                           Map<String, String> initParameters,
+                           int loadOnStartup);
+
+
+    /**
+     * Adds a servlet mapping with the given url patterns for the servlet
+     * with the given servlet name to this servlet context.
+     *
+     * <p>The servlet with the given name may have been declared in the
+     * deployment descriptor or one of the web fragments of this servlet
+     * context, or may be added using {@link #addServlet addServlet}. It is
+     * legal to add a servlet mapping for a servlet that has not yet been
+     * added.
+     *
+     * @param servletName the name of the servlet for which the servlet
+     * mapping is added
+     * @param urlPatterns the url patterns of the servlet mapping
+     *
+     * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null
+     * or empty
+     * @throws IllegalStateException if this servlet context has already
+     * been initialized
+     *
+     * @since 3.0
+     */
+    public void addServletMapping(String servletName,
+                                  String[] urlPatterns);
 }
 
 
