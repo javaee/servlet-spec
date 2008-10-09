@@ -112,7 +112,7 @@ public interface ServletContext {
      *
      * @see javax.servlet.http.HttpServletRequest#getContextPath()
      *
-     * @since Servlet 2.5
+     * @since 2.5
      */
     public String getContextPath();
 
@@ -146,10 +146,9 @@ public interface ServletContext {
     /**
      * Returns the major version of the Java Servlet API that this
      * servlet container supports. All implementations that comply
-     * with Version 2.5 must have this method
-     * return the integer 2.
+     * with Version 3.0 must have this method return the integer 3.
      *
-     * @return 		2
+     * @return 3
      */
     public int getMajorVersion();
     
@@ -157,10 +156,9 @@ public interface ServletContext {
     /**
      * Returns the minor version of the Servlet API that this
      * servlet container supports. All implementations that comply
-     * with Version 2.5 must have this method
-     * return the integer 5.
+     * with Version 3.0 must have this method return the integer 0.
      *
-     * @return 		5
+     * @return 0
      */
     public int getMinorVersion();
     
@@ -212,7 +210,7 @@ public interface ServletContext {
      * are no resources in the web application whose path
      * begins with the supplied path.
      * 
-     * @since Servlet 2.3
+     * @since 2.3
      */    
     public Set getResourcePaths(String path);
     
@@ -613,7 +611,7 @@ public interface ServletContext {
      * @return The name of the web application or null if no name has been
      * declared in the deployment descriptor.
      * 
-     * @since Servlet 2.3
+     * @since 2.3
      */
     public String getServletContextName();
 
