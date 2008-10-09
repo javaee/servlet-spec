@@ -675,6 +675,29 @@ public interface ServletContext {
      */
     public void addServletMapping(String servletName,
                                   String[] urlPatterns);
+
+
+    /**
+     * Adds the filter with the given name, description, and class name to
+     * this servlet context.
+     *
+     * @param filterName the name of the filter
+     * @param description the description of the filter
+     * @param className the fully qualified class name of the filter
+     * @param initParameters the initialization parameters of the filter,
+     * or null if the filter does not need any
+     *
+     * @throws IllegalArgumentException if a filter with the given
+     * <tt>filterName</tt> already exists in this servlet context
+     * @throws IllegalStateException if this servlet context has already
+     * been initialized
+     *
+     * @since 3.0
+     */
+    public void addFilter(String filterName,
+                          String description,
+                          String className,
+                          Map<String, String> initParameters);
 }
 
 
