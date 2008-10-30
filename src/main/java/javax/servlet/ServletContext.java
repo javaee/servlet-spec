@@ -701,83 +701,83 @@ public interface ServletContext {
                           Map<String, String> initParameters);
          
     /**
-      * Adds a filter mapping with the given servlet names, and
-      * dispatcher types for the filter with the given filter name to this
-      * servlet context.
-      *
-      * <p>The filter with the given name may have been declared in the
-      * deployment descriptor or one of the web fragments of this servlet
-      * context, or may be added using {@link #addFilter addFilter}. It is
-      * legal to add a filter mapping for a filter that has not yet been added.
-      *
-      * <p>Filter mappings added via this method will be matched against 
-      * requests in the same order in which they were added.
-      * 
-      * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
-      * given filter mapping will be considered after or before any
-      * <i>declared</i> filter mappings of this servlet context.
-      *
-      * @param filterName the name of the filter for which the filter
-      * mapping is added
-      * @param dispatcherTypes the dispatcher types of the filter mapping,
-      * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
-      * @param isMatchAfter true if the given filter mapping should be matched
-      * against requests after any declared filter mappings of this servlet
-      * context, and false if it is supposed to be matched before any declared
-      * filter mappings of this servlet context
-      * @param servletNames the servlet names of the filter mapping
-      *
-      * @throws IllegalArgumentException if <tt>servletNames</tt> is 
-      * null or empty
-      * @throws IllegalStateException if this servlet context has already
-      * been initialized
-      *
-      * @since 3.0
-      */
-     public void addFilterMappingForServletNames(String filterName,
+     * Adds a filter mapping with the given servlet names, and
+     * dispatcher types for the filter with the given filter name to this
+     * servlet context.
+     *
+     * <p>The filter with the given name may have been declared in the
+     * deployment descriptor or one of the web fragments of this servlet
+     * context, or may be added using {@link #addFilter addFilter}. It is
+     * legal to add a filter mapping for a filter that has not yet been added.
+     *
+     * <p>Filter mappings added via this method will be matched against 
+     * requests in the same order in which they were added.
+     * 
+     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
+     * given filter mapping will be considered after or before any
+     * <i>declared</i> filter mappings of this servlet context.
+     *
+     * @param filterName the name of the filter for which the filter
+     * mapping is added
+     * @param dispatcherTypes the dispatcher types of the filter mapping,
+     * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
+     * @param isMatchAfter true if the given filter mapping should be matched
+     * against requests after any declared filter mappings of this servlet
+     * context, and false if it is supposed to be matched before any declared
+     * filter mappings of this servlet context
+     * @param servletNames the servlet names of the filter mapping
+     *
+     * @throws IllegalArgumentException if <tt>servletNames</tt> is 
+     * null or empty
+     * @throws IllegalStateException if this servlet context has already
+     * been initialized
+     *
+     * @since 3.0
+     */
+    public void addFilterMappingForServletNames(String filterName,
                                     EnumSet<DispatcherType> dispatcherTypes,
                                     boolean isMatchAfter,
                                     String... servletNames);
 
-     /**
-      * Adds a filter mapping with the given url patterns, and
-      * dispatcher types for the filter with the given filter name to this
-      * servlet context.
-      *
-      * <p>The filter with the given name may have been declared in the
-      * deployment descriptor or one of the web fragments of this servlet
-      * context, or may be added using {@link #addFilter addFilter}. It is
-      * legal to add a filter mapping for a filter that has not yet been added.
-      *
-      * <p>Filter mappings added via this method will be matched against 
-      * requests in the same order in which they were added.
-      * 
-      * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
-      * given filter mapping will be considered after or before any
-      * <i>declared</i> filter mappings of this servlet context.
-      *
-      * @param filterName the name of the filter for which the filter
-      * mapping is added
-      * @param dispatcherTypes the dispatcher types of the filter mapping,
-      * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
-      * @param isMatchAfter true if the given filter mapping should be matched
-      * against requests after any declared filter mappings of this servlet
-      * context, and false if it is supposed to be matched before any declared
-      * filter mappings of this servlet context
-      * @param urlPatterns the url patterns of the filter mapping
-      * @throws IllegalArgumentException if <tt>urlPatterns</tt>
-      * is both null or empty
-      * @throws IllegalStateException if this servlet context has already
-      * been initialized
-      *
-      * @since 3.0
-      */
-     public void addFilterMappingForUrlPatterns(String filterName,
-                                  EnumSet<DispatcherType> dispatcherTypes,
-                                  boolean isMatchAfter,
-                                  String... urlPatterns);
-     
-         
+    /**
+     * Adds a filter mapping with the given url patterns, and
+     * dispatcher types for the filter with the given filter name to this
+     * servlet context.
+     *
+     * <p>The filter with the given name may have been declared in the
+     * deployment descriptor or one of the web fragments of this servlet
+     * context, or may be added using {@link #addFilter addFilter}. It is
+     * legal to add a filter mapping for a filter that has not yet been added.
+     *
+     * <p>Filter mappings added via this method will be matched against 
+     * requests in the same order in which they were added.
+     * 
+     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
+     * given filter mapping will be considered after or before any
+     * <i>declared</i> filter mappings of this servlet context.
+     *
+     * @param filterName the name of the filter for which the filter
+     * mapping is added
+     * @param dispatcherTypes the dispatcher types of the filter mapping,
+     * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
+     * @param isMatchAfter true if the given filter mapping should be matched
+     * against requests after any declared filter mappings of this servlet
+     * context, and false if it is supposed to be matched before any declared
+     * filter mappings of this servlet context
+     * @param urlPatterns the url patterns of the filter mapping
+     * @throws IllegalArgumentException if <tt>urlPatterns</tt>
+     * is both null or empty
+     * @throws IllegalStateException if this servlet context has already
+     * been initialized
+     *
+     * @since 3.0
+     */
+    public void addFilterMappingForUrlPatterns(String filterName,
+                                    EnumSet<DispatcherType> dispatcherTypes,
+                                    boolean isMatchAfter,
+                                    String... urlPatterns);
+
+
     /**
      * Sets the session tracking cookie configuration for this 
      * <tt>ServletContext</tt>.
@@ -789,21 +789,18 @@ public interface ServletContext {
      * @throws IllegalStateException if this <tt>ServletContext</tt> has
      * already been initialized
      */
-     public void setSessionCookieConfig(SessionCookieConfig sessionCookieConfig);
- 
-     
-     /**
-      * Gets the session tracking cookie configuration of this 
-      * <tt>ServletContext</tt>.
-      *
-      * @return the session tracking cookie configuration of this 
-      * <tt>ServletContext</tt>, or <tt>null</tt> if no such configuration
-      * was ever set for this <tt>ServletContext</tt>
-      */
-     public SessionCookieConfig getSessionCookieConfig();
- 
-     
-     
+    public void setSessionCookieConfig(SessionCookieConfig sessionCookieConfig);
+
+
+    /**
+     * Gets the session tracking cookie configuration of this 
+     * <tt>ServletContext</tt>.
+     *
+     * @return the session tracking cookie configuration of this 
+     * <tt>ServletContext</tt>, or <tt>null</tt> if no such configuration
+     * was ever set for this <tt>ServletContext</tt>
+     */
+    public SessionCookieConfig getSessionCookieConfig();
 }
 
 
