@@ -788,6 +788,8 @@ public interface ServletContext {
      * @param sessionCookieConfig 
      * @throws IllegalStateException if this <tt>ServletContext</tt> has
      * already been initialized
+     *
+     * @since 3.0
      */
     public void setSessionCookieConfig(SessionCookieConfig sessionCookieConfig);
 
@@ -799,8 +801,65 @@ public interface ServletContext {
      * @return the session tracking cookie configuration of this 
      * <tt>ServletContext</tt>, or <tt>null</tt> if no such configuration
      * was ever set for this <tt>ServletContext</tt>
+     *
+     * @since 3.0
      */
     public SessionCookieConfig getSessionCookieConfig();
+
+
+    /**
+     * Sets the session tracking modes that are to become effective for this
+     * <tt>ServletContext</tt>.
+     *
+     * <p>The given <tt>sessionTrackingModes</tt> replaces any
+     * session tracking modes set by a previous invocation of this
+     * method on this <tt>ServletContext</tt>.
+     *
+     * @param sessionTrackingModes enum set of session tracking modes to
+     * become effective for this <tt>ServletContext</tt>
+     *
+     * @throws IllegalStateException if this <tt>ServletContext</tt> has
+     * already been initialized
+     * @throws IllegalArgumentException if <tt>sessionTrackingModes</tt>
+     * specifies a combination of <tt>SessionTrackingMode.SSL</tt> with a
+     * session tracking mode other than <tt>SessionTrackingMode.SSL</tt>,
+     * or if <tt>sessionTrackingModes</tt> specifies a session tracking mode
+     * that is not supported by the servlet container
+     *
+     * @since 3.0
+     */
+    public void setSessionTrackingModes(EnumSet<SessionTrackingMode> sessionTrackingModes);
+
+
+    /**
+     * Gets the session tracking modes that are supported by default for this
+     * <tt>ServletContext</tt>.
+     *
+     * @return enum set of the session tracking modes supported by default for
+     * this <tt>ServletContext</tt>
+     *
+     * @since 3.0
+     */
+    public EnumSet<SessionTrackingMode> getDefaultSessionTrackingModes();
+
+
+    /**
+     * Gets the session tracking modes that are in effect for this
+     * <tt>ServletContext</tt>.
+     *
+     * <p>The session tracking modes in effect are those provided to
+     * {@link #setSessionTrackingModes setSessionTrackingModes}.
+     *
+     * <p>By default, the session tracking modes returned by
+     * {@link #getDefaultSessionTrackingModes getDefaultSessionTrackingModes}
+     * are in effect.
+     *
+     * @return enum set of the session tracking modes in effect for this
+     * <tt>ServletContext</tt>
+     *
+     * @since 3.0
+     */
+    public EnumSet<SessionTrackingMode> getEffectiveSessionTrackingModes();
 }
 
 
