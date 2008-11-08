@@ -29,7 +29,7 @@ package javax.servlet;
 /**
  * Session tracking cookie configuration class.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public class SessionCookieConfig {
 

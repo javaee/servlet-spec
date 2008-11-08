@@ -393,16 +393,132 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Gets the servlet response with which the wrapped servlet request has
-     * been associated.
+     * Starts async processing on the wrapped request.
      *
-     * @return the servlet response with which the wrapped servlet request
-     * has been associated
+     * This will delay committal of the response until doneAsync is called,
+     * or a timeout occurs.
+     * 
+     * @throws IllegalStateException if async is not supposed for the
+     * wrapped request, i.e., <code>isAsyncSupported</code> returns false
      *
      * @since 3.0
      */
-    public ServletResponse getServletResponse() {
-        return request.getServletResponse();
+    public void startAsync() throws IllegalStateException {
+        request.startAsync();
+    }
+    
+
+    /**
+     * Starts async processing on the wrapped request.
+     *
+     * This will delay committal of the response until doneAsync is called,
+     * or a timeout occurs.
+     * 
+     * @param runnable the async handler that is going to complete the async
+     * processing and commit the response
+     *
+     * @throws IllegalStateException if async is not supposed for the
+     * wrapped request, i.e., <code>isAsyncSupported</code> returns false
+     *
+     * @since 3.0
+     */
+    public void startAsync(Runnable runnable) throws IllegalStateException {
+        request.startAsync(runnable);
+    }
+
+
+    /**
+     * Indicates whether async processing has started on the wrapped request.
+     *
+     * @return true if async processing has started on the wrapped request,
+     * false otherwise
+     *
+     * @since 3.0
+     */
+    public boolean isAsyncStarted() {
+        return request.isAsyncStarted();
+    }
+
+
+    /**
+     * Completes any async processing on the wrapped request, causing the
+     * corresponding response to be committed.
+     *
+     * @throws IllegalStateException if startAsync was never called on the
+     * wrapped request
+     *
+     * @since 3.0
+     */
+    public void doneAsync() {
+        request.doneAsync();
+    }
+
+
+    /**
+     * Checks whether the wrapped request supports async processing.
+     *
+     * Async support will be disabled as soon as the wrapped request has
+     * passed a filter or servlet that does not support async processing
+     * (either via the designated annotation or declaratively).
+     *
+     * @return true if the wrapped request supports async processing,
+     * false otherwise
+     *
+     * @since 3.0
+     */
+    public boolean isAsyncSupported() {
+        return request.isAsyncSupported();
+    }
+
+
+    /**
+     * Obtains an AsyncDispatcher for the original URI to which the wrapped
+     * request was first dispatched.
+     *
+     * @return the AsyncDispatcher for the original URI to which the wrapped
+     * request was first dispatched
+     *
+     * @since 3.0
+     */
+    public AsyncDispatcher getAsyncDispatcher() {
+        return request.getAsyncDispatcher();
+    }
+
+
+    /**
+     * Obtains an AsyncDispatcher for the given path.
+     *
+     * @path the patch for which to obtain an AsyncDispatcher
+     *
+     * @return the AsyncDispatcher for the given path
+     *
+     * @since 3.0
+     */
+    public AsyncDispatcher getAsyncDispatcher(String path) {
+        return request.getAsyncDispatcher(path);
+    }
+
+
+    /**
+     * Registers the given AsyncListener with the wrapped request.
+     *
+     * If async processing is started on the wrapped request, an AsyncEvent
+     * containing the given (possibly wrapped) ServletRequest and
+     * ServletResponse objects will be sent to the AsyncListener 
+     * when the async processing has completed or timed out.
+     * 
+     * @param listener the AsyncListener to be registered
+     * @param servletRequest the (possibly wrapped) ServletRequest object
+     * that will be passed to the AsyncListener as part of the AsyncEvent 
+     * @param servletResponse the (possibly wrapped) ServletResponse object
+     * that will be passed to the AsyncListener as part of the AsyncEvent 
+     *
+     * @since 3.0
+     */
+    public void addAsyncListener(AsyncListener listener,
+                                 ServletRequest servletRequest,
+                                 ServletResponse servletResponse) {
+        request.addAsyncListener(listener, servletRequest, servletResponse);
     }
 }
 

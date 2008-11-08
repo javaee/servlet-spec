@@ -860,6 +860,32 @@ public interface ServletContext {
      * @since 3.0
      */
     public EnumSet<SessionTrackingMode> getEffectiveSessionTrackingModes();
+
+
+    /**
+     * Returns an {@link AsyncDispatcher} object that acts
+     * as a wrapper for the resource located at the given path.
+     *
+     * An <code>AsyncDispatcher</code> object can be used to forward
+     * a request to the resource. The resource can be dynamic or static.
+     *
+     * <p>The pathname must begin with a "/" and is interpreted as relative
+     * to the current context root.  Use <code>getContext</code> to obtain
+     * an <code>AsyncDispatcher</code> for resources in foreign contexts.
+     *
+     * @param path a <code>String</code> specifying the pathname to the
+     * resource
+     *
+     * @return an <code>AsyncDispatcher</code> object that acts as a wrapper
+     * for the resource at the specified path,
+     *
+     * @see AsyncDispatcher
+     * @see ServletContext#getContext
+     *
+     * @since 3.0
+     */
+     public AsyncDispatcher getAsyncDispatcher(String path);
+
 }
 
 

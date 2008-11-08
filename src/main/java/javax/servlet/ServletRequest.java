@@ -612,6 +612,7 @@ public interface ServletRequest {
      */
     public String getLocalName();
 
+
     /**
      * Returns the Internet Protocol (IP) address of the interface on
      * which the request  was received.
@@ -649,14 +650,115 @@ public interface ServletRequest {
 
 
     /**
-     * Gets the servlet response with which this servlet request has been
-     * associated.
+     * Starts async processing on this request.
      *
-     * @return the servlet response with which this servlet request has been
-     * associated
+     * This will delay committal of the response until doneAsync is called,
+     * or a timeout occurs.
+     * 
+     * @throws IllegalStateException if async is not supposed for this
+     * request, i.e., <code>isAsyncSupported</code> returns false
      *
      * @since 3.0
      */
-    public ServletResponse getServletResponse();
+    public void startAsync() throws IllegalStateException;
+    
+
+    /**
+     * Starts async processing on this request.
+     *
+     * This will delay committal of the response until doneAsync is called,
+     * or a timeout occurs.
+     * 
+     * @param runnable the async handler that is going to complete the async
+     * processing and commit the response
+     *
+     * @throws IllegalStateException if async is not supposed for this
+     * request, i.e., <code>isAsyncSupported</code> returns false
+     *
+     * @since 3.0
+     */
+    public void startAsync(Runnable runnable) throws IllegalStateException;
+
+
+    /**
+     * Checks whether async processing has started on this request.
+     *
+     * @return true if async processing has started on this request, false
+     * otherwise
+     *
+     * @since 3.0
+     */
+    public boolean isAsyncStarted();
+
+
+    /**
+     * Completes any async processing on this request, causing the
+     * corresponding response to be committed.
+     *
+     * @throws IllegalStateException if startAsync was never called
+     *
+     * @since 3.0
+     */
+    public void doneAsync();
+
+
+    /**
+     * Checks whether this request supports async processing.
+     *
+     * Async support will be disabled as soon as this request has passed a
+     * filter or servlet that does not support async processing (either
+     * via the designated annotation or declaratively).
+     *
+     * @return true if this request supports async processing, false otherwise
+     *
+     * @since 3.0
+     */
+    public boolean isAsyncSupported();
+
+
+    /**
+     * Obtains an AsyncDispatcher for the original URI to which this request
+     * was first dispatched.
+     *
+     * @return the AsyncDispatcher for the original URI to which this request
+     * was first dispatched
+     *
+     * @since 3.0
+     */
+    public AsyncDispatcher getAsyncDispatcher();
+
+
+    /**
+     * Obtains an AsyncDispatcher for the given path.
+     *
+     * @path the patch for which to obtain an AsyncDispatcher
+     *
+     * @return the AsyncDispatcher for the given path
+     *
+     * @since 3.0
+     */
+    public AsyncDispatcher getAsyncDispatcher(String path);
+
+
+    /**
+     * Registers the given AsyncListener with this request.
+     *
+     * If async processing is started on this request, an AsyncEvent
+     * containing the given (possibly wrapped) ServletRequest and
+     * ServletResponse objects will be sent to the AsyncListener 
+     * when the async processing has completed or timed out.
+     * 
+     * @param listener the AsyncListener to be registered
+     * @param servletRequest the (possibly wrapped) ServletRequest object
+     * that will be passed to the AsyncListener as part of the AsyncEvent 
+     * @param servletResponse the (possibly wrapped) ServletResponse object
+     * that will be passed to the AsyncListener as part of the AsyncEvent 
+     *
+     * @since 3.0
+     */
+    public void addAsyncListener(AsyncListener listener,
+                                 ServletRequest servletRequest,
+                                 ServletResponse servletResponse);
+
 }
 
