@@ -75,7 +75,7 @@ public @interface WebServlet {
      * auto-commit controls whether a response is open or not after the service 
      * method has exited
      */
-    boolean supportsAsync() default false;
+    boolean asyncSupported() default false;
     
     /**
      * Specifies the timeout - can be used only when auto_commit is set to false

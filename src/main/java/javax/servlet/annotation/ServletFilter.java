@@ -91,5 +91,5 @@ public @interface ServletFilter {
     /**
      * Indicates whether the Filter supports async processing or not.
      */
-    boolean supportsAsync() default false;
+    boolean asyncSupported() default false;
 }
