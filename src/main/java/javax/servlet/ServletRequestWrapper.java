@@ -393,45 +393,61 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Starts async processing on the wrapped request.
+     * Puts the wrapped request into asynchronous mode, and imitializes its
+     * {@link AsyncContext} with the original ServletRequest and 
+     * ServletResponse objects.
      *
-     * This will delay committal of the response until doneAsync is called,
-     * or a timeout occurs.
+     * @return the initialized AsyncContext
      * 
-     * @throws IllegalStateException if async is not supposed for the
-     * wrapped request, i.e., <code>isAsyncSupported</code> returns false
+     * @throws IllegalStateException if this request is within the scope of
+     * a filter or servlet that does not support asynchronous operation,
+     * that is, if {@link #isAsyncSupported} returns false, or if this method
+     * is called again outside the scope of {@link AsyncContext#forward},
+     * or if the response has already been closed
+     *
+     * @see ServletRequest#startAsync
      *
      * @since 3.0
      */
-    public void startAsync() throws IllegalStateException {
-        request.startAsync();
+    public AsyncContext startAsync() throws IllegalStateException {
+        return request.startAsync();
     }
     
 
     /**
-     * Starts async processing on the wrapped request.
+     * Puts the wrapped request into asynchronous mode, and imitializes its
+     * {@link AsyncContext} with the given request and response objects.
      *
-     * This will delay committal of the response until doneAsync is called,
-     * or a timeout occurs.
+     * @param servletRequest the ServletRequest used to initialize the
+     * AsyncContext
+     * @param servletResponse the ServletResponse used to initialize the
+     * AsyncContext
+     * @return the initialized AsyncContext
      * 
-     * @param runnable the async handler that is going to complete the async
-     * processing and commit the response
+     * @throws IllegalStateException if this request is within the scope of
+     * a filter or servlet that does not support asynchronous operation,
+     * that is, if {@link #isAsyncSupported} returns false, or if this method
+     * is called again outside the scope of {@link AsyncContext#forward},
+     * or if the response has already been closed
      *
-     * @throws IllegalStateException if async is not supposed for the
-     * wrapped request, i.e., <code>isAsyncSupported</code> returns false
+     * @see ServletRequest#startAsync(ServletRequest, ServletResponse)
      *
      * @since 3.0
      */
-    public void startAsync(Runnable runnable) throws IllegalStateException {
-        request.startAsync(runnable);
+    public AsyncContext startAsync(ServletRequest servletRequest,
+                                   ServletResponse servletResponse)
+            throws IllegalStateException {
+        return request.startAsync(servletRequest, servletResponse);
     }
 
 
     /**
-     * Indicates whether async processing has started on the wrapped request.
+     * Checks if the wrapped request has been put into asynchronous mode.
      *
-     * @return true if async processing has started on the wrapped request,
+     * @return true if this request has been put into asynchronous mode,
      * false otherwise
+     *
+     * @see ServletRequest#isAsyncStarted
      *
      * @since 3.0
      */
@@ -441,28 +457,12 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Completes any async processing on the wrapped request, causing the
-     * corresponding response to be committed.
+     * Checks if the wrapped request supports asynchronous operation.
      *
-     * @throws IllegalStateException if startAsync was never called on the
-     * wrapped request
+     * @return true if this request supports asynchronous operation, false
+     * otherwise
      *
-     * @since 3.0
-     */
-    public void doneAsync() {
-        request.doneAsync();
-    }
-
-
-    /**
-     * Checks whether the wrapped request supports async processing.
-     *
-     * Async support will be disabled as soon as the wrapped request has
-     * passed a filter or servlet that does not support async processing
-     * (either via the designated annotation or declaratively).
-     *
-     * @return true if the wrapped request supports async processing,
-     * false otherwise
+     * @see ServletRequest#isAsyncSupported
      *
      * @since 3.0
      */
@@ -472,46 +472,54 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Obtains an AsyncDispatcher for the original URI to which the wrapped
-     * request was first dispatched.
+     * Gets the AsyncContext of the wrapped request.
      *
-     * @return the AsyncDispatcher for the original URI to which the wrapped
-     * request was first dispatched
+     * @return the AsyncContext of this request
+     *
+     * @throws IllegalStateException if this request has not been put 
+     * into asynchronous mode, i.e., if neither {@link #startAsync} nor
+     * {@link #startAsync(ServletREquest,ServletResponse)} has been called
+     *
+     * @see ServletRequest#getAsyncContext
      *
      * @since 3.0
      */
-    public AsyncDispatcher getAsyncDispatcher() {
-        return request.getAsyncDispatcher();
+    public AsyncContext getAsyncContext() {
+        return request.getAsyncContext();
     }
 
 
     /**
-     * Obtains an AsyncDispatcher for the given path.
+     * Registers the given {@link AsyncListener} with the wrapped request
+     * for asynchronous complete and timeout events.
      *
-     * @path the patch for which to obtain an AsyncDispatcher
-     *
-     * @return the AsyncDispatcher for the given path
-     *
-     * @since 3.0
-     */
-    public AsyncDispatcher getAsyncDispatcher(String path) {
-        return request.getAsyncDispatcher(path);
-    }
-
-
-    /**
-     * Registers the given AsyncListener with the wrapped request.
-     *
-     * If async processing is started on the wrapped request, an AsyncEvent
-     * containing the given (possibly wrapped) ServletRequest and
-     * ServletResponse objects will be sent to the AsyncListener 
-     * when the async processing has completed or timed out.
-     * 
      * @param listener the AsyncListener to be registered
      * @param servletRequest the (possibly wrapped) ServletRequest object
      * that will be passed to the AsyncListener as part of the AsyncEvent 
      * @param servletResponse the (possibly wrapped) ServletResponse object
      * that will be passed to the AsyncListener as part of the AsyncEvent 
+     *
+     * @see ServletRequest#addAsyncListener(AsyncListener)
+     *
+     * @since 3.0
+     */
+    public void addAsyncListener(AsyncListener listener) {
+        request.addAsyncListener(listener);
+    }
+
+
+    /**
+     * Registers the given {@link AsyncListener}, {@link ServletRequest},
+     * and {@link ServletResponse} with the wrapped request for asynchronous
+     * complete and timeout events.
+     *
+     * @param listener the AsyncListener to be registered
+     * @param servletRequest the ServletRequest that will be included
+     * in the AsyncEvent
+     * @param servletResponse the ServletResponse that will be included
+     * in the AsyncEvent 
+     *
+     * @see ServletRequest#addAsyncListener(AsyncListener, ServletRequest, ServletResponse)
      *
      * @since 3.0
      */

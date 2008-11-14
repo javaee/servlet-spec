@@ -650,41 +650,63 @@ public interface ServletRequest {
 
 
     /**
-     * Starts async processing on this request.
+     * Puts this request into asynchronous mode, and imitializes its
+     * {@link AsyncContext} with the original ServletRequest and 
+     * ServletResponse objects.
      *
-     * This will delay committal of the response until doneAsync is called,
-     * or a timeout occurs.
+     * This will delay committal of the associated response until
+     * {@link AsyncContext#complete} is called on the returned
+     * {@link AsyncContext}, or the AsyncContext times out.
+     *
+     * @return the initialized AsyncContext
      * 
-     * @throws IllegalStateException if async is not supposed for this
-     * request, i.e., <code>isAsyncSupported</code> returns false
+     * @throws IllegalStateException if this request is within the scope of
+     * a filter or servlet that does not support asynchronous operation,
+     * that is, if {@link #isAsyncSupported} returns false, or if this method
+     * is called again outside the scope of {@link AsyncContext#forward},
+     * or if the response has already been closed
      *
      * @since 3.0
      */
-    public void startAsync() throws IllegalStateException;
+    public AsyncContext startAsync() throws IllegalStateException;
     
 
     /**
-     * Starts async processing on this request.
+     * Puts this request into asynchronous mode, and imitializes its
+     * {@link AsyncContext} with the given request and response objects.
      *
-     * This will delay committal of the response until doneAsync is called,
-     * or a timeout occurs.
+     * This will delay committal of the response until
+     * {@link AsyncContext#complete} is called on the returned
+     * {@link AsyncContext}, or the AsyncContext times out.
+     *
+     * @param servletRequest the ServletRequest used to initialize the
+     * AsyncContext
+     * @param servletResponse the ServletResponse used to initialize the
+     * AsyncContext
+     * @return the initialized AsyncContext
      * 
-     * @param runnable the async handler that is going to complete the async
-     * processing and commit the response
-     *
-     * @throws IllegalStateException if async is not supposed for this
-     * request, i.e., <code>isAsyncSupported</code> returns false
+     * @throws IllegalStateException if this request is within the scope of
+     * a filter or servlet that does not support asynchronous operation,
+     * that is, if {@link #isAsyncSupported} returns false, or if this method
+     * is called again outside the scope of {@link AsyncContext#forward},
+     * or if the response has already been closed
      *
      * @since 3.0
      */
-    public void startAsync(Runnable runnable) throws IllegalStateException;
+    public AsyncContext startAsync(ServletRequest servletRequest,
+                                   ServletResponse servletResponse)
+            throws IllegalStateException;
 
 
     /**
-     * Checks whether async processing has started on this request.
+     * Checks if this request has been put into asynchronous mode.
      *
-     * @return true if async processing has started on this request, false
-     * otherwise
+     * A ServletRequest is put into asynchronous mode by calling
+     * {@link #startAsync} or
+     * {@link #startAsync(ServletRequest,ServletResponse)} on it.
+     *
+     * @return true if this request has been put into asynchronous mode,
+     * false otherwise
      *
      * @since 3.0
      */
@@ -692,24 +714,15 @@ public interface ServletRequest {
 
 
     /**
-     * Completes any async processing on this request, causing the
-     * corresponding response to be committed.
+     * Checks if this request supports asynchronous operation.
      *
-     * @throws IllegalStateException if startAsync was never called
+     * Asynchronous operation is disabled for this request if this request is
+     * within the scope of a filter or servlet that has not been annotated
+     * or flagged in the deployment descriptor as being able to support
+     * asynchronous handling.
      *
-     * @since 3.0
-     */
-    public void doneAsync();
-
-
-    /**
-     * Checks whether this request supports async processing.
-     *
-     * Async support will be disabled as soon as this request has passed a
-     * filter or servlet that does not support async processing (either
-     * via the designated annotation or declaratively).
-     *
-     * @return true if this request supports async processing, false otherwise
+     * @return true if this request supports asynchronous operation, false
+     * otherwise
      *
      * @since 3.0
      */
@@ -717,42 +730,73 @@ public interface ServletRequest {
 
 
     /**
-     * Obtains an AsyncDispatcher for the original URI to which this request
-     * was first dispatched.
+     * Gets the AsyncContext of this request.
      *
-     * @return the AsyncDispatcher for the original URI to which this request
-     * was first dispatched
+     * @return the AsyncContext of this request
      *
-     * @since 3.0
-     */
-    public AsyncDispatcher getAsyncDispatcher();
-
-
-    /**
-     * Obtains an AsyncDispatcher for the given path.
-     *
-     * @path the patch for which to obtain an AsyncDispatcher
-     *
-     * @return the AsyncDispatcher for the given path
+     * @throws IllegalStateException if this request has not been put 
+     * into asynchronous mode, i.e., if neither {@link #startAsync} nor
+     * {@link #startAsync(ServletREquest,ServletResponse)} has been called
      *
      * @since 3.0
      */
-    public AsyncDispatcher getAsyncDispatcher(String path);
+    public AsyncContext getAsyncContext();
 
 
     /**
-     * Registers the given AsyncListener with this request.
+     * Registers the given {@link AsyncListener} with this request for
+     * asynchronous complete and timeout events.
      *
-     * If async processing is started on this request, an AsyncEvent
-     * containing the given (possibly wrapped) ServletRequest and
-     * ServletResponse objects will be sent to the AsyncListener 
-     * when the async processing has completed or timed out.
-     * 
+     * If {@link #startAsync} or
+     * {@link #startAsync(ServletRequest,ServletResponse)} is called on this
+     * request, an {@link AsyncEvent} will be sent to this AsyncListener as
+     * soon as the asynchronous operation has completed or timed out.
+     * The AsyncEvent will contain the ServletRequest and ServletResponse
+     * objects that were used to initialize the {@link AsyncContext}
+     * returned by the call to startAsync.
+     *
+     * AsyncListener instances will be notified in the order
+     * in which they were added to this request.
+     *
      * @param listener the AsyncListener to be registered
      * @param servletRequest the (possibly wrapped) ServletRequest object
      * that will be passed to the AsyncListener as part of the AsyncEvent 
      * @param servletResponse the (possibly wrapped) ServletResponse object
      * that will be passed to the AsyncListener as part of the AsyncEvent 
+     *
+     * @since 3.0
+     */
+    public void addAsyncListener(AsyncListener listener);
+
+
+    /**
+     * Registers the given {@link AsyncListener} with this request for 
+     * asynchronous complete and timeout events.
+     *
+     * If {@link #startAsync} or
+     * {@link #startAsync(ServletRequest,ServletResponse)} is called on this
+     * request, an {@link AsyncEvent} will be sent to this AsyncListener as
+     * soon as the asynchronous operation has completed or timed out.
+     * The AsyncEvent will contain the given ServletRequest and
+     * ServletResponse objects.
+     *
+     * AsyncListener instances will be notified in the order
+     * in which they were added to this request.
+     *
+     * The specified request and response objects, which will be included
+     * in the AsyncEvent that will be delivered to the given AsyncListener,
+     * should not be read from or written to, respectively, at the time
+     * when the AsyncEvent is delivered, because additional wrapping may have
+     * occurred after this method was called. The main reason for allowing
+     * request and response objects to be passed to this method is to allow
+     * the AsyncListener to release any resources associated with them when
+     * the AsyncEvent is delivered.
+     *
+     * @param listener the AsyncListener to be registered
+     * @param servletRequest the ServletRequest that will be included
+     * in the AsyncEvent
+     * @param servletResponse the ServletResponse that will be included
+     * in the AsyncEvent 
      *
      * @since 3.0
      */

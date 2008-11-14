@@ -41,35 +41,40 @@ import java.io.IOException;
 import java.util.EventListener;
 
 /**
- * Listener that will be notified when a ServletRequest on which async
- * processing was started, has completed processing (by calling doneAsync on
- * it) or has timed out..
+ * Listener that will be notified when an asynchronous operation that was
+ * started on a ServletRequest by a call to {@link ServletRequest#startAsync}
+ * or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
+ * completes or times out.
  *
  * @since 3.0
  */
 public interface AsyncListener extends EventListener {
     
     /**
-     * Sends notification that async processing on the request
-     * with which this AsyncListener has been registered, has completed
-     * (by calling doneAsync on it), and the.corresponding response has
-     * been committed.
+     * Notifies this AsyncListener that an asynchronous operation
+     * started on the ServletRequest with which this AsyncListener was
+     * registered has been completed.
      * 
      * @param event the AsyncEvent containing the request and response
-     * objects that were provided when this AsyncListener was registered
+     * objects that were used when this AsyncListener was registered via a
+     * call to {@link ServletRequest#addAsyncListener(AsyncListener)}
+     * or {@link ServletRequest#addAsyncListener(AsyncListener, ServletRequest, ServletResponse)}
      *
      * @throws IOException if an I/O exception occurred during the processing
      * of the given AsyncEvent
      */
-    public void onDoneAsync(AsyncEvent event) throws IOException;
+    public void onComplete(AsyncEvent event) throws IOException;
 
 
     /**
-     * Sends notification that async processing on the request
-     * with which this AsyncListener has been registered, has timed out.
+     * Notifies this AsyncListener that an asynchronous operation
+     * started on the ServletRequest with which this AsyncListener was
+     * registered has timed out.
      * 
      * @param event the AsyncEvent containing the request and response
-     * objects that were provided when this AsyncListener was registered
+     * objects that were used when this AsyncListener was registered via a
+     * call to {@link ServletRequest#addAsyncListener(AsyncListener)}
+     * or {@link ServletRequest#addAsyncListener(AsyncListener, ServletRequest, ServletResponse)}
      *
      * @throws IOException if an I/O exception occurred during the processing
      * of the given AsyncEvent
