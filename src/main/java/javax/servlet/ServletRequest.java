@@ -736,7 +736,7 @@ public interface ServletRequest {
      *
      * @throws IllegalStateException if this request has not been put 
      * into asynchronous mode, i.e., if neither {@link #startAsync} nor
-     * {@link #startAsync(ServletREquest,ServletResponse)} has been called
+     * {@link #startAsync(ServletRequest,ServletResponse)} has been called
      *
      * @since 3.0
      */
