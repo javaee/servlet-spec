@@ -81,7 +81,7 @@ public @interface WebServlet {
      * Specifies the timeout - can be used only when auto_commit is set to false
      * 
      */
-    long timeout() default 0;
+    long asyncTimeout() default 0;
     
     /**
      * The icon defined for the servlet
