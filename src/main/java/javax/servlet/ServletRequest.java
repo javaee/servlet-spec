@@ -654,7 +654,7 @@ public interface ServletRequest {
      * {@link AsyncContext} with the original ServletRequest and 
      * ServletResponse objects.
      *
-     * This will delay committal of the associated response until
+     * <p>This will delay committal of the associated response until
      * {@link AsyncContext#complete} is called on the returned
      * {@link AsyncContext}, or the AsyncContext times out.
      *
@@ -675,7 +675,7 @@ public interface ServletRequest {
      * Puts this request into asynchronous mode, and imitializes its
      * {@link AsyncContext} with the given request and response objects.
      *
-     * This will delay committal of the response until
+     * <p>This will delay committal of the response until
      * {@link AsyncContext#complete} is called on the returned
      * {@link AsyncContext}, or the AsyncContext times out.
      *
@@ -701,7 +701,7 @@ public interface ServletRequest {
     /**
      * Checks if this request has been put into asynchronous mode.
      *
-     * A ServletRequest is put into asynchronous mode by calling
+     * <p>A ServletRequest is put into asynchronous mode by calling
      * {@link #startAsync} or
      * {@link #startAsync(ServletRequest,ServletResponse)} on it.
      *
@@ -716,8 +716,8 @@ public interface ServletRequest {
     /**
      * Checks if this request supports asynchronous operation.
      *
-     * Asynchronous operation is disabled for this request if this request is
-     * within the scope of a filter or servlet that has not been annotated
+     * <p>Asynchronous operation is disabled for this request if this request
+     * is within the scope of a filter or servlet that has not been annotated
      * or flagged in the deployment descriptor as being able to support
      * asynchronous handling.
      *
@@ -747,7 +747,7 @@ public interface ServletRequest {
      * Registers the given {@link AsyncListener} with this request for
      * asynchronous complete and timeout events.
      *
-     * If {@link #startAsync} or
+     * <p>If {@link #startAsync} or
      * {@link #startAsync(ServletRequest,ServletResponse)} is called on this
      * request, an {@link AsyncEvent} will be sent to this AsyncListener as
      * soon as the asynchronous operation has completed or timed out.
@@ -755,14 +755,10 @@ public interface ServletRequest {
      * objects that were used to initialize the {@link AsyncContext}
      * returned by the call to startAsync.
      *
-     * AsyncListener instances will be notified in the order
+     * <p>AsyncListener instances will be notified in the order
      * in which they were added to this request.
      *
      * @param listener the AsyncListener to be registered
-     * @param servletRequest the (possibly wrapped) ServletRequest object
-     * that will be passed to the AsyncListener as part of the AsyncEvent 
-     * @param servletResponse the (possibly wrapped) ServletResponse object
-     * that will be passed to the AsyncListener as part of the AsyncEvent 
      *
      * @since 3.0
      */
@@ -773,17 +769,17 @@ public interface ServletRequest {
      * Registers the given {@link AsyncListener} with this request for 
      * asynchronous complete and timeout events.
      *
-     * If {@link #startAsync} or
+     * <p>If {@link #startAsync} or
      * {@link #startAsync(ServletRequest,ServletResponse)} is called on this
      * request, an {@link AsyncEvent} will be sent to this AsyncListener as
      * soon as the asynchronous operation has completed or timed out.
      * The AsyncEvent will contain the given ServletRequest and
      * ServletResponse objects.
      *
-     * AsyncListener instances will be notified in the order
+     * <p>AsyncListener instances will be notified in the order
      * in which they were added to this request.
      *
-     * The specified request and response objects, which will be included
+     * <p>The specified request and response objects, which will be included
      * in the AsyncEvent that will be delivered to the given AsyncListener,
      * should not be read from or written to, respectively, at the time
      * when the AsyncEvent is delivered, because additional wrapping may have

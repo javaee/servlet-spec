@@ -58,6 +58,10 @@ package javax.servlet;
  * Class representing the execution context for an asynchronous operation
  * that was started on a ServletRequest.
  *
+ * <p>An AsyncContext is created and initialized by a call to
+ * {@link ServletRequest#startAsync()} or
+ * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
+ *
  * @since 3.0
  */
 public interface AsyncContext {
@@ -86,11 +90,11 @@ public interface AsyncContext {
      * Forwards the request and response objects that were used to 
      * initialize this AsyncContext to the original URI of the request.
      *
-     * This method is equal in semantics to
+     * <p>This method is equal in semantics to
      * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)},
      * except that it returns immediately.
      *
-     * Control over the request and response objects of this AsyncContext
+     * <p>Control over the request and response objects of this AsyncContext
      * is handed off to the target resource of the dispatch, and the 
      * response will be closed when the target resource of the dispatch
      * has completed execution, unless {@link ServletRequest#startAsync()}
@@ -108,14 +112,14 @@ public interface AsyncContext {
      * Forwards the request and response objects that were used to 
      * initialize this AsyncContext to the resource with the given path.
      *
-     * The given path is interpreted as relative to the 
+     * <p>The given path is interpreted as relative to the 
      * {@link ServletContext} that initialized this AsyncContext.
      *
-     * This method is equal in semantics to
+     * <p>This method is equal in semantics to
      * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)},
      * except that it returns immediately.
      *
-     * Control over the request and response objects of this AsyncContext
+     * <p>Control over the request and response objects of this AsyncContext
      * is handed off to the target resource of the dispatch, and the 
      * response will be closed when the target resource of the dispatch
      * has completed execution, unless {@link ServletRequest#startAsync()}
@@ -136,11 +140,11 @@ public interface AsyncContext {
      * initialize this AsyncContext to the resource with the given path
      * in the given ServletContext.
      *
-     * This method is equal in semantics to
+     * <p>This method is equal in semantics to
      * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)},
      * except that it returns immediately.
      *
-     * Control over the request and response objects of this AsyncContext
+     * <p>Control over the request and response objects of this AsyncContext
      * is handed off to the target resource of the dispatch, and the 
      * response will be closed when the target resource of the dispatch
      * has completed execution, unless {@link ServletRequest#startAsync()}
@@ -149,7 +153,7 @@ public interface AsyncContext {
      * the response will not be closed.
      *
      * @param context the target ServletContext of the dispatch
-     * @param the path of the target resource of the dispatch,
+     * @param path the path of the target resource of the dispatch,
      * relative to the given ServletContext
      *
      * @exception IllegalStateException if {@link #complete} has already
@@ -163,7 +167,7 @@ public interface AsyncContext {
      * that was used to initialze this AsyncContext, closing the response
      * that was used to initialize this AsyncContext.
      *
-     * Any listeners of type {@link AsyncListener} that were added to the
+     * <p>Any listeners of type {@link AsyncListener} that were added to the
      * request that was used to initialize this AsyncContext will be invoked
      * at their {@link AsyncListener#onComplete(AsyncEvent)} method.
      */
@@ -173,12 +177,12 @@ public interface AsyncContext {
     /**
      * Sets the timeout (in milliseconds) for this AsyncContext.
      *
-     * By default, the timeout specified via the async-timeout 
+     * <p>By default, the timeout specified via the async-timeout 
      * deployment descriptor element or the asyncTimeout annotation
      * of the servlet where this AsyncContext was initialized will be
      * used.
      *
-     * If {@link #complete()} is not called within the specified timeout,
+     * <p>If {@link #complete()} is not called within the specified timeout,
      * any listeners of type {@link AsyncListener} that were added to the
      * request that was used to initialize this AsyncContext will be invoked
      * at their {@link AsyncListener#onTimeout(AsyncEvent)} method.

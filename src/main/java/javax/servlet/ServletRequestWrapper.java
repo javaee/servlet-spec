@@ -478,7 +478,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @throws IllegalStateException if this request has not been put 
      * into asynchronous mode, i.e., if neither {@link #startAsync} nor
-     * {@link #startAsync(ServletREquest,ServletResponse)} has been called
+     * {@link #startAsync(ServletRequest,ServletResponse)} has been called
      *
      * @see ServletRequest#getAsyncContext
      *
@@ -494,10 +494,6 @@ public class ServletRequestWrapper implements ServletRequest {
      * for asynchronous complete and timeout events.
      *
      * @param listener the AsyncListener to be registered
-     * @param servletRequest the (possibly wrapped) ServletRequest object
-     * that will be passed to the AsyncListener as part of the AsyncEvent 
-     * @param servletResponse the (possibly wrapped) ServletResponse object
-     * that will be passed to the AsyncListener as part of the AsyncEvent 
      *
      * @see ServletRequest#addAsyncListener(AsyncListener)
      *
