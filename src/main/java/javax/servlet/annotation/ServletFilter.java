@@ -92,4 +92,10 @@ public @interface ServletFilter {
      * Indicates whether the Filter supports async processing or not.
      */
     boolean asyncSupported() default false;
+
+    /**
+     * Specifies the timeout - can be used only when auto_commit is set to false
+     * 
+     */
+    long asyncTimeout() default 0;
 }
