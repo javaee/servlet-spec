@@ -33,69 +33,80 @@ import java.lang.annotation.Target;
 import javax.servlet.DispatcherType;
 
 /**
- **Annotation used to declare a ServletFilter that the container then
- * processes at deployment time and makes available as per the url mapping
- * rules, the servlets it applies to and the dispatcher types that it applies
- * to.
+ * Annotation used to declare a servlet filter.
+ *
+ * <p>This annotation is processed by the container at deployment time,
+ * and the corresponding filter applied to the specified URL patterns,
+ * servlets, and dispatcher types.
  * 
- * @since Servlet 3.0
+ * @see javax.servlet.Filter
+ *
+ * @since 3.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface ServletFilter {
+
     /**
-     * Description of the filter
+     * The description of the filter
      */
     String description() default "";
     
     /**
-     * Display name of the ServletFilter
+     * The display name of the filter
      */
     String displayName() default "";
     
     /**
-     * Init params for the filter
+     * The init parameters of the filter
      */
-    InitParam [] initParams() default {};
+    InitParam[] initParams() default {};
     
     /**
-     * Name of the filter
+     * The name of the filter
      */
     String filterName() default "";
     
     /**
-     * Icon for the filter
+     * The icon of the filter
      */
     String icon() default "";
-        /**
-     * The servlets on which this ServletFilter applies.
-     */
-    String [] servletNames() default {};
-    
-    /**
-     * The url patterns on which the ServletFilter would apply
-     */
-    String [] value() default {};
 
     /**
-     * The url patterns on which the ServletFilter would apply
+     * The names of the servlets to which the filter applies.
      */
-    String [] urlPatterns() default {};
-
-    /**
-     * The Dispatcher types that the ServletFilter would apply on.
-     */
-    DispatcherType [] dispatcherTypes() default {DispatcherType.REQUEST};
+    String[] servletNames() default {};
     
     /**
-     * Indicates whether the Filter supports async processing or not.
+     * The URL patterns to which the filter applies
+     */
+    String[] value() default {};
+
+    /**
+     * The URL patterns to which the filter applies
+     */
+    String[] urlPatterns() default {};
+
+    /**
+     * The dispatcher types to which the filter applies
+     */
+    DispatcherType[] dispatcherTypes() default {DispatcherType.REQUEST};
+    
+    /**
+     * Declares whether the filter supports asynchronous operation mode.
+     *
+     * @see javax.servlet.ServletRequest#startAsync
+     * @see javax.servlet.ServletRequest#startAsync(ServletRequest,
+     * ServletResponse)
      */
     boolean asyncSupported() default false;
 
     /**
-     * Specifies the timeout - can be used only when auto_commit is set to false
-     * 
+     * The timeout for asynchronous operations initiated by the
+     * filter.
+     *
+     * @see javax.servlet.ServletRequest#setAsyncTimeout
      */
-    long asyncTimeout() default 0;
+    long asyncTimeout() default 60000;
 }

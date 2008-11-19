@@ -515,7 +515,8 @@ public class ServletRequestWrapper implements ServletRequest {
      * @param servletResponse the ServletResponse that will be included
      * in the AsyncEvent 
      *
-     * @see ServletRequest#addAsyncListener(AsyncListener, ServletRequest, ServletResponse)
+     * @see ServletRequest#addAsyncListener(AsyncListener, ServletRequest,
+     * ServletResponse)
      *
      * @since 3.0
      */
@@ -524,5 +525,26 @@ public class ServletRequestWrapper implements ServletRequest {
                                  ServletResponse servletResponse) {
         request.addAsyncListener(listener, servletRequest, servletResponse);
     }
+
+
+    /**
+     * Sets the timeout (in milliseconds) for any asynchronous operations
+     * started on the wrapped request by a call to {@link #startAsync} or
+     * {@link #startAsync(ServletRequest, ServletResponse)}.
+     *
+     * @param timeout the timeout in milliseconds for any asynchronous
+     * operations started on the wrapped request
+     *
+     * @throws IllegalStateException if called after {@link #startAsync},
+     * unless within the scope of an {@link AsyncContext#forward}
+     * 
+     * @see ServletRequest#setAsyncTimeout
+     *
+     * @since 3.0
+     */
+    public void setAsyncTimeout(long timeout) {
+        request.setAsyncTimeout(timeout);
+    }
+
 }
 

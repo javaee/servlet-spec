@@ -58,7 +58,8 @@ public interface AsyncListener extends EventListener {
      * @param event the AsyncEvent containing the request and response
      * objects that were used when this AsyncListener was registered via a
      * call to {@link ServletRequest#addAsyncListener(AsyncListener)}
-     * or {@link ServletRequest#addAsyncListener(AsyncListener, ServletRequest, ServletResponse)}
+     * or {@link ServletRequest#addAsyncListener(AsyncListener,
+     * ServletRequest, ServletResponse)}
      *
      * @throws IOException if an I/O exception occurred during the processing
      * of the given AsyncEvent
@@ -74,7 +75,8 @@ public interface AsyncListener extends EventListener {
      * @param event the AsyncEvent containing the request and response
      * objects that were used when this AsyncListener was registered via a
      * call to {@link ServletRequest#addAsyncListener(AsyncListener)}
-     * or {@link ServletRequest#addAsyncListener(AsyncListener, ServletRequest, ServletResponse)}
+     * or {@link ServletRequest#addAsyncListener(AsyncListener,
+     * ServletRequest, ServletResponse)}
      *
      * @throws IOException if an I/O exception occurred during the processing
      * of the given AsyncEvent

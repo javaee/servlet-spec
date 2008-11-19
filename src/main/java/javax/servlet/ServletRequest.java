@@ -650,13 +650,20 @@ public interface ServletRequest {
 
 
     /**
-     * Puts this request into asynchronous mode, and imitializes its
+     * Puts this request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the original ServletRequest and 
-     * ServletResponse objects.
+     * ServletResponse objects and the timeout set via
+     * {@link #setAsyncTimeout}.
      *
      * <p>This will delay committal of the associated response until
      * {@link AsyncContext#complete} is called on the returned
      * {@link AsyncContext}, or the AsyncContext times out.
+     *
+     * <p>If a timeout occurs and none of the
+     * {@link AsyncListener#onTimeout(AsyncEvent)} handlers call
+     * {@link AsyncContext#complete} or one of the
+     * {@link AsyncContext#forward} methods, the container must call
+     * {@link AsyncContext#complete}.
      *
      * @return the initialized AsyncContext
      * 
@@ -672,12 +679,19 @@ public interface ServletRequest {
     
 
     /**
-     * Puts this request into asynchronous mode, and imitializes its
-     * {@link AsyncContext} with the given request and response objects.
+     * Puts this request into asynchronous mode, and initializes its
+     * {@link AsyncContext} with the given request and response objects
+     * and the timeout set via {@link #setAsyncTimeout}.
      *
      * <p>This will delay committal of the response until
      * {@link AsyncContext#complete} is called on the returned
      * {@link AsyncContext}, or the AsyncContext times out.
+     *
+     * <p>If a timeout occurs and none of the
+     * {@link AsyncListener#onTimeout(AsyncEvent)} handlers call
+     * {@link AsyncContext#complete} or one of the
+     * {@link AsyncContext#forward} methods, the container must call
+     * {@link AsyncContext#complete}.
      *
      * @param servletRequest the ServletRequest used to initialize the
      * AsyncContext
@@ -730,9 +744,11 @@ public interface ServletRequest {
 
 
     /**
-     * Gets the AsyncContext of this request.
+     * Gets the AsyncContext that was created by the most recent invocation
+     * of {@link #startAsync} or
+     * {@link #startAsync(ServletRequest,ServletResponse)} on this request.
      *
-     * @return the AsyncContext of this request
+     * @return the most recent AsyncContext of this request
      *
      * @throws IllegalStateException if this request has not been put 
      * into asynchronous mode, i.e., if neither {@link #startAsync} nor
@@ -783,10 +799,10 @@ public interface ServletRequest {
      * in the AsyncEvent that will be delivered to the given AsyncListener,
      * should not be read from or written to, respectively, at the time
      * when the AsyncEvent is delivered, because additional wrapping may have
-     * occurred after this method was called. The main reason for allowing
-     * request and response objects to be passed to this method is to allow
-     * the AsyncListener to release any resources associated with them when
-     * the AsyncEvent is delivered.
+     * occurred after this method was called. One of the main reasons for
+     * allowing request and response objects to be passed to this method is
+     * to allow the AsyncListener to release any resources associated with
+     * them when the AsyncEvent is delivered.
      *
      * @param listener the AsyncListener to be registered
      * @param servletRequest the ServletRequest that will be included
@@ -799,6 +815,42 @@ public interface ServletRequest {
     public void addAsyncListener(AsyncListener listener,
                                  ServletRequest servletRequest,
                                  ServletResponse servletResponse);
+
+
+    /**
+     * Sets the timeout (in milliseconds) for any asynchronous operations
+     * started on this request by a call to {@link #startAsync} or
+     * {@link #startAsync(ServletRequest, ServletResponse)}.
+     *
+     * <p>By default, the timeout specified via the
+     * <code>async-timeout</code> deployment descriptor element or the
+     * <code>asyncTimeout</code> annotation of the servlet or filter that
+     * started the asynchronous operation will be used.
+     *
+     * <p>If {@link AsyncContext#complete()} is not called within the
+     * specified timeout, any listeners of type {@link AsyncListener} that
+     * were added to this request via a call to
+     * {@link #addAsyncListener(AsyncListener)}
+     * or {@link #addAsyncListener(AsyncListener, ServletRequest,
+     * ServletResponse)} will have their
+     * {@link AsyncListener#onTimeout(AsyncEvent)} method invoked.
+     *
+     * <p>This method raises an <code>IllegalStateException</code> if
+     * called after {@link #startAsync}, unless it is called within the
+     * scope of an {@link AsyncContext#forward}, in which case the specified
+     * timeout will be used to initialize the AsyncContext created by a new
+     * call to {@link #startAsync}, or will be ignored if {@link #startAsync}
+     * is not called again. 
+     *
+     * @param timeout the timeout in milliseconds for any asynchronous
+     * operations started on this request
+     *
+     * @throws IllegalStateException if called after {@link #startAsync},
+     * unless within the scope of an {@link AsyncContext#forward}
+     * 
+     * @since 3.0
+     */
+    public void setAsyncTimeout(long timeout);
 
 }
 

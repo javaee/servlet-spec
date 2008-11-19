@@ -38,9 +38,9 @@
 package javax.servlet;
 
 /**
- * Event that gets fired when a ServletRequest on which async processing
- * was started, has completed processing (by calling doneAsync on
- * it) or has timed out..
+ * Event that gets fired when a ServletRequest on which asynchronous
+ * processing was started has finished processing through a call to
+ * {@link AsyncContext#complete} or has timed out.
  *
  * @since 3.0
  */

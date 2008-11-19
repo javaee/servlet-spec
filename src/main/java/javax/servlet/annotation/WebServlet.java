@@ -33,10 +33,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Documented;
 
 /**
- *Annotation used to declare a servlet that the container then
- * processes at deployment time and makes available as per the url mapping
- * rules.
+ * Annotation used to declare a servlet.
  *
+ * <p>This annotation is processed by the container at deployment time,
+ * and the corresponding servlet made available at the specified URL
+ * patterns.
+ * 
+ * @see javax.servlet.Servlet
+ *
+ * @since 3.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
@@ -44,53 +49,54 @@ import java.lang.annotation.Documented;
 public @interface WebServlet {
     
     /**
-     *  Name of the servlet
-     *
+     * The name of the servlet
      */
     String name() default "";
     
     /**
-     * url pattern(s) for the servlet
+     * The URL patterns of the servlet
      */
     String[] value() default {};
 
     /**
-     * url pattern(s) for the servlet
+     * The URL patterns of the servlet
      */
     String[] urlPatterns() default {};
-
     
     /**
-     * Define load on startup for the servlet 
-     *
+     * The load-on-startup order of the servlet 
      */
     int loadOnStartup() default -1;
     
     /**
-     * Init params for the servlet
+     * The init parameters of the servlet
      */
     InitParam [] initParams() default {};
     
     /**
-     * auto-commit controls whether a response is open or not after the service 
-     * method has exited
+     * Declares whether the servlet supports asynchronous operation mode.
+     *
+     * @see javax.servlet.ServletRequest#startAsync
+     * @see javax.servlet.ServletRequest#startAsync(ServletRequest,
+     * ServletResponse)
      */
     boolean asyncSupported() default false;
     
     /**
-     * Specifies the timeout - can be used only when auto_commit is set to false
-     * 
+     * The timeout for asynchronous operations initiated by the
+     * servlet.
+     *
+     * @see javax.servlet.ServletRequest#setAsyncTimeout
      */
-    long asyncTimeout() default 0;
+    long asyncTimeout() default 60000;
     
     /**
-     * The icon defined for the servlet
+     * The icon of the servlet
      */
     String icon() default "";
     
     /**
-     * Description of the servlet
-     * 
+     * The description of the servlet
      */
     String description() default "";
 
