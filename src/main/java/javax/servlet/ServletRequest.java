@@ -652,8 +652,8 @@ public interface ServletRequest {
     /**
      * Puts this request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the original ServletRequest and 
-     * ServletResponse objects and the timeout set via
-     * {@link #setAsyncTimeout}.
+     * ServletResponse objects and the timeout derived according
+     * to the rules laid out in {@link #setAsyncTimeout}.
      *
      * <p>This will delay committal of the associated response until
      * {@link AsyncContext#complete} is called on the returned
@@ -665,13 +665,18 @@ public interface ServletRequest {
      * {@link AsyncContext#forward} methods, the container must call
      * {@link AsyncContext#complete}.
      *
-     * @return the initialized AsyncContext
+     * <p>Subsequent invocations of this method, or its overloaded 
+     * variant, will return the same AsyncContext instance, reinitialized
+     * as appropriate.
+     *
+     * @return the (re)initialized AsyncContext
      * 
      * @throws IllegalStateException if this request is within the scope of
      * a filter or servlet that does not support asynchronous operation,
      * that is, if {@link #isAsyncSupported} returns false, or if this method
-     * is called again outside the scope of {@link AsyncContext#forward},
-     * or if the response has already been closed
+     * is called again outside the scope of a dispatch resulting from an
+     * {@link AsyncContext#forward}, or if the response has already been
+     * closed
      *
      * @since 3.0
      */
@@ -681,7 +686,8 @@ public interface ServletRequest {
     /**
      * Puts this request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the given request and response objects
-     * and the timeout set via {@link #setAsyncTimeout}.
+     * and the timeout derived according to the rules laid out in
+     * {@link #setAsyncTimeout}.
      *
      * <p>This will delay committal of the response until
      * {@link AsyncContext#complete} is called on the returned
@@ -693,17 +699,23 @@ public interface ServletRequest {
      * {@link AsyncContext#forward} methods, the container must call
      * {@link AsyncContext#complete}.
      *
+     * <p>Subsequent invocations of this method, or its zero-argument
+     * variant, will return the same AsyncContext instance, reinitialized
+     * as appropriate.
+     *
      * @param servletRequest the ServletRequest used to initialize the
      * AsyncContext
      * @param servletResponse the ServletResponse used to initialize the
      * AsyncContext
-     * @return the initialized AsyncContext
+     *
+     * @return the (re)initialized AsyncContext
      * 
      * @throws IllegalStateException if this request is within the scope of
      * a filter or servlet that does not support asynchronous operation,
      * that is, if {@link #isAsyncSupported} returns false, or if this method
-     * is called again outside the scope of {@link AsyncContext#forward},
-     * or if the response has already been closed
+     * is called again outside the scope of a dispatch resulting from an
+     * {@link AsyncContext#forward}, or if the response has already been
+     * closed
      *
      * @since 3.0
      */
@@ -744,11 +756,14 @@ public interface ServletRequest {
 
 
     /**
-     * Gets the AsyncContext that was created by the most recent invocation
-     * of {@link #startAsync} or
+     * Gets the AsyncContext that was created or reinitialized by the
+     * most recent invocation of {@link #startAsync} or
      * {@link #startAsync(ServletRequest,ServletResponse)} on this request.
      *
-     * @return the most recent AsyncContext of this request
+     * @return the AsyncContext that was created or reinitialized by the
+     * most recent invocation of {@link #startAsync} or
+     * {@link #startAsync(ServletRequest,ServletResponse)} on
+     * this request 
      *
      * @throws IllegalStateException if this request has not been put 
      * into asynchronous mode, i.e., if neither {@link #startAsync} nor
@@ -827,7 +842,8 @@ public interface ServletRequest {
      * <code>asyncTimeout</code> annotation of the servlet or filter that
      * started the asynchronous operation will be used.
      *
-     * <p>If {@link AsyncContext#complete()} is not called within the
+     * <p>If neither {@link AsyncContext#complete} nor
+     * {@link AsyncContext#forward} has been called within the
      * specified timeout, any listeners of type {@link AsyncListener} that
      * were added to this request via a call to
      * {@link #addAsyncListener(AsyncListener)}
@@ -846,7 +862,8 @@ public interface ServletRequest {
      * operations started on this request
      *
      * @throws IllegalStateException if called after {@link #startAsync},
-     * unless within the scope of an {@link AsyncContext#forward}
+     * unless within the scope of a dispatch resulting from an
+     * {@link AsyncContext#forward}
      * 
      * @since 3.0
      */

@@ -61,6 +61,8 @@ package javax.servlet;
  * <p>An AsyncContext is created and initialized by a call to
  * {@link ServletRequest#startAsync()} or
  * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
+ * Repeated invocations of these methods will return the same AsyncContext
+ * instance, reinitialized as appropriate.
  *
  * @since 3.0
  */

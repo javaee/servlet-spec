@@ -393,17 +393,19 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Puts the wrapped request into asynchronous mode, and imitializes its
+     * Puts the wrapped request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the original ServletRequest and 
-     * ServletResponse objects.
+     * ServletResponse objects and the timeout derived according to 
+     * the rules laid out in {@link #setAsyncTimeout}.
      *
-     * @return the initialized AsyncContext
+     * @return the (re)initialized AsyncContext
      * 
      * @throws IllegalStateException if this request is within the scope of
      * a filter or servlet that does not support asynchronous operation,
      * that is, if {@link #isAsyncSupported} returns false, or if this method
-     * is called again outside the scope of {@link AsyncContext#forward},
-     * or if the response has already been closed
+     * is called again outside the scope of a dispatch resulting from an
+     * {@link AsyncContext#forward}, or if the response has already been
+     * closed
      *
      * @see ServletRequest#startAsync
      *
@@ -415,20 +417,24 @@ public class ServletRequestWrapper implements ServletRequest {
     
 
     /**
-     * Puts the wrapped request into asynchronous mode, and imitializes its
-     * {@link AsyncContext} with the given request and response objects.
+     * Puts the wrapped request into asynchronous mode, and initializes its
+     * {@link AsyncContext} with the given request and response objects
+     * and the timeout derived according to the rules laid out in
+     * {@link #setAsyncTimeout}.
      *
      * @param servletRequest the ServletRequest used to initialize the
      * AsyncContext
      * @param servletResponse the ServletResponse used to initialize the
      * AsyncContext
-     * @return the initialized AsyncContext
+     *
+     * @return the (re)initialized AsyncContext
      * 
      * @throws IllegalStateException if this request is within the scope of
      * a filter or servlet that does not support asynchronous operation,
      * that is, if {@link #isAsyncSupported} returns false, or if this method
-     * is called again outside the scope of {@link AsyncContext#forward},
-     * or if the response has already been closed
+     * is called again outside the scope of a dispatch resulting from an
+     * {@link AsyncContext#forward}, or if the response has already been
+     * closed
      *
      * @see ServletRequest#startAsync(ServletRequest, ServletResponse)
      *
@@ -472,9 +478,15 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Gets the AsyncContext of the wrapped request.
+     * Gets the AsyncContext that was created or reinitialized by the
+     * most recent invocation of {@link #startAsync} or
+     * {@link #startAsync(ServletRequest,ServletResponse)} on the wrapped
+     * request.
      *
-     * @return the AsyncContext of this request
+     * @return the AsyncContext that was created or reinitialized by the
+     * most recent invocation of {@link #startAsync} or
+     * {@link #startAsync(ServletRequest,ServletResponse)} on
+     * the wrapped request 
      *
      * @throws IllegalStateException if this request has not been put 
      * into asynchronous mode, i.e., if neither {@link #startAsync} nor
@@ -536,7 +548,8 @@ public class ServletRequestWrapper implements ServletRequest {
      * operations started on the wrapped request
      *
      * @throws IllegalStateException if called after {@link #startAsync},
-     * unless within the scope of an {@link AsyncContext#forward}
+     * unless within the scope of a dispatch resulting from an
+     * {@link AsyncContext#forward}
      * 
      * @see ServletRequest#setAsyncTimeout
      *
