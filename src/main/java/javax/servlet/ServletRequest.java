@@ -843,7 +843,7 @@ public interface ServletRequest {
      * started the asynchronous operation will be used.
      *
      * <p>If neither {@link AsyncContext#complete} nor
-     * {@link AsyncContext#forward} has been called within the
+     * {@link AsyncContext#forward} is called within the
      * specified timeout, any listeners of type {@link AsyncListener} that
      * were added to this request via a call to
      * {@link #addAsyncListener(AsyncListener)}
