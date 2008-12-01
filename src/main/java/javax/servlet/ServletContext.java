@@ -638,6 +638,8 @@ public interface ServletContext {
      * @param initParameters the initialization parameters of the servlet,
      * or null if the servlet does not need any
      * @param loadOnStartup the initialization priority of the servlet
+     * @param isAsyncSupported true if the servlet supports asynchronous
+     * operations, false otherwise
      *
      * @throws IllegalArgumentException if a servlet with the given
      * <tt>servletName</tt> already exists in this servlet context
@@ -650,7 +652,8 @@ public interface ServletContext {
                            String description,
                            String className,
                            Map<String, String> initParameters,
-                           int loadOnStartup);
+                           int loadOnStartup,
+                           boolean isAsyncSupported);
 
 
     /**
@@ -687,6 +690,8 @@ public interface ServletContext {
      * @param className the fully qualified class name of the filter
      * @param initParameters the initialization parameters of the filter,
      * or null if the filter does not need any
+     * @param isAsyncSupported true if the filter supports asynchronous
+     * operations, false otherwise
      *
      * @throws IllegalArgumentException if a filter with the given
      * <tt>filterName</tt> already exists in this servlet context
@@ -698,7 +703,8 @@ public interface ServletContext {
     public void addFilter(String filterName,
                           String description,
                           String className,
-                          Map<String, String> initParameters);
+                          Map<String, String> initParameters,
+                          boolean isAsyncSupported);
          
     /**
      * Adds a filter mapping with the given servlet names, and
