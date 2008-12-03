@@ -651,8 +651,8 @@ public interface ServletRequest {
 
     /**
      * Puts this request into asynchronous mode, and initializes its
-     * {@link AsyncContext} with the original ServletRequest and 
-     * ServletResponse objects and the timeout derived according
+     * {@link AsyncContext} with the original (unwrapped) ServletRequest
+     * and ServletResponse objects and the timeout derived according
      * to the rules laid out in {@link #setAsyncTimeout}.
      *
      * <p>This will delay committal of the associated response until
@@ -664,6 +664,15 @@ public interface ServletRequest {
      * {@link AsyncContext#complete} or one of the
      * {@link AsyncContext#forward} methods, the container must call
      * {@link AsyncContext#complete}.
+     *
+     * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
+     * the returned AsyncContext will return <code>true</code>. Any filters
+     * invoked in the <i>outbound</i> direction after this request was put
+     * into asynchronous mode may use this as an indication that any request
+     * and/or response wrappers that they added during their <i>inbound</i>
+     * invocation need not stay around for the duration of the asynchronous
+     * operation, and therefore any of their associated resources may be
+     * released.
      *
      * <p>Subsequent invocations of this method, or its overloaded 
      * variant, will return the same AsyncContext instance, reinitialized
@@ -689,6 +698,12 @@ public interface ServletRequest {
      * and the timeout derived according to the rules laid out in
      * {@link #setAsyncTimeout}.
      *
+     * <p>The ServletRequest and ServletResponse parameters must be either
+     * the same objects as were passed to the calling servlet's service
+     * (or calling filter's doFilter) method, or be subclasses of the
+     * {@link ServletRequestWrapper} or {@link ServletResponseWrapper}
+     * classes that wrap them.
+     *
      * <p>This will delay committal of the response until
      * {@link AsyncContext#complete} is called on the returned
      * {@link AsyncContext}, or the AsyncContext times out.
@@ -698,6 +713,24 @@ public interface ServletRequest {
      * {@link AsyncContext#complete} or one of the
      * {@link AsyncContext#forward} methods, the container must call
      * {@link AsyncContext#complete}.
+     *
+     * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
+     * the returned AsyncContext will return <code>false</code>
+     * (unless the passed in ServletRequest and ServletResponse arguments
+     * are the original ones).
+     * Any filters invoked in the <i>outbound</i> direction after this
+     * request was put into asynchronous mode may use this as an indication
+     * that some of the request and/or response wrappers that they added
+     * during their <i>inbound</i> invocation may need to stay in place for
+     * the duration of the asynchronous operation, and their associated
+     * resources may not be released.
+     * A ServletRequestWrapper applied during the <i>inbound</i>
+     * invocation of a filter may be released by the <i>outbound</i>
+     * invocation of the filter only if the given <code>servletRequest</code>,
+     * which is used to initialize the AsyncContext and will be returned by
+     * a call to {@link AsyncContext#getRequest()}, does not contain said
+     * ServletRequestWrapper. The same holds true for ServletResponseWrapper
+     * instances. 
      *
      * <p>Subsequent invocations of this method, or its zero-argument
      * variant, will return the same AsyncContext instance, reinitialized
