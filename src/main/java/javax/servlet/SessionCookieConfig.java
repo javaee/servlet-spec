@@ -58,6 +58,14 @@ public class SessionCookieConfig {
      * cookie configured by this <tt>SessionCookieConfig</tt> will be marked
      * as <i>secure</i> only if the request that initiated the corresponding
      * session is also secure.
+     *
+     * <p>One use case for marking a session tracking cookie as secure, even
+     * though the request that initiated the session came over HTTP, is to
+     * support a topology where the web container is front-ended
+     * by an SSL offloading load balancer. In this case, the traffic between
+     * the client and the load balancer will be over HTTPS, whereas the
+     * traffic between the load balancer and the web container will be over
+     * HTTP.  
      * 
      * @param domain The domain assigned to any session tracking cookie
      * configured by this <tt>SessionCookieConfig</tt>
