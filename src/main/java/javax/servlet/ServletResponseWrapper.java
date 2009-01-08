@@ -249,6 +249,58 @@ public class ServletResponseWrapper implements ServletResponse {
     }
 
 
+    /**
+     * Checks (recursively) if this ServletResponseWrapper wraps the given
+     * {@link ServletResponse} instance.
+     *
+     * @param wrapped the ServletResponse instance to search for
+     *
+     * @return true if this ServletResponseWrapper wraps the
+     * given ServletResponse instance, false otherwise
+     *
+     * @since 3.0
+     */
+    public boolean isWrapperFor(ServletResponse wrapped) {
+        if (response == wrapped) {
+            return true;
+        } else if (response instanceof ServletResponseWrapper) {
+            return ((ServletResponseWrapper) response).isWrapperFor(wrapped);
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Checks (recursively) if this ServletResponseWrapper wraps a
+     * {@link ServletResponse} of the given class type.
+     *
+     * @param wrappedType the ServletResponse class type to
+     * search for
+     *
+     * @return true if this ServletResponseWrapper wraps a
+     * ServletResponse of the given class type, false otherwise
+     *
+     * @throws IllegalArgumentException if the given class does not
+     * implement {@link ServletResponse}
+     *
+     * @since 3.0
+     */
+    public boolean isWrapperFor(Class wrappedType) {
+        if (!ServletResponse.class.isAssignableFrom(wrappedType)) {
+            throw new IllegalArgumentException("Given class " +
+                wrappedType.getName() + " not a subinterface of " +
+                ServletResponse.class.getName());
+        }
+        if (wrappedType.isAssignableFrom(response.getClass())) {
+            return true;
+        } else if (response instanceof ServletResponseWrapper) {
+            return ((ServletResponseWrapper) response).isWrapperFor(wrappedType);
+        } else {
+            return false;
+        }
+    }
+
 }
 
 

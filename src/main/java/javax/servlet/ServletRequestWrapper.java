@@ -559,5 +559,57 @@ public class ServletRequestWrapper implements ServletRequest {
         request.setAsyncTimeout(timeout);
     }
 
+
+    /**
+     * Checks (recursively) if this ServletRequestWrapper wraps the given
+     * {@link ServletRequest} instance.
+     *
+     * @param wrapped the ServletRequest instance to search for
+     *
+     * @return true if this ServletRequestWrapper wraps the
+     * given ServletRequest instance, false otherwise
+     *
+     * @since 3.0
+     */
+    public boolean isWrapperFor(ServletRequest wrapped) {
+        if (request == wrapped) {
+            return true;
+        } else if (request instanceof ServletRequestWrapper) {
+            return ((ServletRequestWrapper) request).isWrapperFor(wrapped);
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Checks (recursively) if this ServletRequestWrapper wraps a
+     * {@link ServletRequest} of the given class type.
+     *
+     * @param wrappedType the ServletRequest class type to
+     * search for
+     *
+     * @return true if this ServletRequestWrapper wraps a
+     * ServletRequest of the given class type, false otherwise
+     *
+     * @throws IllegalArgumentException if the given class does not
+     * implement {@link ServletRequest}
+     *
+     * @since 3.0
+     */
+    public boolean isWrapperFor(Class wrappedType) {
+        if (!ServletRequest.class.isAssignableFrom(wrappedType)) {
+            throw new IllegalArgumentException("Given class " +
+                wrappedType.getName() + " not a subinterface of " +
+                ServletRequest.class.getName());
+        }
+        if (wrappedType.isAssignableFrom(request.getClass())) {
+            return true;
+        } else if (request instanceof ServletRequestWrapper) {
+            return ((ServletRequestWrapper) request).isWrapperFor(wrappedType);
+        } else {
+            return false;
+        }
+    }
 }
 
