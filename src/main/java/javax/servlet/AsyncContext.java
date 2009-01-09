@@ -104,7 +104,8 @@ public interface AsyncContext {
      *
      * <p>This method returns immediately after dispatching a container
      * managed thread to do a {@link RequestDispatcher#forward(ServletRequest,
-     * ServletResponse)} to the target resource.
+     * ServletResponse)} to the target resource, and setting the dispatcher
+     * type of the request to <code>DispatcherType.ASYNC</code>.
      *
      * <p>Control over the request and response objects of this AsyncContext
      * is handed off to the target resource of the dispatch, and the 
@@ -116,6 +117,8 @@ public interface AsyncContext {
      *
      * @exception IllegalStateException if {@link #complete} has already
      * been called
+     *
+     * @see ServletRequest#getDispatcherType
      */
     public void forward();
 
@@ -131,7 +134,8 @@ public interface AsyncContext {
      *
      * <p>This method returns immediately after dispatching a container
      * managed thread to do a {@link RequestDispatcher#forward(ServletRequest,
-     * ServletResponse)} to the target resource.
+     * ServletResponse)} to the target resource, and setting the dispatcher
+     * type of the request to <code>DispatcherType.ASYNC</code>.
      *
      * <p>Control over the request and response objects of this AsyncContext
      * is handed off to the target resource of the dispatch, and the 
@@ -145,6 +149,8 @@ public interface AsyncContext {
      *
      * @exception IllegalStateException if {@link #complete} has already
      * been called
+     *
+     * @see ServletRequest#getDispatcherType
      */
     public void forward(String path);
 
@@ -156,7 +162,8 @@ public interface AsyncContext {
      *
      * <p>This method returns immediately after dispatching a container
      * managed thread to do a {@link RequestDispatcher#forward(ServletRequest,
-     * ServletResponse)} to the target resource.
+     * ServletResponse)} to the target resource, and setting the dispatcher
+     * type of the request to <code>DispatcherType.ASYNC</code>.
      *
      * <p>Control over the request and response objects of this AsyncContext
      * is handed off to the target resource of the dispatch, and the 
@@ -172,6 +179,8 @@ public interface AsyncContext {
      *
      * @exception IllegalStateException if {@link #complete} has already
      * been called
+     *
+     * @see ServletRequest#getDispatcherType
      */
     public void forward(ServletContext context, String path);
 

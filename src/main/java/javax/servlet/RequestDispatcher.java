@@ -102,6 +102,9 @@ public interface RequestDispatcher {
      * {@link ServletResponseWrapper} classes
      * that wrap them.
      *
+     * <p>This method sets the dispatcher type of the given request to
+     * <code>DispatcherType.FORWARD</code>.
+     *
      * @param request a {@link ServletRequest} object that represents the
      * request the client makes of the servlet
      *
@@ -113,6 +116,8 @@ public interface RequestDispatcher {
      * @throws IOException if the target resource throws this exception
      *
      * @throws IllegalStateException if the response was already committed
+     *
+     * @see ServletRequest#getDispatcherType
      */
     public void forward(ServletRequest request, ServletResponse response)
         throws ServletException, IOException;
@@ -133,6 +138,9 @@ public interface RequestDispatcher {
      * subclasses of the {@link ServletRequestWrapper} or
      * {@link ServletResponseWrapper} classes that wrap them.
      *
+     * <p>This method sets the dispatcher type of the given request to
+     * <code>DispatcherType.INCLUDE</code>.
+     *
      * @param request a {@link ServletRequest} object that contains the
      * client's request
      *
@@ -143,6 +151,8 @@ public interface RequestDispatcher {
      * exception
      *
      * @throws IOException if the included resource throws this exception
+     *
+     * @see ServletRequest#getDispatcherType
      */
     public void include(ServletRequest request, ServletResponse response)
         throws ServletException, IOException;

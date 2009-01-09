@@ -611,5 +611,20 @@ public class ServletRequestWrapper implements ServletRequest {
             return false;
         }
     }
+
+
+    /**
+     * Gets the dispatcher type of the wrapped request.
+     *
+     * @return the dispatcher type of the wrapped request
+     * 
+     * @see ServletRequest#getDispatcherType
+     *
+     * @since 3.0
+     */
+    public DispatcherType getDispatcherType() {
+        return request.getDispatcherType();
+    }
+
 }
 

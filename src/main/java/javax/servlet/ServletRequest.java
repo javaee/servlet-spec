@@ -902,5 +902,38 @@ public interface ServletRequest {
      */
     public void setAsyncTimeout(long timeout);
 
+
+    /**
+     * Gets the dispatcher type of this request.
+     *
+     * <p>The dispatcher type of a request is used by the container
+     * to select the filters that need to be applied to the request:
+     * Only filters with matching dispatcher type and url patterns will
+     * be applied.
+     * 
+     * <p>Allowing a filter that has been configured for multiple 
+     * dispatcher types to query a request for its dispatcher type
+     * allows the filter to process the request differently depending on
+     * its dispatcher type.
+     *
+     * <p>The initial dispatcher type of a request is defined as
+     * <code>DispatcherType.REQUEST</code>. The dispatcher type of a request
+     * dispatched via {@link RequestDispatcher#forward(ServletRequest,
+     * ServletResponse)} or {@link RequestDispatcher#include(ServletRequest,
+     * ServletResponse)} is given as <code>DispatcherType.FORWARD</code> or
+     * <code>DispatcherType.INCLUDE</code>, respectively, while the
+     * dispatcher type of an asynchronous request dispatched via
+     * one of the {@link AsyncContext#forward} methods is given as
+     * <code>DispatcherType.ASYNC</code>. Finally, the dispatcher type of a
+     * request dispatched to an error page by the container's error handling
+     * mechanism is given as <code>DispatcherType.ERROR</code>.
+     *
+     * @return the dispatcher type of this request
+     * 
+     * @see DispatcherType
+     *
+     * @since 3.0
+     */
+    public DispatcherType getDispatcherType();
 }
 
