@@ -69,9 +69,14 @@ public @interface ServletFilter {
     String filterName() default "";
     
     /**
-     * The icon of the filter
+     * The small-icon of the filter
      */
-    String icon() default "";
+    String smallIcon() default "";
+
+    /**
+     * The large-icon of the filter
+     */
+    String largeIcon() default "";
 
     /**
      * The names of the servlets to which the filter applies.

@@ -91,10 +91,15 @@ public @interface WebServlet {
     long asyncTimeout() default 60000;
     
     /**
-     * The icon of the servlet
+     * The small-icon of the servlet
      */
-    String icon() default "";
-    
+    String smallIcon() default "";
+
+     /**
+      * The large-icon of the servlet
+      */
+    String largeIcon() default "";
+
     /**
      * The description of the servlet
      */
