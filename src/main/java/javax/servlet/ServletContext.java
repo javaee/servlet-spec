@@ -663,7 +663,7 @@ public interface ServletContext {
      * @since 3.0
      */
     public void addServletMapping(String servletName,
-                                  String[] urlPatterns);
+                                  String... urlPatterns);
 
 
     /**
