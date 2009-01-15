@@ -76,6 +76,18 @@ import java.io.IOException;
  
 public interface RequestDispatcher {
 
+    static final String FORWARD_REQUEST_URI = "javax.servlet.forward.request_uri";
+    static final String FORWARD_CONTEXT_PATH = "javax.servlet.forward.context_path";
+    static final String FORWARD_PATH_INFO = "javax.servlet.forward.path_info";
+    static final String FORWARD_SERVLET_PATH = "javax.servlet.forward.servlet_path";
+    static final String FORWARD_QUERY_STRING = "javax.servlet.forward.query_string";
+
+    static final String INCLUDE_REQUEST_URI = "javax.servlet.include.request_uri";
+    static final String INCLUDE_CONTEXT_PATH = "javax.servlet.include.context_path";
+    static final String INCLUDE_PATH_INFO = "javax.servlet.include.path_info";
+    static final String INCLUDE_SERVLET_PATH = "javax.servlet.include.servlet_path";
+    static final String INCLUDE_QUERY_STRING = "javax.servlet.include.query_string";
+
     /**
      * Forwards a request from
      * a servlet to another resource (servlet, JSP file, or
