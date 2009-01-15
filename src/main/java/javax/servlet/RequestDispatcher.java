@@ -76,16 +76,74 @@ import java.io.IOException;
  
 public interface RequestDispatcher {
 
+    /**
+     * The name of the request attribute under which the original
+     * request URI is made available to the target of a 
+     * {@link #forward(ServletRequest,ServletResponse) forward}
+     */
     static final String FORWARD_REQUEST_URI = "javax.servlet.forward.request_uri";
+
+    /**
+     * The name of the request attribute under which the original
+     * context path is made available to the target of a 
+     * {@link #forward(ServletRequest,ServletResponse) forward}
+     */
     static final String FORWARD_CONTEXT_PATH = "javax.servlet.forward.context_path";
+
+    /**
+     * The name of the request attribute under which the original
+     * path info is made available to the target of a 
+     * {@link #forward(ServletRequest,ServletResponse) forward}
+     */
     static final String FORWARD_PATH_INFO = "javax.servlet.forward.path_info";
+
+    /**
+     * The name of the request attribute under which the original
+     * servlet path is made available to the target of a 
+     * {@link #forward(ServletRequest,ServletResponse) forward}
+     */
     static final String FORWARD_SERVLET_PATH = "javax.servlet.forward.servlet_path";
+
+    /**
+     * The name of the request attribute under which the original
+     * query string is made available to the target of a 
+     * {@link #forward(ServletRequest,ServletResponse) forward}
+     */
     static final String FORWARD_QUERY_STRING = "javax.servlet.forward.query_string";
 
+    /**
+     * The name of the request attribute under which the request URI
+     * of the target of an {@link #include(ServletRequest,ServletResponse)
+     * include} is stored
+     */
     static final String INCLUDE_REQUEST_URI = "javax.servlet.include.request_uri";
+
+    /**
+     * The name of the request attribute under which the context path
+     * of the target of an {@link #include(ServletRequest,ServletResponse)
+     * include} is stored
+     */
     static final String INCLUDE_CONTEXT_PATH = "javax.servlet.include.context_path";
+
+    /**
+     * The name of the request attribute under which the path info
+     * of the target of an {@link #include(ServletRequest,ServletResponse)
+     * include} is stored
+     */
     static final String INCLUDE_PATH_INFO = "javax.servlet.include.path_info";
+
+    /**
+     * The name of the request attribute under which the servlet path
+     * of the target of an {@link #include(ServletRequest,ServletResponse)
+     * include} is stored
+     */
     static final String INCLUDE_SERVLET_PATH = "javax.servlet.include.servlet_path";
+
+    /**
+     * The name of the request attribute under which the query string
+     * of the target of an {@link #include(ServletRequest,ServletResponse)
+     * include} is stored
+     */
     static final String INCLUDE_QUERY_STRING = "javax.servlet.include.query_string";
 
     /**
