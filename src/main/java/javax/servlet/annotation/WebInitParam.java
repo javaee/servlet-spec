@@ -40,7 +40,7 @@ import java.lang.annotation.Documented;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface InitParam {
+public @interface WebInitParam {
     /**
      * Name of the init param
      */

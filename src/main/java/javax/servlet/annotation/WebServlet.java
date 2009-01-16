@@ -71,7 +71,7 @@ public @interface WebServlet {
     /**
      * The init parameters of the servlet
      */
-    InitParam [] initParams() default {};
+    WebInitParam [] initParams() default {};
     
     /**
      * Declares whether the servlet supports asynchronous operation mode.

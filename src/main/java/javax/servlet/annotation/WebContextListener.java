@@ -32,14 +32,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to declare a WebServletContextListener
+ * This annotation is used to declare a WebContextListener
  * 
  *@since Servlet 3.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface WebServletContextListener {
+public @interface WebContextListener {
     /**
      * Description of the listener
      */

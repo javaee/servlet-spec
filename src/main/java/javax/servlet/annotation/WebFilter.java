@@ -46,7 +46,7 @@ import javax.servlet.DispatcherType;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface ServletFilter {
+public @interface WebFilter {
 
     /**
      * The description of the filter
@@ -61,7 +61,7 @@ public @interface ServletFilter {
     /**
      * The init parameters of the filter
      */
-    InitParam[] initParams() default {};
+    WebInitParam[] initParams() default {};
     
     /**
      * The name of the filter
