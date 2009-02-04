@@ -516,6 +516,25 @@ public interface ServletContext {
     
 
     /**
+     * Sets the context initialization parameter with the given name and
+     * value on this ServletContext.
+     *
+     * @param name the name of the context initialization parameter to set
+     * @param value the value of the context initialization parameter to set
+     *
+     * @return true if the context initialization parameter with the given
+     * name and value was set successfully on this ServletContext, and false
+     * if it was not set because this ServletContext already contains a
+     * context initialization parameter with a matching name
+     * @throws IllegalStateException if this servlet context has already
+     * been initialized
+     *
+     * @since 3.0
+     */
+    public boolean setInitParameter(String name, String value);
+
+
+    /**
      * Returns the servlet container attribute with the given name, 
      * or <code>null</code> if there is no attribute by that name.
      * An attribute allows a servlet container to give the
@@ -624,15 +643,17 @@ public interface ServletContext {
      * <p>The registered servlet may be further configured via the returned
      * {@link ServletRegistration} object.
      *
+     * <p>The specified <tt>className</tt> will be loaded using the 
+     * classloader associated with the application represented by this
+     * servlet context.
+     *
      * @param servletName the name of the servlet
      * @param className the fully qualified class name of the servlet
      *
      * @return a ServletRegistration object that may be used to further
-     * configure the registered servlet
-     *
-     * @throws IllegalArgumentException if a servlet with the given
-     * <tt>servletName</tt> already exists in this servlet context
-     * @throws IllegalStateException if this servlet context has already
+     * configure the registered servlet, or <tt>null</tt> if this
+     * ServletContext already contains a servlet with a matching name
+     * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
      * @since 3.0
@@ -670,15 +691,17 @@ public interface ServletContext {
      * Adds the filter with the given name and class name to this servlet
      * context.
      *
+     * <p>The specified <tt>className</tt> will be loaded using the 
+     * classloader associated with the application represented by this
+     * servlet context.
+     *
      * @param filterName the name of the filter
      * @param className the fully qualified class name of the filter
      *
      * @return a FilterRegistration object that may be used to further
-     * configure the registered filter
-     *
-     * @throws IllegalArgumentException if a filter with the given
-     * <tt>filterName</tt> already exists in this servlet context
-     * @throws IllegalStateException if this servlet context has already
+     * configure the registered filter, or <tt>null</tt> if this
+     * ServletContext already contains a filter with a matching name
+     * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
      * @since 3.0
