@@ -526,7 +526,7 @@ public interface ServletContext {
      * name and value was set successfully on this ServletContext, and false
      * if it was not set because this ServletContext already contains a
      * context initialization parameter with a matching name
-     * @throws IllegalStateException if this servlet context has already
+     * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
      * @since 3.0
@@ -567,9 +567,9 @@ public interface ServletContext {
 
     /**
      * Returns an <code>Enumeration</code> containing the 
-     * attribute names available
-     * within this servlet context. Use the
-     * {@link #getAttribute} method with an attribute name
+     * attribute names available within this ServletContext.
+     *
+     * <p>Use the {@link #getAttribute} method with an attribute name
      * to get the value of an attribute.
      *
      * @return 		an <code>Enumeration</code> of attribute 
@@ -581,7 +581,7 @@ public interface ServletContext {
     
     
     /**
-     * Binds an object to a given attribute name in this servlet context. If
+     * Binds an object to a given attribute name in this ServletContext. If
      * the name specified is already used for an attribute, this
      * method will replace the attribute with the new to the new attribute.
      * <p>If listeners are configured on the <code>ServletContext</code> the  
@@ -664,7 +664,7 @@ public interface ServletContext {
 
     /**
      * Adds a servlet mapping with the given url patterns for the servlet
-     * with the given servlet name to this servlet context.
+     * with the given servlet name to this ServletContext.
      *
      * <p>The servlet with the given name may have been declared in the
      * deployment descriptor or one of the web fragments of this servlet
@@ -678,7 +678,7 @@ public interface ServletContext {
      *
      * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null
      * or empty
-     * @throws IllegalStateException if this servlet context has already
+     * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
      * @since 3.0
@@ -724,7 +724,7 @@ public interface ServletContext {
      * 
      * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
      * given filter mapping will be considered after or before any
-     * <i>declared</i> filter mappings of this servlet context.
+     * <i>declared</i> filter mappings of this ServletContext.
      *
      * @param filterName the name of the filter for which the filter
      * mapping is added
@@ -733,12 +733,12 @@ public interface ServletContext {
      * @param isMatchAfter true if the given filter mapping should be matched
      * against requests after any declared filter mappings of this servlet
      * context, and false if it is supposed to be matched before any declared
-     * filter mappings of this servlet context
+     * filter mappings of this ServletContext
      * @param servletNames the servlet names of the filter mapping
      *
      * @throws IllegalArgumentException if <tt>servletNames</tt> is 
      * null or empty
-     * @throws IllegalStateException if this servlet context has already
+     * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
      * @since 3.0
@@ -763,7 +763,7 @@ public interface ServletContext {
      * 
      * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
      * given filter mapping will be considered after or before any
-     * <i>declared</i> filter mappings of this servlet context.
+     * <i>declared</i> filter mappings of this ServletContext.
      *
      * @param filterName the name of the filter for which the filter
      * mapping is added
@@ -772,11 +772,11 @@ public interface ServletContext {
      * @param isMatchAfter true if the given filter mapping should be matched
      * against requests after any declared filter mappings of this servlet
      * context, and false if it is supposed to be matched before any declared
-     * filter mappings of this servlet context
+     * filter mappings of this ServletContext
      * @param urlPatterns the url patterns of the filter mapping
      * @throws IllegalArgumentException if <tt>urlPatterns</tt>
      * is both null or empty
-     * @throws IllegalStateException if this servlet context has already
+     * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
      * @since 3.0
