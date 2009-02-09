@@ -51,6 +51,42 @@ package javax.servlet;
 public interface AsyncContext {
 
     /**
+     * The name of the request attribute under which the original
+     * request URI is made available to the target of a
+     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     */
+    static final String ASYNC_REQUEST_URI = "javax.servlet.async.request_uri";
+
+    /**
+     * The name of the request attribute under which the original
+     * context path is made available to the target of a
+     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     */
+    static final String ASYNC_CONTEXT_PATH = "javax.servlet.async.context_path";
+
+    /**
+     * The name of the request attribute under which the original
+     * path info is made available to the target of a
+     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     */
+    static final String ASYNC_PATH_INFO = "javax.servlet.async.path_info";
+
+    /**
+     * The name of the request attribute under which the original
+     * servlet path is made available to the target of a
+     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}  
+     */
+    static final String ASYNC_SERVLET_PATH = "javax.servlet.async.servlet_path";
+
+    /**
+     * The name of the request attribute under which the original
+     * query string is made available to the target of a
+     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     */
+    static final String ASYNC_QUERY_STRING = "javax.servlet.async.query_string";
+
+
+    /**
      * Gets the request that was used to initialize this AsyncContext
      * by calling {@link ServletRequest#startAsync()} or
      * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
@@ -94,95 +130,98 @@ public interface AsyncContext {
 
 
     /**
-     * Forwards the request and response objects that were used to 
-     * initialize this AsyncContext to the original URI of the request,
-     * unless {@link forward(String)}, {@link forward(ServletContext, String)},
-     * or {@link RequestDispatcher#forward(ServletRequest, ServletResponse)}
-     * was called, in which case the request and response objects will be
-     * forwarded to the target resource of the forward or the target
-     * resource for which the RequestDispatcher was acquired, respectively.
+     * Dispatches the request and response objects of this AsyncContext
+     * to the original URI of the request, or the most recent dispatch
+     * target of a call to {@link #dispatch(String)},
+     * {@link #dispatch(ServletContext,String)}, or
+     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)}.
      *
-     * <p>This method returns immediately after dispatching a container
-     * managed thread to do a {@link RequestDispatcher#forward(ServletRequest,
-     * ServletResponse)} to the target resource, and setting the dispatcher
-     * type of the request to <code>DispatcherType.ASYNC</code>.
+     * <p>This method returns immediately after passing the request
+     * and response objects to a container managed thread, on which the
+     * dispatch operation will be performed.
      *
-     * <p>Control over the request and response objects of this AsyncContext
-     * is handed off to the target resource of the dispatch, and the 
-     * response will be closed when the target resource of the dispatch
-     * has completed execution, unless {@link ServletRequest#startAsync()}
-     * or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
-     * was called during the execution of the target resource, in which case
-     * the response will not be closed.
+     * <p>The dispatcher type of the request is set to
+     * <tt>DispatcherType.ASYNC</tt>. Unlike
+     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)
+     * forward dispatches}, the response buffer and
+     * headers will not be reset, and it is legal to dispatch even if the
+     * response has already been committed.
+     *
+     * <p>Control over the request and response is delegated
+     * to the dispatch target, and the response will be closed when the
+     * dispatch target has completed execution, unless
+     * {@link ServletRequest#startAsync()} or
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
+     * are called.
+     * 
+     * @exception IllegalStateException if {@link #complete} has already
+     * been called
+     *
+     * @see ServletRequest#getDispatcherType
+     */
+    public void dispatch();
+
+
+    /**
+     * Dispatches the request and response objects of this AsyncContext
+     * to the given <tt>path</tt>.
+     *
+     * <p>The <tt>path</tt> parameter is interpreted in the same way 
+     * as in {@link ServletRequest#getRequestDispatcher(String)}, within
+     * the scope of the {@link ServletContext} from which this
+     * AsyncContext was initialized.
+     *
+     * <p>All path related query methods of the request must reflect the
+     * dispatch target, while the original request URI, context path,
+     * path info, servlet path, and query string may be recovered from
+     * the {@link #ASYNC_REQUEST_URI}, {@link #ASYNC_CONTEXT_PATH},
+     * {@link #ASYNC_PATH_INFO}, {@link #ASYNC_SERVLET_PATH}, and
+     * {@link #ASYNC_QUERY_STRING} attributes of the request. These
+     * attributes will always reflect the original path elements, even under
+     * repeated dispatches.
+     *
+     * <p>See {@link #dispatch()} for additional details.
+     *
+     * @param path the path of the dispatch target, scoped to the
+     * ServletContext from which this AsyncContext was initialized
      *
      * @exception IllegalStateException if {@link #complete} has already
      * been called
      *
      * @see ServletRequest#getDispatcherType
      */
-    public void forward();
+    public void dispatch(String path);
 
 
     /**
-     * Forwards the request and response objects that were used to 
-     * initialize this AsyncContext to the resource with the given path.
+     * Dispatches the request and response objects of this AsyncContext
+     * to the given <tt>path</tt> scoped to the given <tt>context</tt>.
      *
-     * <p>The <code>path</code> parameter is interpreted in the same way 
+     * <p>The <tt>path</tt> parameter is interpreted in the same way 
      * as in {@link ServletRequest#getRequestDispatcher(String)}, except that
-     * it is scoped to the {@link ServletContext} that initialized this
-     * AsyncContext.
+     * it is scoped to the given <tt>context</tt>.
      *
-     * <p>This method returns immediately after dispatching a container
-     * managed thread to do a {@link RequestDispatcher#forward(ServletRequest,
-     * ServletResponse)} to the target resource, and setting the dispatcher
-     * type of the request to <code>DispatcherType.ASYNC</code>.
+     * <p>All path related query methods of the request must reflect the
+     * dispatch target, while the original request URI, context path,
+     * path info, servlet path, and query string may be recovered from
+     * the {@link #ASYNC_REQUEST_URI}, {@link #ASYNC_CONTEXT_PATH},
+     * {@link #ASYNC_PATH_INFO}, {@link #ASYNC_SERVLET_PATH}, and
+     * {@link #ASYNC_QUERY_STRING} attributes of the request. These
+     * attributes will always reflect the original path elements, even under
+     * repeated dispatches.
      *
-     * <p>Control over the request and response objects of this AsyncContext
-     * is handed off to the target resource of the dispatch, and the 
-     * response will be closed when the target resource of the dispatch
-     * has completed execution, unless {@link ServletRequest#startAsync()}
-     * or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
-     * was called during the execution of the target resource, in which case
-     * the response will not be closed.
+     * <p>See {@link #dispatch()} for additional details.
      *
-     * @param path the path of the target resource of the request dispatch
-     *
-     * @exception IllegalStateException if {@link #complete} has already
-     * been called
-     *
-     * @see ServletRequest#getDispatcherType
-     */
-    public void forward(String path);
-
-
-    /**
-     * Forwards the request and response objects that were used to
-     * initialize this AsyncContext to the resource with the given path
-     * scoped to the given ServletContext.
-     *
-     * <p>This method returns immediately after dispatching a container
-     * managed thread to do a {@link RequestDispatcher#forward(ServletRequest,
-     * ServletResponse)} to the target resource, and setting the dispatcher
-     * type of the request to <code>DispatcherType.ASYNC</code>.
-     *
-     * <p>Control over the request and response objects of this AsyncContext
-     * is handed off to the target resource of the dispatch, and the 
-     * response will be closed when the target resource of the dispatch
-     * has completed execution, unless {@link ServletRequest#startAsync()}
-     * or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
-     * was called during the execution of the target resource, in which case
-     * the response will not be closed.
-     *
-     * @param context the target ServletContext of the dispatch
-     * @param path the path of the target resource of the dispatch,
-     * relative to the given ServletContext
+     * @param context the ServletContext of the dispatch target
+     * @param path the path of the dispatch target, scoped to the given
+     * ServletContext
      *
      * @exception IllegalStateException if {@link #complete} has already
      * been called
      *
      * @see ServletRequest#getDispatcherType
      */
-    public void forward(ServletContext context, String path);
+    public void dispatch(ServletContext context, String path);
 
 
     /**

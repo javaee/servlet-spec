@@ -351,7 +351,6 @@ public interface ServletContext {
     
     
     /**
-     *
      * @deprecated	As of Java Servlet API 2.1, with no direct replacement.
      *
      * <p>This method was originally defined to retrieve a servlet
@@ -363,7 +362,6 @@ public interface ServletContext {
      * <p>In lieu of this method, servlets can share information using the 
      * <code>ServletContext</code> class and can perform shared business logic
      * by invoking methods on common non-servlet classes.
-     *
      */
     public Servlet getServlet(String name) throws ServletException;
     
@@ -663,28 +661,16 @@ public interface ServletContext {
 
 
     /**
-     * Adds a servlet mapping with the given url patterns for the servlet
-     * with the given servlet name to this ServletContext.
+     * Gets the ServletRegistration corresponding to the servlet with the
+     * given <tt>servletName</tt>.
      *
-     * <p>The servlet with the given name may have been declared in the
-     * deployment descriptor or one of the web fragments of this servlet
-     * context, or may be added using {@link #addServlet addServlet}. It is
-     * legal to add a servlet mapping for a servlet that has not yet been
-     * added.
-     *
-     * @param servletName the name of the servlet for which the servlet
-     * mapping is added
-     * @param urlPatterns the url patterns of the servlet mapping
-     *
-     * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null
-     * or empty
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @return the ServletRegistration corresponding to the servlet with the
+     * given <tt>servletName</tt>, or null if no ServletRegistration exists
+     * under that name in this ServletContext
      *
      * @since 3.0
      */
-    public void addServletMapping(String servletName,
-                                  String... urlPatterns);
+    public ServletRegistration findServletRegistration(String servletName);
 
 
     /**
@@ -710,81 +696,16 @@ public interface ServletContext {
          
 
     /**
-     * Adds a filter mapping with the given servlet names, and
-     * dispatcher types for the filter with the given filter name to this
-     * servlet context.
+     * Gets the FilterRegistration corresponding to the filter with the
+     * given <tt>filterName</tt>.
      *
-     * <p>The filter with the given name may have been declared in the
-     * deployment descriptor or one of the web fragments of this servlet
-     * context, or may be added using {@link #addFilter addFilter}. It is
-     * legal to add a filter mapping for a filter that has not yet been added.
-     *
-     * <p>Filter mappings added via this method will be matched against 
-     * requests in the same order in which they were added.
-     * 
-     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
-     * given filter mapping will be considered after or before any
-     * <i>declared</i> filter mappings of this ServletContext.
-     *
-     * @param filterName the name of the filter for which the filter
-     * mapping is added
-     * @param dispatcherTypes the dispatcher types of the filter mapping,
-     * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
-     * @param isMatchAfter true if the given filter mapping should be matched
-     * against requests after any declared filter mappings of this servlet
-     * context, and false if it is supposed to be matched before any declared
-     * filter mappings of this ServletContext
-     * @param servletNames the servlet names of the filter mapping
-     *
-     * @throws IllegalArgumentException if <tt>servletNames</tt> is 
-     * null or empty
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @return the FilterRegistration corresponding to the filter with the
+     * given <tt>filterName</tt>, or null if no FilterRegistration exists
+     * under that name in this ServletContext
      *
      * @since 3.0
      */
-    public void addFilterMappingForServletNames(String filterName,
-                                    EnumSet<DispatcherType> dispatcherTypes,
-                                    boolean isMatchAfter,
-                                    String... servletNames);
-
-    /**
-     * Adds a filter mapping with the given url patterns, and
-     * dispatcher types for the filter with the given filter name to this
-     * servlet context.
-     *
-     * <p>The filter with the given name may have been declared in the
-     * deployment descriptor or one of the web fragments of this servlet
-     * context, or may be added using {@link #addFilter addFilter}. It is
-     * legal to add a filter mapping for a filter that has not yet been added.
-     *
-     * <p>Filter mappings added via this method will be matched against 
-     * requests in the same order in which they were added.
-     * 
-     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
-     * given filter mapping will be considered after or before any
-     * <i>declared</i> filter mappings of this ServletContext.
-     *
-     * @param filterName the name of the filter for which the filter
-     * mapping is added
-     * @param dispatcherTypes the dispatcher types of the filter mapping,
-     * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
-     * @param isMatchAfter true if the given filter mapping should be matched
-     * against requests after any declared filter mappings of this servlet
-     * context, and false if it is supposed to be matched before any declared
-     * filter mappings of this ServletContext
-     * @param urlPatterns the url patterns of the filter mapping
-     * @throws IllegalArgumentException if <tt>urlPatterns</tt>
-     * is both null or empty
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
-     *
-     * @since 3.0
-     */
-    public void addFilterMappingForUrlPatterns(String filterName,
-                                    EnumSet<DispatcherType> dispatcherTypes,
-                                    boolean isMatchAfter,
-                                    String... urlPatterns);
+    public FilterRegistration findFilterRegistration(String filterName);
 
 
     /**

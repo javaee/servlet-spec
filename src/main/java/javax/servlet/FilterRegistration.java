@@ -36,12 +36,13 @@
 
 package javax.servlet;
 
+import java.util.EnumSet;
 import java.util.Map;
 
 /**
  * Class representing a handle to a {@link Filter} registered via
  * {@link ServletContext#addFilter(String, String)}, which may be used to
- * configure the registered filter.
+ * configure the filter.
  *
  * @since 3.0
  */
@@ -52,7 +53,8 @@ public abstract class FilterRegistration {
 
 
     /**
-     * Sets the descriptions of the filter.
+     * Sets the description on the filter for which this 
+     * FilterRegistration was created.
      *
      * <p>A call to this method overrides any previous setting.
      *
@@ -68,7 +70,7 @@ public abstract class FilterRegistration {
 
     /*
      * Sets the initialization parameter with the given name and value
-     * on the filter.
+     * on the filter for which this FilterRegistration was created.
      *
      * <p>A call to this method overrides any existing initialization
      * parameter of the same name. Passing in a value of <code>null</code>
@@ -84,7 +86,8 @@ public abstract class FilterRegistration {
 
 
     /*
-     * Sets the given initialization parameters on the filter.
+     * Sets the given initialization parameters on the filter for which
+     * this FilterRegistration was created.
      *
      * <p>The given map of initialization parameters is processed
      * <i>by-value</i>, i.e., for each initialization parameter contained
@@ -106,7 +109,8 @@ public abstract class FilterRegistration {
 
 
     /*
-     * Configures the filter as supporting asynchronous operations or not.
+     * Configures the filter for which this FilterRegistration was created
+     * as supporting asynchronous operations or not.
      *
      * <p>By default, a servlet does not support asynchronous operations.
      *
@@ -121,5 +125,65 @@ public abstract class FilterRegistration {
     public void setAsyncSupported(boolean isAsyncSupported) {
         this.isAsyncSupported = isAsyncSupported;
     }
+
+
+    /**
+     * Adds a filter mapping with the given servlet names and dispatcher
+     * types for the filter for which this FilterRegistration was created.
+     *
+     * <p>Filter mappings are matched in the order in which they were
+     * added.
+     * 
+     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
+     * given filter mapping will be considered after or before any
+     * <i>declared</i> filter mappings of the ServletContext from which this
+     * FilterRegistration was obtained.
+     *
+     * @param dispatcherTypes the dispatcher types of the filter mapping,
+     * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
+     * @param isMatchAfter true if the given filter mapping should be matched
+     * after any declared filter mappings, and false if it is supposed to
+     * be matched before any declared filter mappings of the ServletContext
+     * from which this FilterRegistration was obtained
+     * @param servletNames the servlet names of the filter mapping
+     *
+     * @throws IllegalArgumentException if <tt>servletNames</tt> is null or
+     * empty
+     * @throws IllegalStateException if the ServletContext from which this
+     * FilterRegistration was obtained has already been initialized
+     */
+    public abstract void addMappingForServletNames(
+        EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
+        String... servletNames);
+
+
+    /**
+     * Adds a filter mapping with the given url patterns and dispatcher
+     * types for the filter for which this FilterRegistration was created.
+     *
+     * <p>Filter mappings are matched in the order in which they were
+     * added.
+     * 
+     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
+     * given filter mapping will be considered after or before any
+     * <i>declared</i> filter mappings of the ServletContext from which
+     * this FilterRegistration was obtained.
+     *
+     * @param dispatcherTypes the dispatcher types of the filter mapping,
+     * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
+     * @param isMatchAfter true if the given filter mapping should be matched
+     * after any declared filter mappings, and false if it is supposed to
+     * be matched before any declared filter mappings of the ServletContext
+     * from which this FilterRegistration was obtained
+     * @param urlPatterns the url patterns of the filter mapping
+     *
+     * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null or
+     * empty
+     * @throws IllegalStateException if the ServletContext from which this
+     * FilterRegistration was obtained has already been initialized
+     */
+    public abstract void addMappingForUrlPatterns(
+        EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
+        String... urlPatterns);
 }
 
