@@ -46,11 +46,7 @@ import java.util.Map;
  *
  * @since 3.0
  */
-public abstract class FilterRegistration {
-
-    protected String description;
-    protected boolean isAsyncSupported;
-
+public interface FilterRegistration {
 
     /**
      * Sets the description on the filter for which this 
@@ -63,9 +59,7 @@ public abstract class FilterRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description);
 
 
     /*
@@ -82,7 +76,7 @@ public abstract class FilterRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */ 
-    public abstract void setInitParameter(String name, String value);
+    public void setInitParameter(String name, String value);
 
 
     /*
@@ -98,14 +92,7 @@ public abstract class FilterRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */ 
-    public void setInitParameters(Map<String, String> initParameters) {
-        if (null == initParameters) {
-            throw new IllegalArgumentException("Null init parameters");
-        }
-        for (Map.Entry<String, String> e : initParameters.entrySet()) {
-            setInitParameter(e.getKey(), e.getValue());
-        }
-    }
+    public void setInitParameters(Map<String, String> initParameters);
 
 
     /*
@@ -122,9 +109,7 @@ public abstract class FilterRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */
-    public void setAsyncSupported(boolean isAsyncSupported) {
-        this.isAsyncSupported = isAsyncSupported;
-    }
+    public void setAsyncSupported(boolean isAsyncSupported);
 
 
     /**
@@ -152,7 +137,7 @@ public abstract class FilterRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */
-    public abstract void addMappingForServletNames(
+    public void addMappingForServletNames(
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... servletNames);
 
@@ -182,7 +167,7 @@ public abstract class FilterRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */
-    public abstract void addMappingForUrlPatterns(
+    public void addMappingForUrlPatterns(
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... urlPatterns);
 }

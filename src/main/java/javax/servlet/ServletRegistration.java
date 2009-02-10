@@ -45,12 +45,7 @@ import java.util.Map;
  *
  * @since 3.0
  */
-public abstract class ServletRegistration {
-
-    protected String description;
-    protected int loadOnStartup = -1;
-    protected boolean isAsyncSupported;
-
+public interface ServletRegistration {
 
     /**
      * Sets the description on the servlet for which this ServletRegistration
@@ -63,9 +58,7 @@ public abstract class ServletRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description);
 
 
     /*
@@ -82,7 +75,7 @@ public abstract class ServletRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */ 
-    public abstract void setInitParameter(String name, String value);
+    public void setInitParameter(String name, String value);
 
 
     /*
@@ -98,14 +91,7 @@ public abstract class ServletRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */ 
-    public void setInitParameters(Map<String, String> initParameters) {
-        if (null == initParameters) {
-            throw new IllegalArgumentException("Null init parameters");
-        }
-        for (Map.Entry<String, String> e : initParameters.entrySet()) {
-            setInitParameter(e.getKey(), e.getValue());
-        }
-    }
+    public void setInitParameters(Map<String, String> initParameters);
 
 
     /*
@@ -132,9 +118,7 @@ public abstract class ServletRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public void setLoadOnStartup(int loadOnStartup) {
-        this.loadOnStartup = loadOnStartup;
-    }
+    public void setLoadOnStartup(int loadOnStartup);
 
 
     /*
@@ -151,9 +135,7 @@ public abstract class ServletRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public void setAsyncSupported(boolean isAsyncSupported) {
-        this.isAsyncSupported = isAsyncSupported;
-    }
+    public void setAsyncSupported(boolean isAsyncSupported);
 
 
     /**
@@ -167,6 +149,6 @@ public abstract class ServletRegistration {
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public abstract void addMapping(String... urlPatterns);
+    public void addMapping(String... urlPatterns);
 }
 
