@@ -605,7 +605,7 @@ public interface ServletContext {
 
     /**
      * Removes the attribute with the given name from 
-     * the servlet context. After removal, subsequent calls to
+     * this ServletContext. After removal, subsequent calls to
      * {@link #getAttribute} to retrieve the attribute's value
      * will return <code>null</code>.
      *
@@ -643,7 +643,7 @@ public interface ServletContext {
      *
      * <p>The specified <tt>className</tt> will be loaded using the 
      * classloader associated with the application represented by this
-     * servlet context.
+     * ServletContext.
      *
      * @param servletName the name of the servlet
      * @param className the fully qualified class name of the servlet
@@ -679,7 +679,7 @@ public interface ServletContext {
      *
      * <p>The specified <tt>className</tt> will be loaded using the 
      * classloader associated with the application represented by this
-     * servlet context.
+     * ServletContext.
      *
      * @param filterName the name of the filter
      * @param className the fully qualified class name of the filter
