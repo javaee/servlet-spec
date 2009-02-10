@@ -662,7 +662,7 @@ public interface ServletRequest {
      * <p>If a timeout occurs and none of the
      * {@link AsyncListener#onTimeout(AsyncEvent)} handlers call
      * {@link AsyncContext#complete} or one of the
-     * {@link AsyncContext#forward} methods, the container must call
+     * {@link AsyncContext#dispatch} methods, the container must call
      * {@link AsyncContext#complete}.
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
@@ -684,7 +684,7 @@ public interface ServletRequest {
      * a filter or servlet that does not support asynchronous operation,
      * that is, if {@link #isAsyncSupported} returns false, or if this method
      * is called again outside the scope of a dispatch resulting from an
-     * {@link AsyncContext#forward}, or if the response has already been
+     * {@link AsyncContext#dispatch}, or if the response has already been
      * closed
      *
      * @since 3.0
@@ -711,7 +711,7 @@ public interface ServletRequest {
      * <p>If a timeout occurs and none of the
      * {@link AsyncListener#onTimeout(AsyncEvent)} handlers call
      * {@link AsyncContext#complete} or one of the
-     * {@link AsyncContext#forward} methods, the container must call
+     * {@link AsyncContext#dispatch} methods, the container must call
      * {@link AsyncContext#complete}.
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
@@ -747,7 +747,7 @@ public interface ServletRequest {
      * a filter or servlet that does not support asynchronous operation,
      * that is, if {@link #isAsyncSupported} returns false, or if this method
      * is called again outside the scope of a dispatch resulting from an
-     * {@link AsyncContext#forward}, or if the response has already been
+     * {@link AsyncContext#dispatch}, or if the response has already been
      * closed
      *
      * @since 3.0
@@ -876,7 +876,7 @@ public interface ServletRequest {
      * started the asynchronous operation will be used.
      *
      * <p>If neither {@link AsyncContext#complete} nor
-     * {@link AsyncContext#forward} is called within the
+     * {@link AsyncContext#dispatch} is called within the
      * specified timeout, any listeners of type {@link AsyncListener} that
      * were added to this request via a call to
      * {@link #addAsyncListener(AsyncListener)}
@@ -886,7 +886,7 @@ public interface ServletRequest {
      *
      * <p>This method raises an <code>IllegalStateException</code> if
      * called after {@link #startAsync}, unless it is called within the
-     * scope of an {@link AsyncContext#forward}, in which case the specified
+     * scope of an {@link AsyncContext#dispatch}, in which case the specified
      * timeout will be used to initialize the AsyncContext created by a new
      * call to {@link #startAsync}, or will be ignored if {@link #startAsync}
      * is not called again. 
@@ -896,7 +896,7 @@ public interface ServletRequest {
      *
      * @throws IllegalStateException if called after {@link #startAsync},
      * unless within the scope of a dispatch resulting from an
-     * {@link AsyncContext#forward}
+     * {@link AsyncContext#dispatch}
      * 
      * @since 3.0
      */
@@ -923,7 +923,7 @@ public interface ServletRequest {
      * ServletResponse)} is given as <code>DispatcherType.FORWARD</code> or
      * <code>DispatcherType.INCLUDE</code>, respectively, while the
      * dispatcher type of an asynchronous request dispatched via
-     * one of the {@link AsyncContext#forward} methods is given as
+     * one of the {@link AsyncContext#dispatch} methods is given as
      * <code>DispatcherType.ASYNC</code>. Finally, the dispatcher type of a
      * request dispatched to an error page by the container's error handling
      * mechanism is given as <code>DispatcherType.ERROR</code>.

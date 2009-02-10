@@ -404,7 +404,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * a filter or servlet that does not support asynchronous operation,
      * that is, if {@link #isAsyncSupported} returns false, or if this method
      * is called again outside the scope of a dispatch resulting from an
-     * {@link AsyncContext#forward}, or if the response has already been
+     * {@link AsyncContext#dispatch}, or if the response has already been
      * closed
      *
      * @see ServletRequest#startAsync
@@ -433,7 +433,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * a filter or servlet that does not support asynchronous operation,
      * that is, if {@link #isAsyncSupported} returns false, or if this method
      * is called again outside the scope of a dispatch resulting from an
-     * {@link AsyncContext#forward}, or if the response has already been
+     * {@link AsyncContext#dispatch}, or if the response has already been
      * closed
      *
      * @see ServletRequest#startAsync(ServletRequest, ServletResponse)
@@ -549,7 +549,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @throws IllegalStateException if called after {@link #startAsync},
      * unless within the scope of a dispatch resulting from an
-     * {@link AsyncContext#forward}
+     * {@link AsyncContext#dispatch}
      * 
      * @see ServletRequest#setAsyncTimeout
      *
