@@ -734,7 +734,10 @@ public interface ServletRequest {
      *
      * <p>Subsequent invocations of this method, or its zero-argument
      * variant, will return the same AsyncContext instance, reinitialized
-     * as appropriate.
+     * as appropriate. If a call to this method is followed by a call to its
+     * zero-argument variant, the specified (and possibly wrapped) request
+     * and response objects will remain <i>locked in</i> on the returned
+     * AsyncContext.
      *
      * @param servletRequest the ServletRequest used to initialize the
      * AsyncContext
