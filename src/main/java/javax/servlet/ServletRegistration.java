@@ -39,9 +39,16 @@ package javax.servlet;
 import java.util.Map;
 
 /**
- * Class representing a handle to a {@link Servlet} registered via
- * {@link ServletContext#addServlet(String, String)}, which may be used to
- * configure the servlet.
+ * Class through which a {@link Servlet} (either annotated or declared
+ * in the deployment descriptor or added via
+ * {@link ServletContext#addServlet(String, String)}) may be further 
+ * configured.
+ *
+ * <p>While all aspects of a Servlet added via
+ * {@link ServletContext#addServlet(String, String)}) are configurable,
+ * the only configurable aspects of an annotated or declared Servlet are
+ * its initialization parameters and mappings. Initialization parameters
+ * may only be added, but not overridden.
  *
  * @since 3.0
  */
@@ -55,27 +62,29 @@ public interface ServletRegistration {
      *
      * @param description the description of the servlet
      *
+     * @return true if the update was successful, false otherwise
+     *
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public void setDescription(String description);
+    public boolean setDescription(String description);
 
 
     /*
      * Sets the initialization parameter with the given name and value
      * on the servlet for which this ServletRegistration was created.
      *
-     * <p>A call to this method overrides any existing initialization
-     * parameter of the same name. Passing in a value of <code>null</code>
-     * will remove any existing initialization parameter of the given name.
-     *
      * @param name the initialization parameter name
      * @param value the initialization parameter value
      *
+     * @return true if the update was successful, false otherwise
+     *
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
+     * @throws IllegalArgumentException if the given name or value is
+     * <tt>null</tt>
      */ 
-    public void setInitParameter(String name, String value);
+    public boolean setInitParameter(String name, String value);
 
 
     /*
@@ -85,13 +94,23 @@ public interface ServletRegistration {
      * <p>The given map of initialization parameters is processed
      * <i>by-value</i>, i.e., for each initialization parameter contained
      * in the map, this method calls {@link setInitParameter(String,String)}.
+     * If that method would return false for any of the
+     * initialization parameters in the given map, no updates will be
+     * performed, and false will be returned. Likewise, if the map contains
+     * an initialization parameter with a <tt>null</tt> name of value, no
+     * updates will be performed, and an IllegalArgumentException will be
+     * thrown.
      *
      * @param initParameters the initialization parameters
      *
+     * @return true if the update was successful, false otherwise
+     *
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
+     * @throws IllegalArgumentException if the given map contains an
+     * initialization parameter with a <tt>null</tt> name or value
      */ 
-    public void setInitParameters(Map<String, String> initParameters);
+    public boolean setInitParameters(Map<String, String> initParameters);
 
 
     /*
@@ -115,10 +134,12 @@ public interface ServletRegistration {
      *
      * @param loadOnStartup the initialization priority of the servlet
      *
+     * @return true if the update was successful, false otherwise
+     *
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public void setLoadOnStartup(int loadOnStartup);
+    public boolean setLoadOnStartup(int loadOnStartup);
 
 
     /*
@@ -132,10 +153,12 @@ public interface ServletRegistration {
      * @param isAsyncSupported true if the servlet supports asynchronous
      * operations, false otherwise
      *
+     * @return true if the update was successful, false otherwise
+     *
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public void setAsyncSupported(boolean isAsyncSupported);
+    public boolean setAsyncSupported(boolean isAsyncSupported);
 
 
     /**
@@ -144,11 +167,13 @@ public interface ServletRegistration {
      *
      * @param urlPatterns the URL patterns of the servlet mapping
      *
+     * @return true if the update was successful, false otherwise
+     *
      * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null
      * or empty
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public void addMapping(String... urlPatterns);
+    public boolean addMapping(String... urlPatterns);
 }
 
