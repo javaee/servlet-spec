@@ -67,19 +67,19 @@ public class SessionCookieConfig {
      * traffic between the load balancer and the web container will be over
      * HTTP.  
      * 
-     * @param domain The domain assigned to any session tracking cookie
-     * configured by this <tt>SessionCookieConfig</tt>
-     * @param path The path assigned to any session tracking cookie
-     * configured by this <tt>SessionCookieConfig</tt>, or <tt>null</tt> if the
-     * context path of the <tt>ServletContext</tt> with which this
-     * <tt>SessionCookieConfig</tt> has been associated is to be used
-     * as the cookie path
-     * @param comment The comment assigned to any session tracking cookie
-     * configured by this <tt>SessionCookieConfig</tt>
+     * @param domain The domain name that will be assigned to any session
+     * tracking cookies configured by this <tt>SessionCookieConfig</tt>
+     * @param path The path that will be assigned to any session tracking
+     * cookies configured by this <tt>SessionCookieConfig</tt>, or
+     * <tt>null</tt> if the context path of the <tt>ServletContext</tt>
+     * whose session tracking cookies this <tt>SessionCookieConfig</tt>
+     * is going to configure is to be used
+     * @param comment The comment that will be assigned to any session
+     * tracking cookies configured by this <tt>SessionCookieConfig</tt>
      * @param isHttpOnly true if any session tracking cookies configured
      * by this <tt>SessionCookieConfig</tt> will be marked as <i>HttpOnly</i>,
      * false otherwise
-     * @param isSecure true if any session tracking ccokie configured by
+     * @param isSecure true if any session tracking ccokies configured by
      * this <tt>SessionCookieConfig</tt> will be marked as <i>secure</i>
      * even if the request that initiated the corresponding session is
      * using plain HTTP instead of HTTPS, and false if any session tracking
@@ -101,14 +101,13 @@ public class SessionCookieConfig {
         this.comment = comment;
         this.isHttpOnly = isHttpOnly;
         this.isSecure = isSecure;
-        
     }
 
     /**
-     * Gets the domain assigned to any session tracking cookie configured
-     * by this <tt>SessionCookieConfig</tt>.
+     * Gets the domain name that will be assigned to any session tracking
+     * cookies configured by this <tt>SessionCookieConfig</tt>.
      *
-     * @return the session tracking cookie domain
+     * @return the cookie domain
      *
      * @see javax.servlet.http.Cookie#getDomain()
      */
@@ -117,10 +116,13 @@ public class SessionCookieConfig {
     }
 
     /**
-     * Gets the path assigned to any session tracking cookie configured
-     * by this <tt>SessionCookieConfig</tt>.
+     * Gets the path that will be assigned to any session tracking cookies
+     * configured by this <tt>SessionCookieConfig</tt>.
      *
-     * @return the session tracking cookie path
+     * @return the cookie path, or <tt>null</tt> if the context path
+     * of the <tt>ServletContext</tt> whose session tracking cookies
+     * this <tt>SessionCookieConfig</tt> is going to configure is to
+     * be used
      *
      * @see javax.servlet.http.Cookie#getPath()
      */
@@ -129,10 +131,10 @@ public class SessionCookieConfig {
     }
 
     /**
-     * Gets the comment assigned to any session tracking cookie configured
-     * by this <tt>SessionCookieConfig</tt>.
+     * Gets the comment that will be assigned to any session tracking
+     * cookies configured by this <tt>SessionCookieConfig</tt>.
      *
-     * @return the session tracking cookie comment
+     * @return the cookie comment
      *
      * @see javax.servlet.http.Cookie#getComment()
      */
