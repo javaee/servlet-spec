@@ -92,6 +92,13 @@ import java.util.Set;
 public interface ServletContext {
 
     /**
+     * The name of the <tt>ServletContext</tt> attribute which stores
+     * the private temporary directory (of type <tt>java.io.File</tt>)
+     * provided by the servlet container for the <tt>ServletContext</tt>
+     */
+    public static final String TEMPDIR = "javax.servlet.context.tempdir";
+
+    /**
      * Returns the context path of the web application.
      *
      * <p>The context path is the portion of the request URI that is used
