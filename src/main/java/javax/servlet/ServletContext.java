@@ -667,6 +667,29 @@ public interface ServletContext {
                                           String className);
 
 
+    /*
+     * Adds the servlet with the given name and class type to this servlet
+     * context.
+     *
+     * <p>The registered servlet may be further configured via the returned
+     * {@link ServletRegistration} object.
+     *
+     * @param servletName the name of the servlet
+     * @param servletClass the class object from which the servlet will be
+     * instantiated
+     *
+     * @return a ServletRegistration object that may be used to further
+     * configure the registered servlet, or <tt>null</tt> if this
+     * ServletContext already contains a servlet with a matching name
+     * @throws IllegalStateException if this ServletContext has already
+     * been initialized
+     *
+     * @since 3.0
+     */
+    public ServletRegistration addServlet(String servletName,
+        Class <? extends Servlet> servletClass);
+
+
     /**
      * Gets the ServletRegistration corresponding to the servlet with the
      * given <tt>servletName</tt>.
@@ -701,6 +724,26 @@ public interface ServletContext {
      */
     public FilterRegistration addFilter(String filterName, String className);
          
+
+    /**
+     * Adds the filter with the given name and class type to this servlet
+     * context.
+     *
+     * @param filterName the name of the filter
+     * @param filterClass the class object from which the filter will be
+     * instantiated
+     *
+     * @return a FilterRegistration object that may be used to further
+     * configure the registered filter, or <tt>null</tt> if this
+     * ServletContext already contains a filter with a matching name
+     * @throws IllegalStateException if this ServletContext has already
+     * been initialized
+     *
+     * @since 3.0
+     */
+    public FilterRegistration addFilter(String filterName,
+        Class <? extends Filter> filterClass);
+
 
     /**
      * Gets the FilterRegistration corresponding to the filter with the
