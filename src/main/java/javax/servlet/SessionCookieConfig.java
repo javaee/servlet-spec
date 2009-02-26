@@ -38,6 +38,7 @@ public class SessionCookieConfig {
     private String comment;
     private boolean isHttpOnly;
     private boolean isSecure;
+    private String name;
 
     /**
      * Constructor.
@@ -86,6 +87,9 @@ public class SessionCookieConfig {
      * cookie configured by this <tt>SessionCookieConfig</tt> will be marked
      * as <i>secure</i> only if the request that initiated the corresponding
      * session is also secure
+     * @param name The name that will be assigned to any session tracking
+     * cookies configured by this <tt>SessionCookieConfig</tt>, or
+     * <tt>null</tt> if the default <tt>JSESSIONID</tt> should be used
      *
      * @see javax.servlet.http.Cookie#setDomain(String)
      * @see javax.servlet.http.Cookie#setPath(String)
@@ -95,12 +99,14 @@ public class SessionCookieConfig {
      * @see ServletContext#setSessionCookieConfig
      */
     public SessionCookieConfig(String domain, String path, String comment,
-                               boolean isHttpOnly, boolean isSecure) {
+                               boolean isHttpOnly, boolean isSecure,
+                               String name) {
         this.domain = domain;
         this.path = path;
         this.comment = comment;
         this.isHttpOnly = isHttpOnly;
         this.isSecure = isSecure;
+        this.name = name;
     }
 
     /**
@@ -175,5 +181,16 @@ public class SessionCookieConfig {
      */
     public boolean isSecure() {
         return isSecure;
+    }
+
+    /**
+     * Gets the name that will be assigned to any session tracking cookies
+     * configured by this <tt>SessionCookieConfig</tt>.
+     *
+     * @return the cookie name, or <tt>null</tt> if the default
+     * <tt>JSESSIONID</tt> should be used
+     */
+    public String getName() {
+        return name;
     }
 }
