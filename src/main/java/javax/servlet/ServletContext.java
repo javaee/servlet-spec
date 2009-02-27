@@ -707,6 +707,9 @@ public interface ServletContext {
      * Adds the filter with the given name and class name to this servlet
      * context.
      *
+     * <p>The registered filter may be further configured via the returned
+     * {@link FilterRegistration} object.
+     *
      * <p>The specified <tt>className</tt> will be loaded using the 
      * classloader associated with the application represented by this
      * ServletContext.
@@ -728,6 +731,9 @@ public interface ServletContext {
     /**
      * Adds the filter with the given name and class type to this servlet
      * context.
+     *
+     * <p>The registered filter may be further configured via the returned
+     * {@link FilterRegistration} object.
      *
      * @param filterName the name of the filter
      * @param filterClass the class object from which the filter will be
