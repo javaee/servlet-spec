@@ -759,32 +759,21 @@ public interface ServletContext {
 
 
     /**
-     * Sets the session tracking cookie configuration for this 
-     * <tt>ServletContext</tt>.
+     * Gets the {@link SessionCookieConfig} object through which various
+     * properties of the session tracking cookies created on behalf of this
+     * <tt>ServletContext</tt> may be configured.
      *
-     * <p>The given <tt>SessionCookieConfig</tt> replaces any
-     * session tracking cookie configuration that was previously set.
+     * <p>Repeated invocations of this method will return the same
+     * <tt>SessionCookieConfig</tt> instance.
      *
-     * @param sessionCookieConfig 
-     * @throws IllegalStateException if this <tt>ServletContext</tt> has
-     * already been initialized
-     *
-     * @since 3.0
-     */
-    public void setSessionCookieConfig(SessionCookieConfig sessionCookieConfig);
-
-
-    /**
-     * Gets the session tracking cookie configuration of this 
-     * <tt>ServletContext</tt>.
-     *
-     * @return the session tracking cookie configuration of this 
-     * <tt>ServletContext</tt>, or <tt>null</tt> if no such configuration
-     * was ever set for this <tt>ServletContext</tt>
+     * @return the <tt>SessionCookieConfig</tt> object through which
+     * various properties of the session tracking cookies created on
+     * behalf of this <tt>ServletContext</tt> may be configured
      *
      * @since 3.0
      */
     public SessionCookieConfig getSessionCookieConfig();
+
 
 
     /**

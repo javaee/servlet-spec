@@ -27,170 +27,223 @@
 package javax.servlet;
 
 /**
- * Session tracking cookie configuration class.
+ * Class that may be used to configure various properties of cookies 
+ * used for session tracking purposes.
+ *
+ * <p>An instance of this class is acquired by a call to
+ * {@link ServletContext#getSessionCookieConfig}.
  *
  * @since 3.0
  */
-public class SessionCookieConfig {
-
-    private String domain;
-    private String path;
-    private String comment;
-    private boolean isHttpOnly;
-    private boolean isSecure;
-    private String name;
+public interface SessionCookieConfig {
 
     /**
-     * Constructor.
-     * 
-     * <p>If <tt>isHttpOnly</tt> is <tt>true</tt>, any session
-     * tracking cookies configured by this <tt>SessionCookieConfig</tt>
-     * will be marked as <i>HttpOnly</i>, by adding the <tt>HttpOnly</tt>
-     * attribute to them. <i>HttpOnly</i> cookies are not supposed to be
-     * exposed to client-side scripting code, and may therefore help
-     * mitigate certain kinds of cross-site scripting attacks.
+     * Sets the name that will be assigned to any session tracking
+     * cookies created on behalf of the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired.
      *
-     * <p>If <tt>isSecure</tt> is <tt>true</tt>, any session
-     * tracking cookie configured by this <tt>SessionCookieConfig</tt>
-     * will be marked as <i>secure</i>, even if the request that initiated
-     * the corresponding session is using plain HTTP instead of a secure
-     * protocol such as HTTPS.
-     * If <tt>isSecure</tt> is <tt>false</tt>, any session tracking
-     * cookie configured by this <tt>SessionCookieConfig</tt> will be marked
-     * as <i>secure</i> only if the request that initiated the corresponding
-     * session is also secure.
+     * @param name the cookie name to use
      *
-     * <p>One use case for marking a session tracking cookie as secure, even
-     * though the request that initiated the session came over HTTP, is to
-     * support a topology where the web container is front-ended
-     * by an SSL offloading load balancer. In this case, the traffic between
-     * the client and the load balancer will be over HTTPS, whereas the
-     * traffic between the load balancer and the web container will be over
-     * HTTP.  
-     * 
-     * @param domain The domain name that will be assigned to any session
-     * tracking cookies configured by this <tt>SessionCookieConfig</tt>
-     * @param path The path that will be assigned to any session tracking
-     * cookies configured by this <tt>SessionCookieConfig</tt>, or
-     * <tt>null</tt> if the context path of the <tt>ServletContext</tt>
-     * whose session tracking cookies this <tt>SessionCookieConfig</tt>
-     * is going to configure is to be used
-     * @param comment The comment that will be assigned to any session
-     * tracking cookies configured by this <tt>SessionCookieConfig</tt>
-     * @param isHttpOnly true if any session tracking cookies configured
-     * by this <tt>SessionCookieConfig</tt> will be marked as <i>HttpOnly</i>,
-     * false otherwise
-     * @param isSecure true if any session tracking ccokies configured by
-     * this <tt>SessionCookieConfig</tt> will be marked as <i>secure</i>
-     * even if the request that initiated the corresponding session is
-     * using plain HTTP instead of HTTPS, and false if any session tracking
-     * cookie configured by this <tt>SessionCookieConfig</tt> will be marked
-     * as <i>secure</i> only if the request that initiated the corresponding
-     * session is also secure
-     * @param name The name that will be assigned to any session tracking
-     * cookies configured by this <tt>SessionCookieConfig</tt>, or
-     * <tt>null</tt> if the default <tt>JSESSIONID</tt> should be used
+     * @throws IllegalStateException if the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired has
+     * already been initialized
+     */
+    public void setName(String name);
+
+
+    /**
+     * Gets the name that will be assigned to any session tracking
+     * cookies created on behalf of the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired.
+     *
+     * <p>By default, <tt>JSESSIONID</tt> will be used as the cookie name.
+     *
+     * @return the cookie name set via {@link #setName}, or
+     * <tt>null</tt> if {@link #setName} was never called
+     *
+     * @see javax.servlet.http.Cookie#getName()
+     */
+    public String getName();
+
+
+    /**
+     * Sets the domain name that will be assigned to any session tracking
+     * cookies created on behalf of the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired.
+     *
+     * @param domain the cookie domain to use
+     *
+     * @throws IllegalStateException if the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired has
+     * already been initialized
      *
      * @see javax.servlet.http.Cookie#setDomain(String)
-     * @see javax.servlet.http.Cookie#setPath(String)
-     * @see javax.servlet.http.Cookie#setComment(String)
-     * @see javax.servlet.http.Cookie#setHttpOnly(boolean)
-     * @see javax.servlet.http.Cookie#setSecure(boolean)
-     * @see ServletContext#setSessionCookieConfig
      */
-    public SessionCookieConfig(String domain, String path, String comment,
-                               boolean isHttpOnly, boolean isSecure,
-                               String name) {
-        this.domain = domain;
-        this.path = path;
-        this.comment = comment;
-        this.isHttpOnly = isHttpOnly;
-        this.isSecure = isSecure;
-        this.name = name;
-    }
+    public void setDomain(String domain);
+
 
     /**
      * Gets the domain name that will be assigned to any session tracking
-     * cookies configured by this <tt>SessionCookieConfig</tt>.
+     * cookies created on behalf of the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired.
      *
-     * @return the cookie domain
+     * @return the cookie domain set via {@link #setDomain}, or
+     * <tt>null</tt> if {@link #setDomain} was never called
      *
      * @see javax.servlet.http.Cookie#getDomain()
      */
-    public String getDomain() {
-        return domain;
-    }
+    public String getDomain();
+
 
     /**
-     * Gets the path that will be assigned to any session tracking cookies
-     * configured by this <tt>SessionCookieConfig</tt>.
+     * Sets the path that will be assigned to any session tracking
+     * cookies created on behalf of the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired.
      *
-     * @return the cookie path, or <tt>null</tt> if the context path
-     * of the <tt>ServletContext</tt> whose session tracking cookies
-     * this <tt>SessionCookieConfig</tt> is going to configure is to
-     * be used
+     * @param path the cookie path to use
+     *
+     * @throws IllegalStateException if the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired has
+     * already been initialized
+     *
+     * @see javax.servlet.http.Cookie#setPath(String)
+     */
+    public void setPath(String path);
+
+
+    /**
+     * Gets the path that will be assigned to any session tracking
+     * cookies created on behalf of the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired.
+     *
+     * <p>By default, the context path of the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired will
+     * be used.
+     *
+     * @return the cookie path set via {@link #setPath}, or <tt>null</tt>
+     * if {@link #setPath} was never called
      *
      * @see javax.servlet.http.Cookie#getPath()
      */
-    public String getPath() {
-        return path;
-    }
+    public String getPath();
+
+
+    /**
+     * Sets the comment that will be assigned to any session tracking
+     * cookies created on behalf of the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired.
+     *
+     * @param comment the cookie comment to use
+     *
+     * @throws IllegalStateException if the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired has
+     * already been initialized
+     *
+     * @see javax.servlet.http.Cookie#setComment(String)
+     */
+    public void setComment(String comment);
+
 
     /**
      * Gets the comment that will be assigned to any session tracking
-     * cookies configured by this <tt>SessionCookieConfig</tt>.
+     * cookies created on behalf of the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired.
      *
-     * @return the cookie comment
+     * @return the cookie comment set via {@link #setComment}, or
+     * <tt>null</tt> if {@link #setComment} was never called
      *
      * @see javax.servlet.http.Cookie#getComment()
      */
-    public String getComment() {
-        return comment;
-    }
+    public String getComment();
+
 
     /**
-     * Checks if any session tracking cookies configured by this
-     * <tt>SessionCookieConfig</tt> will be marked as <i>HttpOnly</i>.
+     * Marks or unmarks the session tracking cookies created on behalf
+     * of the <tt>ServletContext</tt> from which this
+     * <tt>SessionCookieConfig</tt> was acquired as <i>HttpOnly</i>.
      *
-     * @return true if any session tracking cookies configured by this
-     * <tt>SessionCookieConfig</tt> will be marked as <i>HttpOnly</i>,
-     * false otherwise
+     * <p>A cookie is marked as <tt>HttpOnly</tt> by adding the
+     * <tt>HttpOnly</tt> attribute to it. <i>HttpOnly</i> cookies are
+     * not supposed to be exposed to client-side scripting code, and may
+     * therefore help mitigate certain kinds of cross-site scripting
+     * attacks.
+     *
+     * @param httpOnly true if the session tracking cookies created
+     * on behalf of the <tt>ServletContext</tt> from which this
+     * <tt>SessionCookieConfig</tt> was acquired shall be marked as
+     * <i>HttpOnly</i>, false otherwise
+     *
+     * @throws IllegalStateException if the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired has
+     * already been initialized
+     *
+     * @see javax.servlet.http.Cookie#setHttpOnly(boolean)
+     */
+    public void setHttpOnly(boolean httpOnly);
+
+
+    /**
+     * Checks if the session tracking cookies created on behalf of the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired will be marked as <i>HttpOnly</i>.
+     *
+     * @return true if the session tracking cookies created on behalf of the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired will be marked as <i>HttpOnly</i>, false otherwise
      *
      * @see javax.servlet.http.Cookie#isHttpOnly()
      */
-    public boolean isHttpOnly() {
-        return isHttpOnly;
-    }
+    public boolean isHttpOnly();
+
 
     /**
-     * Checks if any session tracking cookie configured by this
-     * <tt>SessionCookieConfig</tt> will be marked as <i>secure</i> even
-     * if the request that initiated the corresponding session is using
-     * plain HTTP instead of HTTPS.
+     * Marks or unmarks the session tracking cookies created on behalf of the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired as <i>secure</i>.
      *
-     * @return true if any session tracking cookie configured by this
-     * <tt>SessionCookieConfig</tt> will be marked as <i>secure</i> even
-     * if the request that initiated the corresponding session is using
-     * plain HTTP instead of HTTPS, and false if any session tracking
-     * cookie configured by this <tt>SessionCookieConfig</tt> will be marked
-     * as <i>secure</i> only if the request that initiated the corresponding
-     * session is also secure.
+     * <p>One use case for marking a session tracking cookie as
+     * <tt>secure</tt>, even though the request that initiated the session
+     * came over HTTP, is to support a topology where the web container is
+     * front-ended by an SSL offloading load balancer.
+     * In this case, the traffic between the client and the load balancer
+     * will be over HTTPS, whereas the traffic between the load balancer
+     * and the web container will be over HTTP.  
+     *
+     * @param secure true if the session tracking cookies created on
+     * behalf of the <tt>ServletContext</tt> from which this
+     * <tt>SessionCookieConfig</tt> was acquired shall be marked as
+     * <i>secure</i> even if the request that initiated the corresponding
+     * session is using plain HTTP instead of HTTPS, and false if they
+     * shall be marked as <i>secure</i> only if the request that initiated
+     * the corresponding session was also secure
+     *
+     * @throws IllegalStateException if the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired has
+     * already been initialized
+     *
+     * @see javax.servlet.http.Cookie#setSecure(boolean)
+     * @see ServletRequest#isSecure()
+     */
+    public void setSecure(boolean secure);
+
+
+    /**
+     * Checks if the session tracking cookies created on behalf of the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired will be marked as <i>secure</i> even if the request
+     * that initiated the corresponding session is using plain HTTP
+     * instead of HTTPS.
+     *
+     * @return true if the session tracking cookies created on behalf of the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired will be marked as <i>secure</i> even if the request
+     * that initiated the corresponding session is using plain HTTP
+     * instead of HTTPS, and false if they will be marked as <i>secure</i>
+     * only if the request that initiated the corresponding session was
+     * also secure
      *
      * @see javax.servlet.http.Cookie#getSecure()
      * @see ServletRequest#isSecure()
      */
-    public boolean isSecure() {
-        return isSecure;
-    }
-
-    /**
-     * Gets the name that will be assigned to any session tracking cookies
-     * configured by this <tt>SessionCookieConfig</tt>.
-     *
-     * @return the cookie name, or <tt>null</tt> if the default
-     * <tt>JSESSIONID</tt> should be used
-     */
-    public String getName() {
-        return name;
-    }
+    public boolean isSecure();
 }
