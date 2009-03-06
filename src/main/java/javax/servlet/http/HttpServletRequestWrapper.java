@@ -52,12 +52,12 @@
  * limitations under the License.
  */
 
-
-
 package javax.servlet.http;
 
+import java.io.IOException;
 import javax.servlet.ServletRequestWrapper;
 import java.util.Enumeration;
+import javax.security.auth.login.LoginException;
 
 /**
  * 
@@ -282,13 +282,15 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
 	return this._getHttpServletRequest().isRequestedSessionIdFromCookie();
     }
     
-    	  /**
+
+    /**
      * The default behavior of this method is to return isRequestedSessionIdFromURL()
      * on the wrapped request object.
      */ 
     public boolean isRequestedSessionIdFromURL() {
-	return this._getHttpServletRequest().isRequestedSessionIdFromURL();
+        return this._getHttpServletRequest().isRequestedSessionIdFromURL();
     }
+
     
     /**
      * The default behavior of this method is to return isRequestedSessionIdFromUrl()
@@ -299,5 +301,31 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
 
-    
+    /**
+     * The default behavior of this method is to call login on the wrapped
+     * request object.
+     */
+    public boolean login(HttpServletResponse response)
+            throws IOException, LoginException {
+        return this._getHttpServletRequest().login(response);
+    }
+
+
+    /**
+     * The default behavior of this method is to call login on the wrapped
+     * request object
+     */
+    public void login(String username, String password)
+            throws LoginException {
+        this._getHttpServletRequest().login(username,password);
+    }
+
+
+    /**
+     * The default behavior of this method is to call login on the wrapped
+     * request object
+     */
+    public void logout() throws LoginException {
+        this._getHttpServletRequest().logout();
+    }
 }

@@ -52,11 +52,10 @@
  * limitations under the License.
  */
 
-
-
 package javax.servlet.http;
 
 import java.util.Enumeration;
+import javax.security.auth.login.LoginException;
 import javax.servlet.ServletContext;
 
 /**
@@ -449,10 +448,23 @@ public interface HttpSession {
      *					already invalidated session
      *
      */
-
     public boolean isNew();
 
 
+    /**
+     * Invalidate the authentication state of the session such 
+     * that, after calling logout, null values are retured when any of 
+     * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, 
+     * or <code>getAuthType</code> are called on a request that is bound to
+     * the HttpSession (after the logout).
+     * 
+     * If the logout succeeds the container must use the   
+     * <code>HttpSessionListener.sessionLogout()</code> method to notify any
+     * listeners of the logout.
+     *
+     * @throws LoginException if logout fails
+     */
+    public void logout() throws LoginException; 
 
 }
 
