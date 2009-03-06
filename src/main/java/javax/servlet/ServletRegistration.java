@@ -70,7 +70,7 @@ public interface ServletRegistration {
     public boolean setDescription(String description);
 
 
-    /*
+    /**
      * Sets the initialization parameter with the given name and value
      * on the servlet for which this ServletRegistration was created.
      *
@@ -87,7 +87,7 @@ public interface ServletRegistration {
     public boolean setInitParameter(String name, String value);
 
 
-    /*
+    /**
      * Sets the given initialization parameters on the servlet for which
      * this ServletRegistration was created.
      *
@@ -113,7 +113,7 @@ public interface ServletRegistration {
     public boolean setInitParameters(Map<String, String> initParameters);
 
 
-    /*
+    /**
      * Sets the <code>loadOnStartup</code> priority on the servlet for which
      * this ServletRegistration was created.
      *
@@ -142,7 +142,7 @@ public interface ServletRegistration {
     public boolean setLoadOnStartup(int loadOnStartup);
 
 
-    /*
+    /**
      * Configures the servlet for which this ServletRegistration was
      * created as supporting asynchronous operations or not.
      *

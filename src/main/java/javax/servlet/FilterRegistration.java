@@ -71,7 +71,7 @@ public interface FilterRegistration {
     public boolean setDescription(String description);
 
 
-    /*
+    /**
      * Sets the initialization parameter with the given name and value
      * on the filter for which this FilterRegistration was created.
      *
@@ -88,7 +88,7 @@ public interface FilterRegistration {
     public boolean setInitParameter(String name, String value);
 
 
-    /*
+    /**
      * Sets the given initialization parameters on the filter for which
      * this FilterRegistration was created.
      *
@@ -114,7 +114,7 @@ public interface FilterRegistration {
     public boolean setInitParameters(Map<String, String> initParameters);
 
 
-    /*
+    /**
      * Configures the filter for which this FilterRegistration was created
      * as supporting asynchronous operations or not.
      *
