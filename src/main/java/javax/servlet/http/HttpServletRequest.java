@@ -720,23 +720,16 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>This method may modify and commit the argument 
      * <code>HttpServletResponse</code>.
      * 
-     * <p>If the request is associated with an <code>HttpSession</code>,
-     * and this method assigns a new value to be returned by
-     * <code>getUserPrincipal</code>, the container must use the   
-     * <code>HttpSessionListener.sessionLogin()</code> method to notify any
-     * listeners of the login.
-     *
      * @param response The <code>HttpServletResponse</code> 
      * associated with this <code>HttpServletRequest</code>
      * 
      * @return <code>true</code> when non-null values were or have been
      * established as the values returned by <code>getUserPrincipal</code>, 
-     * <code>getRemoteUser</code>, and <code>getAuthType</code>.
-     * Return <code>false</code> if authentication is incomplete.
-     * In which case <code>isCommited</code> should be called
-     * on the response to determine if the underlying login mechanism has 
-     * established the message (e.g., challenge) and HTTP status code to be 
-     * returned to the user.
+     * <code>getRemoteUser</code>, and <code>getAuthType</code>. Return 
+     * <code>false</code> if authentication is incomplete. In which case
+     * <code>isCommited</code> should be called on the response to determine
+     * if the underlying login mechanism has established the message (e.g., 
+     * challenge) and HTTP status code to be returned to the user.
      *
      * @throws LoginException if validation of provided credentials fails.
      * @throws IOException if an error occurs while writing the response.
@@ -763,10 +756,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>When this method returns without throwing an exception, it must
      * have established non-null values as the values returned by
      * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, and 
-     * <code>getAuthType</code> and, if the request is associated with an 
-     * <code>HttpSession</code>, the container must use the   
-     * <code>HttpSessionListener.sessionLogin()</code> method to notify any
-     * listeners of the login.
+     * <code>getAuthType</code>.
      * 
      * @param username The <code>String</code> value corresponding to
      * the login identifier of the user.
@@ -774,11 +764,10 @@ public interface HttpServletRequest extends ServletRequest {
      * @param username The password <code>String</code> corresponding
      * to the identified user.
      *
-     * @throws LoginException if the configured login mechanism does
-     * not support username password authentication, or if a non-null
-     * caller identity had already been established (prior to the call
-     * to login), or if validation of the provided username and password
-     * fails.
+     * @throws LoginException if the configured login mechanism 
+     * does not support username password authentication, or if a non-null
+     * caller identity had already been established (prior to the call to
+     * login), or if validation of the provided username and password fails.
      */
     public void login(String username, String password) throws LoginException;
     
@@ -788,14 +777,8 @@ public interface HttpServletRequest extends ServletRequest {
      * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, 
      * and <code>getAuthType</code> is called on the request.
      *
-     * <p>If the request is associated with an <code>HttpSession</code>, and
-     * this method assigns null values to be returned by
-     * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, 
-     * and <code>getAuthType</code>, the container must use the   
-     * <code>HttpSessionListener.sessionLogout()</code> method to notify any
-     * listeners of the logout.
-     * 
      * @throws LoginException if logout fails.
      */
     public void logout() throws LoginException; 
+    
 }
