@@ -122,20 +122,21 @@ public abstract class GenericServlet
     /**
      * Returns a <code>String</code> containing the value of the named
      * initialization parameter, or <code>null</code> if the parameter does
-     * not exist.  See {@link ServletConfig#getInitParameter}.
+     * not exist or is not of type <tt>java.lang.String</tt>.
+     * See {@link ServletConfig#getInitParameter}.
      *
      * <p>This method is supplied for convenience. It gets the 
      * value of the named parameter from the servlet's 
      * <code>ServletConfig</code> object.
      *
-     * @param name 		a <code>String</code> specifying the name 
-     *				of the initialization parameter
+     * @param name a <code>String</code> specifying the name 
+     * of the initialization parameter
      *
-     * @return String 		a <code>String</code> containing the value
-     *				of the initialization parameter
-     *
+     * @return String a <code>String</code> containing the value
+     * of the initialization parameter, or <code>null</code> if 
+     * the initialization parameter does not exist or is not of type
+     * <tt>java.lang.String</tt>
      */ 
-
     public String getInitParameter(String name) {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
@@ -147,6 +148,30 @@ public abstract class GenericServlet
     }
     
     
+    /**
+     * Gets the value of the initialization parameter with the given name.
+     *
+     * <p>If the value of the named initialization parameter is of type
+     * <tt>java.lang.String</tt>, it may also be retrieved via a call to
+     * {@link #getInitParameter(String)}
+     *
+     * @param name the name of the initialization parameter whose value to
+     * get
+     *
+     * @return the value of the initialization parameter with the given
+     * name, or <tt>null</tt> if the filter does not have any
+     * initialization parameter with that name
+     */
+    public Object getInitParameterObject(String name) {
+        ServletConfig sc = getServletConfig();
+        if (sc == null) {
+            throw new IllegalStateException(
+                lStrings.getString("err.servlet_config_not_initialized"));
+        }
+
+        return sc.getInitParameterObject(name);
+    }
+
 
    /**
     * Returns the names of the servlet's initialization parameters 

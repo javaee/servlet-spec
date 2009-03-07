@@ -85,7 +85,7 @@ public interface FilterRegistration {
      * @throws IllegalArgumentException if the given name or value is
      * <tt>null</tt>
      */ 
-    public boolean setInitParameter(String name, String value);
+    public boolean setInitParameter(String name, Object value);
 
 
     /**
