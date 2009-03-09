@@ -761,7 +761,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @param username The <code>String</code> value corresponding to
      * the login identifier of the user.
      * 
-     * @param username The password <code>String</code> corresponding
+     * @param password The password <code>String</code> corresponding
      * to the identified user.
      *
      * @throws LoginException if the configured login mechanism 
