@@ -94,7 +94,7 @@ public interface FilterRegistration {
      *
      * <p>The given map of initialization parameters is processed
      * <i>by-value</i>, i.e., for each initialization parameter contained
-     * in the map, this method calls {@link setInitParameter(String,String)}.
+     * in the map, this method calls {@link setInitParameter(String,Object)}.
      * If that method would return false for any of the
      * initialization parameters in the given map, no updates will be
      * performed, and false will be returned. Likewise, if the map contains
