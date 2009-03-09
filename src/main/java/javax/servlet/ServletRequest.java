@@ -773,7 +773,7 @@ public interface ServletRequest {
      * {@link #startAsync} or
      * {@link #startAsync(ServletRequest,ServletResponse)} on it.
      * 
-     * <p>If this request has been redispatched using one of the
+     * <p>If this request has been dispatched using one of the
      * {@link AsyncContext#dispatch} methods since it was put into
      * asynchronous mode, this method returns <tt>false</tt>.
      *
