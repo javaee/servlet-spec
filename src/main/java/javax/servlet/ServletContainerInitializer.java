@@ -44,10 +44,10 @@ import java.util.Set;
 /**
  * An implementation of this interface can be provided by a library /
  * runtime to get notified by the container for the classes / interfaces 
- * that it expresses interest via the @HandlesTypes annotation. If
- * there is no @HandlesTypes annotation on an implementation of this
- * interface, the container MUST invoke the onStartup method once for
- * every webapp passing it a null set of classes.
+ * that it expresses interest via the <tt>@HandlesTypes</tt> annotation. If
+ * there is no <tt>@HandlesTypes</tt> annotation on an implementation of this
+ * interface, the container MUST invoke the <tt>onStartup</tt> method once for
+ * every webapp passing it a <tt>null</tt> set of classes.
  *
  * @see javax.servlet.annotation.HandlesTypes
  *
@@ -55,5 +55,16 @@ import java.util.Set;
  * @author Rajiv Mordani
  */
 public interface ServletContainerInitializer {
+    /**
+     *
+     * @param c The set of classes that an implementation of ServletContainerInitializer expressed interest on
+     * via the <tt>HandlesTypes</tt> annotation. If there is no <tt>HandlesTypes</tt> annotation on the implementation
+     * of the ServletContainerInitializer, a <tt>null</tt> set of classes will be passed
+     *
+     * @param ctx The <tt>ServletContext</tt> instance in which the types defined via the <tt>HandlesTypes</tt>
+     * are found.
+     *
+     * @since 3.0 
+     */
     public void onStartup(Set<Class<?>> c, ServletContext ctx); 
 }
