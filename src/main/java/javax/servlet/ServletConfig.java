@@ -86,37 +86,16 @@ import java.util.Enumeration;
 
     
     /**
-     * Returns a <code>String</code> containing the value of the 
-     * named initialization parameter, or <code>null</code> if 
-     * the initialization parameter does not exist or is not of type
-     * <tt>java.lang.String</tt>.
-     *
-     * @param name a <code>String</code> specifying the name
-     * of the initialization parameter
-     *
-     * @return a <code>String</code> containing the value 
-     * of the initialization parameter, or <code>null</code> if 
-     * the initialization parameter does not exist or is not of type
-     * <tt>java.lang.String</tt>
-     */
-    public String getInitParameter(String name);
-
-
-    /**
      * Gets the value of the initialization parameter with the given name.
-     *
-     * <p>If the value of the named initialization parameter is of type
-     * <tt>java.lang.String</tt>, it may also be retrieved via a call to
-     * {@link #getInitParameter(String)}
      *
      * @param name the name of the initialization parameter whose value to
      * get
      *
-     * @return the value of the initialization parameter with the given
-     * name, or <tt>null</tt> if the servlet does not have any
-     * initialization parameter with that name
+     * @return a <code>String</code> containing the value 
+     * of the initialization parameter, or <code>null</code> if 
+     * the initialization parameter does not exist
      */
-    public Object getInitParameterObject(String name);
+    public String getInitParameter(String name);
 
 
     /**
@@ -130,5 +109,28 @@ import java.util.Enumeration;
      * initialization parameters
      */
     public Enumeration getInitParameterNames();
+
+
+    /**
+     * Gets the value of the initialization attribute with the given name.
+     *
+     * @param name the name of the initialization attribute whose value to
+     * get
+     *
+     * @return the value of the initialization attribute with the given
+     * name, or <tt>null</tt> if the servlet does not have any
+     * initialization attribute with that name
+     */
+    public Object getInitAttribute(String name);
+
+
+    /**
+     * Gets the names of the initialization attributes of the servlet.
+     *
+     * @return the names of the initialization attributes of the servlet,
+     * or an empty <tt>Enumeration</tt> if the servlet does not have
+     * any initialization attributes.
+     */
+    public Enumeration<String> getInitAttributeNames();
 
 }

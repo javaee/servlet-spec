@@ -102,40 +102,34 @@ public abstract class GenericServlet
      * is done by one of the <code>init</code> methods.
      *
      */
-
     public GenericServlet() { }
     
     
-    
-   /**
+    /**
      * Called by the servlet container to indicate to a servlet that the
      * servlet is being taken out of service.  See {@link Servlet#destroy}.
      *
      * 
      */
-
     public void destroy() {
     }
-    
     
     
     /**
      * Returns a <code>String</code> containing the value of the named
      * initialization parameter, or <code>null</code> if the parameter does
-     * not exist or is not of type <tt>java.lang.String</tt>.
-     * See {@link ServletConfig#getInitParameter}.
+     * not exist.  See {@link ServletConfig#getInitParameter}.
      *
      * <p>This method is supplied for convenience. It gets the 
      * value of the named parameter from the servlet's 
      * <code>ServletConfig</code> object.
      *
-     * @param name a <code>String</code> specifying the name 
-     * of the initialization parameter
+     * @param name 		a <code>String</code> specifying the name 
+     *				of the initialization parameter
      *
-     * @return String a <code>String</code> containing the value
-     * of the initialization parameter, or <code>null</code> if 
-     * the initialization parameter does not exist or is not of type
-     * <tt>java.lang.String</tt>
+     * @return String 		a <code>String</code> containing the value
+     *				of the initialization parameter
+     *
      */ 
     public String getInitParameter(String name) {
         ServletConfig sc = getServletConfig();
@@ -148,31 +142,6 @@ public abstract class GenericServlet
     }
     
     
-    /**
-     * Gets the value of the initialization parameter with the given name.
-     *
-     * <p>If the value of the named initialization parameter is of type
-     * <tt>java.lang.String</tt>, it may also be retrieved via a call to
-     * {@link #getInitParameter(String)}
-     *
-     * @param name the name of the initialization parameter whose value to
-     * get
-     *
-     * @return the value of the initialization parameter with the given
-     * name, or <tt>null</tt> if the filter does not have any
-     * initialization parameter with that name
-     */
-    public Object getInitParameterObject(String name) {
-        ServletConfig sc = getServletConfig();
-        if (sc == null) {
-            throw new IllegalStateException(
-                lStrings.getString("err.servlet_config_not_initialized"));
-        }
-
-        return sc.getInitParameterObject(name);
-    }
-
-
    /**
     * Returns the names of the servlet's initialization parameters 
     * as an <code>Enumeration</code> of <code>String</code> objects,
@@ -187,9 +156,7 @@ public abstract class GenericServlet
     * @return Enumeration 	an enumeration of <code>String</code>
     *				objects containing the names of 
     *				the servlet's initialization parameters
-    *
     */
-
     public Enumeration getInitParameterNames() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
@@ -199,24 +166,56 @@ public abstract class GenericServlet
 
         return sc.getInitParameterNames();
     }   
-    
      
- 
-     
+
+    /**
+     * Gets the value of the initialization attribute with the given name.
+     *
+     * @param name the name of the initialization attribute whose value to
+     * get
+     *
+     * @return the value of the initialization attribute with the given
+     * name, or <tt>null</tt> if the servlet does not have any
+     * initialization attribute with that name
+     */
+    public Object getInitAttribute(String name) {
+        ServletConfig sc = getServletConfig();
+        if (sc == null) {
+            throw new IllegalStateException(
+                lStrings.getString("err.servlet_config_not_initialized"));
+        }
+
+        return sc.getInitAttribute(name);
+    }
+
+
+    /**
+     * Gets the names of the initialization attributes of the servlet.
+     *
+     * @return the names of the initialization attributes of the servlet,
+     * or an empty <tt>Enumeration</tt> if the servlet does not have
+     * any initialization attributes.
+     */
+    public Enumeration<String> getInitAttributeNames() {
+        ServletConfig sc = getServletConfig();
+        if (sc == null) {
+            throw new IllegalStateException(
+                lStrings.getString("err.servlet_config_not_initialized"));
+        }
+
+        return sc.getInitAttributeNames();
+    }
+
 
     /**
      * Returns this servlet's {@link ServletConfig} object.
      *
      * @return ServletConfig 	the <code>ServletConfig</code> object
      *				that initialized this servlet
-     *
-     */
-    
+     */    
     public ServletConfig getServletConfig() {
 	return config;
     }
-    
-    
  
     
     /**
@@ -230,9 +229,7 @@ public abstract class GenericServlet
      * @return ServletContext 	the <code>ServletContext</code> object
      *				passed to this servlet by the <code>init</code>
      *				method
-     *
      */
-
     public ServletContext getServletContext() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
@@ -244,9 +241,6 @@ public abstract class GenericServlet
     }
 
 
-
- 
-
     /**
      * Returns information about the servlet, such as 
      * author, version, and copyright. 
@@ -257,18 +251,13 @@ public abstract class GenericServlet
      *
      * @return String 		information about this servlet, by default an
      * 				empty string
-     *
-     */
-    
+     */    
     public String getServletInfo() {
 	return "";
     }
 
 
-
-
     /**
-     *
      * Called by the servlet container to indicate to a servlet that the
      * servlet is being placed into service.  See {@link Servlet#init}.
      *
@@ -284,23 +273,16 @@ public abstract class GenericServlet
      * @exception ServletException 	if an exception occurs that
      *					interrupts the servlet's normal
      *					operation
-     *
      * 
      * @see 				UnavailableException
-     *
      */
-
     public void init(ServletConfig config) throws ServletException {
 	this.config = config;
 	this.init();
     }
 
 
-
-
-
     /**
-     *
      * A convenience method which can be overridden so that there's no need
      * to call <code>super.init(config)</code>.
      *
@@ -313,31 +295,22 @@ public abstract class GenericServlet
      * @exception ServletException 	if an exception occurs that
      *					interrupts the servlet's
      *					normal operation
-     *
      */
-    
     public void init() throws ServletException {
 
     }
     
 
-
-
     /**
-     * 
      * Writes the specified message to a servlet log file, prepended by the
      * servlet's name.  See {@link ServletContext#log(String)}.
      *
      * @param msg 	a <code>String</code> specifying
      *			the message to be written to the log file
-     *
-     */
-     
+     */     
     public void log(String msg) {
 	getServletContext().log(getServletName() + ": "+ msg);
     }
-   
-   
    
    
     /**
@@ -352,14 +325,10 @@ public abstract class GenericServlet
      *
      * @param t			the <code>java.lang.Throwable</code> error
      * 				or exception
-     *
-     *
-     */
-   
+     */   
     public void log(String message, Throwable t) {
 	getServletContext().log(getServletName() + ": " + message, t);
     }
-    
     
     
     /**
@@ -368,8 +337,6 @@ public abstract class GenericServlet
      * 
      * <p>This method is declared abstract so subclasses, such as 
      * <code>HttpServlet</code>, must override it.
-     *
-     *
      *
      * @param req 	the <code>ServletRequest</code> object
      *			that contains the client's request
@@ -383,24 +350,18 @@ public abstract class GenericServlet
      *
      * @exception IOException 		if an input or output
      *					exception occurs
-     *
      */
 
     public abstract void service(ServletRequest req, ServletResponse res)
 	throws ServletException, IOException;
     
 
-
     /**
      * Returns the name of this servlet instance.
      * See {@link ServletConfig#getServletName}.
      *
      * @return          the name of this servlet instance
-     *
-     *
-     *
      */
-
     public String getServletName() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
