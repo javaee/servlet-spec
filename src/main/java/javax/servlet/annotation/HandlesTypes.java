@@ -50,5 +50,11 @@ package javax.servlet.annotation;
  * @author Rajiv Mordani
  */
 public @interface HandlesTypes {
-  Class[] value();
+    /**
+     * The types that a <tt>ServletContainerInitializer</tt> expresses interesst in. When this annotation
+     * is applied on an implementation of <tt>ServletContainerInitializer</tt> the <tt>onStartup</tt> method
+     * of the ServletContainerInitializer instance will get a <tt>Set</tt> of classes that were either annotated
+     * with, or extends / implements the types listed via this annotation.
+     */
+    Class[] value();
 }
