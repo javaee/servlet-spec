@@ -685,6 +685,8 @@ public interface ServletContext {
      * container
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
+     * @throws IllegalArgumentException if the given servlet instance 
+     * implements {@link SingleThreadModel}
      *
      * @since 3.0
      */
