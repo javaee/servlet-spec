@@ -58,6 +58,7 @@ package javax.servlet;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 /**
@@ -193,10 +194,10 @@ public abstract class GenericServlet
      * Gets the names of the initialization attributes of the servlet.
      *
      * @return the names of the initialization attributes of the servlet,
-     * or an empty <tt>Enumeration</tt> if the servlet does not have
+     * or an empty <tt>Iterator</tt> if the servlet does not have
      * any initialization attributes.
      */
-    public Enumeration<String> getInitAttributeNames() {
+    public Iterator<String> getInitAttributeNames() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
             throw new IllegalStateException(

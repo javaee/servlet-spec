@@ -55,6 +55,7 @@
 package javax.servlet;
 
 import java.util.Enumeration;
+import java.util.Iterator;
 
 /**
  * A servlet configuration object used by a servlet container
@@ -128,9 +129,9 @@ import java.util.Enumeration;
      * Gets the names of the initialization attributes of the servlet.
      *
      * @return the names of the initialization attributes of the servlet,
-     * or an empty <tt>Enumeration</tt> if the servlet does not have
+     * or an empty <tt>Iterator</tt> if the servlet does not have
      * any initialization attributes.
      */
-    public Enumeration<String> getInitAttributeNames();
+    public Iterator<String> getInitAttributeNames();
 
 }
