@@ -841,7 +841,7 @@ public interface ServletContext {
      * session tracking modes set by a previous invocation of this
      * method on this <tt>ServletContext</tt>.
      *
-     * @param sessionTrackingModes enum set of session tracking modes to
+     * @param sessionTrackingModes the set of session tracking modes to
      * become effective for this <tt>ServletContext</tt>
      *
      * @throws IllegalStateException if this <tt>ServletContext</tt> has
@@ -854,19 +854,19 @@ public interface ServletContext {
      *
      * @since 3.0
      */
-    public void setSessionTrackingModes(EnumSet<SessionTrackingMode> sessionTrackingModes);
+    public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes);
 
 
     /**
      * Gets the session tracking modes that are supported by default for this
      * <tt>ServletContext</tt>.
      *
-     * @return enum set of the session tracking modes supported by default for
+     * @return set of the session tracking modes supported by default for
      * this <tt>ServletContext</tt>
      *
      * @since 3.0
      */
-    public EnumSet<SessionTrackingMode> getDefaultSessionTrackingModes();
+    public Set<SessionTrackingMode> getDefaultSessionTrackingModes();
 
 
     /**
@@ -880,12 +880,12 @@ public interface ServletContext {
      * {@link #getDefaultSessionTrackingModes getDefaultSessionTrackingModes}
      * are in effect.
      *
-     * @return enum set of the session tracking modes in effect for this
+     * @return set of the session tracking modes in effect for this
      * <tt>ServletContext</tt>
      *
      * @since 3.0
      */
-    public EnumSet<SessionTrackingMode> getEffectiveSessionTrackingModes();
+    public Set<SessionTrackingMode> getEffectiveSessionTrackingModes();
 
 }
 
