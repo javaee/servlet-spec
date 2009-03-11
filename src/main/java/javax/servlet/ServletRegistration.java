@@ -93,18 +93,13 @@ public interface ServletRegistration {
      *
      * <p>The given map of initialization parameters is processed
      * <i>by-value</i>, i.e., for each initialization parameter contained
-     * in the map, this method calls {@link setInitParameter(String,Object)}.
+     * in the map, this method calls {@link setInitParameter(String,String)}.
      * If that method would return false for any of the
      * initialization parameters in the given map, no updates will be
      * performed, and false will be returned. Likewise, if the map contains
      * an initialization parameter with a <tt>null</tt> name or value, no
      * updates will be performed, and an IllegalArgumentException will be
      * thrown.
-     *
-     * <p>Unlike the initialization attribute map
-     * (see {@link #setInitAttributes}), the initialization parameter map
-     * may be updated only up to the point where the servlet is being
-     * initialized (see {@link Servlet#init}).
      *
      * @param initParameters the initialization parameters
      *
@@ -148,11 +143,6 @@ public interface ServletRegistration {
      * an initialization attribute with a <tt>null</tt> name or value, no
      * updates will be performed, and an IllegalArgumentException will be
      * thrown.
-     *
-     * <p>Unlike the initialization parameter map
-     * (see {@link #setInitParameters}), the initialization attribute map
-     * may be updated beyond the point where the servlet has been
-     * initialized (see {@link Servlet#init}).
      *
      * @param initAttributes the initialization attributes
      *
