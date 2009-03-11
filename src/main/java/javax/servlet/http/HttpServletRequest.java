@@ -744,9 +744,9 @@ public interface HttpServletRequest extends ServletRequest {
      * <code>ServletContext</code>.
      * 
      * <p>This method returns without throwing a <code>LoginException</code> 
-     * when the login mechanism configured for the <code>ServletContext>/code> 
+     * when the login mechanism configured for the <code>ServletContext</code> 
      * supports username password validation, and when, at the time of the
-     * call to login, the identity of the caller of the request has
+     * call to login, the identity of the caller of the request had
      * not been established (i.e, all of <code>getUserPrincipal</code>, 
      * <code>getRemoteUser</code>, and <code>getAuthType</code> return null), 
      * and when validation of the provided credentials is successful. 
