@@ -38,6 +38,11 @@
 
 package javax.servlet.annotation;
 
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * This annotation is used to declare the types an instance of the
  * ServletContainerInitializer can handle.
@@ -48,6 +53,8 @@ package javax.servlet.annotation;
  *
  * @since 3.0
  */
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
 public @interface HandlesTypes {
     /**
      * The types that a <tt>ServletContainerInitializer</tt> expresses interesst in. When this annotation
