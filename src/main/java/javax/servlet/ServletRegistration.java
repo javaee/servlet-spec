@@ -93,7 +93,7 @@ public interface ServletRegistration {
      *
      * <p>The given map of initialization parameters is processed
      * <i>by-value</i>, i.e., for each initialization parameter contained
-     * in the map, this method calls {@link setInitParameter(String,String)}.
+     * in the map, this method calls {@link #setInitParameter(String,String)}.
      * If that method would return false for any of the
      * initialization parameters in the given map, no updates will be
      * performed, and false will be returned. Likewise, if the map contains
@@ -136,7 +136,7 @@ public interface ServletRegistration {
      *
      * <p>The given map of initialization attributes is processed
      * <i>by-value</i>, i.e., for each initialization attribute contained
-     * in the map, this method calls {@link setInitAttribute(String,Object)}.
+     * in the map, this method calls {@link #setInitAttribute(String,Object)}.
      * If that method would return false for any of the
      * initialization attributes in the given map, no updates will be
      * performed, and false will be returned. Likewise, if the map contains
