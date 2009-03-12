@@ -52,7 +52,6 @@ import java.util.Set;
  * @see javax.servlet.annotation.HandlesTypes
  *
  * @since 3.0
- * @author Rajiv Mordani
  */
 public interface ServletContainerInitializer {
     /**

@@ -47,7 +47,6 @@ package javax.servlet.annotation;
  * @see javax.servlet.ServletContainerInitializer
  *
  * @since 3.0
- * @author Rajiv Mordani
  */
 public @interface HandlesTypes {
     /**
