@@ -220,7 +220,7 @@ public interface ServletContext {
      * 
      * @since 2.3
      */    
-    public Set getResourcePaths(String path);
+    public Set<String> getResourcePaths(String path);
     
 
     /**
@@ -384,7 +384,7 @@ public interface ServletContext {
      * will be permanently removed in a future version of the Java
      * Servlet API.
      */
-    public Enumeration getServlets();
+    public Enumeration<Servlet> getServlets();
     
 
     /**
@@ -397,7 +397,7 @@ public interface ServletContext {
      * remains only to preserve binary compatibility. This method will 
      * be permanently removed in a future version of the Java Servlet API.
      */
-    public Enumeration getServletNames();
+    public Enumeration<String> getServletNames();
     
 
     /**
@@ -517,7 +517,7 @@ public interface ServletContext {
      *
      * @see ServletConfig#getInitParameter
      */
-    public Enumeration getInitParameterNames();
+    public Enumeration<String> getInitParameterNames();
     
 
     /**
@@ -582,7 +582,7 @@ public interface ServletContext {
      *
      * @see		#getAttribute
      */
-    public Enumeration getAttributeNames();
+    public Enumeration<String> getAttributeNames();
     
     
     /**

@@ -108,7 +108,7 @@ public interface FilterConfig {
      * @return an <code>Enumeration</code> of <code>String</code> objects
      * containing the names of the filter's initialization parameters
      */
-    public Enumeration getInitParameterNames();
+    public Enumeration<String> getInitParameterNames();
 
 
     /**

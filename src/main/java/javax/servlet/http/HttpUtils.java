@@ -52,9 +52,6 @@
  * limitations under the License.
  */
 
-
-
-
 package javax.servlet.http;
 
 import javax.servlet.ServletInputStream;
@@ -69,9 +66,7 @@ import java.io.IOException;
  *			with the default encoding and have been moved
  *			to the request interfaces.
  *
-*/
-
-
+ */
 public class HttpUtils {
 
     private static final String LSTRING_FILE =
@@ -80,20 +75,13 @@ public class HttpUtils {
 	ResourceBundle.getBundle(LSTRING_FILE);
         
     
-    
     /**
      * Constructs an empty <code>HttpUtils</code> object.
-     *
      */
-
     public HttpUtils() {}
-    
-    
-    
     
 
     /**
-     *
      * Parses a query string passed from the client to the
      * server and builds a <code>HashTable</code> object
      * with key-value pairs. 
@@ -119,23 +107,21 @@ public class HttpUtils {
      * @return		a <code>HashTable</code> object built
      * 			from the parsed key-value pairs
      *
-     * @exception IllegalArgumentException	if the query string 
-     *						is invalid
-     *
+     * @exception IllegalArgumentException if the query string is invalid
      */
-
-    static public Hashtable parseQueryString(String s) {
+    public static Hashtable<String, String[]> parseQueryString(String s) {
 
 	String valArray[] = null;
 	
 	if (s == null) {
 	    throw new IllegalArgumentException();
 	}
-	Hashtable ht = new Hashtable();
+
+	Hashtable<String, String[]> ht = new Hashtable<String, String[]>();
 	StringBuffer sb = new StringBuffer();
 	StringTokenizer st = new StringTokenizer(s, "&");
 	while (st.hasMoreTokens()) {
-	    String pair = (String)st.nextToken();
+	    String pair = st.nextToken();
 	    int pos = pair.indexOf('=');
 	    if (pos == -1) {
 		// XXX
@@ -145,7 +131,7 @@ public class HttpUtils {
 	    String key = parseName(pair.substring(0, pos), sb);
 	    String val = parseName(pair.substring(pos+1, pair.length()), sb);
 	    if (ht.containsKey(key)) {
-		String oldVals[] = (String []) ht.get(key);
+		String oldVals[] = ht.get(key);
 		valArray = new String[oldVals.length + 1];
 		for (int i = 0; i < oldVals.length; i++) 
 		    valArray[i] = oldVals[i];
@@ -156,10 +142,9 @@ public class HttpUtils {
 	    }
 	    ht.put(key, valArray);
 	}
+
 	return ht;
     }
-
-
 
 
     /**
@@ -181,8 +166,6 @@ public class HttpUtils {
      * sent in hexadecimal notation (like <i>%xx</i>) are
      * converted to ASCII characters.
      *
-     *
-     *
      * @param len	an integer specifying the length,
      *			in characters, of the 
      *			<code>ServletInputStream</code>
@@ -196,21 +179,18 @@ public class HttpUtils {
      * @return		a <code>HashTable</code> object built
      *			from the parsed key-value pairs
      *
-     *
-     * @exception IllegalArgumentException	if the data
-     *			sent by the POST method is invalid
-     *
+     * @exception IllegalArgumentException if the data
+     * sent by the POST method is invalid
      */
-     
-
-    static public Hashtable parsePostData(int len, 
-					  ServletInputStream in)
-    {
+    public static Hashtable<String, String[]> parsePostData(int len, 
+                ServletInputStream in) {
 	// XXX
 	// should a length of 0 be an IllegalArgumentException
 	
-	if (len <=0)
-	    return new Hashtable(); // cheap hack to return an empty hash
+	if (len <=0) {
+            // cheap hack to return an empty hash
+	    return new Hashtable<String, String[]>(); 
+        }
 
 	if (in == null) {
 	    throw new IllegalArgumentException();
@@ -252,13 +232,10 @@ public class HttpUtils {
     }
 
 
-
-
     /*
      * Parse a name in the query string.
      */
-
-    static private String parseName(String s, StringBuffer sb) {
+    private static String parseName(String s, StringBuffer sb) {
 	sb.setLength(0);
 	for (int i = 0; i < s.length(); i++) {
 	    char c = s.charAt(i); 
@@ -288,10 +265,9 @@ public class HttpUtils {
 		break;
 	    }
 	}
+
 	return sb.toString();
     }
-
-
 
 
     /**
@@ -314,9 +290,7 @@ public class HttpUtils {
      * 
      * @return		a <code>StringBuffer</code> object containing
      *			the reconstructed URL
-     *
      */
-
     public static StringBuffer getRequestURL (HttpServletRequest req) {
 	StringBuffer url = new StringBuffer ();
 	String scheme = req.getScheme ();
@@ -339,6 +313,7 @@ public class HttpUtils {
 	//if (pathInfo != null)
 	//    url.append (pathInfo);
 	url.append(urlPath);
+
 	return url;
     }
 }

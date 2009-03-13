@@ -52,9 +52,6 @@
  * limitations under the License.
  */
 
-
-
-
 package javax.servlet.http;
 
 import java.io.IOException;
@@ -230,7 +227,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */			
 
-    public Enumeration getHeaders(String name); 
+    public Enumeration<String> getHeaders(String name); 
     
     
     
@@ -257,7 +254,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
 
-    public Enumeration getHeaderNames();
+    public Enumeration<String> getHeaderNames();
     
     
     

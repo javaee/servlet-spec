@@ -158,7 +158,7 @@ public abstract class GenericServlet
     *				objects containing the names of 
     *				the servlet's initialization parameters
     */
-    public Enumeration getInitParameterNames() {
+    public Enumeration<String> getInitParameterNames() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
             throw new IllegalStateException(

@@ -109,7 +109,7 @@ import java.util.Iterator;
      * objects containing the names of the servlet's 
      * initialization parameters
      */
-    public Enumeration getInitParameterNames();
+    public Enumeration<String> getInitParameterNames();
 
 
     /**

@@ -130,7 +130,7 @@ public interface ServletRequest {
      *
      */
 
-    public Enumeration getAttributeNames();
+    public Enumeration<String> getAttributeNames();
     
     
     
@@ -198,8 +198,6 @@ public interface ServletRequest {
     public String getContentType();
     
     
-    
-
     /**
      * Retrieves the body of the request as binary data using
      * a {@link ServletInputStream}.  Either this method or 
@@ -208,17 +206,13 @@ public interface ServletRequest {
      * @return			a {@link ServletInputStream} object containing
      * 				the body of the request
      *
-     * @exception IllegalStateException  if the {@link #getReader} method
-     * 					 has already been called for this request
+     * @exception IllegalStateException if the {@link #getReader} method
+     * has already been called for this request
      *
-     * @exception IOException    	if an input or output exception occurred
-     *
+     * @exception IOException if an input or output exception occurred
      */
-
     public ServletInputStream getInputStream() throws IOException; 
      
-    
-    
 
     /**
      * Returns the value of a request parameter as a <code>String</code>,
@@ -246,14 +240,10 @@ public interface ServletRequest {
      *			single value of the parameter
      *
      * @see 		#getParameterValues
-     *
      */
-
     public String getParameter(String name);
     
     
-    
-
     /**
      *
      * Returns an <code>Enumeration</code> of <code>String</code>
@@ -267,13 +257,9 @@ public interface ServletRequest {
      * 			the name of a request parameter; or an 
      *			empty <code>Enumeration</code> if the
      *			request has no parameters
-     *
      */
-     
-    public Enumeration getParameterNames();
-    
-    
-    
+    public Enumeration<String> getParameterNames();
+        
 
     /**
      * Returns an array of <code>String</code> objects containing 
@@ -290,25 +276,23 @@ public interface ServletRequest {
      *			containing the parameter's values
      *
      * @see		#getParameter
-     *
      */
-
     public String[] getParameterValues(String name);
  
-    /** Returns a java.util.Map of the parameters of this request.
-     * Request parameters
-     * are extra information sent with the request.  For HTTP servlets,
-     * parameters are contained in the query string or posted form data.
+
+    /**
+     * Returns a java.util.Map of the parameters of this request.
+     * 
+     * <p>Request parameters are extra information sent with the request.
+     * For HTTP servlets, parameters are contained in the query string or
+     * posted form data.
      *
      * @return an immutable java.util.Map containing parameter names as 
      * keys and parameter values as map values. The keys in the parameter
      * map are of type String. The values in the parameter map are of type
      * String array.
-     *
      */
-
-    public Map getParameterMap();
-    
+    public Map<String, String[]> getParameterMap();
     
 
     /**
@@ -320,12 +304,8 @@ public interface ServletRequest {
      *
      * @return		a <code>String</code> containing the protocol 
      *			name and version number
-     *
-     */
-    
+     */    
     public String getProtocol();
-    
-    
     
 
     /**
@@ -337,18 +317,15 @@ public interface ServletRequest {
      *
      * @return		a <code>String</code> containing the name 
      *			of the scheme used to make this request
-     *
      */
-
     public String getScheme();
-    
-    
     
 
     /**
      * Returns the host name of the server to which the request was sent.
      * It is the value of the part before ":" in the <code>Host</code>
-     * header value, if any, or the resolved server name, or the server IP address.
+     * header value, if any, or the resolved server name, or the server IP
+     * address.
      *
      * @return		a <code>String</code> containing the name 
      *			of the server
@@ -489,7 +466,6 @@ public interface ServletRequest {
     
 
     /**
-     *
      * Returns the preferred <code>Locale</code> that the client will 
      * accept content in, based on the Accept-Language header.
      * If the client request doesn't provide an Accept-Language header,
@@ -497,16 +473,11 @@ public interface ServletRequest {
      *
      *
      * @return		the preferred <code>Locale</code> for the client
-     *
      */
-
     public Locale getLocale();
-    
-    
     
 
     /**
-     *
      * Returns an <code>Enumeration</code> of <code>Locale</code> objects
      * indicating, in decreasing order starting with the preferred locale, the
      * locales that are acceptable to the client based on the Accept-Language
@@ -515,13 +486,10 @@ public interface ServletRequest {
      * this method returns an <code>Enumeration</code> containing one 
      * <code>Locale</code>, the default locale for the server.
      *
-     *
      * @return		an <code>Enumeration</code> of preferred 
      *                  <code>Locale</code> objects for the client
-     *
      */
-
-    public Enumeration getLocales();
+    public Enumeration<Locale> getLocales();
     
     
     
@@ -572,21 +540,14 @@ public interface ServletRequest {
      *
      * @see             RequestDispatcher
      * @see             ServletContext#getRequestDispatcher
-     *
      */
-
     public RequestDispatcher getRequestDispatcher(String path);
-    
-    
     
 
     /**
-     * 
      * @deprecated 	As of Version 2.1 of the Java Servlet API,
      * 			use {@link ServletContext#getRealPath} instead.
-     *
      */
-
     public String getRealPath(String path);
     
     
