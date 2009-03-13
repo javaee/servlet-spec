@@ -131,6 +131,6 @@ public interface FilterConfig {
      * or an empty <tt>Enumeration</tt> if the filter does not have
      * any initialization attributes.
      */
-    public Enumeration<String> getInitAttributeNames();
+    public Iterable<String> getInitAttributeNames();
 
 }

@@ -197,7 +197,7 @@ public abstract class GenericServlet
      * or an empty <tt>Iterator</tt> if the servlet does not have
      * any initialization attributes.
      */
-    public Iterator<String> getInitAttributeNames() {
+    public Iterable<String> getInitAttributeNames() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
             throw new IllegalStateException(
