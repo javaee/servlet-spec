@@ -128,7 +128,7 @@ public interface FilterConfig {
      * Gets the names of the initialization attributes of the filter.
      *
      * @return the names of the initialization attributes of the filter,
-     * or an empty <tt>Enumeration</tt> if the filter does not have
+     * or an empty <tt>Iterable</tt> if the filter does not have
      * any initialization attributes.
      */
     public Iterable<String> getInitAttributeNames();

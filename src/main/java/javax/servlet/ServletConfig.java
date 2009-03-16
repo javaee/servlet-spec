@@ -129,7 +129,7 @@ import java.util.Iterator;
      * Gets the names of the initialization attributes of the servlet.
      *
      * @return the names of the initialization attributes of the servlet,
-     * or an empty <tt>Iterator</tt> if the servlet does not have
+     * or an empty <tt>Iterable</tt> if the servlet does not have
      * any initialization attributes.
      */
     public Iterable<String> getInitAttributeNames();
