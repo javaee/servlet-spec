@@ -131,10 +131,34 @@ public interface AsyncContext {
 
     /**
      * Dispatches the request and response objects of this AsyncContext
-     * to the original URI of the request, or the most recent dispatch
-     * target of a call to {@link #dispatch(String)},
-     * {@link #dispatch(ServletContext,String)}, or
-     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)}.
+     * to the servlet container.
+     * 
+     * <p>If the asynchronous cycle was started with
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
+     * then the dispatch is to the URI of the request passed to startAsync.
+     * If the asynchronous cycle was started with
+     * {@link ServletRequest#startAsync()}, then the dispatch is to the
+     * URI of the request when it was last dispatched by the container.
+     *
+     * <p>The following sequence illustrates how this will work:
+     * <code><pre>
+     * // REQUEST dispatch to /url/A
+     * AsyncContext ac = request.startAsync();
+     * ...
+     * ac.dispatch(); // ASYNC dispatch to /url/A
+     * 
+     * // FORWARD dispatch to /url/B
+     * getRequestDispatcher("/url/B").forward(req,res);
+     * ac = request.startAsync();
+     * ...
+     * ac.dispatch(); // ASYNC dispatch to /url/A
+     * 
+     * // FORWARD dispatch to /url/B
+     * getRequestDispatcher("/url/B").forward(req,res);
+     * ac = request.startAsync(req,res);
+     * ...
+     * ac.dispatch(); // ASYNC dispatch to /url/B
+     * </pre></code>
      *
      * <p>This method returns immediately after passing the request
      * and response objects to a container managed thread, on which the
