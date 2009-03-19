@@ -223,8 +223,6 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * The default behavior of this method is to call setStatus(int sc)
      * on the wrapped response object.
      */
-
-
     public void setStatus(int sc) {
 	this._getHttpServletResponse().setStatus(sc);
     }
@@ -242,5 +240,62 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
 	this._getHttpServletResponse().setStatus(sc, sm);
     }
 
+
+    /**
+     * The default behaviour of this method is to call
+     * {@link HttpServletResponse#getStatus} on the wrapped response
+     * object.
+     *
+     * @return the current status code of the wrapped response
+     */
+    public int getStatus() {
+	return _getHttpServletResponse().getStatus();
+    }
+
+
+    /**
+     * The default behaviour of this method is to call
+     * {@link HttpServletResponse#getHeader} on the wrapped response
+     * object.
+     *
+     * @param name the name of the response header whose value to return
+     *
+     * @return the value of the response header with the given name,
+     * or <tt>null</tt> if no header with the given name has been set
+     * on the wrapped response
+     */
+    public String getHeader(String name) {
+	return _getHttpServletResponse().getHeader(name);
+    }
+
+
+    /**
+     * The default behaviour of this method is to call
+     * {@link HttpServletResponse#getHeaders} on the wrapped response
+     * object.
+     *
+     * @param name the name of the response header whose values to return
+     *
+     * @return the values of the response header with the given name,
+     * or an empty <tt>Iterable</tt> if no header with the given name
+     * has been set on the wrapped response
+     */			
+    public Iterable<String> getHeaders(String name) {
+	return _getHttpServletResponse().getHeaders(name);
+    }
+    
+
+    /**
+     * The default behaviour of this method is to call
+     * {@link HttpServletResponse#getHeaderNames} on the wrapped response
+     * object.
+     *
+     * @return the names of the headers of the wrapped response, or an empty
+     * <tt>Iterable</tt> if no headers have been set on the wrapped
+     * response
+     */
+    public Iterable<String> getHeaderNames() {
+	return _getHttpServletResponse().getHeaderNames();
+    }
    
 }

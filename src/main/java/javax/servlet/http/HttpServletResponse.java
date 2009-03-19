@@ -360,6 +360,67 @@ public interface HttpServletResponse extends ServletResponse {
 
     public void setStatus(int sc, String sm);
 
+
+    /**
+     * Gets the current status code of this response.
+     *
+     * @return the current status code of this response
+     */
+    public int getStatus();
+
+
+    /**
+     * Gets the value of the response header with the given name.
+     * 
+     * <p>If a response header with the given name exists and contains
+     * multiple values, the value that was added first will be returned.
+     *
+     * <p>This method considers only response headers set or added via
+     * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
+     * {@link #addDateHeader}, {@link #setIntHeader}, or
+     * {@link #addIntHeader}, respectively.
+     *
+     * @param name the name of the response header whose value to return
+     *
+     * @return the value of the response header with the given name,
+     * or <tt>null</tt> if no header with the given name has been set
+     * on this response
+     */
+    public String getHeader(String name); 
+
+
+    /**
+     * Gets the values of the response header with the given name
+     * as an <tt>Iterable</tt> of <tt>String</tt> objects.
+     *
+     * <p>This method considers only response headers set or added via
+     * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
+     * {@link #addDateHeader}, {@link #setIntHeader}, or
+     * {@link #addIntHeader}, respectively.
+     *
+     * @param name the name of the response header whose values to return
+     *
+     * @return the values of the response header with the given name,
+     * or an empty <tt>Iterable</tt> if no header with the given name
+     * has been set on this response
+     */			
+    public Iterable<String> getHeaders(String name); 
+    
+
+    /**
+     * Gets the names of the headers of this response
+     * as an <tt>Iterable</tt> of <tt>String</tt> objects.
+     *
+     * <p>This method considers only response headers set or added via
+     * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
+     * {@link #addDateHeader}, {@link #setIntHeader}, or
+     * {@link #addIntHeader}, respectively.
+     *
+     * @return the names of the headers of this response, or an empty
+     * <tt>Iterable</tt> if no headers have been set on this response
+     */
+    public Iterable<String> getHeaderNames();
+
     
     /*
      * Server status codes; see RFC 2068.
