@@ -114,49 +114,6 @@ public interface ServletRegistration {
 
 
     /**
-     * Sets the initialization attribute with the given name and value
-     * on the servlet for which this ServletRegistration was created.
-     *
-     * @param name the initialization attribute name
-     * @param value the initialization attribute value
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * ServletRegistration was obtained has already been initialized
-     * @throws IllegalArgumentException if the given name or value is
-     * <tt>null</tt>
-     */ 
-    public boolean setInitAttribute(String name, Object value);
-
-
-    /**
-     * Sets the given initialization attributes on the servlet for which
-     * this ServletRegistration was created.
-     *
-     * <p>The given map of initialization attributes is processed
-     * <i>by-value</i>, i.e., for each initialization attribute contained
-     * in the map, this method calls {@link #setInitAttribute(String,Object)}.
-     * If that method would return false for any of the
-     * initialization attributes in the given map, no updates will be
-     * performed, and false will be returned. Likewise, if the map contains
-     * an initialization attribute with a <tt>null</tt> name or value, no
-     * updates will be performed, and an IllegalArgumentException will be
-     * thrown.
-     *
-     * @param initAttributes the initialization attributes
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * ServletRegistration was obtained has already been initialized
-     * @throws IllegalArgumentException if the given map contains an
-     * initialization attribute with a <tt>null</tt> name or value
-     */ 
-    public boolean setInitAttributes(Map<String, Object> initAttributes);
-
-
-    /**
      * Sets the <code>loadOnStartup</code> priority on the servlet for which
      * this ServletRegistration was created.
      *

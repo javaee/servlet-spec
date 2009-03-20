@@ -110,27 +110,4 @@ public interface FilterConfig {
      */
     public Enumeration<String> getInitParameterNames();
 
-
-    /**
-     * Gets the value of the initialization attribute with the given name.
-     *
-     * @param name the name of the initialization attribute whose value to
-     * get
-     *
-     * @return the value of the initialization attribute with the given
-     * name, or <tt>null</tt> if the filter does not have any
-     * initialization attribute with that name
-     */
-    public Object getInitAttribute(String name);
-
-
-    /**
-     * Gets the names of the initialization attributes of the filter.
-     *
-     * @return the names of the initialization attributes of the filter,
-     * or an empty <tt>Iterable</tt> if the filter does not have
-     * any initialization attributes.
-     */
-    public Iterable<String> getInitAttributeNames();
-
 }

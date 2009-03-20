@@ -170,45 +170,6 @@ public abstract class GenericServlet
      
 
     /**
-     * Gets the value of the initialization attribute with the given name.
-     *
-     * @param name the name of the initialization attribute whose value to
-     * get
-     *
-     * @return the value of the initialization attribute with the given
-     * name, or <tt>null</tt> if the servlet does not have any
-     * initialization attribute with that name
-     */
-    public Object getInitAttribute(String name) {
-        ServletConfig sc = getServletConfig();
-        if (sc == null) {
-            throw new IllegalStateException(
-                lStrings.getString("err.servlet_config_not_initialized"));
-        }
-
-        return sc.getInitAttribute(name);
-    }
-
-
-    /**
-     * Gets the names of the initialization attributes of the servlet.
-     *
-     * @return the names of the initialization attributes of the servlet,
-     * or an empty <tt>Iterator</tt> if the servlet does not have
-     * any initialization attributes.
-     */
-    public Iterable<String> getInitAttributeNames() {
-        ServletConfig sc = getServletConfig();
-        if (sc == null) {
-            throw new IllegalStateException(
-                lStrings.getString("err.servlet_config_not_initialized"));
-        }
-
-        return sc.getInitAttributeNames();
-    }
-
-
-    /**
      * Returns this servlet's {@link ServletConfig} object.
      *
      * @return ServletConfig 	the <code>ServletConfig</code> object
