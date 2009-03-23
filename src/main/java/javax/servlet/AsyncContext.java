@@ -148,14 +148,18 @@ public interface AsyncContext {
      * ac.dispatch(); // ASYNC dispatch to /url/A
      * 
      * // FORWARD dispatch to /url/B
-     * getRequestDispatcher("/url/B").forward(req,res);
+     * getRequestDispatcher("/url/B").forward(request,response);
+     * // Start async operation from within the target of the FORWARD
+     * // dispatch
      * ac = request.startAsync();
      * ...
      * ac.dispatch(); // ASYNC dispatch to /url/A
      * 
      * // FORWARD dispatch to /url/B
-     * getRequestDispatcher("/url/B").forward(req,res);
-     * ac = request.startAsync(req,res);
+     * getRequestDispatcher("/url/B").forward(request,response);
+     * // Start async operation from within the target of the FORWARD
+     * // dispatch
+     * ac = request.startAsync(request,response);
      * ...
      * ac.dispatch(); // ASYNC dispatch to /url/B
      * </pre></code>
