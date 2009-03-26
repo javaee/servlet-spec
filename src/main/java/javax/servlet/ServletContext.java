@@ -718,6 +718,28 @@ public interface ServletContext {
 
 
     /**
+     * Instantiates the given Servlet class and performs any required
+     * resource injection into the new Servlet instance before returning
+     * it.
+     *
+     * <p>The returned Servlet instance may be further customized before it
+     * is registered with this ServletContext via a call to 
+     * {@link #addServlet(String,Servlet}.
+     *
+     * @param c the Servlet class to instantiate
+     *
+     * @return the new Servlet instance
+     *
+     * @throws ServletException if an error occurs during the instantiation
+     * of, or resource injection into the new Servlet
+     *
+     * @since 3.0
+     */
+    public <T extends Servlet> T createServlet(Class<T> c)
+        throws ServletException;
+
+
+    /**
      * Gets the ServletRegistration corresponding to the servlet with the
      * given <tt>servletName</tt>.
      *
@@ -800,6 +822,28 @@ public interface ServletContext {
      */
     public FilterRegistration addFilter(String filterName,
         Class <? extends Filter> filterClass);
+
+
+    /**
+     * Instantiates the given Filter class and performs any required
+     * resource injection into the new Filter instance before returning
+     * it.
+     *
+     * <p>The returned Filter instance may be further customized before it
+     * is registered with this ServletContext via a call to 
+     * {@link #addFilter(String,Filter}.
+     *
+     * @param c the Filter class to instantiate
+     *
+     * @return the new Filter instance
+     *
+     * @throws ServletException if an error occurs during the instantiation
+     * of, or resource injection into the new Filter
+     *
+     * @since 3.0
+     */
+    public <T extends Filter> T createFilter(Class<T> c)
+        throws ServletException;
 
 
     /**
