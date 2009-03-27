@@ -724,7 +724,7 @@ public interface ServletContext {
      *
      * <p>The returned Servlet instance may be further customized before it
      * is registered with this ServletContext via a call to 
-     * {@link #addServlet(String,Servlet}.
+     * {@link #addServlet(String,Servlet)}.
      *
      * @param c the Servlet class to instantiate
      *
@@ -831,7 +831,7 @@ public interface ServletContext {
      *
      * <p>The returned Filter instance may be further customized before it
      * is registered with this ServletContext via a call to 
-     * {@link #addFilter(String,Filter}.
+     * {@link #addFilter(String,Filter)}.
      *
      * @param c the Filter class to instantiate
      *
