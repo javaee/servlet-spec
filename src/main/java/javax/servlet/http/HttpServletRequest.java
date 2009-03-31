@@ -55,9 +55,9 @@
 package javax.servlet.http;
 
 import java.io.IOException;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import java.util.Enumeration;
-import javax.security.auth.login.LoginException;
 
 /**
  *
@@ -723,16 +723,23 @@ public interface HttpServletRequest extends ServletRequest {
      * @return <code>true</code> when non-null values were or have been
      * established as the values returned by <code>getUserPrincipal</code>, 
      * <code>getRemoteUser</code>, and <code>getAuthType</code>. Return 
-     * <code>false</code> if authentication is incomplete. In which case
-     * <code>isCommited</code> should be called on the response to determine
-     * if the underlying login mechanism has established the message (e.g., 
+     * <code>false</code> if authentication is incomplete and the underlying 
+     * login mechanism has committed, in the response, the message (e.g., 
      * challenge) and HTTP status code to be returned to the user.
      *
-     * @throws LoginException if validation of provided credentials fails.
-     * @throws IOException if an error occurs while writing the response.
+     * @exception       IOException         if an error occurs while writing 
+     *                                      the response.
+     *
+     * @exception	ServletException    if the authentication failed and
+     *                                      the caller is responsible for 
+     *                                      handling the error (i.e., the 
+     *                                      underlying login mechanism did 
+     *                                      NOT establish the message and 
+     *                                      HTTP status code to be returned 
+     *                                      to the user).
      */
-    public boolean login(HttpServletResponse response)
-        throws IOException, LoginException;
+    public boolean login(HttpServletResponse response) 
+	throws IOException,ServletException;
 
 
     /**
@@ -740,14 +747,14 @@ public interface HttpServletRequest extends ServletRequest {
      * realm used by the web container login mechanism configured for the 
      * <code>ServletContext</code>.
      * 
-     * <p>This method returns without throwing a <code>LoginException</code> 
+     * <p>This method returns without throwing a <code>ServletException</code> 
      * when the login mechanism configured for the <code>ServletContext</code> 
      * supports username password validation, and when, at the time of the
      * call to login, the identity of the caller of the request had
      * not been established (i.e, all of <code>getUserPrincipal</code>, 
      * <code>getRemoteUser</code>, and <code>getAuthType</code> return null), 
      * and when validation of the provided credentials is successful. 
-     * Otherwise, this method throws a <code>LoginException</code> as
+     * Otherwise, this method throws a <code>ServletException</code> as
      * described below.
      *  
      * <p>When this method returns without throwing an exception, it must
@@ -761,12 +768,17 @@ public interface HttpServletRequest extends ServletRequest {
      * @param password The password <code>String</code> corresponding
      * to the identified user.
      *
-     * @throws LoginException if the configured login mechanism 
-     * does not support username password authentication, or if a non-null
-     * caller identity had already been established (prior to the call to
-     * login), or if validation of the provided username and password fails.
+     * @exception	ServletException    if the configured login mechanism 
+     *                                      does not support username 
+     *                                      password authentication, or if a 
+     *                                      non-null caller identity had 
+     *                                      already been established (prior 
+     *                                      to the call to login), or if 
+     *                                      validation of the provided 
+     *                                      username and password fails.
      */
-    public void login(String username, String password) throws LoginException;
+    public void login(String username, String password) 
+	throws ServletException;
     
     
     /**
@@ -774,8 +786,11 @@ public interface HttpServletRequest extends ServletRequest {
      * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, 
      * and <code>getAuthType</code> is called on the request.
      *
-     * @throws LoginException if logout fails.
+     * @exception	ServletException    ff logout fails.
      */
-    public void logout() throws LoginException; 
+    public void logout() throws ServletException; 
     
 }
+
+
+

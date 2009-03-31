@@ -55,9 +55,9 @@
 package javax.servlet.http;
 
 import java.io.IOException;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRequestWrapper;
 import java.util.Enumeration;
-import javax.security.auth.login.LoginException;
 
 /**
  * 
@@ -306,7 +306,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * request object.
      */
     public boolean login(HttpServletResponse response)
-            throws IOException, LoginException {
+            throws IOException, ServletException {
         return this._getHttpServletRequest().login(response);
     }
 
@@ -316,7 +316,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * request object
      */
     public void login(String username, String password)
-            throws LoginException {
+            throws ServletException {
         this._getHttpServletRequest().login(username,password);
     }
 
@@ -325,7 +325,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * The default behavior of this method is to call login on the wrapped
      * request object
      */
-    public void logout() throws LoginException {
+    public void logout() throws ServletException {
         this._getHttpServletRequest().logout();
     }
 }
