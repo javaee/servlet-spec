@@ -106,13 +106,9 @@ import javax.servlet.ServletContext;
  *
  * @see 	HttpSessionBindingListener
  * @see 	HttpSessionContext
- *
  */
 
 public interface HttpSession {
-
-
-
 
     /**
      *
@@ -126,16 +122,11 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
-     *
      */
-
     public long getCreationTime();
     
-    
-    
-    
+        
     /**
-     *
      * Returns a string containing the unique identifier assigned 
      * to this session. The identifier is assigned 
      * by the servlet container and is implementation dependent.
@@ -143,17 +134,15 @@ public interface HttpSession {
      * @return				a string specifying the identifier
      *					assigned to this session
      */
-
     public String getId();
-    
-    
     
 
     /**
      *
      * Returns the last time the client sent a request associated with
      * this session, as the number of milliseconds since midnight
-     * January 1, 1970 GMT, and marked by the time the container received the request. 
+     * January 1, 1970 GMT, and marked by the time the container received the
+     * request. 
      *
      * <p>Actions that your application takes, such as getting or setting
      * a value associated with the session, do not affect the access
@@ -167,19 +156,16 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
-     *
      */
-
     public long getLastAccessedTime();
     
     
     /**
-    * Returns the ServletContext to which this session belongs.
-    *    
-    * @return The ServletContext object for the web application
-    * @since 2.3
-    */
-
+     * Returns the ServletContext to which this session belongs.
+     *    
+     * @return The ServletContext object for the web application
+     * @since 2.3
+     */
     public ServletContext getServletContext();
 
 
@@ -191,53 +177,40 @@ public interface HttpSession {
      *
      * @param interval		An integer specifying the number
      * 				of seconds 
-     *
-     */
-    
+     */    
     public void setMaxInactiveInterval(int interval);
 
 
-
-
-   /**
-    * Returns the maximum time interval, in seconds, that 
-    * the servlet container will keep this session open between 
-    * client accesses. After this interval, the servlet container
-    * will invalidate the session.  The maximum time interval can be set
-    * with the <code>setMaxInactiveInterval</code> method.
-    * A negative time indicates the session should never timeout.
-    *  
-    *
-    * @return		an integer specifying the number of
-    *			seconds this session remains open
-    *			between client requests
-    *
-    * @see		#setMaxInactiveInterval
-    *
-    *
-    */
-
+    /**
+     * Returns the maximum time interval, in seconds, that 
+     * the servlet container will keep this session open between 
+     * client accesses. After this interval, the servlet container
+     * will invalidate the session.  The maximum time interval can be set
+     * with the <code>setMaxInactiveInterval</code> method.
+     * A negative time indicates the session should never timeout.
+     *  
+     *
+     * @return		an integer specifying the number of
+     *			seconds this session remains open
+     *			between client requests
+     *
+     * @see		#setMaxInactiveInterval
+     */
     public int getMaxInactiveInterval();
     
-    
 
-
-   /**
-    *
-    * @deprecated 	As of Version 2.1, this method is
-    *			deprecated and has no replacement.
-    *			It will be removed in a future
-    *			version of the Java Servlet API.
-    *
-    */
-
-    public HttpSessionContext getSessionContext();
-    
-    
-    
-    
     /**
      *
+     * @deprecated 	As of Version 2.1, this method is
+     *			deprecated and has no replacement.
+     *			It will be removed in a future
+     *			version of the Java Servlet API.
+     *
+     */
+    public HttpSessionContext getSessionContext();
+    
+
+    /**
      * Returns the object bound with the specified name in this session, or
      * <code>null</code> if no object is bound under the name.
      *
@@ -247,16 +220,11 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
-     *
      */
-  
     public Object getAttribute(String name);
     
     
-    
-    
     /**
-     *
      * @deprecated 	As of Version 2.2, this method is
      * 			replaced by {@link #getAttribute}.
      *
@@ -266,16 +234,11 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
-     *
      */
-  
     public Object getValue(String name);
-    
-    
-    
+        
 
     /**
-     *
      * Returns an <code>Enumeration</code> of <code>String</code> objects
      * containing the names of all the objects bound to this session. 
      *
@@ -286,16 +249,11 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
-     *
-     */
-    
+     */    
     public Enumeration<String> getAttributeNames();
-    
-    
     
 
     /**
-     *
      * @deprecated 	As of Version 2.2, this method is
      * 			replaced by {@link #getAttributeNames}
      *
@@ -306,12 +264,8 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
-     *
      */
-    
     public String[] getValueNames();
-    
-    
     
 
     /**
@@ -341,17 +295,11 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
-     *
      */
- 
     public void setAttribute(String name, Object value);
     
 
-
-
-    
     /**
-     *
      * @deprecated 	As of Version 2.2, this method is
      * 			replaced by {@link #setAttribute}
      *
@@ -362,17 +310,11 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
-     *
      */
- 
     public void putValue(String name, Object value);
 
 
-
-
-
     /**
-     *
      * Removes the object bound with the specified name from
      * this session. If the session does not have an object
      * bound with the specified name, this method does nothing.
@@ -383,8 +325,6 @@ public interface HttpSession {
      * <code>HttpSessionBindingListener.valueUnbound</code>. The container
      * then notifies any <code>HttpSessionAttributeListener</code>s in the web 
      * application.
-     * 
-     * 
      *
      * @param name				the name of the object to
      *						remove from this session
@@ -392,15 +332,10 @@ public interface HttpSession {
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
      */
-
     public void removeAttribute(String name);
 
 
-
-
-
     /**
-     *
      * @deprecated 	As of Version 2.2, this method is
      * 			replaced by {@link #removeAttribute}
      *
@@ -410,29 +345,20 @@ public interface HttpSession {
      * @exception IllegalStateException	if this method is called on an
      *					invalidated session
      */
-
     public void removeValue(String name);
 
 
-
-
     /**
-     *
      * Invalidates this session then unbinds any objects bound
      * to it. 
      *
      * @exception IllegalStateException	if this method is called on an
      *					already invalidated session
-     *
      */
-
     public void invalidate();
     
     
-    
-    
     /**
-     *
      * Returns <code>true</code> if the client does not yet know about the
      * session or if the client chooses not to join the session.  For 
      * example, if the server used only cookie-based sessions, and
@@ -445,7 +371,6 @@ public interface HttpSession {
      *
      * @exception IllegalStateException	if this method is called on an
      *					already invalidated session
-     *
      */
     public boolean isNew();
 
