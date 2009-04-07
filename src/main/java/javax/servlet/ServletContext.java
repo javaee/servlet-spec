@@ -663,8 +663,8 @@ public interface ServletContext {
      *
      * @since 3.0
      */
-    public ServletRegistration addServlet(String servletName,
-                                          String className);
+    public ServletRegistration.Dynamic addServlet(
+        String servletName, String className);
 
 
     /*
@@ -690,8 +690,8 @@ public interface ServletContext {
      *
      * @since 3.0
      */
-    public ServletRegistration addServlet(String servletName,
-                                          Servlet servlet);
+    public ServletRegistration.Dynamic addServlet(
+        String servletName, Servlet servlet);
 
 
     /*
@@ -713,7 +713,7 @@ public interface ServletContext {
      *
      * @since 3.0
      */
-    public ServletRegistration addServlet(String servletName,
+    public ServletRegistration.Dynamic addServlet(String servletName,
         Class <? extends Servlet> servletClass);
 
 
@@ -774,7 +774,8 @@ public interface ServletContext {
      *
      * @since 3.0
      */
-    public FilterRegistration addFilter(String filterName, String className);
+    public FilterRegistration.Dynamic addFilter(
+        String filterName, String className);
          
 
     /*
@@ -798,7 +799,8 @@ public interface ServletContext {
      *
      * @since 3.0
      */
-    public FilterRegistration addFilter(String filterName, Filter filter);
+    public FilterRegistration.Dynamic addFilter(
+        String filterName, Filter filter);
 
 
     /**
@@ -820,7 +822,7 @@ public interface ServletContext {
      *
      * @since 3.0
      */
-    public FilterRegistration addFilter(String filterName,
+    public FilterRegistration.Dynamic addFilter(String filterName,
         Class <? extends Filter> filterClass);
 
 

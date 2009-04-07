@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright 1997-2008 Sun Microsystems, Inc. All rights reserved.
+ * Copyright 1997-2009 Sun Microsystems, Inc. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -37,105 +37,17 @@
 package javax.servlet;
 
 import java.util.EnumSet;
-import java.util.Map;
 
 /**
- * Class through which a {@link Filter} (either annotated or declared
- * in the deployment descriptor or added via
- * {@link ServletContext#addFilter(String, String)}) may be further 
- * configured.
- *
- * <p>While all aspects of a Filter added via
- * {@link ServletContext#addFilter(String, String)}) are configurable,
- * the only configurable aspects of an annotated or declared Filter are
- * its initialization parameters and mappings. Initialization parameters
- * may only be added, but not overridden.
+ * Interface through which a {@link Filter} may be further configured.
  *
  * @since 3.0
  */
-public interface FilterRegistration {
-
-    /**
-     * Sets the description on the filter for which this 
-     * FilterRegistration was created.
-     *
-     * <p>A call to this method overrides any previous setting.
-     *
-     * @param description the description of the filter
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * FilterRegistration was obtained has already been initialized
-     */
-    public boolean setDescription(String description);
-
-
-    /**
-     * Sets the initialization parameter with the given name and value
-     * on the filter for which this FilterRegistration was created.
-     *
-     * @param name the initialization parameter name
-     * @param value the initialization parameter value
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * FilterRegistration was obtained has already been initialized
-     * @throws IllegalArgumentException if the given name or value is
-     * <tt>null</tt>
-     */ 
-    public boolean setInitParameter(String name, String value);
-
-
-    /**
-     * Sets the given initialization parameters on the filter for which
-     * this FilterRegistration was created.
-     *
-     * <p>The given map of initialization parameters is processed
-     * <i>by-value</i>, i.e., for each initialization parameter contained
-     * in the map, this method calls {@link #setInitParameter(String,String)}.
-     * If that method would return false for any of the
-     * initialization parameters in the given map, no updates will be
-     * performed, and false will be returned. Likewise, if the map contains
-     * an initialization parameter with a <tt>null</tt> name or value, no
-     * updates will be performed, and an IllegalArgumentException will be
-     * thrown.
-     *
-     * @param initParameters the initialization parameters
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * FilterRegistration was obtained has already been initialized
-     * @throws IllegalArgumentException if the given map contains an
-     * initialization parameter with a <tt>null</tt> name or value
-     */ 
-    public boolean setInitParameters(Map<String, String> initParameters);
-
-
-    /**
-     * Configures the filter for which this FilterRegistration was created
-     * as supporting asynchronous operations or not.
-     *
-     * <p>By default, a filter does not support asynchronous operations.
-     *
-     * <p>A call to this method overrides any previous setting.
-     *
-     * @param isAsyncSupported true if the filter supports asynchronous
-     * operations, false otherwise
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * FilterRegistration was obtained has already been initialized
-     */
-    public boolean setAsyncSupported(boolean isAsyncSupported);
-
+public interface FilterRegistration extends Registration {
 
     /**
      * Adds a filter mapping with the given servlet names and dispatcher
-     * types for the filter for which this FilterRegistration was created.
+     * types for the Filter represented by this FilterRegistration.
      *
      * <p>Filter mappings are matched in the order in which they were
      * added.
@@ -164,10 +76,9 @@ public interface FilterRegistration {
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... servletNames);
 
-
     /**
      * Adds a filter mapping with the given url patterns and dispatcher
-     * types for the filter for which this FilterRegistration was created.
+     * types for the Filter represented by this FilterRegistration.
      *
      * <p>Filter mappings are matched in the order in which they were
      * added.
@@ -195,5 +106,13 @@ public interface FilterRegistration {
     public boolean addMappingForUrlPatterns(
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... urlPatterns);
+
+    /**
+     * Interface through which a {@link Filter} registered via one of the
+     * <tt>addFilter</tt> methods on {@link ServletContext} may be further
+     * configured.
+     */
+    interface Dynamic extends FilterRegistration, Registration.Dynamic {
+    }
 }
 

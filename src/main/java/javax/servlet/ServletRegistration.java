@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright 1997-2008 Sun Microsystems, Inc. All rights reserved.
+ * Copyright 1997-2009 Sun Microsystems, Inc. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -36,134 +36,16 @@
 
 package javax.servlet;
 
-import java.util.Map;
-
 /**
- * Class through which a {@link Servlet} (either annotated or declared
- * in the deployment descriptor or added via
- * {@link ServletContext#addServlet(String, String)}) may be further 
- * configured.
- *
- * <p>While all aspects of a Servlet added via
- * {@link ServletContext#addServlet(String, String)}) are configurable,
- * the only configurable aspects of an annotated or declared Servlet are
- * its initialization parameters and mappings. Initialization parameters
- * may only be added, but not overridden.
+ * Interface through which a {@link Servlet} may be further configured.
  *
  * @since 3.0
  */
-public interface ServletRegistration {
+public interface ServletRegistration extends Registration {
 
     /**
-     * Sets the description on the servlet for which this ServletRegistration
-     * was created.
-     *
-     * <p>A call to this method overrides any previous setting.
-     *
-     * @param description the description of the servlet
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * ServletRegistration was obtained has already been initialized
-     */
-    public boolean setDescription(String description);
-
-
-    /**
-     * Sets the initialization parameter with the given name and value
-     * on the servlet for which this ServletRegistration was created.
-     *
-     * @param name the initialization parameter name
-     * @param value the initialization parameter value
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * ServletRegistration was obtained has already been initialized
-     * @throws IllegalArgumentException if the given name or value is
-     * <tt>null</tt>
-     */ 
-    public boolean setInitParameter(String name, String value);
-
-
-    /**
-     * Sets the given initialization parameters on the servlet for which
-     * this ServletRegistration was created.
-     *
-     * <p>The given map of initialization parameters is processed
-     * <i>by-value</i>, i.e., for each initialization parameter contained
-     * in the map, this method calls {@link #setInitParameter(String,String)}.
-     * If that method would return false for any of the
-     * initialization parameters in the given map, no updates will be
-     * performed, and false will be returned. Likewise, if the map contains
-     * an initialization parameter with a <tt>null</tt> name or value, no
-     * updates will be performed, and an IllegalArgumentException will be
-     * thrown.
-     *
-     * @param initParameters the initialization parameters
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * ServletRegistration was obtained has already been initialized
-     * @throws IllegalArgumentException if the given map contains an
-     * initialization parameter with a <tt>null</tt> name or value
-     */ 
-    public boolean setInitParameters(Map<String, String> initParameters);
-
-
-    /**
-     * Sets the <code>loadOnStartup</code> priority on the servlet for which
-     * this ServletRegistration was created.
-     *
-     * <p>A <tt>loadOnStartup</tt> value of greater than or equal to zero
-     * indicates to the container the initialization priority of the
-     * servlet. In this case, the container must instantiate and initialize
-     * the servlet during the initialization phase of this servlet context,
-     * that is, after it has invoked all of the ServletContextListeners
-     * configured for this servlet context at their
-     * {@link ServletContextListener#contextInitialized} method.
-     *
-     * <p>If <tt>loadOnStartup</tt> is a negative integer, the container
-     * is free to instantiate and initialize the servlet lazily.
-     *
-     * <p>The default value for <tt>loadOnStartup</tt> is <code>-1</code>.
-     *
-     * <p>A call to this method overrides any previous setting.
-     *
-     * @param loadOnStartup the initialization priority of the servlet
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * ServletRegistration was obtained has already been initialized
-     */
-    public boolean setLoadOnStartup(int loadOnStartup);
-
-
-    /**
-     * Configures the servlet for which this ServletRegistration was
-     * created as supporting asynchronous operations or not.
-     *
-     * <p>By default, a servlet does not support asynchronous operations.
-     *
-     * <p>A call to this method overrides any previous setting.
-     *
-     * @param isAsyncSupported true if the servlet supports asynchronous
-     * operations, false otherwise
-     *
-     * @return true if the update was successful, false otherwise
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * ServletRegistration was obtained has already been initialized
-     */
-    public boolean setAsyncSupported(boolean isAsyncSupported);
-
-
-    /**
-     * Adds a servlet mapping with the given URL patterns for the servlet
-     * for which this ServletRegistration was created.
+     * Adds a servlet mapping with the given URL patterns for the Servlet
+     * represented by this ServletRegistration.
      *
      * @param urlPatterns the URL patterns of the servlet mapping
      *
@@ -175,5 +57,42 @@ public interface ServletRegistration {
      * ServletRegistration was obtained has already been initialized
      */
     public boolean addMapping(String... urlPatterns);
+
+    /**
+     * Interface through which a {@link Servlet} registered via one of the
+     * <tt>addServlet</tt> methods on {@link ServletContext} may be further
+     * configured.
+     */
+    interface Dynamic extends ServletRegistration, Registration.Dynamic {
+
+        /**
+         * Sets the <code>loadOnStartup</code> priority on the Servlet
+         * represented by this dynamic ServletRegistration.
+         *
+         * <p>A <tt>loadOnStartup</tt> value of greater than or equal to
+         * zero indicates to the container the initialization priority of
+	 * the Servlet. In this case, the container must instantiate and
+         * initialize the Servlet during the initialization phase of the
+	 * ServletContext, that is, after it has invoked all of the
+         * ServletContextListener objects configured for the ServletContext
+         * at their {@link ServletContextListener#contextInitialized}
+         * method.
+         *
+         * <p>If <tt>loadOnStartup</tt> is a negative integer, the container
+         * is free to instantiate and initialize the Servlet lazily.
+         *
+         * <p>The default value for <tt>loadOnStartup</tt> is <code>-1</code>.
+         *
+         * <p>A call to this method overrides any previous setting.
+         *
+         * @param loadOnStartup the initialization priority of the Servlet
+         *
+         * @throws IllegalStateException if the ServletContext from which
+         * this dynamic ServletRegistration was obtained has already been
+         * initialized
+         */
+        public void setLoadOnStartup(int loadOnStartup);
+    }
+
 }
 
