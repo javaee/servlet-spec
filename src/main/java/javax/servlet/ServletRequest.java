@@ -613,8 +613,8 @@ public interface ServletRequest {
     /**
      * Puts this request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the original (unwrapped) ServletRequest
-     * and ServletResponse objects and the timeout derived according
-     * to the rules laid out in {@link #setAsyncTimeout}.
+     * and ServletResponse objects and the timeout as returned by
+     * {@link #getAsyncTimeout}.
      *
      * <p>This will delay committal of the associated response until
      * {@link AsyncContext#complete} is called on the returned
@@ -659,8 +659,7 @@ public interface ServletRequest {
     /**
      * Puts this request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the given request and response objects
-     * and the timeout derived according to the rules laid out in
-     * {@link #setAsyncTimeout}.
+     * and the timeout as returned by {@link #getAsyncTimeout}.
      *
      * <p>The ServletRequest and ServletResponse parameters must be either
      * the same objects as were passed to the calling servlet's service
@@ -844,10 +843,11 @@ public interface ServletRequest {
      * started on this request by a call to {@link #startAsync} or
      * {@link #startAsync(ServletRequest, ServletResponse)}.
      *
-     * <p>By default, the timeout specified via the
-     * <code>async-timeout</code> deployment descriptor element or the
-     * <code>asyncTimeout</code> annotation of the servlet or filter that
-     * started the asynchronous operation will be used.
+     * <p>By default, the container's default timeout for asynchronous
+     * operations, which is available via a call to
+     * {@link #getAsyncTimeout}, will be used.
+     * A timeout value of 0 or less indicates that the asynchronous
+     * operations will never time out.
      *
      * <p>If neither {@link AsyncContext#complete} nor
      * {@link AsyncContext#dispatch} is called within the
@@ -875,6 +875,26 @@ public interface ServletRequest {
      * @since 3.0
      */
     public void setAsyncTimeout(long timeout);
+
+
+    /**
+     * Gets the timeout (in milliseconds) for any asynchronous operations
+     * initiated on this request by a call to {@link #startAsync} or
+     * {@link #startAsync(ServletRequest, ServletResponse)}.
+     *
+     * <p>This method returns the container's default timeout for
+     * asynchronous operations, or the timeout value passed to the most
+     * recent invocation of {@link #setAsyncTimeout}.
+     *
+     * <p>A timeout value of 0 or less indicates that the asynchronous
+     * operation will never time out.
+     *
+     * @return the timeout in milliseconds for any asynchronous
+     * operations started on this request
+     * 
+     * @since 3.0
+     */
+    public long getAsyncTimeout();
 
 
     /**

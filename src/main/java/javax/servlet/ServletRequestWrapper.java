@@ -544,11 +544,10 @@ public class ServletRequestWrapper implements ServletRequest {
 
     /**
      * Sets the timeout (in milliseconds) for any asynchronous operations
-     * started on the wrapped request by a call to {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)}.
+     * initiated on the wrapped request.
      *
      * @param timeout the timeout in milliseconds for any asynchronous
-     * operations started on the wrapped request
+     * operations initiated on the wrapped request
      *
      * @throws IllegalStateException if called after {@link #startAsync},
      * unless within the scope of a dispatch resulting from an
@@ -560,6 +559,22 @@ public class ServletRequestWrapper implements ServletRequest {
      */
     public void setAsyncTimeout(long timeout) {
         request.setAsyncTimeout(timeout);
+    }
+
+
+    /**
+     * Gets the timeout (in milliseconds) for any asynchronous operations
+     * initiated on the wrapped request.
+     *
+     * @return the timeout in milliseconds for any asynchronous
+     * operations initiated on the wrapped request
+     * 
+     * @see ServletRequest#getAsyncTimeout
+     * 
+     * @since 3.0
+     */
+    public long getAsyncTimeout() {
+        return request.getAsyncTimeout();
     }
 
 
