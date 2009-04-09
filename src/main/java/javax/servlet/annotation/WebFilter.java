@@ -118,11 +118,4 @@ public @interface WebFilter {
      */
     boolean asyncSupported() default false;
 
-    /**
-     * The timeout for asynchronous operations initiated by the
-     * filter.
-     *
-     * @see javax.servlet.ServletRequest#setAsyncTimeout
-     */
-    long asyncTimeout() default 60000;
 }

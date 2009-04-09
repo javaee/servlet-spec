@@ -94,14 +94,6 @@ public @interface WebServlet {
     boolean asyncSupported() default false;
     
     /**
-     * The timeout for asynchronous operations initiated by the
-     * servlet.
-     *
-     * @see javax.servlet.ServletRequest#setAsyncTimeout
-     */
-    long asyncTimeout() default 60000;
-    
-    /**
      * The small-icon of the servlet
      */
     String smallIcon() default "";
