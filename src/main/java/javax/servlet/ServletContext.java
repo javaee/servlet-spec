@@ -103,9 +103,9 @@ public interface ServletContext {
      *
      * <p>The context path is the portion of the request URI that is used
      * to select the context of the request. The context path always comes
-     * first in a request URI. The path starts with a "/" character but does
-     * not end with a "/" character. For servlets in the default (root)
-     * context, this method returns "".
+     * first in a request URI. The path starts with a <tt>/</tt> character
+     * but does not end with a <tt>/</tt> character. For servlets in the
+     * default (root) context, this method returns "".
      *
      * <p>It is possible that a servlet container may match a context by
      * more than one context path. In such cases the
@@ -132,7 +132,7 @@ public interface ServletContext {
      * <p>This method allows servlets to gain
      * access to the context for various parts of the server, and as
      * needed obtain {@link RequestDispatcher} objects from the context.
-     * The given path must be begin with "/", is interpreted relative 
+     * The given path must be begin with <tt>/</tt>, is interpreted relative 
      * to the server's document root and is matched against the context
      * roots of other web applications hosted on this container.
      * 
@@ -176,8 +176,7 @@ public interface ServletContext {
      * the MIME type is not known. The MIME type is determined
      * by the configuration of the servlet container, and may be specified
      * in a web application deployment descriptor. Common MIME
-     * types are <code>"text/html"</code> and <code>"image/gif"</code>.
-     *
+     * types include <code>text/html</code> and <code>image/gif</code>.
      *
      * @param file a <code>String</code> specifying the name of a file
      *
@@ -191,29 +190,32 @@ public interface ServletContext {
      * within the web application whose longest sub-path matches the
      * supplied path argument.
      *
-     * Paths indicating subdirectory paths end with a '/'.
+     * <p>Paths indicating subdirectory paths end with a <tt>/</tt>.
      *
-     * The returned paths are all relative to the root of the web application
-     * and have a leading '/'.
+     * <p>The returned paths are all relative to the root of the web
+     * application and have a leading <tt>/</tt>.
      *
-     * For example, for a web application containing<br><br>
+     * <p>For example, for a web application containing:
      *
-     * /welcome.html<br>
-     * /catalog/index.html<br>
-     * /catalog/products.html<br>
-     * /catalog/offers/books.html<br>
-     * /catalog/offers/music.html<br>
-     * /customer/login.jsp<br>
-     * /WEB-INF/web.xml<br>
-     * /WEB-INF/classes/com.acme.OrderServlet.class,<br><br>
-     *
-     * getResourcePaths("/") returns {"/welcome.html", "/catalog/",
-     * "/customer/", "/WEB-INF/"}<br>
-     * getResourcePaths("/catalog/") returns {"/catalog/index.html",
-     * "/catalog/products.html", "/catalog/offers/"}.<br>
+     * <code><pre>
+     *   /welcome.html
+     *   /catalog/index.html
+     *   /catalog/products.html
+     *   /catalog/offers/books.html
+     *   /catalog/offers/music.html
+     *   /customer/login.jsp
+     *   /WEB-INF/web.xml
+     *   /WEB-INF/classes/com.acme.OrderServlet.class
+     * </pre></code>
      * 
-     * @param path		the partial path used to match the resources,
-     *				which must start with a /
+     * <tt>getResourcePaths("/")</tt> would return
+     * <tt>{"/welcome.html", "/catalog/", "/customer/", "/WEB-INF/"}</tt>,
+     * and <tt>getResourcePaths("/catalog/")</tt> would return
+     * <tt>{"/catalog/index.html", "/catalog/products.html",
+     * "/catalog/offers/"}</tt>.
+     * 
+     * @param path the partial path used to match the resources,
+     * which must start with a <tt>/</tt>
      * @return a Set containing the directory listing, or null if there
      * are no resources in the web application whose path
      * begins with the supplied path.
@@ -225,7 +227,7 @@ public interface ServletContext {
 
     /**
      * Returns a URL to the resource that is mapped to a specified
-     * path. The path must begin with a "/" and is interpreted
+     * path. The path must begin with a <tt>/</tt> and is interpreted
      * as relative to the current context root.
      *
      * <p>This method allows the servlet container to make a resource 
@@ -308,11 +310,14 @@ public interface ServletContext {
      * a request to the resource or to include the resource in a response.
      * The resource can be dynamic or static.
      *
-     * <p>The pathname must begin with a "/" and is interpreted as relative
-     * to the current context root.  Use <code>getContext</code> to obtain
-     * a <code>RequestDispatcher</code> for resources in foreign contexts.
-     * This method returns <code>null</code> if the <code>ServletContext</code>
-     * cannot return a <code>RequestDispatcher</code>.
+     * <p>The pathname must begin with a <tt>/</tt> and is interpreted as
+     * relative to the current context root.  Use <code>getContext</code>
+     * to obtain a <code>RequestDispatcher</code> for resources in foreign
+     * contexts.
+     *
+     * <p>This method returns <code>null</code> if the
+     * <code>ServletContext</code> cannot return a
+     * <code>RequestDispatcher</code>.
      *
      * @param path 	a <code>String</code> specifying the pathname
      *			to the resource
@@ -441,9 +446,11 @@ public interface ServletContext {
     
     /**
      * Returns a <code>String</code> containing the real path 
-     * for a given virtual path. For example, the path "/index.html"
+     * for a given virtual path.
+     *
+     * <p>For example, the path <tt>/index.html</tt>
      * returns the absolute file path on the server's filesystem would be
-     * served by a request for "http://host/contextPath/index.html",
+     * served by a request for <tt>http://host/contextPath/index.html</tt>,
      * where contextPath is the context path of this ServletContext..
      *
      * <p>The real path returned will be in a form
@@ -490,7 +497,7 @@ public interface ServletContext {
      * parameter does not exist.
      *
      * <p>This method can make available configuration information useful
-     * to an entire "web application".  For example, it can provide a 
+     * to an entire web application.  For example, it can provide a 
      * webmaster's email address or the name of a system that holds 
      * critical data.
      *
@@ -542,7 +549,8 @@ public interface ServletContext {
     /**
      * Returns the servlet container attribute with the given name, 
      * or <code>null</code> if there is no attribute by that name.
-     * An attribute allows a servlet container to give the
+     *
+     * <p>An attribute allows a servlet container to give the
      * servlet additional information not
      * already provided by this interface. See your
      * server documentation for information about its attributes.
@@ -551,11 +559,11 @@ public interface ServletContext {
      *
      * <p>The attribute is returned as a <code>java.lang.Object</code>
      * or some subclass.
-     * Attribute names should follow the same convention as package
+     *
+     * <p>Attribute names should follow the same convention as package
      * names. The Java Servlet API specification reserves names
      * matching <code>java.*</code>, <code>javax.*</code>,
      * and <code>sun.*</code>.
-     *
      *
      * @param name 	a <code>String</code> specifying the name 
      *			of the attribute
@@ -600,7 +608,6 @@ public interface ServletContext {
      * matching <code>java.*</code>, <code>javax.*</code>, and
      * <code>sun.*</code>.
      *
-     *
      * @param name 	a <code>String</code> specifying the name 
      *			of the attribute
      *
@@ -619,8 +626,6 @@ public interface ServletContext {
      * <p>If listeners are configured on the <code>ServletContext</code> the 
      * container notifies them accordingly.
      *
-     *
-     *
      * @param name	a <code>String</code> specifying the name 
      * 			of the attribute to be removed
      */
@@ -631,7 +636,6 @@ public interface ServletContext {
      * Returns the name of this web application corresponding to this
      * ServletContext as specified in the deployment descriptor for this
      * web application by the display-name element.
-     *
      *
      * @return The name of the web application or null if no name has been
      * declared in the deployment descriptor.
