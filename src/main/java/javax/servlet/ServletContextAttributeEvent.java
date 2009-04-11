@@ -52,49 +52,58 @@
  * limitations under the License.
  */
 
-
-
 package javax.servlet;
 
-
-	/** 
-	* This is the event class for notifications about changes to the attributes of the
-	*  servlet context of a web application.
-	* @see ServletContextAttributeListener
-	 * @since	v 2.3
-	*/
+/** 
+ * Event class for notifications about changes to the attributes of
+ * the ServletContext of a web application.
+ *
+ * @see ServletContextAttributeListener
+ *
+ * @since v 2.3
+ */
 
 public class ServletContextAttributeEvent extends ServletContextEvent { 
-	private String name;
-	private Object value;
 
-	/** Construct a ServletContextAttributeEvent from the given context for the
-	** given attribute name and attribute value. 
-	*/
-	public ServletContextAttributeEvent(ServletContext source, String name, Object value) {
-	    super(source);
-	    this.name = name;
-	    this.value = value;
-	}
+    private String name;
+    private Object value;
+
+    /**
+     * Constructs a ServletContextAttributeEvent from the given 
+     * ServletContext, attribute name, and attribute value.
+     *
+     * @param source the ServletContext whose attribute changed
+     * @param name the name of the ServletContext attribute that changed
+     * @param value the value of the ServletContext attribute that changed
+     */
+    public ServletContextAttributeEvent(ServletContext source,
+            String name, Object value) {
+        super(source);
+        this.name = name;
+        this.value = value;
+    }
 	
-	/**
-	* Return the name of the attribute that changed on the ServletContext.
-	*
-	*/
-	public String getName() {
-		return this.name;
-	}
+    /**
+     * Gets the name of the ServletContext attribute that changed.
+     *
+     * @return the name of the ServletContext attribute that changed
+     */
+    public String getName() {
+        return this.name;
+    }
 	
-	/**
-	* Returns the value of the attribute that has been added, removed, or replaced.
-	* If the attribute was added, this is the value of the attribute. If the attribute was
-	* removed, this is the value of the removed attribute. If the attribute was replaced, this
-	* is the old value of the attribute.
-	*
-	*/
-	
-	public Object getValue() {
-	    return this.value;   
-	}
+    /**
+     * Gets the value of the ServletContext attribute that changed.
+     *
+     * <p>If the attribute was added, this is the value of the attribute.
+     * If the attribute was removed, this is the value of the removed
+     * attribute. If the attribute was replaced, this is the old value of
+     * the attribute.
+     *
+     * @return the value of the ServletContext attribute that changed
+     */
+    public Object getValue() {
+        return this.value;   
+    }
 }
 
