@@ -67,11 +67,10 @@ import javax.servlet.ServletResponseWrapper;
  * This class implements the Wrapper or Decorator pattern. Methods default to
  * calling through to the wrapped response object.
  * 
- * @author 	Various
- * @since	v 2.3
+ * @author Various
+ * @since Servlet 2.3
  *
- * @see 	javax.servlet.http.HttpServletResponse
- *
+ * @see javax.servlet.http.HttpServletResponse
  */
 
 public class HttpServletResponseWrapper extends ServletResponseWrapper implements HttpServletResponse {

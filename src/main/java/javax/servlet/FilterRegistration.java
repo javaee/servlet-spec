@@ -41,7 +41,7 @@ import java.util.EnumSet;
 /**
  * Interface through which a {@link Filter} may be further configured.
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 public interface FilterRegistration extends Registration {
 

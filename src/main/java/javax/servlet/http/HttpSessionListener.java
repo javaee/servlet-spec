@@ -64,7 +64,7 @@ import java.util.EventListener;
 	* To receive notification events, the implementation class
 	* must be configured in the deployment descriptor for the web application.
 	* @see HttpSessionEvent
-	 * @since	v 2.3
+	 * @since Servlet 2.3
 	*/
 
 public interface HttpSessionListener extends EventListener {

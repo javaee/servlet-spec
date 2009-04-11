@@ -66,7 +66,8 @@ import java.util.EventListener;
 	 * must be configured in the deployment descriptor for the web
 	 * application.
 	 * @see ServletContextEvent
-	 * @since	v 2.3
+         *
+	 * @since Servlet 2.3
 	 */
 
 public interface ServletContextListener extends EventListener {

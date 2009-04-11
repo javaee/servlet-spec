@@ -35,9 +35,7 @@
  *
  */
 
-
 package javax.servlet;
-
 
 import java.util.Set;
 
@@ -51,19 +49,17 @@ import java.util.Set;
  *
  * @see javax.servlet.annotation.HandlesTypes
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 public interface ServletContainerInitializer {
+
     /**
-     *
      * @param c The set of classes that an implementation of ServletContainerInitializer expressed interest on
      * via the <tt>HandlesTypes</tt> annotation. If there is no <tt>HandlesTypes</tt> annotation on the implementation
      * of the ServletContainerInitializer, a <tt>null</tt> set of classes will be passed
      *
      * @param ctx The <tt>ServletContext</tt> instance in which the types defined via the <tt>HandlesTypes</tt>
      * are found.
-     *
-     * @since 3.0 
      */
     public void onStartup(Set<Class<?>> c, ServletContext ctx); 
 }

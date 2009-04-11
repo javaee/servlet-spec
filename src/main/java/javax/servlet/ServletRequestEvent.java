@@ -63,7 +63,7 @@ package javax.servlet;
       * The source of the event
       * is the ServletContext of this web application.
       * @see ServletRequestListener
-      * @since	Servlet 2.4
+      * @since Servlet 2.4
       */
 
 public class ServletRequestEvent extends java.util.EventObject { 

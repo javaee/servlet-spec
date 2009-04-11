@@ -46,7 +46,7 @@ package javax.servlet;
  * Repeated invocations of these methods will return the same AsyncContext
  * instance, reinitialized as appropriate.
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 public interface AsyncContext {
 

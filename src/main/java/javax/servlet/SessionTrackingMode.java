@@ -29,7 +29,7 @@ package javax.servlet;
 /**
  * Enumeration of session tracking modes.
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 public enum SessionTrackingMode {
     COOKIE,

@@ -61,7 +61,8 @@ package javax.servlet;
 	 * This is the event class for notifications about changes to
 	 * the servlet context of a web application.
 	 * @see ServletContextListener
-	 * @since	v 2.3
+         *
+	 * @since Servlet 2.3
 	 */
 
 public class ServletContextEvent extends java.util.EventObject { 

@@ -557,7 +557,7 @@ public interface ServletRequest {
      *
      * @return	an integer specifying the port number
      *
-     * @since 2.4
+     * @since Servlet 2.4
      */    
     public int getRemotePort();
 
@@ -569,7 +569,7 @@ public interface ServletRequest {
      * @return	a <code>String</code> containing the host
      *		name of the IP on which the request was received.
      *
-     * @since 2.4
+     * @since Servlet 2.4
      */
     public String getLocalName();
 
@@ -581,7 +581,7 @@ public interface ServletRequest {
      * @return	a <code>String</code> containing the
      *		IP address on which the request was received. 
      *
-     * @since 2.4
+     * @since Servlet 2.4
      *
      */       
     public String getLocalAddr();
@@ -593,7 +593,7 @@ public interface ServletRequest {
      *
      * @return an integer specifying the port number
      *
-     * @since 2.4
+     * @since Servlet 2.4
      */
     public int getLocalPort();
 
@@ -605,7 +605,7 @@ public interface ServletRequest {
      * @return the servlet context to which this servlet request was last
      * dispatched
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public ServletContext getServletContext();
 
@@ -651,7 +651,7 @@ public interface ServletRequest {
      * {@link AsyncContext#dispatch}, or if the response has already been
      * closed
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public AsyncContext startAsync() throws IllegalStateException;
     
@@ -719,7 +719,7 @@ public interface ServletRequest {
      * {@link AsyncContext#dispatch}, or if the response has already been
      * closed
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public AsyncContext startAsync(ServletRequest servletRequest,
                                    ServletResponse servletResponse)
@@ -740,7 +740,7 @@ public interface ServletRequest {
      * @return true if this request has been put into asynchronous mode,
      * false otherwise
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public boolean isAsyncStarted();
 
@@ -756,7 +756,7 @@ public interface ServletRequest {
      * @return true if this request supports asynchronous operation, false
      * otherwise
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public boolean isAsyncSupported();
 
@@ -775,7 +775,7 @@ public interface ServletRequest {
      * into asynchronous mode, i.e., if neither {@link #startAsync} nor
      * {@link #startAsync(ServletRequest,ServletResponse)} has been called
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public AsyncContext getAsyncContext();
 
@@ -797,7 +797,7 @@ public interface ServletRequest {
      *
      * @param listener the AsyncListener to be registered
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public void addAsyncListener(AsyncListener listener);
 
@@ -831,7 +831,7 @@ public interface ServletRequest {
      * @param servletResponse the ServletResponse that will be included
      * in the AsyncEvent 
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public void addAsyncListener(AsyncListener listener,
                                  ServletRequest servletRequest,
@@ -872,7 +872,7 @@ public interface ServletRequest {
      * unless within the scope of a dispatch resulting from an
      * {@link AsyncContext#dispatch}
      * 
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public void setAsyncTimeout(long timeout);
 
@@ -892,7 +892,7 @@ public interface ServletRequest {
      * @return the timeout in milliseconds for any asynchronous
      * operations started on this request
      * 
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public long getAsyncTimeout();
 
@@ -926,7 +926,7 @@ public interface ServletRequest {
      * 
      * @see DispatcherType
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public DispatcherType getDispatcherType();
 }

@@ -46,7 +46,7 @@ import java.util.EventListener;
  * or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
  * completes or times out.
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 public interface AsyncListener extends EventListener {
     

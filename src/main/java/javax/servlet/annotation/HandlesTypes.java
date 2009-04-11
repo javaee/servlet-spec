@@ -47,11 +47,9 @@ import java.lang.annotation.RetentionPolicy;
  * This annotation is used to declare the types an instance of the
  * ServletContainerInitializer can handle.
  *
- * <p>
- *
  * @see javax.servlet.ServletContainerInitializer
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

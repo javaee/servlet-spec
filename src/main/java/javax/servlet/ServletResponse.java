@@ -145,7 +145,7 @@ public interface ServletResponse {
      *			<code>text/html; charset=UTF-8</code>,
      *			or null
      *
-     * @since 2.4
+     * @since Servlet 2.4
      */
   
     public String getContentType();
@@ -251,7 +251,7 @@ public interface ServletResponse {
      * @see		#setContentType
      * 			#setLocale
      *
-     * @since 2.4
+     * @since Servlet 2.4
      *
      */
 
@@ -384,7 +384,7 @@ public interface ServletResponse {
      * @see 		#isCommitted
      * @see 		#reset
      *
-     * @since 2.3
+     * @since Servlet 2.3
      */
 
     public void resetBuffer();

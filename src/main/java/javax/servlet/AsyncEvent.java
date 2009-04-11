@@ -42,7 +42,7 @@ package javax.servlet;
  * processing was started has finished processing through a call to
  * {@link AsyncContext#complete} or has timed out.
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 public class AsyncEvent { 
 

@@ -43,7 +43,7 @@ import java.util.Set;
  * Interface through which a {@link Servlet} or {@link Filter} may be
  * further configured.
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 public interface Registration {
 

@@ -120,7 +120,7 @@ public interface ServletContext {
      *
      * @see javax.servlet.http.HttpServletRequest#getContextPath()
      *
-     * @since 2.5
+     * @since Servlet 2.5
      */
     public String getContextPath();
 
@@ -220,7 +220,7 @@ public interface ServletContext {
      * are no resources in the web application whose path
      * begins with the supplied path.
      * 
-     * @since 2.3
+     * @since Servlet 2.3
      */    
     public Set<String> getResourcePaths(String path);
     
@@ -541,7 +541,7 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public boolean setInitParameter(String name, String value);
 
@@ -640,7 +640,7 @@ public interface ServletContext {
      * @return The name of the web application or null if no name has been
      * declared in the deployment descriptor.
      * 
-     * @since 2.3
+     * @since Servlet 2.3
      */
     public String getServletContextName();
 
@@ -665,7 +665,7 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public ServletRegistration.Dynamic addServlet(
         String servletName, String className);
@@ -692,7 +692,7 @@ public interface ServletContext {
      * @throws IllegalArgumentException if the given servlet instance 
      * implements {@link SingleThreadModel}
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public ServletRegistration.Dynamic addServlet(
         String servletName, Servlet servlet);
@@ -715,7 +715,7 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public ServletRegistration.Dynamic addServlet(String servletName,
         Class <? extends Servlet> servletClass);
@@ -737,7 +737,7 @@ public interface ServletContext {
      * @throws ServletException if an error occurs during the instantiation
      * of, or resource injection into the new Servlet
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public <T extends Servlet> T createServlet(Class<T> c)
         throws ServletException;
@@ -751,7 +751,7 @@ public interface ServletContext {
      * given <tt>servletName</tt>, or null if no ServletRegistration exists
      * under that name in this ServletContext
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public ServletRegistration findServletRegistration(String servletName);
 
@@ -776,7 +776,7 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public FilterRegistration.Dynamic addFilter(
         String filterName, String className);
@@ -801,7 +801,7 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public FilterRegistration.Dynamic addFilter(
         String filterName, Filter filter);
@@ -824,7 +824,7 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public FilterRegistration.Dynamic addFilter(String filterName,
         Class <? extends Filter> filterClass);
@@ -846,7 +846,7 @@ public interface ServletContext {
      * @throws ServletException if an error occurs during the instantiation
      * of, or resource injection into the new Filter
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public <T extends Filter> T createFilter(Class<T> c)
         throws ServletException;
@@ -860,7 +860,7 @@ public interface ServletContext {
      * given <tt>filterName</tt>, or null if no FilterRegistration exists
      * under that name in this ServletContext
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public FilterRegistration findFilterRegistration(String filterName);
 
@@ -877,7 +877,7 @@ public interface ServletContext {
      * various properties of the session tracking cookies created on
      * behalf of this <tt>ServletContext</tt> may be configured
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public SessionCookieConfig getSessionCookieConfig();
 
@@ -902,7 +902,7 @@ public interface ServletContext {
      * or if <tt>sessionTrackingModes</tt> specifies a session tracking mode
      * that is not supported by the servlet container
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes);
 
@@ -914,7 +914,7 @@ public interface ServletContext {
      * @return set of the session tracking modes supported by default for
      * this <tt>ServletContext</tt>
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public Set<SessionTrackingMode> getDefaultSessionTrackingModes();
 
@@ -933,7 +933,7 @@ public interface ServletContext {
      * @return set of the session tracking modes in effect for this
      * <tt>ServletContext</tt>
      *
-     * @since 3.0
+     * @since Servlet 3.0
      */
     public Set<SessionTrackingMode> getEffectiveSessionTrackingModes();
 

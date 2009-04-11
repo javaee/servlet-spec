@@ -52,7 +52,7 @@ import java.lang.annotation.Documented;
  * 
  * @see javax.servlet.Servlet
  *
- * @since 3.0
+ * @since Servlet 3.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
