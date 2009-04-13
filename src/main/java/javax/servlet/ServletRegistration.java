@@ -36,6 +36,8 @@
 
 package javax.servlet;
 
+import java.util.*;
+
 /**
  * Interface through which a {@link Servlet} may be further configured.
  *
@@ -47,16 +49,20 @@ public interface ServletRegistration extends Registration {
      * Adds a servlet mapping with the given URL patterns for the Servlet
      * represented by this ServletRegistration.
      *
+     * <p>If any of the specified URL patterns are already mapped to a 
+     * different Servlet, no updates will be performed.
+     *
      * @param urlPatterns the URL patterns of the servlet mapping
      *
-     * @return true if the update was successful, false otherwise
+     * @return the (possibly empty) Set of URL patterns that are already
+     * mapped to a different Servlet
      *
      * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null
      * or empty
      * @throws IllegalStateException if the ServletContext from which this
      * ServletRegistration was obtained has already been initialized
      */
-    public boolean addMapping(String... urlPatterns);
+    public Set<String> addMapping(String... urlPatterns);
 
     /**
      * Interface through which a {@link Servlet} registered via one of the
