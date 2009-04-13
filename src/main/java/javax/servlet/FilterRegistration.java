@@ -65,14 +65,12 @@ public interface FilterRegistration extends Registration {
      * from which this FilterRegistration was obtained
      * @param servletNames the servlet names of the filter mapping
      *
-     * @return true if the update was successful, false otherwise
-     *
      * @throws IllegalArgumentException if <tt>servletNames</tt> is null or
      * empty
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */
-    public boolean addMappingForServletNames(
+    public void addMappingForServletNames(
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... servletNames);
 
@@ -96,14 +94,12 @@ public interface FilterRegistration extends Registration {
      * from which this FilterRegistration was obtained
      * @param urlPatterns the url patterns of the filter mapping
      *
-     * @return true if the update was successful, false otherwise
-     *
      * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null or
      * empty
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */
-    public boolean addMappingForUrlPatterns(
+    public void addMappingForUrlPatterns(
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... urlPatterns);
 
