@@ -193,7 +193,9 @@ public interface ServletContext {
      * <p>Paths indicating subdirectory paths end with a <tt>/</tt>.
      *
      * <p>The returned paths are all relative to the root of the web
-     * application and have a leading <tt>/</tt>.
+     * application, or relative to the <tt>/META-INF/resources</tt>
+     * directory of a JAR file inside the web application's
+     * <tt>/WEB-INF/lib</tt> directory, and have a leading <tt>/</tt>.
      *
      * <p>For example, for a web application containing:
      *
@@ -206,13 +208,14 @@ public interface ServletContext {
      *   /customer/login.jsp
      *   /WEB-INF/web.xml
      *   /WEB-INF/classes/com.acme.OrderServlet.class
+     *   /WEB-INF/lib/catalog.jar!/META-INF/resources/catalog/moreOffers/books.html
      * </pre></code>
      * 
      * <tt>getResourcePaths("/")</tt> would return
      * <tt>{"/welcome.html", "/catalog/", "/customer/", "/WEB-INF/"}</tt>,
      * and <tt>getResourcePaths("/catalog/")</tt> would return
      * <tt>{"/catalog/index.html", "/catalog/products.html",
-     * "/catalog/offers/"}</tt>.
+     * "/catalog/offers/", "/catalog/moreOffers/"}</tt>.
      * 
      * @param path the partial path used to match the resources,
      * which must start with a <tt>/</tt>
@@ -226,9 +229,18 @@ public interface ServletContext {
     
 
     /**
-     * Returns a URL to the resource that is mapped to a specified
-     * path. The path must begin with a <tt>/</tt> and is interpreted
-     * as relative to the current context root.
+     * Returns a URL to the resource that is mapped to the given path.
+     *
+     * <p>The path must begin with a <tt>/</tt> and is interpreted
+     * as relative to the current context root,
+     * or relative to the <tt>/META-INF/resources</tt> directory
+     * of a JAR file inside the web application's <tt>/WEB-INF/lib</tt>
+     * directory.
+     * This method will first search the document root of the
+     * web application for the requested resource, before searching
+     * any of the JAR files inside <tt>/WEB-INF/lib</tt>.
+     * The order in which the JAR files inside <tt>/WEB-INF/lib</tt>
+     * are searched is undefined.
      *
      * <p>This method allows the servlet container to make a resource 
      * available to servlets from any source. Resources 
@@ -445,28 +457,36 @@ public interface ServletContext {
     
     
     /**
-     * Returns a <code>String</code> containing the real path 
-     * for a given virtual path.
+     * Gets the <i>real</i> path corresponding to the given
+     * <i>virtual</i> path.
      *
-     * <p>For example, the path <tt>/index.html</tt>
-     * returns the absolute file path on the server's filesystem would be
-     * served by a request for <tt>http://host/contextPath/index.html</tt>,
-     * where contextPath is the context path of this ServletContext..
+     * <p>For example, if <tt>path</tt> is equal to <tt>/index.html</tt>,
+     * this method will return the absolute file path on the server's
+     * filesystem to which a request of the form
+     * <tt>http://&lt;host&gt;:&lt;port&gt;/&lt;contextPath&gt;/index.html</tt>
+     * would be mapped, where <tt>&lt;contextPath&gt;</tt> corresponds to the
+     * context path of this ServletContext.
      *
      * <p>The real path returned will be in a form
      * appropriate to the computer and operating system on
      * which the servlet container is running, including the
-     * proper path separators. This method returns <code>null</code>
-     * if the servlet container cannot translate the virtual path
-     * to a real path for any reason (such as when the content is
-     * being made available from a <code>.war</code> archive).
+     * proper path separators.
+     * Paths to resources located inside the <tt>/META-INF/resources</tt>
+     * directory of a JAR file inside the application's <tt>/WEB-INF/lib</tt>
+     * directory are returned using this format:
+     * <tt>&lt;absolute-file-path-on-disk&gt;/WEB-INF/lib/&lt;name-of-jar&gt;!/META-INF/resources/&lt;path&gt;</tt>,
+     * where <tt>&lt;path&gt;</tt> corresponds to the <tt>path</tt>
+     * argument passed to this method.
      *
+     * <p>This method returns <code>null</code> if the servlet container
+     * is unable to translate the given <i>virtual</i> path to a
+     * <i>real</i> path.
      *
-     * @param path 	a <code>String</code> specifying a virtual path
+     * @param path the <i>virtual</i> path to be translated to a
+     * <i>real</i> path
      *
-     *
-     * @return 		a <code>String</code> specifying the real path,
-     *                  or null if the translation cannot be performed
+     * @return the <i>real</i> path, or <tt>null</tt> if the
+     * translation cannot be performed
      */
     public String getRealPath(String path);
     
