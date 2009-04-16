@@ -343,9 +343,9 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @see #sendError
      */
-
     public void setStatus(int sc);
   
+
     /**
      * @deprecated As of version 2.1, due to ambiguous meaning of the 
      * message parameter. To set a status code 
@@ -357,7 +357,6 @@ public interface HttpServletResponse extends ServletResponse {
      * @param	sc	the status code
      * @param	sm	the status message
      */
-
     public void setStatus(int sc, String sm);
 
 
@@ -365,6 +364,8 @@ public interface HttpServletResponse extends ServletResponse {
      * Gets the current status code of this response.
      *
      * @return the current status code of this response
+     *
+     * @since Servlet 3.0
      */
     public int getStatus();
 
@@ -385,6 +386,8 @@ public interface HttpServletResponse extends ServletResponse {
      * @return the value of the response header with the given name,
      * or <tt>null</tt> if no header with the given name has been set
      * on this response
+     *
+     * @since Servlet 3.0
      */
     public String getHeader(String name); 
 
@@ -403,6 +406,8 @@ public interface HttpServletResponse extends ServletResponse {
      * @return the values of the response header with the given name,
      * or an empty <tt>Iterable</tt> if no header with the given name
      * has been set on this response
+     *
+     * @since Servlet 3.0
      */			
     public Iterable<String> getHeaders(String name); 
     
@@ -418,6 +423,8 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @return the names of the headers of this response, or an empty
      * <tt>Iterable</tt> if no headers have been set on this response
+     *
+     * @since Servlet 3.0
      */
     public Iterable<String> getHeaderNames();
 
