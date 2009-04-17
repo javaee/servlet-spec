@@ -327,4 +327,28 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     public void logout() throws ServletException {
         this._getHttpServletRequest().logout();
     }
+
+    /**
+     * Retrieves all the parts of the multi-part/form-data http message
+     *
+     * @return An <code>Iterable</code> for all the parts of the multi-part/form-data request
+     */
+    public Iterable<Part> getParts() {
+        return this._getHttpServletRequest().getParts(); 
+    }
+
+    /**
+     * Returns the part specified by the name.
+     *
+     * @param name the name of the part
+     * @return The part being requested for by name.
+     * @exception IllegalArgumentException If the name specified does not exist
+     *
+     */
+    public Part getPart(String name) throws IllegalArgumentException {
+        return this._getHttpServletRequest().getPart(name); 
+    
+    }
+
+
 }

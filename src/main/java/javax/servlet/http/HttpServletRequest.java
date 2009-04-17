@@ -788,7 +788,28 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @exception	ServletException    ff logout fails.
      */
-    public void logout() throws ServletException; 
+    public void logout() throws ServletException;
+
+    /**
+     * Retrieves all the parts of the multi-part/form-data http message
+     *
+     * @return An <code>Iterable</code> for all the parts of the multi-part/form-data request
+     */
+    public Iterable<Part> getParts();
+
+    /**
+     * Returns the part specified by the name.
+     *
+     * @param name the name of the part
+     * @return The part being requested for by name.
+     * @exception IllegalArgumentException If the name specified does not exist
+     *
+     */
+    public Part getPart(String name) throws IllegalArgumentException;
+
+
+
+
     
 }
 
