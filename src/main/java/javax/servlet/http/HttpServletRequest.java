@@ -738,7 +738,7 @@ public interface HttpServletRequest extends ServletRequest {
      *                                      HTTP status code to be returned 
      *                                      to the user).
      */
-    public boolean login(HttpServletResponse response) 
+    public boolean authenticate(HttpServletResponse response) 
 	throws IOException,ServletException;
 
 

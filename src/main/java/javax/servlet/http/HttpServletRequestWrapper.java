@@ -301,12 +301,12 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
 
 
     /**
-     * The default behavior of this method is to call login on the wrapped
-     * request object.
+     * The default behavior of this method is to call authenticate on the
+     * wrapped request object.
      */
-    public boolean login(HttpServletResponse response)
+    public boolean authenticate(HttpServletResponse response)
             throws IOException, ServletException {
-        return this._getHttpServletRequest().login(response);
+        return this._getHttpServletRequest().authenticate(response);
     }
 
 
