@@ -44,6 +44,7 @@ import java.io.IOException;
  * <p> This class represents a part or form item that was received within a
  * <code>multipart/form-data</code> POST request.
  * 
+ * @since Servlet 3.0
  */
 public interface Part {
 
