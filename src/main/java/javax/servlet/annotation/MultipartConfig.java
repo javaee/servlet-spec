@@ -41,10 +41,10 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MultipartConfig {
+
     /**
      * The directory location where files will be stored
      * 
@@ -55,13 +55,13 @@ public @interface MultipartConfig {
      * the maximum size allowed for files uploaded
      *
      */
-    int maxFileSize() default 0;
+    long maxFileSize() default 0L;
 
     /**
      * The maximum size of a multi-part/form-data request allowed
      *
      */
-    int maxRequestSize() default 0;
+    long maxRequestSize() default 0L;
 
     /**
      * The size threshold after which the file will be written to disk
