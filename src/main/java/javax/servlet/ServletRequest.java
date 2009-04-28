@@ -611,18 +611,6 @@ public interface ServletRequest {
 
 
     /**
-     * Gets the name of the Servlet to which this ServletRequest
-     * was last dispatched.
-     *
-     * @return the name of the Servlet to which this ServletRequest
-     * was last dispatched
-     *
-     * @since Servlet 3.0
-     */
-    public String getServletName();
-
-
-    /**
      * Puts this request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the original (unwrapped) ServletRequest
      * and ServletResponse objects and the timeout as returned by
