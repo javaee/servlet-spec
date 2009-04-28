@@ -52,41 +52,49 @@
  * limitations under the License.
  */
 
-
-
 package javax.servlet;
 
 import java.util.EventListener;
 
-	/** 
-	 * Implementations of this interface receive notifications about
-	 * changes to the servlet context of the web application they are
-	 * part of.
-	 * To receive notification events, the implementation class
-	 * must be configured in the deployment descriptor for the web
-	 * application.
-	 * @see ServletContextEvent
-         *
-	 * @since Servlet 2.3
-	 */
-
+/** 
+ * Implementations of this interface receive notifications about
+ * changes to the ServletContext of the web application that they are
+ * associated with.
+ *
+ * <p>In order to receive notification events, the implementation class
+ * must be configured in the deployment descriptor for the web
+ * application.
+ *
+ * @see ServletContextEvent
+ *
+ * @since Servlet 2.3
+ */
 public interface ServletContextListener extends EventListener {
-	/**
-	 ** Notification that the web application initialization
-	 ** process is starting.
-	 ** All ServletContextListeners are notified of context
-	 ** initialization before any filter or servlet in the web
-	 ** application is initialized.
-	 */
 
-    public void contextInitialized ( ServletContextEvent sce );
+    /**
+     * Receives notification that the web application initialization
+     * process is starting.
+     *
+     * <p>All ServletContextListeners are notified of context
+     * initialization before any filters or servlets in the web
+     * application are initialized.
+     *
+     * @param sce the ServletContextEvent containing the ServletContext
+     * that is being initialized
+     */
+    public void contextInitialized(ServletContextEvent sce);
 
-	/**
-	 ** Notification that the servlet context is about to be shut down.
-	 ** All servlets and filters have been destroy()ed before any
-	 ** ServletContextListeners are notified of context
-	 ** destruction.
-	 */
-    public void contextDestroyed ( ServletContextEvent sce );
+    /**
+     * Receives notification that the ServletContext is about to be
+     * shut down.
+     *
+     * <p>All servlets and filters will have been destroyed before any
+     * ServletContextListeners are notified of context
+     * destruction.
+     *
+     * @param sce the ServletContextEvent containing the ServletContext
+     * that is being destroyed
+     */
+    public void contextDestroyed(ServletContextEvent sce);
 }
 
