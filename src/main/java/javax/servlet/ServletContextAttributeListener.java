@@ -56,20 +56,50 @@ package javax.servlet;
 
 import java.util.EventListener;
 
-	/** Implementations of this interface receive notifications of
-	** changes to the attribute list on the servlet context of a web application. 
-	* To receive notification events, the implementation class
-	* must be configured in the deployment descriptor for the web application.
-	* @see ServletContextAttributeEvent
-	 * @since Servlet 2.3
-	*/
+/**
+ * Implementations of this interface receive notifications of
+ * changes to any attributes on the ServletContext of a web
+ * application.
+ *
+ * <p>In order to receive notification events, the implementation class
+ * must be configured in the deployment descriptor for the web
+ * application.
+ *
+ * @see ServletContextAttributeEvent
+ *
+ * @since Servlet 2.3
+ */
 
 public interface ServletContextAttributeListener extends EventListener {
-	/** Notification that a new attribute was added to the servlet context. Called after the attribute is added.*/
-public void attributeAdded(ServletContextAttributeEvent scab);
-	/** Notification that an existing attribute has been removed from the servlet context. Called after the attribute is removed.*/
-public void attributeRemoved(ServletContextAttributeEvent scab);
-	/** Notification that an attribute on the servlet context has been replaced. Called after the attribute is replaced. */
-public void attributeReplaced(ServletContextAttributeEvent scab);
+
+    /**
+     * Receives notification that an attribute has been added to the
+     * ServletContext.
+     *
+     * @param event the ServletContextAttributeEvent containing the
+     * ServletContext to which the attribute was added, along with the
+     * attribute name and value
+     */
+    public void attributeAdded(ServletContextAttributeEvent event);
+
+    /**
+     * Receives notification that an attribute has been removed
+     * from the ServletContext.
+     *
+     * @param event the ServletContextAttributeEvent containing the
+     * ServletContext from which the attribute was removed, along with
+     * the attribute name and value
+     */
+    public void attributeRemoved(ServletContextAttributeEvent event);
+
+    /*
+     * Receives notification that an attribute has been replaced
+     * in the ServletContext.
+     *
+     * @param event the ServletContextAttributeEvent containing the
+     * ServletContext in which the attribute was replaced, along with
+     * the attribute name and its old value
+     */
+    public void attributeReplaced(ServletContextAttributeEvent event);
 }
 
