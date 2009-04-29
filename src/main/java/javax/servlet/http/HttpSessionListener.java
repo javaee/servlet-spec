@@ -57,11 +57,13 @@ package javax.servlet.http;
 import java.util.EventListener;
 
 /** 
- * Implementations of this interface are notified of changes to the 
- * list of active sessions in a web application.
+ * Interface for receiving notification events about HttpSession
+ * lifecycle changes.
  *
- * <p>In order to receive notification events, the implementation class
- * must be configured in the deployment descriptor for the web application.
+ * <p>In order to receive these notification events, the implementation
+ * class must be either declared in the deployment descriptor of the web
+ * application or annotated with
+ * {@link javax.servlet.annotation.WebListener}.
  *
  * @see HttpSessionEvent
  *

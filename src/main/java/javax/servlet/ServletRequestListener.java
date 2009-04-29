@@ -57,14 +57,18 @@ package javax.servlet;
 import java.util.EventListener;
 
 /**
- * A ServletRequestListener can be implemented by the developer
- * interested in being notified of requests coming into and going out of
- * scope of a web application.
+ * Interface for receiving notification events about requests coming
+ * into and going out of scope of a web application.
  *
  * <p>A ServletRequest is defined as coming into scope of a web
  * application when it is about to enter the first servlet or filter
  * of the web application, and as going out of scope as it exits
  * the last servlet or the first filter in the chain.
+ *
+ * <p>In order to receive these notification events, the implementation
+ * class must be either declared in the deployment descriptor of the web
+ * application or annotated with
+ * {@link javax.servlet.annotation.WebListener}.
  *
  * @since Servlet 2.4
  */

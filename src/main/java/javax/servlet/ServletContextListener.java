@@ -57,13 +57,13 @@ package javax.servlet;
 import java.util.EventListener;
 
 /** 
- * Implementations of this interface receive notifications about
- * changes to the ServletContext of the web application that they are
- * associated with.
+ * Interface for receiving notification events about ServletContext
+ * lifecycle changes.
  *
- * <p>In order to receive notification events, the implementation class
- * must be configured in the deployment descriptor for the web
- * application.
+ * <p>In order to receive these notification events, the implementation
+ * class must be either declared in the deployment descriptor of the web
+ * application or annotated with
+ * {@link javax.servlet.annotation.WebListener}.
  *
  * @see ServletContextEvent
  *
