@@ -52,29 +52,40 @@
  * limitations under the License.
  */
 
-
-
 package javax.servlet;
 
 import java.util.EventListener;
 
-    /**
-     * A ServletRequestListener can be implemented by the developer
-     * interested in being notified of requests coming in and out of
-     * scope in a web component. A request is defined as coming into
-     * scope when it is about to enter the first servlet or filter
-     * in each web application, as going out of scope when it exits
-     * the last servlet or the first filter in the chain.
-     *
-     * @since Servlet 2.4
-     */
-
+/**
+ * A ServletRequestListener can be implemented by the developer
+ * interested in being notified of requests coming into and going out of
+ * scope of a web application.
+ *
+ * <p>A ServletRequest is defined as coming into scope of a web
+ * application when it is about to enter the first servlet or filter
+ * of the web application, and as going out of scope as it exits
+ * the last servlet or the first filter in the chain.
+ *
+ * @since Servlet 2.4
+ */
 
 public interface ServletRequestListener extends EventListener {
 
-    /** The request is about to go out of scope of the web application. */
-    public void requestDestroyed ( ServletRequestEvent sre );
+    /**
+     * Receives notification that a ServletRequest is about to go out
+     * of scope of the web application.
+     *
+     * @param sre the ServletRequestEvent containing the ServletRequest
+     * and the ServletContext representing the web application
+     */
+    public void requestDestroyed(ServletRequestEvent sre);
 
-    /** The request is about to come into scope of the web application. */
-    public void requestInitialized ( ServletRequestEvent sre );
+    /**
+     * Receives notification that a ServletRequest is about to come
+     * into scope of the web application.
+     *
+     * @param sre the ServletRequestEvent containing the ServletRequest
+     * and the ServletContext representing the web application
+     */
+    public void requestInitialized(ServletRequestEvent sre);
 }
