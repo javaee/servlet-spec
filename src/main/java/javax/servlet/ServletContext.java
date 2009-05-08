@@ -471,12 +471,12 @@ public interface ServletContext {
      * appropriate to the computer and operating system on
      * which the servlet container is running, including the
      * proper path separators.
-     * Paths to resources located inside the <tt>/META-INF/resources</tt>
-     * directory of a JAR file inside the application's <tt>/WEB-INF/lib</tt>
-     * directory are returned using this format:
-     * <tt>&lt;absolute-file-path-on-disk&gt;/WEB-INF/lib/&lt;name-of-jar&gt;!/META-INF/resources/&lt;path&gt;</tt>,
-     * where <tt>&lt;path&gt;</tt> corresponds to the <tt>path</tt>
-     * argument passed to this method.
+     *
+     * <p>Resources inside the <tt>/META-INF/resources</tt>
+     * directories of JAR files bundled in the application's
+     * <tt>/WEB-INF/lib</tt> directory must be considered only if the
+     * container has unpacked them from their containing JAR file, in
+     * which case the path to the unpacked location must be returned.
      *
      * <p>This method returns <code>null</code> if the servlet container
      * is unable to translate the given <i>virtual</i> path to a
