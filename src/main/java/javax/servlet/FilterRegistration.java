@@ -37,6 +37,7 @@
 package javax.servlet;
 
 import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * Interface through which a {@link Filter} may be further configured.
@@ -75,6 +76,15 @@ public interface FilterRegistration extends Registration {
         String... servletNames);
 
     /**
+     * Gets an Iterable over the currently available servlet name mappings
+     * of the Filter represented by this FilterRegistration.
+     *
+     * @return Iterable over the currently available servlet name
+     * mappings of the Filter represented by this FilterRegistration. 
+     */
+    public Iterable<String> getServletNameMappings();
+
+    /**
      * Adds a filter mapping with the given url patterns and dispatcher
      * types for the Filter represented by this FilterRegistration.
      *
@@ -102,6 +112,15 @@ public interface FilterRegistration extends Registration {
     public void addMappingForUrlPatterns(
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... urlPatterns);
+
+    /**
+     * Gets an Iterable over the currently available URL pattern mappings
+     * of the Filter represented by this FilterRegistration.
+     *
+     * @return Iterable over the currently available URL pattern
+     * mappings of the Filter represented by this FilterRegistration. 
+     */
+    public Iterable<String> getUrlPatternMappings();
 
     /**
      * Interface through which a {@link Filter} registered via one of the

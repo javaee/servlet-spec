@@ -65,6 +65,15 @@ public interface ServletRegistration extends Registration {
     public Set<String> addMapping(String... urlPatterns);
 
     /**
+     * Gets an Iterable over the currently available mappings of the
+     * Servlet represented by this ServletRegistration.
+     *
+     * @return Iterable over the currently available mappings
+     * of the Servlet represented by this ServletRegistration. 
+     */
+    public Iterable<String> getMappings();
+
+    /**
      * Interface through which a {@link Servlet} registered via one of the
      * <tt>addServlet</tt> methods on {@link ServletContext} may be further
      * configured.

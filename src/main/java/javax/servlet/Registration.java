@@ -48,6 +48,24 @@ import java.util.Set;
 public interface Registration {
 
     /**
+     * Gets the name of the Servlet or Filter that is represented by this
+     * Registration.
+     *
+     * @return the name of the Servlet or Filter that is represented by this
+     * Registration
+     */
+    public String getName();
+
+    /**
+     * Gets the fully qualified class name of the Servlet or Filter that
+     * is represented by this Registration.
+     *
+     * @return the fully qualified class name of the Servlet or Filter
+     * that is represented by this Registration
+     */
+    public String getClassName();
+
+    /**
      * Sets the initialization parameter with the given name and value
      * on the Servlet or Filter that is represented by this Registration.
      *
@@ -64,6 +82,20 @@ public interface Registration {
      * <tt>null</tt>
      */ 
     public boolean setInitParameter(String name, String value);
+
+    /**
+     * Gets the value of the initialization parameter with the given name
+     * that will be used to initialize the Servlet or Filter represented
+     * by this Registration object.
+     *
+     * @param name the name of the initialization parameter whose value is
+     * requested
+     *
+     * @return the value of the initialization parameter with the given
+     * name, or <tt>null</tt> if no initialization parameter with the given
+     * name exists
+     */ 
+    public String getInitParameter(String name);
 
     /**
      * Sets the given initialization parameters on the Servlet or Filter
@@ -90,6 +122,18 @@ public interface Registration {
      * initialization parameter with a <tt>null</tt> name or value
      */ 
     public Set<String> setInitParameters(Map<String, String> initParameters);
+
+    /**
+     * Gets an immutable (and possibly empty) Map containing the
+     * currently available initialization parameters that will be used to
+     * initialize the Servlet or Filter represented by this Registration
+     * object.
+     *
+     * @return Map containing the currently available initialization
+     * parameters that will be used to initialize the Servlet or Filter
+     * represented by this Registration object
+     */ 
+    public Map<String, String> getInitParameters();
 
     /**
      * Interface through which a {@link Servlet} or {@link Filter} registered
