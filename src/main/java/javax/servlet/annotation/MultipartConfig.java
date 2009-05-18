@@ -52,13 +52,14 @@ public @interface MultipartConfig {
     String location() default "";
 
     /**
-     * the maximum size allowed for files uploaded
+     * The maximum size allowed for files uploaded
      *
      */
     long maxFileSize() default 0L;
 
     /**
-     * The maximum size of a multi-part/form-data request allowed
+     * The maximum size allowed for <tt>multipart/form-data</tt>
+     * requests
      *
      */
     long maxRequestSize() default 0L;
