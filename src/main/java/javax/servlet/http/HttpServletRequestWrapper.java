@@ -303,6 +303,8 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to call authenticate on the
      * wrapped request object.
+     *
+     * @since Servlet 3.0
      */
     public boolean authenticate(HttpServletResponse response)
             throws IOException, ServletException {
@@ -312,7 +314,9 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
 
     /**
      * The default behavior of this method is to call login on the wrapped
-     * request object
+     * request object.
+     *
+     * @since Servlet 3.0
      */
     public void login(String username, String password)
             throws ServletException {
@@ -322,33 +326,33 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
 
     /**
      * The default behavior of this method is to call login on the wrapped
-     * request object
+     * request object.
+     *
+     * @since Servlet 3.0
      */
     public void logout() throws ServletException {
         this._getHttpServletRequest().logout();
     }
 
     /**
-     * Retrieves all the parts of the multi-part/form-data http message
+     * The default behavior of this method is to call getParts on the wrapped
+     * request object.
      *
-     * @return An <code>Iterable</code> for all the parts of the multi-part/form-data request
+     * @since Servlet 3.0
      */
     public Iterable<Part> getParts() {
         return this._getHttpServletRequest().getParts(); 
     }
 
     /**
-     * Returns the part specified by the name.
+     * The default behavior of this method is to call getPart on the wrapped
+     * request object.
      *
-     * @param name the name of the part
-     * @return The part being requested for by name.
-     * @exception IllegalArgumentException If the name specified does not exist
-     *
+     * @since Servlet 3.0
      */
     public Part getPart(String name) throws IllegalArgumentException {
         return this._getHttpServletRequest().getPart(name); 
     
     }
-
 
 }

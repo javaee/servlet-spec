@@ -737,6 +737,8 @@ public interface HttpServletRequest extends ServletRequest {
      *                                      NOT establish the message and 
      *                                      HTTP status code to be returned 
      *                                      to the user).
+     *
+     * @since Servlet 3.0
      */
     public boolean authenticate(HttpServletResponse response) 
 	throws IOException,ServletException;
@@ -776,6 +778,8 @@ public interface HttpServletRequest extends ServletRequest {
      *                                      to the call to login), or if 
      *                                      validation of the provided 
      *                                      username and password fails.
+     *
+     * @since Servlet 3.0
      */
     public void login(String username, String password) 
 	throws ServletException;
@@ -786,30 +790,37 @@ public interface HttpServletRequest extends ServletRequest {
      * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, 
      * and <code>getAuthType</code> is called on the request.
      *
-     * @exception	ServletException    ff logout fails.
+     * @exception ServletException if logout fails
+     *
+     * @since Servlet 3.0
      */
     public void logout() throws ServletException;
 
+
     /**
-     * Retrieves all the parts of the multi-part/form-data http message
+     * Gets all the Parts of this multipart/form-data request.
      *
-     * @return An <code>Iterable</code> for all the parts of the multi-part/form-data request
+     * @return An <code>Iterable</code> over all the Parts of this
+     * multipart/form-data request
+     *
+     * @since Servlet 3.0
      */
     public Iterable<Part> getParts();
 
+
     /**
-     * Returns the part specified by the name.
+     * Gets the {@link Part} with the given name.
      *
-     * @param name the name of the part
-     * @return The part being requested for by name.
-     * @exception IllegalArgumentException If the name specified does not exist
+     * @param name the name of the requested part
      *
+     * @return The Part with the given name
+     *
+     * @exception IllegalArgumentException if this request does not
+     * contain any Part with the given name
+     *
+     * @since Servlet 3.0
      */
     public Part getPart(String name) throws IllegalArgumentException;
-
-
-
-
     
 }
 
