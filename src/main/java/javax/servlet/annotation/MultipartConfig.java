@@ -55,14 +55,14 @@ public @interface MultipartConfig {
      * The maximum size allowed for files uploaded
      *
      */
-    long maxFileSize() default 0L;
+    long maxFileSize() default -1L;
 
     /**
      * The maximum size allowed for <tt>multipart/form-data</tt>
      * requests
      *
      */
-    long maxRequestSize() default 0L;
+    long maxRequestSize() default -1L;
 
     /**
      * The size threshold after which the file will be written to disk
