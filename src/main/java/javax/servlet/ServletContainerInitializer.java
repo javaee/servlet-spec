@@ -49,6 +49,11 @@ import java.util.Set;
  * annotation, the container must pass a <tt>null</tt> set of classes to
  * its {@link #onStartup} method.
  *
+ * <p>Implementations of this interface may be declared by a JAR file
+ * resource located inside the <tt>META-INF/services</tt> directory and
+ * named for the fully qualified class name of this interface, and will be 
+ * discovered using the runtime's service provider lookup mechanism.
+ *
  * @see javax.servlet.annotation.HandlesTypes
  *
  * @since Servlet 3.0
