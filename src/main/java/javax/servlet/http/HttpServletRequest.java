@@ -798,29 +798,51 @@ public interface HttpServletRequest extends ServletRequest {
 
 
     /**
-     * Gets all the Parts of this multipart/form-data request.
+     * Gets all the {@link Part} components of this request, provided
+     * that it is of type <tt>multipart/form-data</tt>.
      *
-     * @return An <code>Iterable</code> over all the Parts of this
-     * multipart/form-data request
+     * <p>If this request is of type <tt>multipart/form-data</tt>, but
+     * does not contain any Part components, the returned
+     * <tt>Iterable</tt>  will be empty.
+     *
+     * @return A (possibly empty) <code>Iterable</code> over all the
+     * Part components of this request
+     *
+     * @throws ServletException if this request is not of type
+     * <tt>multipart/form-data</tt>
+     * @throws IllegalStateException if the request body is larger than
+     * <tt>maxRequestSize</tt>, or any Part in the request is larger than
+     * <tt>maxFileSize</tt>
+     *
+     * @see javax.servlet.annotation.MultipartConfig#maxFileSize
+     * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
      *
      * @since Servlet 3.0
      */
-    public Iterable<Part> getParts();
+    public Iterable<Part> getParts() throws ServletException;
 
 
     /**
      * Gets the {@link Part} with the given name.
      *
-     * @param name the name of the requested part
+     * @param name the name of the requested Part
      *
-     * @return The Part with the given name
+     * @return The Part with the given name, or <tt>null</tt> if this
+     * request is of type <tt>multipart/form-data</tt>, but does not
+     * contain the requested Part
      *
-     * @exception IllegalArgumentException if this request does not
-     * contain any Part with the given name
+     * @throws ServletException if this request is not of type
+     * <tt>multipart/form-data</tt>
+     * @throws IllegalStateException if the request body is larger than
+     * <tt>maxRequestSize</tt>, or any Part in the request is larger than
+     * <tt>maxFileSize</tt>
+     *
+     * @see javax.servlet.annotation.MultipartConfig#maxFileSize
+     * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
      *
      * @since Servlet 3.0
      */
-    public Part getPart(String name) throws IllegalArgumentException;
+    public Part getPart(String name) throws ServletException;
     
 }
 

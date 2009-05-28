@@ -340,7 +340,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      *
      * @since Servlet 3.0
      */
-    public Iterable<Part> getParts() {
+    public Iterable<Part> getParts() throws ServletException {
         return this._getHttpServletRequest().getParts(); 
     }
 
@@ -350,7 +350,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      *
      * @since Servlet 3.0
      */
-    public Part getPart(String name) throws IllegalArgumentException {
+    public Part getPart(String name) throws ServletException {
         return this._getHttpServletRequest().getPart(name); 
     
     }
