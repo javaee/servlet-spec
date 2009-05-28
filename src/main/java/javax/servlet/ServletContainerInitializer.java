@@ -40,12 +40,14 @@ package javax.servlet;
 import java.util.Set;
 
 /**
- * An implementation of this interface can be provided by a library /
- * runtime to get notified by the container for the classes / interfaces 
- * that it expresses interest via the <tt>@HandlesTypes</tt> annotation. If
- * there is no <tt>@HandlesTypes</tt> annotation on an implementation of this
- * interface, the container MUST invoke the <tt>onStartup</tt> method once for
- * every webapp passing it a <tt>null</tt> set of classes.
+ * Interface which may be implemented by a library/runtime in order
+ * to be notified by the container of any of the classes/interfaces 
+ * in which it has expressed interest via the
+ * {@link javax.servlet.annotation.HandlesTypes HandlesTypes} annotation.
+ *
+ * <p>If an implementation of this interface does not have any such
+ * annotation, the container must pass a <tt>null</tt> set of classes to
+ * its {@link #onStartup} method.
  *
  * @see javax.servlet.annotation.HandlesTypes
  *
