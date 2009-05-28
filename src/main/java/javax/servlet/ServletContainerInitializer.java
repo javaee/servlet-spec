@@ -61,12 +61,27 @@ import java.util.Set;
 public interface ServletContainerInitializer {
 
     /**
-     * @param c The set of classes that an implementation of ServletContainerInitializer expressed interest on
-     * via the <tt>HandlesTypes</tt> annotation. If there is no <tt>HandlesTypes</tt> annotation on the implementation
-     * of the ServletContainerInitializer, a <tt>null</tt> set of classes will be passed
+     * Notifies this <tt>ServletContainerInitializer</tt> of the startup
+     * of the application represented by the given <tt>ServletContext</tt>.
      *
-     * @param ctx The <tt>ServletContext</tt> instance in which the types defined via the <tt>HandlesTypes</tt>
-     * are found.
+     * <p>If this <tt>ServletContainerInitializer</tt> is bundled in a JAR
+     * file inside the <tt>WEB-INF/lib</tt> directory of an application,
+     * its <tt>onStartup</tt> method will be invoked only once during the
+     * startup of the bundling application. If this
+     * <tt>ServletContainerInitializer</tt> is bundled inside a JAR file
+     * outside of any <tt>WEB-INF/lib</tt> directory, but still
+     * discoverable by the runtime's service provider lookup mechanism,
+     * its <tt>onStartup</tt> method will be invoked every time an 
+     * application is started.
+     *
+     * @param c The set of classes in which this
+     * <tt>ServletContainerInitializer</tt> has expressed interest via
+     * the <tt>HandlesTypes</tt> annotation, or <tt>null</tt> if this
+     * <tt>ServletContainerInitializer</tt> does not have any such
+     * annotation
+     *
+     * @param ctx The <tt>ServletContext</tt> instance in which the types
+     * defined via the <tt>HandlesTypes</tt> annotation were found.
      */
     public void onStartup(Set<Class<?>> c, ServletContext ctx); 
 }
