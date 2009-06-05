@@ -808,6 +808,8 @@ public interface HttpServletRequest extends ServletRequest {
      * @return A (possibly empty) <code>Iterable</code> over all the
      * Part components of this request
      *
+     * @throws IOException if an I/O error occurred during the retrieval
+     * of the {@link Part} components of this request
      * @throws ServletException if this request is not of type
      * <tt>multipart/form-data</tt>
      * @throws IllegalStateException if the request body is larger than
@@ -819,7 +821,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 3.0
      */
-    public Iterable<Part> getParts() throws ServletException;
+    public Iterable<Part> getParts() throws IOException, ServletException;
 
 
     /**
@@ -831,6 +833,8 @@ public interface HttpServletRequest extends ServletRequest {
      * request is of type <tt>multipart/form-data</tt>, but does not
      * contain the requested Part
      *
+     * @throws IOException if an I/O error occurred during the retrieval
+     * of the requested Part
      * @throws ServletException if this request is not of type
      * <tt>multipart/form-data</tt>
      * @throws IllegalStateException if the request body is larger than
@@ -842,7 +846,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 3.0
      */
-    public Part getPart(String name) throws ServletException;
+    public Part getPart(String name) throws IOException, ServletException;
     
 }
 
