@@ -260,6 +260,17 @@ public interface AsyncContext {
      * <p>Any listeners of type {@link AsyncListener} that were added to the
      * request that was used to initialize this AsyncContext will have their
      * {@link AsyncListener#onComplete(AsyncEvent)} method invoked.
+     *
+     * <p>It is legal to call this method any time after a call to
+     * {@link ServletRequest#startAsync()} or
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
+     * and before a call to one of the <tt>dispatch</tt> methods
+     * of this class. 
+     * If this method is called before the container-initiated dispatch
+     * that called <tt>startAsync</tt> has returned to the container, then
+     * the call will not take effect (and any invocations of
+     * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until
+     * after the container-initiated dispatch has returned to the container.
      */
     public void complete();
 
