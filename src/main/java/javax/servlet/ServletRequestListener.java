@@ -70,6 +70,11 @@ import java.util.EventListener;
  * application or annotated with
  * {@link javax.servlet.annotation.WebListener}.
  *
+ * <p>Implementations of this interface are invoked at their
+ * {@link #requestInitialized} method in the order in which they have been
+ * declared, and at their {@link #requestDestroyed} method in reverse
+ * order.
+ *
  * @since Servlet 2.4
  */
 

@@ -65,6 +65,11 @@ import java.util.EventListener;
  * application or annotated with
  * {@link javax.servlet.annotation.WebListener}.
  *
+ * <p>Implementations of this interface are invoked at their
+ * {@link #contextInitialized} method in the order in which they have been
+ * declared, and at their {@link #contextDestroyed} method in reverse
+ * order.
+ *
  * @see ServletContextEvent
  *
  * @since Servlet 2.3

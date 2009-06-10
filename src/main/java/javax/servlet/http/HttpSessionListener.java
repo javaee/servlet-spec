@@ -65,6 +65,11 @@ import java.util.EventListener;
  * application or annotated with
  * {@link javax.servlet.annotation.WebListener}.
  *
+ * <p>Implementations of this interface are invoked at their
+ * {@link #sessionCreated method in the order in which they have been
+ * declared, and at their {@link #sessionDestroyed} method in reverse
+ * order.
+ *
  * @see HttpSessionEvent
  *
  * @since Servlet 2.3
