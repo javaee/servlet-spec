@@ -65,6 +65,9 @@ import java.util.EventListener;
  * application or annotated with
  * {@link javax.servlet.annotation.WebListener}.
  *
+ * <p>The order in which implementations of this interface are invoked is
+ * unspecified.
+ *
  * @since Servlet 2.3
  */
 
