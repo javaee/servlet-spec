@@ -276,7 +276,7 @@ public interface AsyncContext {
 
 
     /**
-     * Causes the container dispatches a thread to run the specified Runnable 
+     * Causes the container to dispatch a thread to run the specified Runnable 
      * in the {@link ServletContext} that initialized this AsyncContext.
      *
      * @param run the asynchronous handler
