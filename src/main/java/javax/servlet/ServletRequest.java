@@ -620,8 +620,9 @@ public interface ServletRequest {
      * {@link AsyncContext#complete} is called on the returned
      * {@link AsyncContext}, or the AsyncContext times out.
      *
-     * <p>The timer for async timeouts will not start until this request
-     * and its associated response have returned from the container.
+     * <p>The timer for async timeouts will not start until the
+     * container-initiated dispatch that called <tt>startAsync</tt>
+     * has returned to the container.
      *
      * <p>If a timeout occurs and none of the
      * {@link AsyncListener#onTimeout(AsyncEvent)} handlers call
@@ -671,8 +672,9 @@ public interface ServletRequest {
      * {@link AsyncContext#complete} is called on the returned
      * {@link AsyncContext}, or the AsyncContext times out.
      *
-     * <p>The timer for async timeouts will not start until this request
-     * and its associated response have returned from the container.
+     * <p>The timer for async timeouts will not start until the
+     * container-initiated dispatch that called <tt>startAsync</tt>
+     * has returned to the container.
      *
      * <p>If a timeout occurs and none of the
      * {@link AsyncListener#onTimeout(AsyncEvent)} handlers call
