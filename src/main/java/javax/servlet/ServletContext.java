@@ -59,6 +59,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.EnumSet;
+import java.util.EventListener;
 import java.util.Map;
 import java.util.Set;
 
@@ -1138,6 +1139,107 @@ public interface ServletContext {
      * @since Servlet 3.0
      */
     public Set<SessionTrackingMode> getEffectiveSessionTrackingModes();
+
+
+    /**
+     * Adds the listener with the given class name to this ServletContext.
+     *
+     * <p>The class with the given name will be loaded using the
+     * classloader associated with the application represented by this
+     * ServletContext, and must implement one or more of the following
+     * interfaces:
+     * <ul>
+     * <li><tt>javax.servlet.ServletContextAttributeListener</tt>
+     * <li><tt>javax.servlet.ServletRequestListener</tt>
+     * <li><tt>javax.servlet.ServletRequestAttributeListener</tt>
+     * <li><tt>javax.servlet.http.HttpSessionListener</tt>
+     * <li><tt>javax.servlet.http.HttpSessionAttributeListener</tt>
+     * </ul>
+     *
+     * <p>If the class with the given name implements a listener interface
+     * whose invocation order corresponds to the declaration order (i.e., if it
+     * implements <tt>javax.servlet.ServletRequestListener</tt> or
+     * <tt>javax.servlet.http.HttpSessionListener</tt>),
+     * then the new listener will be added to the end of the ordered list of
+     * listeners of that interface.
+     *
+     * @param className the fully qualified class name of the listener
+     *
+     * @throws IllegalArgumentException if the class with the given name
+     * does not implement any of the above interfaces
+     *
+     * @throws IllegalStateException if this ServletContext has already
+     * been initialized
+     *
+     * @since Servlet 3.0
+     */
+    public void addListener(String className);
+
+
+    /**
+     * Adds the given listener to this ServletContext.
+     *
+     * <p>The given listener must be an instance of one or more of the
+     * following interfaces:
+     * <ul>
+     * <li><tt>javax.servlet.ServletContextAttributeListener</tt>
+     * <li><tt>javax.servlet.ServletRequestListener</tt>
+     * <li><tt>javax.servlet.ServletRequestAttributeListener</tt>
+     * <li><tt>javax.servlet.http.HttpSessionListener</tt>
+     * <li><tt>javax.servlet.http.HttpSessionAttributeListener</tt>
+     * </ul>
+     *
+     * <p>If the given listener is an instance of a listener interface whose
+     * invocation order corresponds to the declaration order (i.e., if it is an
+     * instance of <tt>javax.servlet.ServletRequestListener</tt> or
+     * <tt>javax.servlet.http.HttpSessionListener</tt>),
+     * then the listener will be added to the end of the ordered list of
+     * listeners of that interface.
+     *
+     * @param t the listener to be added
+     *
+     * @throws IllegalArgumentException if the given listener is not
+     * an instance of any of the above interfaces
+     *
+     * @throws IllegalStateException if this ServletContext has already been
+     * initialized
+     *
+     * @since Servlet 3.0
+     */
+    public <T extends EventListener> void addListener(T t);
+
+
+    /**
+     * Adds a listener of the given class type to this ServletContext.
+     *
+     * <p>The given <tt>listenerClass</tt> must implement one or more of the
+     * following interfaces:
+     * <ul>
+     * <li><tt>javax.servlet.ServletContextAttributeListener</tt>
+     * <li><tt>javax.servlet.ServletRequestListener</tt>
+     * <li><tt>javax.servlet.ServletRequestAttributeListener</tt>
+     * <li><tt>javax.servlet.http.HttpSessionListener</tt>
+     * <li><tt>javax.servlet.http.HttpSessionAttributeListener</tt>
+     * </ul>
+     *
+     * <p>If the given <tt>listenerClass</tt<> implements a listener
+     * interface whose invocation order corresponds to the declaration order
+     * (i.e., if it implements <tt>javax.servlet.ServletRequestListener</tt>
+     * or <tt>javax.servlet.http.HttpSessionListener</tt>),
+     * then the new listener will be added to the end of the ordered list
+     * of listeners of that interface.
+     *
+     * @param listenerClass the listener class to be instantiated
+     *
+     * @throws IllegalArgumentException if the given <tt>listenerClass</tt>
+     * does not implement any of the above interfaces
+     *
+     * @throws IllegalStateException if this ServletContext has already been
+     * initialized
+     *
+     * @since Servlet 3.0
+     */
+    public void addListener(Class <? extends EventListener> listenerClass);
 
 }
 
