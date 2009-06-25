@@ -1169,7 +1169,14 @@ public interface ServletContext {
      * does not implement any of the above interfaces
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * been initialized, or if the web application represented by
+     * this ServletContext declares an absolute ordering of its web
+     * fragment JAR files without the use of <code>others</code>, and this
+     * method is called on the ServletContext instance that was passed to the
+     * {@link ServletContextListener#contextInitialized} method of a
+     * {@link ServletContextListener} declared in the Tag Library Descriptor
+     * (TLD) resource of a web fragment JAR file that is excluded from
+     * the absolute ordering
      *
      * @since Servlet 3.0
      */
@@ -1202,7 +1209,14 @@ public interface ServletContext {
      * an instance of any of the above interfaces
      *
      * @throws IllegalStateException if this ServletContext has already been
-     * initialized
+     * initialized, or if the web application represented by
+     * this ServletContext declares an absolute ordering of its web
+     * fragment JAR files without the use of <code>others</code>, and this
+     * method is called on the ServletContext instance that was passed to the
+     * {@link ServletContextListener#contextInitialized} method of a
+     * {@link ServletContextListener} declared in the Tag Library Descriptor
+     * (TLD) resource of a web fragment JAR file that is excluded from
+     * the absolute ordering
      *
      * @since Servlet 3.0
      */
@@ -1235,7 +1249,14 @@ public interface ServletContext {
      * does not implement any of the above interfaces
      *
      * @throws IllegalStateException if this ServletContext has already been
-     * initialized
+     * initialized, or if the web application represented by
+     * this ServletContext declares an absolute ordering of its web
+     * fragment JAR files without the use of <code>others</code>, and this
+     * method is called on the ServletContext instance that was passed to the
+     * {@link ServletContextListener#contextInitialized} method of a
+     * {@link ServletContextListener} declared in the Tag Library Descriptor
+     * (TLD) resource of a web fragment JAR file that is excluded from
+     * the absolute ordering
      *
      * @since Servlet 3.0
      */
