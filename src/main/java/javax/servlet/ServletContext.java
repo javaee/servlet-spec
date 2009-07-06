@@ -674,7 +674,7 @@ public interface ServletContext {
     public String getServletContextName();
 
 
-    /*
+    /**
      * Adds the servlet with the given name and class name to this servlet
      * context.
      *
@@ -708,7 +708,7 @@ public interface ServletContext {
         String servletName, String className);
 
 
-    /*
+    /**
      * Registers the given servlet instance with this ServletContext
      * under the given <tt>servletName</tt>.
      *
@@ -744,7 +744,7 @@ public interface ServletContext {
         String servletName, Servlet servlet);
 
 
-    /*
+    /**
      * Adds the servlet with the given name and class type to this servlet
      * context.
      *
@@ -889,7 +889,7 @@ public interface ServletContext {
         String filterName, String className);
          
 
-    /*
+    /**
      * Registers the given filter instance with this ServletContext
      * under the given <tt>filterName</tt>.
      *
