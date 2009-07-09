@@ -54,7 +54,7 @@ public interface JspConfigDescriptor {
      * @return <code>Iterable</code> over the <code>taglib</code>
      * elements that are nested inside the <code>jsp-config</code>
      */
-    public Iterable<TaglibDescriptor> getTagLibs();
+    public Iterable<TaglibDescriptor> getTaglibs();
 
     /**
      * Gets an <code>Iterable</code> over the
