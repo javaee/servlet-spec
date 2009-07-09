@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright 1997-2008 Sun Microsystems, Inc. All rights reserved.
+ * Copyright 1997-2009 Sun Microsystems, Inc. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -62,6 +62,7 @@ import java.util.EnumSet;
 import java.util.EventListener;
 import java.util.Map;
 import java.util.Set;
+import javax.servlet.descriptor.JspConfigDescriptor;
 
 /**
  * Defines a set of methods that a servlet uses to communicate with its
@@ -98,6 +99,28 @@ public interface ServletContext {
      * provided by the servlet container for the <tt>ServletContext</tt>
      */
     public static final String TEMPDIR = "javax.servlet.context.tempdir";
+
+
+    /**
+     * The name of the <code>ServletContext</code> attribute whose value
+     * (of type <code>java.util.Set&lt;java.net.URL&gt;</code>) contains
+     * the unordered set of all JAR files in <code>WEB-INF/lib</code>
+     */
+    public static final String LIBS = "javax.servlet.context.libs";
+
+
+    /**
+     * The name of the <code>ServletContext</code> attribute whose value
+     * (of type <code>java.util.List&lt;java.net.URL&gt;</code>) contains
+     * the list of JAR files in <code>WEB-INF/lib</code> ordered by their
+     * web fragment names (with possible exclusions if
+     * <code>&lt;absolute-ordering&gt;</code> without any
+     * <code>&lt;others/&gt;</code> is being used), or null if no
+     * absolute or relative ordering has been specified
+     */
+    public static final String ORDERED_LIBS =
+        "javax.servlet.context.orderedLibs";
+
 
     /**
      * Returns the context path of the web application.
@@ -561,15 +584,12 @@ public interface ServletContext {
      * context initialization parameter with a matching name
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
-     *
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
+     * 
      * @since Servlet 3.0
      */
     public boolean setInitParameter(String name, String value);
@@ -693,14 +713,11 @@ public interface ServletContext {
      * ServletContext already contains a servlet with a matching name
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -726,14 +743,11 @@ public interface ServletContext {
      * container
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @throws IllegalArgumentException if the given servlet instance 
      * implements {@link SingleThreadModel}
@@ -760,14 +774,11 @@ public interface ServletContext {
      * ServletContext already contains a servlet with a matching name
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -791,14 +802,11 @@ public interface ServletContext {
      * @throws ServletException if an error occurs during the instantiation
      * of, or resource injection into the new Servlet
      *
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -814,14 +822,11 @@ public interface ServletContext {
      * given <tt>servletName</tt>, or null if no ServletRegistration exists
      * under that name in this ServletContext
      *
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -841,14 +846,11 @@ public interface ServletContext {
      * @return Map of the ServletRegistration objects corresponding
      * to all servlets currently registered with this ServletContext
      *
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -874,14 +876,11 @@ public interface ServletContext {
      * ServletContext already contains a filter with a matching name
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -907,14 +906,11 @@ public interface ServletContext {
      * container
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -938,14 +934,11 @@ public interface ServletContext {
      * ServletContext already contains a filter with a matching name
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -969,14 +962,11 @@ public interface ServletContext {
      * @throws ServletException if an error occurs during the instantiation
      * of, or resource injection into the new Filter
      *
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -992,14 +982,11 @@ public interface ServletContext {
      * given <tt>filterName</tt>, or null if no FilterRegistration exists
      * under that name in this ServletContext
      *
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -1019,14 +1006,11 @@ public interface ServletContext {
      * @return Map of the FilterRegistration objects corresponding
      * to all filters currently registered with this ServletContext
      *
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -1045,19 +1029,15 @@ public interface ServletContext {
      * various properties of the session tracking cookies created on
      * behalf of this <tt>ServletContext</tt> may be configured
      *
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
     public SessionCookieConfig getSessionCookieConfig();
-
 
 
     /**
@@ -1072,14 +1052,11 @@ public interface ServletContext {
      * become effective for this <tt>ServletContext</tt>
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @throws IllegalArgumentException if <tt>sessionTrackingModes</tt>
      * specifies a combination of <tt>SessionTrackingMode.SSL</tt> with a
@@ -1098,15 +1075,12 @@ public interface ServletContext {
      *
      * @return set of the session tracking modes supported by default for
      * this <tt>ServletContext</tt>
-     *     
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     *
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -1127,14 +1101,11 @@ public interface ServletContext {
      * @return set of the session tracking modes in effect for this
      * <tt>ServletContext</tt>
      *
-     * @throws IllegalStateException if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -1149,34 +1120,43 @@ public interface ServletContext {
      * ServletContext, and must implement one or more of the following
      * interfaces:
      * <ul>
-     * <li><tt>javax.servlet.ServletContextAttributeListener</tt>
-     * <li><tt>javax.servlet.ServletRequestListener</tt>
-     * <li><tt>javax.servlet.ServletRequestAttributeListener</tt>
-     * <li><tt>javax.servlet.http.HttpSessionListener</tt>
-     * <li><tt>javax.servlet.http.HttpSessionAttributeListener</tt>
+     * <li>{@link ServletContextAttributeListener}</tt>
+     * <li>{@link ServletRequestListener}</tt>
+     * <li>{@link ServletRequestAttributeListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
      * </ul>
      *
+     * <p>If this ServletContext was passed to 
+     * {@link ServletContainerInitializer#onStartup}, then the class with
+     * the given name may also implement {@link ServletContextListener},
+     * in addition to the interfaces listed above.
+     *
+     * <p>As part of this method call, the container must load the class
+     * with the specified class name to ensure that it implements one of 
+     * the required interfaces.
+     *
      * <p>If the class with the given name implements a listener interface
-     * whose invocation order corresponds to the declaration order (i.e., if it
-     * implements <tt>javax.servlet.ServletRequestListener</tt> or
-     * <tt>javax.servlet.http.HttpSessionListener</tt>),
+     * whose invocation order corresponds to the declaration order (i.e.,
+     * if it implements {@link ServletRequestListener},
+     * {@link ServletContextListener}, or
+     * {@link javax.servlet.http.HttpSessionListener}),
      * then the new listener will be added to the end of the ordered list of
      * listeners of that interface.
      *
      * @param className the fully qualified class name of the listener
      *
      * @throws IllegalArgumentException if the class with the given name
-     * does not implement any of the above interfaces
+     * does not implement any of the above interfaces, or if it implements
+     * {@link ServletContextListener} and this ServletContext was not
+     * passed to {@link ServletContainerInitializer#onStartup}
      *
      * @throws IllegalStateException if this ServletContext has already
-     * been initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -1189,34 +1169,39 @@ public interface ServletContext {
      * <p>The given listener must be an instance of one or more of the
      * following interfaces:
      * <ul>
-     * <li><tt>javax.servlet.ServletContextAttributeListener</tt>
-     * <li><tt>javax.servlet.ServletRequestListener</tt>
-     * <li><tt>javax.servlet.ServletRequestAttributeListener</tt>
-     * <li><tt>javax.servlet.http.HttpSessionListener</tt>
-     * <li><tt>javax.servlet.http.HttpSessionAttributeListener</tt>
+     * <li>{@link ServletContextAttributeListener}</tt>
+     * <li>{@link ServletRequestListener}</tt>
+     * <li>{@link ServletRequestAttributeListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
      * </ul>
      *
+     * <p>If this ServletContext was passed to 
+     * {@link ServletContainerInitializer#onStartup}, then the given
+     * listener may also be an instance of {@link ServletContextListener},
+     * in addition to the interfaces listed above.
+     *
      * <p>If the given listener is an instance of a listener interface whose
-     * invocation order corresponds to the declaration order (i.e., if it is an
-     * instance of <tt>javax.servlet.ServletRequestListener</tt> or
-     * <tt>javax.servlet.http.HttpSessionListener</tt>),
+     * invocation order corresponds to the declaration order (i.e., if it
+     * is an instance of {@link ServletRequestListener},
+     * {@link ServletContextListener}, or
+     * {@link javax.servlet.http.HttpSessionListener}),
      * then the listener will be added to the end of the ordered list of
      * listeners of that interface.
      *
      * @param t the listener to be added
      *
      * @throws IllegalArgumentException if the given listener is not
-     * an instance of any of the above interfaces
+     * an instance of any of the above interfaces, or if it is an instance
+     * of {@link ServletContextListener} and this ServletContext was not
+     * passed to {@link ServletContainerInitializer#onStartup}
      *
-     * @throws IllegalStateException if this ServletContext has already been
-     * initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext has already
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -1229,38 +1214,62 @@ public interface ServletContext {
      * <p>The given <tt>listenerClass</tt> must implement one or more of the
      * following interfaces:
      * <ul>
-     * <li><tt>javax.servlet.ServletContextAttributeListener</tt>
-     * <li><tt>javax.servlet.ServletRequestListener</tt>
-     * <li><tt>javax.servlet.ServletRequestAttributeListener</tt>
-     * <li><tt>javax.servlet.http.HttpSessionListener</tt>
-     * <li><tt>javax.servlet.http.HttpSessionAttributeListener</tt>
+     * <li>{@link ServletContextAttributeListener}</tt>
+     * <li>{@link ServletRequestListener}</tt>
+     * <li>{@link ServletRequestAttributeListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
      * </ul>
+     *
+     * <p>If this ServletContext was passed to 
+     * {@link ServletContainerInitializer#onStartup}, then the given
+     * <tt>listenerClass</tt> may also implement
+     * {@link ServletContextListener}, in addition to the interfaces listed
+     * above.
      *
      * <p>If the given <tt>listenerClass</tt<> implements a listener
      * interface whose invocation order corresponds to the declaration order
-     * (i.e., if it implements <tt>javax.servlet.ServletRequestListener</tt>
-     * or <tt>javax.servlet.http.HttpSessionListener</tt>),
+     * (i.e., if it implements {@link ServletRequestListener},
+     * {@link ServletContextListener}, or
+     * {@link javax.servlet.http.HttpSessionListener}),
      * then the new listener will be added to the end of the ordered list
      * of listeners of that interface.
      *
      * @param listenerClass the listener class to be instantiated
      *
      * @throws IllegalArgumentException if the given <tt>listenerClass</tt>
-     * does not implement any of the above interfaces
+     * does not implement any of the above interfaces, or if it implements
+     * {@link ServletContextListener} and this ServletContext was not passed
+     * to {@link ServletContainerInitializer#onStartup}
      *
-     * @throws IllegalStateException if this ServletContext has already been
-     * initialized, or if the web application represented by
-     * this ServletContext declares an absolute ordering of its web
-     * fragment JAR files without the use of <code>others</code>, and this
-     * method is called on the ServletContext instance that was passed to the
+     * @throws IllegalStateException if this ServletContext has already
+     * been initialized, or if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a
-     * {@link ServletContextListener} declared in the Tag Library Descriptor
-     * (TLD) resource of a web fragment JAR file that is excluded from
-     * the absolute ordering
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
     public void addListener(Class <? extends EventListener> listenerClass);
+
+    /**
+     * Gets the <code>&lt;jsp-config&gt;</code> related configuration
+     * that was aggregated from the <code>web.xml</code> and
+     * <code>web-fragment.xml</code> descriptor files of the web application
+     * represented by this ServletContext.
+     *
+     * @return the <code>&lt;jsp-config&gt;</code> related configuration
+     * that was aggregated from the <code>web.xml</code> and
+     * <code>web-fragment.xml</code> descriptor files of the web application
+     * represented by this ServletContext, or null if no such configuration
+     * exists
+     *
+     * @see javax.servlet.descriptor.JspConfigDescriptor
+     *
+     * @since Servlet 3.0
+     */
+    public JspConfigDescriptor getJspConfigDescriptor();
 
 }
 
