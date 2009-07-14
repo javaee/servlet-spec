@@ -103,17 +103,9 @@ public interface ServletContext {
 
     /**
      * The name of the <code>ServletContext</code> attribute whose value
-     * (of type <code>java.util.Set&lt;java.net.URL&gt;</code>) contains
-     * the unordered set of all JAR files in <code>WEB-INF/lib</code>
-     */
-    public static final String LIBS = "javax.servlet.context.libs";
-
-
-    /**
-     * The name of the <code>ServletContext</code> attribute whose value
-     * (of type <code>java.util.List&lt;java.net.URL&gt;</code>) contains
-     * the list of JAR files in <code>WEB-INF/lib</code> ordered by their
-     * web fragment names (with possible exclusions if
+     * (of type <code>java.util.List&lt;java.lang.String&gt;</code>) contains
+     * the list of names of JAR files in <code>WEB-INF/lib</code> ordered by
+     * their web fragment names (with possible exclusions if
      * <code>&lt;absolute-ordering&gt;</code> without any
      * <code>&lt;others/&gt;</code> is being used), or null if no
      * absolute or relative ordering has been specified
