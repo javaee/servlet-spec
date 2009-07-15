@@ -787,7 +787,7 @@ public interface ServletContext {
      * is registered with this ServletContext via a call to 
      * {@link #addServlet(String,Servlet)}.
      *
-     * @param c the Servlet class to instantiate
+     * @param clazz the Servlet class to instantiate
      *
      * @return the new Servlet instance
      *
@@ -802,9 +802,8 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public <T extends Servlet> T createServlet(Class<T> c)
+    public <T extends Servlet> T createServlet(Class<T> clazz)
         throws ServletException;
-
 
     /**
      * Gets the ServletRegistration corresponding to the servlet with the
@@ -947,7 +946,7 @@ public interface ServletContext {
      * is registered with this ServletContext via a call to 
      * {@link #addFilter(String,Filter)}.
      *
-     * @param c the Filter class to instantiate
+     * @param clazz the Filter class to instantiate
      *
      * @return the new Filter instance
      *
@@ -962,7 +961,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public <T extends Filter> T createFilter(Class<T> c)
+    public <T extends Filter> T createFilter(Class<T> clazz)
         throws ServletException;
 
 
@@ -1244,6 +1243,52 @@ public interface ServletContext {
      * @since Servlet 3.0
      */
     public void addListener(Class <? extends EventListener> listenerClass);
+
+    /**
+     * Instantiates the given EventListener class and performs any
+     * required resource injection into the new EventListener instance
+     * before returning it.
+     *
+     * <p>The specified EventListener class must implement at least one of
+     * the <code>{@link ServletContextListener}</code>,
+     * <code>{@link ServletContextAttributeListener}</code>,
+     * <code>{@link ServletRequestListener}</code>,
+     * <code>{@link ServletRequestAttributeListener}</code>,
+     * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
+     * <code>{@link javax.servlet.http.HttpSessionAttributeListener}</code>
+     * interfaces.
+     *
+     * <p>The returned EventListener instance may be further customized
+     * before it is registered with this ServletContext via a call to
+     * {@link #addListener(EventListener)}.
+     *
+     * @param clazz the EventListener class to instantiate
+     *
+     * @return the new EventListener instance
+     *
+     * @throws ServletException if an error occurs during the instantiation
+     * of, or resource injection into the new EventListener
+     *
+     * @throws IllegalStateException if this ServletContext was passed to the
+     * {@link ServletContextListener#contextInitialized} method of a
+     * {@link ServletContextListener} that was not declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, or annotated
+     * with {@link javax.servlet.annotation.WebListener}
+     *
+     * @throws IllegalArgumentException if the specified EventListener class
+     * does not implement any of the
+     * <code>{@link ServletContextListener}</code>,
+     * <code>{@link ServletContextAttributeListener}</code>,
+     * <code>{@link ServletRequestListener}</code>,
+     * <code>{@link ServletRequestAttributeListener}</code>,
+     * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
+     * <code>{@link javax.servlet.http.HttpSessionAttributeListener}</code>
+     * interfaces.
+     *
+     * @since Servlet 3.0
+     */
+    public <T extends EventListener> T createListener(Class<T> clazz)
+        throws ServletException; 
 
     /**
      * Gets the <code>&lt;jsp-config&gt;</code> related configuration
