@@ -1244,6 +1244,7 @@ public interface ServletContext {
      */
     public void addListener(Class <? extends EventListener> listenerClass);
 
+
     /**
      * Instantiates the given EventListener class and performs any
      * required resource injection into the new EventListener instance
@@ -1290,6 +1291,7 @@ public interface ServletContext {
     public <T extends EventListener> T createListener(Class<T> clazz)
         throws ServletException; 
 
+
     /**
      * Gets the <code>&lt;jsp-config&gt;</code> related configuration
      * that was aggregated from the <code>web.xml</code> and
@@ -1308,6 +1310,17 @@ public interface ServletContext {
      */
     public JspConfigDescriptor getJspConfigDescriptor();
 
+
+    /**
+     * Gets the classloader of the web application represented by this
+     * ServletContext.
+     *
+     * @return the classloader of the web application represented by this
+     * ServletContext
+     *
+     * @since Servlet 3.0
+     */
+    public ClassLoader getClassLoader();
 }
 
 
