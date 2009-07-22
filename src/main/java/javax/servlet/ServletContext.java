@@ -825,7 +825,7 @@ public interface ServletContext {
 
 
     /**
-     * Gets an immutable (and possibly empty) Map of the ServletRegistration
+     * Gets a (possibly empty) Map of the ServletRegistration
      * objects (keyed by servlet name) corresponding to all servlets
      * registered with this ServletContext.
      *
@@ -833,6 +833,9 @@ public interface ServletContext {
      * corresponding to all declared and annotated servlets, as well as the
      * ServletRegistration objects corresponding to all servlets that have
      * been added via one of the <tt>addServlet</tt> methods.
+     *
+     * <p>Any changes to the returned Map must not affect this
+     * ServletContext.
      *
      * @return Map of the ServletRegistration objects corresponding
      * to all servlets currently registered with this ServletContext
@@ -985,7 +988,7 @@ public interface ServletContext {
 
 
     /**
-     * Gets an immutable (and possibly empty) Map of the FilterRegistration
+     * Gets a (possibly empty) Map of the FilterRegistration
      * objects (keyed by filter name) corresponding to all filters
      * registered with this ServletContext.
      *
@@ -993,6 +996,9 @@ public interface ServletContext {
      * corresponding to all declared and annotated filters, as well as the
      * FilterRegistration objects corresponding to all filters that have
      * been added via one of the <tt>addFilter</tt> methods.
+     *
+     * <p>Any changes to the returned Map must not affect this
+     * ServletContext.
      *
      * @return Map of the FilterRegistration objects corresponding
      * to all filters currently registered with this ServletContext
