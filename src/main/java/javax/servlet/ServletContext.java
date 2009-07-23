@@ -168,7 +168,7 @@ public interface ServletContext {
     
 
     /**
-     * Returns the major version of the Java Servlet API that this
+     * Returns the major version of the Servlet API that this
      * servlet container supports. All implementations that comply
      * with Version 3.0 must have this method return the integer 3.
      *
@@ -187,6 +187,38 @@ public interface ServletContext {
     public int getMinorVersion();
     
    
+    /**
+     * Gets the major version of the Servlet specification that the
+     * application represented by this ServletContext is based on.
+     *
+     * <p>The value returned may be different from {@link #getMajorVersion},
+     * which returns the major version of the Servlet specification
+     * supported by the Servlet container.
+     *
+     * @return the major version of the Servlet specification that the
+     * application represented by this ServletContext is based on
+     *
+     * @since Servlet 3.0
+     */
+    public int getActualMajorVersion();
+    
+    
+    /**
+     * Gets the minor version of the Servlet specification that the
+     * application represented by this ServletContext is based on.
+     *
+     * <p>The value returned may be different from {@link #getMinorVersion},
+     * which returns the minor version of the Servlet specification
+     * supported by the Servlet container.
+     *
+     * @return the minor version of the Servlet specification that the
+     * application xrepresented by this ServletContext is based on
+     *
+     * @since Servlet 3.0
+     */
+    public int getActualMinorVersion();
+
+
     /**
      * Returns the MIME type of the specified file, or <code>null</code> if 
      * the MIME type is not known. The MIME type is determined
