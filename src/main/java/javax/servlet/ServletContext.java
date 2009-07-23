@@ -848,7 +848,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public Map<String, ServletRegistration> getServletRegistrations();
+    public Map<String, ? extends ServletRegistration> getServletRegistrations();
 
 
     /**
@@ -1011,7 +1011,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public Map<String, FilterRegistration> getFilterRegistrations();
+    public Map<String, ? extends FilterRegistration> getFilterRegistrations();
 
 
     /**
