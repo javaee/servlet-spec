@@ -200,7 +200,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public int getActualMajorVersion();
+    public int getEffectiveMajorVersion();
     
     
     /**
@@ -216,7 +216,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public int getActualMinorVersion();
+    public int getEffectiveMinorVersion();
 
 
     /**
