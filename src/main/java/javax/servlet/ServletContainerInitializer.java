@@ -81,6 +81,9 @@ public interface ServletContainerInitializer {
      *
      * @param ctx The <tt>ServletContext</tt> instance in which the types
      * defined via the <tt>HandlesTypes</tt> annotation were found.
+     *
+     * @throws ServletException if an error has occurred
      */
-    public void onStartup(Set<Class<?>> c, ServletContext ctx); 
+    public void onStartup(Set<Class<?>> c, ServletContext ctx)
+        throws ServletException; 
 }
