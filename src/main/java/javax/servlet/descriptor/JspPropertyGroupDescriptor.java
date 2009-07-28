@@ -36,6 +36,8 @@
 
 package javax.servlet.descriptor;
 
+import java.util.Collection;
+
 /**
  * This interface provides access to the
  * <code>&lt;jsp-property-group&gt;</code>
@@ -50,18 +52,22 @@ public interface JspPropertyGroupDescriptor {
     
     /**
      * Gets the URL patterns of the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return Iterable over the URL patterns of the JSP property group
-     * represented by this JspPropertyGroupDescriptor
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>JspPropertyGroupDescriptor</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the URL
+     * patterns of the JSP property group represented by this
+     * <code>JspPropertyGroupDescriptor</code>
      */
-    public Iterable<String> getUrlPatterns();
+    public Collection<String> getUrlPatterns();
 
     /**
      * Gets the value of the <code>el-ignored</code> configuration, which
      * specifies whether Expression Language (EL) evaluation is enabled for
      * any JSP pages mapped to the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
      * @return the value of the <code>el-ignored</code> configuration, or
      * null if unspecified
@@ -72,7 +78,7 @@ public interface JspPropertyGroupDescriptor {
      * Gets the value of the <code>page-encoding</code> configuration,
      * which specifies the default page encoding for any JSP pages mapped
      * to the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
      * @return the value of the <code>page-encoding</code> configuration, or
      * null if unspecified
@@ -83,7 +89,7 @@ public interface JspPropertyGroupDescriptor {
      * Gets the value of the <code>scripting-invalid</code> configuration,
      * which specifies whether scripting is enabled for any JSP pages mapped
      * to the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
      * @return the value of the <code>scripting-invalid</code> configuration,
      * or null if unspecified
@@ -93,8 +99,8 @@ public interface JspPropertyGroupDescriptor {
     /**
      * Gets the value of the <code>is-xml</code> configuration, which 
      * specifies whether any JSP pages mapped to the JSP property group
-     * represented by this JspPropertyGroupDescriptor should be treated
-     * as JSP documents (XML syntax).
+     * represented by this <code>JspPropertyGroupDescriptor</code> will
+     * be treated as JSP documents (XML syntax).
      *
      * @return the value of the <code>is-xml</code> configuration, or
      * null if unspecified
@@ -102,24 +108,34 @@ public interface JspPropertyGroupDescriptor {
     public String getIsXml();
 
     /**
-     * Gets an Iterable over the <code>include-prelude</code> configuration
+     * Gets the <code>include-prelude</code> configuration
      * of the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return Iterable over the <code>include-prelude</code> configuration of
-     * the JSP property group represented by this JspPropertyGroupDescriptor
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>JspPropertyGroupDescriptor</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the
+     * <code>include-prelude</code> configuration of
+     * the JSP property group represented by this
+     * <code>JspPropertyGroupDescriptor</code>
      */
-    public Iterable<String> getIncludePreludes();
+    public Collection<String> getIncludePreludes();
 
     /**
-     * Gets an Iterable over the <code>include-coda</code> configuration
+     * Gets the <code>include-coda</code> configuration
      * of the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return Iterable over the <code>include-coda</code> configuration of
-     * the JSP property group represented by this JspPropertyGroupDescriptor
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>JspPropertyGroupDescriptor</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the
+     * <code>include-coda</code> configuration of
+     * the JSP property group represented by this
+     * <code>JspPropertyGroupDescriptor</code>
      */
-    public Iterable<String> getIncludeCodas();
+    public Collection<String> getIncludeCodas();
 
     /**
      * Gets the value of the
@@ -128,7 +144,7 @@ public interface JspPropertyGroupDescriptor {
      * which is normally reserved for Expression Language (EL) expressions,
      * will cause a translation error if it appears as a String literal
      * in any JSP pages mapped to the JSP property group represented by
-     * this JspPropertyGroupDescriptor.
+     * this <code>JspPropertyGroupDescriptor</code>.
      *
      * @return the value of the
      * <code>deferred-syntax-allowed-as-literal</code> configuration, or
@@ -141,7 +157,7 @@ public interface JspPropertyGroupDescriptor {
      * configuration, which specifies whether template text containing only
      * whitespaces must be removed from the response output of any JSP
      * pages mapped to the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
      * @return the value of the <code>trim-directive-whitespaces</code>
      * configuration, or null if unspecified
@@ -152,7 +168,7 @@ public interface JspPropertyGroupDescriptor {
      * Gets the value of the <code>default-content-type</code> configuration,
      * which specifies the default response content type for any JSP pages
      * mapped to the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
      * @return the value of the <code>default-content-type</code>
      * configuration, or null if unspecified
@@ -163,7 +179,7 @@ public interface JspPropertyGroupDescriptor {
      * Gets the value of the <code>buffer</code> configuration, which
      * specifies the default size of the response buffer for any JSP pages
      * mapped to the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
      * @return the value of the <code>buffer</code> configuration, or
      * null if unspecified
@@ -175,7 +191,7 @@ public interface JspPropertyGroupDescriptor {
      * configuration, which specifies whether an error will be raised at
      * translation time if tag with an undeclared namespace is used in
      * any JSP pages mapped to the JSP property group represented by this
-     * JspPropertyGroupDescriptor.
+     * <code>JspPropertyGroupDescriptor</code>.
      *
      * @return the value of the <code>error-on-undeclared-namespace</code>
      * configuration, or null if unspecified

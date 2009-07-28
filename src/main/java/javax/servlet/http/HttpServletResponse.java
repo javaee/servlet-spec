@@ -57,7 +57,7 @@
 package javax.servlet.http;
 
 import java.io.IOException;
-
+import java.util.Collection;
 import javax.servlet.ServletResponse;
 
 /**
@@ -393,40 +393,43 @@ public interface HttpServletResponse extends ServletResponse {
 
 
     /**
-     * Gets the values of the response header with the given name
-     * as an <tt>Iterable</tt> of <tt>String</tt> objects.
+     * Gets the values of the response header with the given name.
      *
      * <p>This method considers only response headers set or added via
      * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
      * {@link #addDateHeader}, {@link #setIntHeader}, or
      * {@link #addIntHeader}, respectively.
+     *
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>HttpServletResponse</code>.
      *
      * @param name the name of the response header whose values to return
      *
-     * @return the values of the response header with the given name,
-     * or an empty <tt>Iterable</tt> if no header with the given name
-     * has been set on this response
+     * @return a (possibly empty) <code>Collection</code> of the values
+     * of the response header with the given name
      *
      * @since Servlet 3.0
      */			
-    public Iterable<String> getHeaders(String name); 
+    public Collection<String> getHeaders(String name); 
     
 
     /**
-     * Gets the names of the headers of this response
-     * as an <tt>Iterable</tt> of <tt>String</tt> objects.
+     * Gets the names of the headers of this response.
      *
      * <p>This method considers only response headers set or added via
      * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
      * {@link #addDateHeader}, {@link #setIntHeader}, or
      * {@link #addIntHeader}, respectively.
      *
-     * @return the names of the headers of this response, or an empty
-     * <tt>Iterable</tt> if no headers have been set on this response
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>HttpServletResponse</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the names
+     * of the headers of this response
      *
      * @since Servlet 3.0
      */
-    public Iterable<String> getHeaderNames();
+    public Collection<String> getHeaderNames();
 
     
     /*

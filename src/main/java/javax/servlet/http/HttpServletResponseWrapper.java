@@ -57,7 +57,7 @@
 package javax.servlet.http;
 
 import java.io.IOException;
-
+import java.util.Collection;
 import javax.servlet.ServletResponseWrapper;
 
 /**
@@ -262,6 +262,8 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * @return the value of the response header with the given name,
      * or <tt>null</tt> if no header with the given name has been set
      * on the wrapped response
+     *
+     * @since Servlet 3.0
      */
     public String getHeader(String name) {
 	return _getHttpServletResponse().getHeader(name);
@@ -273,13 +275,17 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * {@link HttpServletResponse#getHeaders} on the wrapped response
      * object.
      *
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>HttpServletResponseWrapper</code>.
+     *
      * @param name the name of the response header whose values to return
      *
-     * @return the values of the response header with the given name,
-     * or an empty <tt>Iterable</tt> if no header with the given name
-     * has been set on the wrapped response
+     * @return a (possibly empty) <code>Collection</code> of the values
+     * of the response header with the given name
+     *
+     * @since Servlet 3.0
      */			
-    public Iterable<String> getHeaders(String name) {
+    public Collection<String> getHeaders(String name) {
 	return _getHttpServletResponse().getHeaders(name);
     }
     
@@ -289,11 +295,15 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * {@link HttpServletResponse#getHeaderNames} on the wrapped response
      * object.
      *
-     * @return the names of the headers of the wrapped response, or an empty
-     * <tt>Iterable</tt> if no headers have been set on the wrapped
-     * response
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>HttpServletResponseWrapper</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the names
+     * of the response headers
+     *
+     * @since Servlet 3.0
      */
-    public Iterable<String> getHeaderNames() {
+    public Collection<String> getHeaderNames() {
 	return _getHttpServletResponse().getHeaderNames();
     }
    

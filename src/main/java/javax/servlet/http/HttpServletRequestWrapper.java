@@ -55,9 +55,9 @@
 package javax.servlet.http;
 
 import java.io.IOException;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequestWrapper;
-import java.util.Enumeration;
 
 /**
  * Provides a convenient implementation of the HttpServletRequest interface
@@ -338,9 +338,12 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * The default behavior of this method is to call getParts on the wrapped
      * request object.
      *
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>HttpServletRequestWrapper</code>.
+     *
      * @since Servlet 3.0
      */
-    public Iterable<Part> getParts() throws IOException, ServletException {
+    public Collection<Part> getParts() throws IOException, ServletException {
         return this._getHttpServletRequest().getParts(); 
     }
 

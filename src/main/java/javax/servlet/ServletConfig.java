@@ -55,7 +55,6 @@
 package javax.servlet;
 
 import java.util.Enumeration;
-import java.util.Iterator;
 
 /**
  * A servlet configuration object used by a servlet container

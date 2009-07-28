@@ -55,9 +55,9 @@
 package javax.servlet.http;
 
 import java.io.IOException;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
-import java.util.Enumeration;
 
 /**
  *
@@ -803,15 +803,20 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * <p>If this request is of type <tt>multipart/form-data</tt>, but
      * does not contain any Part components, the returned
-     * <tt>Iterable</tt>  will be empty.
+     * <tt>Collection</tt> will be empty.
      *
-     * @return A (possibly empty) <code>Iterable</code> over all the
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>HttpServletRequest</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the
      * Part components of this request
      *
      * @throws IOException if an I/O error occurred during the retrieval
      * of the {@link Part} components of this request
+     *
      * @throws ServletException if this request is not of type
      * <tt>multipart/form-data</tt>
+     *
      * @throws IllegalStateException if the request body is larger than
      * <tt>maxRequestSize</tt>, or any Part in the request is larger than
      * <tt>maxFileSize</tt>
@@ -821,7 +826,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 3.0
      */
-    public Iterable<Part> getParts() throws IOException, ServletException;
+    public Collection<Part> getParts() throws IOException, ServletException;
 
 
     /**

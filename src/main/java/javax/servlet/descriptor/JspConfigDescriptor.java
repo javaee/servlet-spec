@@ -36,6 +36,8 @@
 
 package javax.servlet.descriptor;
 
+import java.util.Collection;
+
 /**
  * This interface provides access to the <code>&lt;jsp-config&gt;</code>
  * related configuration of a web application.
@@ -48,22 +50,32 @@ package javax.servlet.descriptor;
 public interface JspConfigDescriptor {
 
     /**
-     * Gets an <code>Iterable</code> over the <code>&lt;taglib&gt;</code>
-     * elements that are nested inside the <code>&lt;jsp-config&gt;</code>.
+     * Gets the <code>&lt;taglib&gt;</code> child elements of the
+     * <code>&lt;jsp-config&gt;</code> element represented by this
+     * <code>JspConfigDescriptor</code>.
      *
-     * @return <code>Iterable</code> over the <code>taglib</code>
-     * elements that are nested inside the <code>jsp-config</code>
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>JspConfigDescriptor</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the
+     * <code>&lt;taglib<&gt;/code> child elements of the
+     * <code>&lt;jsp-config&gt;</code> element represented by this
+     * <code>JspConfigDescriptor</code>
      */
-    public Iterable<TaglibDescriptor> getTaglibs();
+    public Collection<TaglibDescriptor> getTaglibs();
 
     /**
-     * Gets an <code>Iterable</code> over the
-     * <code>&lt;jsp-property-group&gt;</code> elements that are nested
-     * inside the <code>&lt;jsp-config&gt;</code>.
+     * Gets the <code>&lt;jsp-property-group&gt;</code> child elements
+     * of the <code>&lt;jsp-config&gt;</code> element represented by this
+     * <code>JspConfigDescriptor</code>.
      *
-     * @return <code>Iterable</code> over the
-     * <code>&lt;jsp-property-group&gt;</code>
-     * elements that are nested inside the <code>&lt;jsp-config&gt;</code>
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>JspConfigDescriptor</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the
+     * <code>&lt;jsp-property-group&gt;</code> child elements of the
+     * <code>&lt;jsp-config&gt;</code> element represented by this
+     * <code>JspConfigDescriptor</code>
      */
-    public Iterable<JspPropertyGroupDescriptor> getJspPropertyGroups();
+    public Collection<JspPropertyGroupDescriptor> getJspPropertyGroups();
 }

@@ -36,9 +36,8 @@
 
 package javax.servlet.http;
 
-import java.io.InputStream;
-import java.io.IOException;
-
+import java.io.*;
+import java.util.*;
 
 /**
  * <p> This class represents a part or form item that was received within a
@@ -64,15 +63,12 @@ public interface Part {
      */
     public String getContentType();
 
-
     /**
      * Gets the name of this part
      *
      * @return The name of this part as a <tt>String</tt>
      */
     public String getName();
-
-
 
     /**
      * Returns the size of this fille.
@@ -81,22 +77,21 @@ public interface Part {
      */
     public long getSize();
 
-
     /**
      * A convenience method to write this uploaded item to disk.
-     * <p>
-     * This method is not guaranteed to succeed if called more than once for
+     * 
+     * <p>This method is not guaranteed to succeed if called more than once for
      * the same part. This allows a particular implementation to use, for
      * example, file renaming, where possible, rather than copying all of the
      * underlying data, thus gaining a significant performance benefit.
      *
-     * @param fileName a<code>String</code> specifying the file name which the stream is written out to.
-     * The file is created relative to the location as specified in the MultipartConfig
+     * @param fileName the name of the file to which the stream will be
+     * written. The file is created relative to the location as
+     * specified in the MultipartConfig
      *
      * @throws IOException if an error occurs.
      */
     public void write(String fileName) throws IOException;
-
 
     /**
      * Deletes the underlying storage for a file item, including deleting any
@@ -124,58 +119,39 @@ public interface Part {
      *				header, or <code>null</code>
      *				if the part does not
      *				have a header of that name
-     *
      */
-
     public String getHeader(String name);
 
     /**
+     * Gets the values of the Part header with the given name.
      *
-     * Returns all the values of the specified Part header
-     * as an <code>Iterable</code> of <code>String</code> objects.
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>Part</code>.
      *
-     * <p>If the Part did not include any headers
-     * of the specified name, this method returns an empty
-     * <code>Iterable</code>.
-     * The header name is case insensitive. You can use
-     * this method with any Part header.
+     * <p>Part header names are case insensitive.
      *
-     * @param name		a <code>String</code> specifying the
-     *				header name
+     * @param name the header name whose values to return
      *
-     * @return			an <code>Iterable</code> containing
-     *                  	the values of the requested header. If
-     *                  	the Part does not have any headers of
-     *                  	that name return an empty
-     *                  	Iterable. If
-     *                  	the container does not allow access to
-     *                  	header information, return null
-     *
+     * @return a (possibly empty) <code>Collection</code> of the values of
+     * the header with the given name, or null if the container does not
+     * allow access to header information
      */
-
-    public Iterable<String> getHeaders(String name);
+    public Collection<String> getHeaders(String name);
 
     /**
-     *
-     * Returns an Iterable of all the header names
-     * this part contains. If the part has no
-     * headers, this method returns an empty Iterable.
+     * Gets the header names of this Part.
      *
      * <p>Some servlet containers do not allow
      * servlets to access headers using this method, in
      * which case this method returns <code>null</code>
      *
-     * @return			an Iterable of all the
-     *				header names sent with this
-     *				part; if the part has
-     *				no headers, an empty Iterable;
-     *				if the servlet container does not
-     *				allow servlets to use this method,
-     *				<code>null</code>
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>Part</code>.
      *
-     *
+     * @return a (possibly empty) <code>Collection</code> of the header
+     * names of this Part, or null if the servlet container does not
+     * allow servlets to use this method
      */
-
-    public Iterable<String> getHeaderNames();
+    public Collection<String> getHeaderNames();
 
 }

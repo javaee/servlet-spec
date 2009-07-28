@@ -65,13 +65,17 @@ public interface ServletRegistration extends Registration {
     public Set<String> addMapping(String... urlPatterns);
 
     /**
-     * Gets an Iterable over the currently available mappings of the
-     * Servlet represented by this ServletRegistration.
+     * Gets the currently available mappings of the
+     * Servlet represented by this <code>ServletRegistration</code>.
      *
-     * @return Iterable over the currently available mappings
-     * of the Servlet represented by this ServletRegistration. 
+     * <p>Any changes to the returned <code>Collection</code> must not 
+     * affect this <code>ServletRegistration</code>.
+     *
+     * @return a (possibly empty) <code>Collection</code> of the currently
+     * available mappings of the Servlet represented by this
+     * <code>ServletRegistration</code>
      */
-    public Iterable<String> getMappings();
+    public Collection<String> getMappings();
 
     /**
      * Interface through which a {@link Servlet} registered via one of the
