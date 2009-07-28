@@ -143,19 +143,6 @@ public interface Registration {
     interface Dynamic extends Registration {
 
         /**
-         * Sets the description on the Servlet or Filter represented by
-         * this dynamic Registration.
-         *
-         * <p>A call to this method overrides any previous setting.
-         *
-         * @param description the description of the servlet
-         *
-         * @throws IllegalStateException if the ServletContext from which
-         * this dynamic Registration was obtained has already been initialized
-         */
-        public void setDescription(String description);
-
-        /**
          * Configures the Servlet or Filter represented by this dynamic
          * Registration as supporting asynchronous operations or not.
          *
