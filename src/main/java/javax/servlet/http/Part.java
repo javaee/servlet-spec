@@ -133,8 +133,7 @@ public interface Part {
      * @param name the header name whose values to return
      *
      * @return a (possibly empty) <code>Collection</code> of the values of
-     * the header with the given name, or null if the container does not
-     * allow access to header information
+     * the header with the given name
      */
     public Collection<String> getHeaders(String name);
 
@@ -149,8 +148,7 @@ public interface Part {
      * affect this <code>Part</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the header
-     * names of this Part, or null if the servlet container does not
-     * allow servlets to use this method
+     * names of this Part
      */
     public Collection<String> getHeaderNames();
 
