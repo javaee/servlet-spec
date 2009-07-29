@@ -272,6 +272,10 @@ public interface SessionCookieConfig {
      * cookies created on behalf of the <tt>ServletContext</tt> from which
      * this <tt>SessionCookieConfig</tt> was acquired.
      *
+     * @throws IllegalStateException if the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired has
+     * already been initialized
+     *
      * @see javax.servlet.http.Cookie#setMaxAge
      */
     public void setMaxAge(int maxAge);
