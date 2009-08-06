@@ -683,9 +683,9 @@ public interface ServletRequest {
      * {@link AsyncContext#complete}.
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
-     * the returned AsyncContext will return <code>false</code>
-     * (unless the passed in ServletRequest and ServletResponse arguments
-     * are the original ones).
+     * the returned AsyncContext will return <code>false</code>,
+     * unless the passed in ServletRequest and ServletResponse arguments
+     * are the original ones or do not carry any application-provided wrappers.
      * Any filters invoked in the <i>outbound</i> direction after this
      * request was put into asynchronous mode may use this as an indication
      * that some of the request and/or response wrappers that they added

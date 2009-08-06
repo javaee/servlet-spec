@@ -107,11 +107,8 @@ public interface AsyncContext {
 
 
     /**
-     * Checks if this AsyncContext was initialized with the original
-     * request and response objects by calling
-     * {@link ServletRequest#startAsync()}, or if it was initialized
-     * with wrapped request and/or response objects using 
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
+     * Checks if this AsyncContext was initialized with the original or
+     * application-wrapped request and response objects.
      * 
      * <p>This information may be used by filters invoked in the
      * <i>outbound</i> direction, after a request was put into
@@ -122,9 +119,11 @@ public interface AsyncContext {
      *
      * @return true if this AsyncContext was initialized with the original
      * request and response objects by calling
-     * {@link ServletRequest#startAsync()}, and false if it was initialized
-     * with wrapped request and/or response objects using 
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
+     * {@link ServletRequest#startAsync()}, or if it was initialized by
+     * calling
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
+     * and neither the ServletRequest nor ServletResponse arguments 
+     * carried any application-provided wrappers; false otherwise
      */
     public boolean hasOriginalRequestAndResponse();
 
