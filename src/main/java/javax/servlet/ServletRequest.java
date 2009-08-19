@@ -56,13 +56,8 @@
 
 package javax.servlet;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
-
-
+import java.io.*;
+import java.util.*;
 
 /**
  * Defines an object to provide client request information to a servlet.  The
@@ -82,9 +77,6 @@ import java.util.Map;
  */
 
 public interface ServletRequest {
-
-
-
 
     /**
      *
@@ -157,12 +149,12 @@ public interface ServletRequest {
      * 
      * @param env      <code>String</code> containing the name of
      *                 the character encoding.
-     * @throws         java.io.UnsupportedEncodingException if this
+     * @throws         UnsupportedEncodingException if this
      *                 ServletRequest is still in a state where a
      *                 character encoding may be set, but the specified
      *                 encoding is invalid
      */
-    public void setCharacterEncoding(String env) throws java.io.UnsupportedEncodingException;
+    public void setCharacterEncoding(String env) throws UnsupportedEncodingException;
 
     
     
