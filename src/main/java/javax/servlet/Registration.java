@@ -43,6 +43,19 @@ import java.util.Set;
  * Interface through which a {@link Servlet} or {@link Filter} may be
  * further configured.
  *
+ * <p>A Registration object whose {@link #getClassName} method returns null
+ * is considered <i>preliminary</i>. Servlets and Filters whose implementation
+ * class is container implementation specific may be declared without
+ * any <tt>servlet-class</tt> or <tt>filter-class</tt> elements, respectively,
+ * and will be represented as preliminary Registration objects. 
+ * Preliminary registrations must be completed by calling one of the
+ * <tt>addServlet</tt> or <tt>addFilter</tt> methods on
+ * {@link ServletContext}, and passing in the Servlet or Filter name 
+ * (obtained via {@link #getName}) along with the supporting Servlet or Filter
+ * implementation class name, Class object, or instance, respectively.
+ * In most cases, preliminary registrations will be completed by an
+ * appropriate, container-provided {@link ServletContainerInitializer}.
+ *
  * @since Servlet 3.0
  */
 public interface Registration {
@@ -61,7 +74,8 @@ public interface Registration {
      * is represented by this Registration.
      *
      * @return the fully qualified class name of the Servlet or Filter
-     * that is represented by this Registration
+     * that is represented by this Registration, or null if this
+     * Registration is preliminary
      */
     public String getClassName();
 
