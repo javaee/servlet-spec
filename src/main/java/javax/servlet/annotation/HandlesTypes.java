@@ -44,8 +44,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * This annotation is used to declare the types an instance of the
- * ServletContainerInitializer can handle.
+ * This annotation is used to declare the class types that a
+ * {@link javax.servlet.ServletContainerInitializer
+ * ServletContainerInitializer} can handle.
  *
  * @see javax.servlet.ServletContainerInitializer
  *
@@ -54,11 +55,18 @@ import java.lang.annotation.RetentionPolicy;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandlesTypes {
+
     /**
-     * The types that a <tt>ServletContainerInitializer</tt> expresses interesst in. When this annotation
-     * is applied on an implementation of <tt>ServletContainerInitializer</tt> the <tt>onStartup</tt> method
-     * of the ServletContainerInitializer instance will get a <tt>Set</tt> of classes that were either annotated
-     * with, or extends / implements the types listed via this annotation.
+     * The classes in which a {@link javax.servlet.ServletContainerInitializer
+     * ServletContainerInitializer} has expressed interest.
+     *
+     * <p>If an implementation of <tt>ServletContainerInitializer</tt> 
+     * specifies this annotation, the Servlet container must pass the
+     * <tt>Set</tt> of application classes that extend, implement, or have
+     * been annotated with the class types listed by this annotation to
+     * the {@link javax.servlet.ServletContainerInitializer#onStartup}
+     * method of the ServletContainerInitializer (if no matching classes
+     * are found, <tt>null</tt> must be passed instead)
      */
     Class[] value();
 }

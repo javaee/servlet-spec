@@ -39,14 +39,20 @@ package javax.servlet;
 import java.util.Set;
 
 /**
- * Interface which may be implemented by a library/runtime in order
- * to be notified by the container of any of the classes/interfaces 
- * in which it has expressed interest via the
- * {@link javax.servlet.annotation.HandlesTypes HandlesTypes} annotation.
+ * Interface which allows a library/runtime to be notified of a web
+ * application's startup phase and perform any required programmatic
+ * registration of servlets, filters, and listeners in response to it.
  *
- * <p>If an implementation of this interface does not have any such
- * annotation, the container must pass a <tt>null</tt> set of classes to
- * its {@link #onStartup} method.
+ * <p>Implementations of this interface may be annotated with
+ * {@link javax.servlet.annotation.HandlesTypes HandlesTypes}, in order to
+ * receive (at their {@link #onStartup} method) the Set of application
+ * classes that implement, extend, or have been annotated with the class
+ * types specified by the annotation.
+ * 
+ * <p>If an implementation of this interface does not use this annotation,
+ * or none of the application classes match the ones specified
+ * by the annotation, the container must pass a <tt>null</tt> Set of classes
+ * to {@link #onStartup}.
  *
  * <p>Implementations of this interface may be declared by a JAR file
  * resource located inside the <tt>META-INF/services</tt> directory and
@@ -73,14 +79,16 @@ public interface ServletContainerInitializer {
      * its <tt>onStartup</tt> method will be invoked every time an 
      * application is started.
      *
-     * @param c The set of classes in which this
-     * <tt>ServletContainerInitializer</tt> has expressed interest via
-     * the <tt>HandlesTypes</tt> annotation, or <tt>null</tt> if this
-     * <tt>ServletContainerInitializer</tt> does not have any such
-     * annotation
+     * @param c the Set of application classes that extend, implement, or
+     * have been annotated with the class types specified by the 
+     * {@link javax.servlet.annotation.HandlesTypes HandlesTypes} annotation,
+     * or <tt>null</tt> if there are no matches, or this
+     * <tt>ServletContainerInitializer</tt> has not been annotated with
+     * <tt>HandlesTypes</tt>
      *
-     * @param ctx The <tt>ServletContext</tt> instance in which the types
-     * defined via the <tt>HandlesTypes</tt> annotation were found.
+     * @param ctx the <tt>ServletContext</tt> of the web application that
+     * is being started and in which the classes contained in <tt>c</tt>
+     * were found
      *
      * @throws ServletException if an error has occurred
      */
