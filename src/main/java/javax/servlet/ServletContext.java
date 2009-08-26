@@ -856,6 +856,9 @@ public interface ServletContext {
      * is registered with this ServletContext via a call to 
      * {@link #addServlet(String,Servlet)}.
      *
+     * <p>The given Servlet class must define a zero argument constructor,
+     * which is used to instantiate it.
+     *
      * @param clazz the Servlet class to instantiate
      *
      * @return the new Servlet instance
@@ -1041,6 +1044,9 @@ public interface ServletContext {
      * <p>The returned Filter instance may be further customized before it
      * is registered with this ServletContext via a call to 
      * {@link #addFilter(String,Filter)}.
+     *
+     * <p>The given Filter class must define a zero argument constructor,
+     * which is used to instantiate it.
      *
      * @param clazz the Filter class to instantiate
      *
@@ -1370,6 +1376,9 @@ public interface ServletContext {
      * <p>The returned EventListener instance may be further customized
      * before it is registered with this ServletContext via a call to
      * {@link #addListener(EventListener)}.
+     *
+     * <p>The given EventListener class must define a zero argument
+     * constructor, which is used to instantiate it.
      *
      * @param clazz the EventListener class to instantiate
      *
