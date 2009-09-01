@@ -848,9 +848,10 @@ public interface ServletContext {
 
 
     /**
-     * Instantiates the given Servlet class and performs any required
-     * resource injection into the new Servlet instance before returning
-     * it.
+     * Instantiates the given Servlet class.
+     *
+     * <p>This method must support all annotations applicable to Servlets
+     * as defined by the Servlet specification.
      *
      * <p>The returned Servlet instance may be further customized before it
      * is registered with this ServletContext via a call to 
@@ -1037,9 +1038,10 @@ public interface ServletContext {
 
 
     /**
-     * Instantiates the given Filter class and performs any required
-     * resource injection into the new Filter instance before returning
-     * it.
+     * Instantiates the given Filter class.
+     *
+     * <p>This method must support all annotations applicable to Filters
+     * as defined by the Servlet specification.
      *
      * <p>The returned Filter instance may be further customized before it
      * is registered with this ServletContext via a call to 
@@ -1360,9 +1362,7 @@ public interface ServletContext {
 
 
     /**
-     * Instantiates the given EventListener class and performs any
-     * required resource injection into the new EventListener instance
-     * before returning it.
+     * Instantiates the given EventListener class.
      *
      * <p>The specified EventListener class must implement at least one of
      * the <code>{@link ServletContextListener}</code>,
@@ -1372,6 +1372,9 @@ public interface ServletContext {
      * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
      * <code>{@link javax.servlet.http.HttpSessionAttributeListener}</code>
      * interfaces.
+     *
+     * <p>This method must support all annotations applicable to the above
+     * listener interfaces as defined by the Servlet specification.
      *
      * <p>The returned EventListener instance may be further customized
      * before it is registered with this ServletContext via a call to
