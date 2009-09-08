@@ -608,9 +608,10 @@ public interface ServletRequest {
      * and ServletResponse objects and the timeout as returned by
      * {@link #getAsyncTimeout}.
      *
-     * <p>This will delay committal of the associated response until
-     * {@link AsyncContext#complete} is called on the returned
-     * {@link AsyncContext}, or the AsyncContext times out.
+     * <p>Calling this method will cause committal of the associated
+     * response to be delayed until {@link AsyncContext#complete} is
+     * called on the returned {@link AsyncContext}, or the asychronous
+     * operation has timed out.
      *
      * <p>The timer for async timeouts will not start until the
      * container-initiated dispatch that called <tt>startAsync</tt>
@@ -660,9 +661,10 @@ public interface ServletRequest {
      * {@link ServletRequestWrapper} or {@link ServletResponseWrapper}
      * classes that wrap them.
      *
-     * <p>This will delay committal of the response until
-     * {@link AsyncContext#complete} is called on the returned
-     * {@link AsyncContext}, or the AsyncContext times out.
+     * <p>Calling this method will cause committal of the associated
+     * response to be delayed until {@link AsyncContext#complete} is
+     * called on the returned {@link AsyncContext}, or the asychronous
+     * operation has timed out.
      *
      * <p>The timer for async timeouts will not start until the
      * container-initiated dispatch that called <tt>startAsync</tt>
@@ -811,14 +813,16 @@ public interface ServletRequest {
      * <p>AsyncListener instances will be notified in the order
      * in which they were added to this request.
      *
-     * <p>The specified request and response objects, which will be included
-     * in the AsyncEvent that will be delivered to the given AsyncListener,
-     * should not be read from or written to, respectively, at the time
-     * when the AsyncEvent is delivered, because additional wrapping may have
-     * occurred after this method was called. One of the main reasons for
-     * allowing request and response objects to be passed to this method is
-     * to allow the AsyncListener to release any resources associated with
-     * them when the AsyncEvent is delivered.
+     * <p>The specified request and response objects, which will be available
+     * via the {@link AsyncEvent#getRequest getRequest} and
+     * {@link AsyncEvent#getResponse getResponse} methods, respectively,
+     * of the {@link AsyncEvent} that will be delivered to the given
+     * AsyncListener, should not be read from or written to, respectively,
+     * at the time when the AsyncEvent is delivered, because additional
+     * wrapping may have occurred after this method was called.
+     * The main motivation for passing request and response objects to this
+     * method is to allow the AsyncListener to release any resources
+     * associated with them at the time when the AsyncEvent is delivered.
      *
      * @param listener the AsyncListener to be registered
      * @param servletRequest the ServletRequest that will be included
