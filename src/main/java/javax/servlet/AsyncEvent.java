@@ -50,31 +50,31 @@ public class AsyncEvent {
     private ServletResponse response;
 
     /**
-     * Constructs an AsyncEvent from the given request and response objects.
+     * Constructs an AsyncEvent from the given ServletRequest and
+     * ServletResponse.
      *
-     * @param request the ServletRequest
-     * @param response the ServletResponse
+     * @param request the ServletRequest to be delivered with this AsyncEvent
+     * @param response the ServletResponse to be delivered with this
+     * AsyncEvent
      */
     public AsyncEvent(ServletRequest request, ServletResponse response) {
         this.request = request;
         this.response = response;
     }
 
-
     /**
-     * Gets the ServletRequest from this event
+     * Gets the ServletRequest from this AsyncEvent.
      *
-     * @return the ServletRequest
+     * @return the ServletRequest that was used to initialize this AsyncEvent
      */
     public ServletRequest getRequest() {
         return request;
     }
 
-
     /**
-     * Gets the ServletResponse from this event
+     * Gets the ServletResponse from this AsyncEvent.
      *
-     * @return the ServletResponse
+     * @return the ServletResponse that was used to initialize this AsyncEvent
      */
     public ServletResponse getResponse() {
         return response;
