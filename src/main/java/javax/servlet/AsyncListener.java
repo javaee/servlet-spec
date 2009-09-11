@@ -49,9 +49,8 @@ import java.util.EventListener;
 public interface AsyncListener extends EventListener {
     
     /**
-     * Notifies this AsyncListener that an asynchronous operation that was
-     * initiated on the ServletRequest to which this AsyncListener had been
-     * added has been completed.
+     * Notifies this AsyncListener that an asynchronous operation
+     * has been completed.
      * 
      * <p>The {@link AsyncContext} corresponding to the asynchronous
      * operation that has been completed may be obtained by calling
@@ -76,9 +75,8 @@ public interface AsyncListener extends EventListener {
 
 
     /**
-     * Notifies this AsyncListener that an asynchronous operation that was
-     * initiated on the ServletRequest to which this AsyncListener had been
-     * added has timed out.
+     * Notifies this AsyncListener that an asynchronous operation
+     * has timed out.
      * 
      * <p>The {@link AsyncContext} corresponding to the asynchronous
      * operation that has timed out may be obtained by calling
@@ -103,9 +101,8 @@ public interface AsyncListener extends EventListener {
 
 
     /**
-     * Notifies this AsyncListener that an asynchronous operation that was
-     * initiated on the ServletRequest to which this AsyncListener had been
-     * added has failed to complete.
+     * Notifies this AsyncListener that an asynchronous operation 
+     * has failed to complete.
      * 
      * <p>The {@link AsyncContext} corresponding to the asynchronous
      * operation that failed to complete may be obtained by calling
