@@ -40,46 +40,92 @@ import java.io.IOException;
 import java.util.EventListener;
 
 /**
- * Listener that will be notified when an asynchronous operation that was
- * started on a ServletRequest by a call to {@link ServletRequest#startAsync}
- * or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
- * completes or times out.
+ * Listener that will be notified in the event that an asynchronous
+ * operation initiated on a ServletRequest to which the listener had been 
+ * added has completed, timed out, or resulted in an error.
  *
  * @since Servlet 3.0
  */
 public interface AsyncListener extends EventListener {
     
     /**
-     * Notifies this AsyncListener that an asynchronous operation
-     * started on the ServletRequest with which this AsyncListener was
-     * registered has been completed.
+     * Notifies this AsyncListener that an asynchronous operation that was
+     * initiated on the ServletRequest to which this AsyncListener had been
+     * added has been completed.
      * 
-     * @param event the AsyncEvent containing the request and response
-     * objects that were used when this AsyncListener was registered via a
-     * call to {@link ServletRequest#addAsyncListener(AsyncListener)}
-     * or {@link ServletRequest#addAsyncListener(AsyncListener,
-     * ServletRequest, ServletResponse)}
+     * <p>The {@link AsyncContext} corresponding to the asynchronous
+     * operation that has been completed may be obtained by calling
+     * {@link AsyncEvent#getAsyncContext getAsyncContext} on the given
+     * <tt>event</tt>.
      *
-     * @throws IOException if an I/O exception occurred during the processing
-     * of the given AsyncEvent
+     * <p>In addition, if this AsyncListener had been registered via a call
+     * to {@link ServletRequest#addAsyncListener(AsyncListener,
+     * ServletRequest, ServletResponse)}, the supplied ServletRequest and
+     * ServletResponse objects may be retrieved by calling
+     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
+     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse},
+     * respectively, on the given <tt>event</tt>.
+     *
+     * @param event the AsyncEvent indicating that an asynchronous
+     * operation has been completed
+     *
+     * @throws IOException if an I/O related error has occurred during the
+     * processing of the given AsyncEvent
      */
     public void onComplete(AsyncEvent event) throws IOException;
 
 
     /**
-     * Notifies this AsyncListener that an asynchronous operation
-     * started on the ServletRequest with which this AsyncListener was
-     * registered has timed out.
+     * Notifies this AsyncListener that an asynchronous operation that was
+     * initiated on the ServletRequest to which this AsyncListener had been
+     * added has timed out.
      * 
-     * @param event the AsyncEvent containing the request and response
-     * objects that were used when this AsyncListener was registered via a
-     * call to {@link ServletRequest#addAsyncListener(AsyncListener)}
-     * or {@link ServletRequest#addAsyncListener(AsyncListener,
-     * ServletRequest, ServletResponse)}
+     * <p>The {@link AsyncContext} corresponding to the asynchronous
+     * operation that has timed out may be obtained by calling
+     * {@link AsyncEvent#getAsyncContext getAsyncContext} on the given
+     * <tt>event</tt>.
      *
-     * @throws IOException if an I/O exception occurred during the processing
-     * of the given AsyncEvent
+     * <p>In addition, if this AsyncListener had been registered via a call
+     * to {@link ServletRequest#addAsyncListener(AsyncListener,
+     * ServletRequest, ServletResponse)}, the supplied ServletRequest and
+     * ServletResponse objects may be retrieved by calling
+     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
+     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse},
+     * respectively, on the given <tt>event</tt>.
+     *
+     * @param event the AsyncEvent indicating that an asynchronous
+     * operation has timed out
+     *
+     * @throws IOException if an I/O related error has occurred during the
+     * processing of the given AsyncEvent
      */
     public void onTimeout(AsyncEvent event) throws IOException;
+
+
+    /**
+     * Notifies this AsyncListener that an asynchronous operation that was
+     * initiated on the ServletRequest to which this AsyncListener had been
+     * added has failed to complete.
+     * 
+     * <p>The {@link AsyncContext} corresponding to the asynchronous
+     * operation that failed to complete may be obtained by calling
+     * {@link AsyncEvent#getAsyncContext getAsyncContext} on the given
+     * <tt>event</tt>.
+     * 
+     * <p>In addition, if this AsyncListener had been registered via a call
+     * to {@link ServletRequest#addAsyncListener(AsyncListener,
+     * ServletRequest, ServletResponse)}, the supplied ServletRequest and
+     * ServletResponse objects may be retrieved by calling
+     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
+     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse},
+     * respectively, on the given <tt>event</tt>.
+     *
+     * @param event the AsyncEvent indicating that an asynchronous
+     * operation has failed to complete
+     *
+     * @throws IOException if an I/O related error has occurred during the
+     * processing of the given AsyncEvent
+     */
+    public void onError(AsyncEvent event) throws IOException;
 
 }

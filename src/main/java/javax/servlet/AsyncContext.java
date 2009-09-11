@@ -38,13 +38,27 @@ package javax.servlet;
 
 /**
  * Class representing the execution context for an asynchronous operation
- * that was started on a ServletRequest.
+ * that was initiated on a ServletRequest.
  *
  * <p>An AsyncContext is created and initialized by a call to
  * {@link ServletRequest#startAsync()} or
  * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
  * Repeated invocations of these methods will return the same AsyncContext
  * instance, reinitialized as appropriate.
+ *
+ * <p>In the event that an asynchronous operation has timed out, the
+ * container must run through these steps:
+ * <ol>
+ * <li>Invoke, at their {@link AsyncListener#onTimeout onTimeout} method, all
+ * {@link AsyncListener} instances registered with the ServletRequest
+ * on which the asynchronous operation was initiated.</li>
+ * <li>If none of the listeners called {@link #complete} or any of the
+ * {@link #dispatch} methods, perform an error dispatch with a status code
+ * equal to <tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>.</li>
+ * <li>If no matching error page was found, or the error page did not call
+ * {@link #complete} or any of the {@link #dispatch} methods, call
+ * {@link #complete}.</li>
+ * </ol>
  *
  * @since Servlet 3.0
  */
@@ -181,6 +195,24 @@ public interface AsyncContext {
      * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
      * are called.
      * 
+     * <p>Any errors or exceptions that may occur during the execution
+     * of this method must be caught and handled by the container, as
+     * follows:
+     * <ol>
+     * <li>Invoke, at their {@link AsyncListener#onError onError} method, all
+     * {@link AsyncListener} instances registered with the ServletRequest
+     * for which this AsyncContext was created, and make the caught 
+     * <tt>Throwable</tt> available via {@link AsyncEvent#getThrowable}.</li>
+     * <li>If none of the listeners called {@link #complete} or any of the
+     * {@link #dispatch} methods, perform an error dispatch with a status code
+     * equal to <tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>, and
+     * make the above <tt>Throwable</tt> available as the value of the
+     * <tt>RequestDispatcher.ERROR_EXCEPTION</tt> request attribute.</li>
+     * <li>If no matching error page was found, or the error page did not call
+     * {@link #complete} or any of the {@link #dispatch} methods, call
+     * {@link #complete}.</li>
+     * </ol>
+     *
      * @exception IllegalStateException if {@link #complete} has already
      * been called
      *
@@ -207,7 +239,8 @@ public interface AsyncContext {
      * attributes will always reflect the original path elements, even under
      * repeated dispatches.
      *
-     * <p>See {@link #dispatch()} for additional details.
+     * <p>See {@link #dispatch()} for additional details, including error
+     * handling.
      *
      * @param path the path of the dispatch target, scoped to the
      * ServletContext from which this AsyncContext was initialized
@@ -237,7 +270,8 @@ public interface AsyncContext {
      * attributes will always reflect the original path elements, even under
      * repeated dispatches.
      *
-     * <p>See {@link #dispatch()} for additional details.
+     * <p>See {@link #dispatch()} for additional details, including error
+     * handling.
      *
      * @param context the ServletContext of the dispatch target
      * @param path the path of the dispatch target, scoped to the given
@@ -256,9 +290,10 @@ public interface AsyncContext {
      * that was used to initialze this AsyncContext, closing the response
      * that was used to initialize this AsyncContext.
      *
-     * <p>Any listeners of type {@link AsyncListener} that were added to the
-     * request that was used to initialize this AsyncContext will have their
-     * {@link AsyncListener#onComplete(AsyncEvent)} method invoked.
+     * <p>Any listeners of type {@link AsyncListener} that were registered
+     * with the ServletRequest for which this AsyncContext was created will
+     * be invoked at their {@link AsyncListener#onComplete(AsyncEvent)
+     * onComplete} method.
      *
      * <p>It is legal to call this method any time after a call to
      * {@link ServletRequest#startAsync()} or

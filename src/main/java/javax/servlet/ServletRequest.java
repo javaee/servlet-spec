@@ -610,18 +610,15 @@ public interface ServletRequest {
      *
      * <p>Calling this method will cause committal of the associated
      * response to be delayed until {@link AsyncContext#complete} is
-     * called on the returned {@link AsyncContext}, or the asychronous
+     * called on the returned {@link AsyncContext}, or the asynchronous
      * operation has timed out.
      *
-     * <p>The timer for async timeouts will not start until the
+     * <p>The timer for asynchronous timeouts will not start until the
      * container-initiated dispatch that called <tt>startAsync</tt>
      * has returned to the container.
      *
-     * <p>If a timeout occurs and none of the
-     * {@link AsyncListener#onTimeout(AsyncEvent)} handlers call
-     * {@link AsyncContext#complete} or one of the
-     * {@link AsyncContext#dispatch} methods, the container must call
-     * {@link AsyncContext#complete}.
+     * <p>See {@link AsyncContext} for a description of how timeouts of
+     * asynchronous operations are handled by the container.
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
      * the returned AsyncContext will return <code>true</code>. Any filters
@@ -655,26 +652,24 @@ public interface ServletRequest {
      * {@link AsyncContext} with the given request and response objects
      * and the timeout as returned by {@link #getAsyncTimeout}.
      *
-     * <p>The ServletRequest and ServletResponse parameters must be either
-     * the same objects as were passed to the calling servlet's service
-     * (or calling filter's doFilter) method, or be subclasses of the
-     * {@link ServletRequestWrapper} or {@link ServletResponseWrapper}
-     * classes that wrap them.
+     * <p>The ServletRequest and ServletResponse arguments must be
+     * the same instances, or instances of {@link ServletRequestWrapper} and
+     * {@link ServletResponseWrapper} that wrap them, that were passed to the
+     * {@link Servlet#service service} method of the Servlet or the
+     * {@link Filter#doFilter doFilter} method of the Filter, respectively,
+     * in whose scope this method is being called.
      *
      * <p>Calling this method will cause committal of the associated
      * response to be delayed until {@link AsyncContext#complete} is
-     * called on the returned {@link AsyncContext}, or the asychronous
+     * called on the returned {@link AsyncContext}, or the asynchronous
      * operation has timed out.
      *
-     * <p>The timer for async timeouts will not start until the
+     * <p>The timer for asynchronous timeouts will not start until the
      * container-initiated dispatch that called <tt>startAsync</tt>
      * has returned to the container.
      *
-     * <p>If a timeout occurs and none of the
-     * {@link AsyncListener#onTimeout(AsyncEvent)} handlers call
-     * {@link AsyncContext#complete} or one of the
-     * {@link AsyncContext#dispatch} methods, the container must call
-     * {@link AsyncContext#complete}.
+     * <p>See {@link AsyncContext} for a description of how timeouts of
+     * asynchronous operations are handled by the container.
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
      * the returned AsyncContext will return <code>false</code>,
@@ -778,16 +773,11 @@ public interface ServletRequest {
 
 
     /**
-     * Registers the given {@link AsyncListener} with this request for
-     * asynchronous complete and timeout events.
+     * Registers the given {@link AsyncListener} with this request.
      *
-     * <p>If {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} is called on this
-     * request, an {@link AsyncEvent} will be sent to this AsyncListener as
-     * soon as the asynchronous operation has completed or timed out.
-     * The AsyncEvent will contain the ServletRequest and ServletResponse
-     * objects that were used to initialize the {@link AsyncContext}
-     * returned by the call to startAsync.
+     * <p>If this request is put into asynchronous mode, the given 
+     * AsyncListener will receive an {@link AsyncEvent} when the
+     * asynchronous operation completes, times out, or fails to complete.
      *
      * <p>AsyncListener instances will be notified in the order
      * in which they were added to this request.
@@ -801,28 +791,24 @@ public interface ServletRequest {
 
     /**
      * Registers the given {@link AsyncListener} with this request for 
-     * asynchronous complete and timeout events.
+     * asynchronous complete, timeout, and error events.
      *
-     * <p>If {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} is called on this
-     * request, an {@link AsyncEvent} will be sent to this AsyncListener as
-     * soon as the asynchronous operation has completed or timed out.
-     * The AsyncEvent will contain the given ServletRequest and
-     * ServletResponse objects.
+     * <p>If this request is put into asynchronous mode, the given 
+     * AsyncListener will receive an {@link AsyncEvent} when the
+     * asynchronous operation completes, times out, or fails to complete.
      *
      * <p>AsyncListener instances will be notified in the order
      * in which they were added to this request.
      *
-     * <p>The specified request and response objects, which will be available
-     * via the {@link AsyncEvent#getRequest getRequest} and
-     * {@link AsyncEvent#getResponse getResponse} methods, respectively,
-     * of the {@link AsyncEvent} that will be delivered to the given
-     * AsyncListener, should not be read from or written to, respectively,
-     * at the time when the AsyncEvent is delivered, because additional
-     * wrapping may have occurred after this method was called.
-     * The main motivation for passing request and response objects to this
-     * method is to allow the AsyncListener to release any resources
-     * associated with them at the time when the AsyncEvent is delivered.
+     * <p>The given ServletRequest and ServletResponse objects will
+     * be made available to the given AsyncListener via the
+     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
+     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse} methods,
+     * respectively, of the {@link AsyncEvent} delivered to it. These objects
+     * should not be read from or written to, respectively, at the time the
+     * AsyncEvent is delivered, because additional wrapping may have
+     * occurred since the given AsyncListener was registered, but may be used
+     * in order to release any resources associated with them.
      *
      * @param listener the AsyncListener to be registered
      * @param servletRequest the ServletRequest that will be included
@@ -848,14 +834,8 @@ public interface ServletRequest {
      * A timeout value of 0 or less indicates that the asynchronous
      * operations will never time out.
      *
-     * <p>If neither {@link AsyncContext#complete} nor
-     * {@link AsyncContext#dispatch} is called within the
-     * specified timeout, any listeners of type {@link AsyncListener} that
-     * were added to this request via a call to
-     * {@link #addAsyncListener(AsyncListener)}
-     * or {@link #addAsyncListener(AsyncListener, ServletRequest,
-     * ServletResponse)} will have their
-     * {@link AsyncListener#onTimeout(AsyncEvent)} method invoked.
+     * <p>See {@link AsyncContext} for a description of how timeouts of
+     * asynchronous operations are handled by the container.
      *
      * <p>This method raises an <code>IllegalStateException</code> if
      * called after {@link #startAsync}, unless it is called within the
