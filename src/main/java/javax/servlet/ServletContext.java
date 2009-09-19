@@ -864,8 +864,8 @@ public interface ServletContext {
      *
      * @return the new Servlet instance
      *
-     * @throws ServletException if an error occurs during the instantiation
-     * of, or resource injection into the new Servlet
+     * @throws ServletException if the given <tt>clazz</tt> fails to be
+     * instantiated
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
@@ -1054,8 +1054,8 @@ public interface ServletContext {
      *
      * @return the new Filter instance
      *
-     * @throws ServletException if an error occurs during the instantiation
-     * of, or resource injection into the new Filter
+     * @throws ServletException if the given <tt>clazz</tt> fails to be
+     * instantiated
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
@@ -1387,8 +1387,8 @@ public interface ServletContext {
      *
      * @return the new EventListener instance
      *
-     * @throws ServletException if an error occurs during the instantiation
-     * of, or resource injection into the new EventListener
+     * @throws ServletException if the given <tt>clazz</tt> fails to be
+     * instantiated
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
