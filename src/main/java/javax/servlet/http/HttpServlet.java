@@ -734,7 +734,7 @@ public abstract class HttpServlet extends GenericServlet
 		doGet(req, resp);
 	    } else {
 		long ifModifiedSince = req.getDateHeader(HEADER_IFMODSINCE);
-		if (ifModifiedSince < (lastModified / 1000 * 1000)) {
+		if (ifModifiedSince < lastModified) {
 		    // If the servlet mod time is later, call doGet()
                     // Round down to the nearest second for a proper compare
                     // A ifModifiedSince of -1 will always be less
