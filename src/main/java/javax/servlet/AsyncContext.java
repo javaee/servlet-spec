@@ -147,11 +147,12 @@ public interface AsyncContext {
      * to the servlet container.
      * 
      * <p>If the asynchronous cycle was started with
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
-     * then the dispatch is to the URI of the request passed to startAsync.
-     * If the asynchronous cycle was started with
-     * {@link ServletRequest#startAsync()}, then the dispatch is to the
-     * URI of the request when it was last dispatched by the container.
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
+     * and the request passed is an instance of HttpServletRequest,
+     * then the dispatch is to the URI returned by
+     * {@link javax.servlet.http.HttpServletRequest#getRequestURI}.
+     * Otherwise, the dispatch is to the URI of the request when it was
+     * last dispatched by the container.
      *
      * <p>The following sequence illustrates how this will work:
      * <code><pre>
