@@ -57,7 +57,7 @@ import java.util.Set;
  * <p>When examining the classes of an application to
  * see if they match any of the criteria specified by the HandlesTypes
  * annotation of a ServletContainerInitializer, the container may run into
- * classloading problems if one or more of the application's optional JAR
+ * classloading problems if any of the application's optional JAR
  * files are missing. Because the container is not in a position to decide
  * whether these types of classloading failures will prevent
  * the application from working correctly, it must ignore them,
