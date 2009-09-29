@@ -69,6 +69,14 @@ import java.util.Set;
  * named for the fully qualified class name of this interface, and will be 
  * discovered using the runtime's service provider lookup mechanism.
  *
+ * <p>When an application is deployed, the order in which
+ * ServletContainerInitializer implementations are discovered
+ * by the runtime's service lookup mechanism must follow the
+ * application's classloading delegation model.
+ * Any ServletContainerInitializer implementations declared in
+ * any of the application's web fragment JAR files that are excluded
+ * from absolute ordering must be ignored.
+ *
  * @see javax.servlet.annotation.HandlesTypes
  *
  * @since Servlet 3.0
