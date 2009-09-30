@@ -748,6 +748,11 @@ public interface ServletContext {
      * it will be completed (by assigning the given <tt>className</tt> to it)
      * and returned.
      *
+     * <p>This method supports any annotations applicable to Servlets
+     * that may have been specified on the class with the given
+     * <tt>className</tt>, with the exception of
+     * {@link javax.servlet.annotation.WebServlet}, which is ignored.
+     *
      * @param servletName the name of the servlet
      * @param className the fully qualified class name of the servlet
      *
@@ -823,6 +828,11 @@ public interface ServletContext {
      * it will be completed (by assigning the name of the given
      * <tt>servletClass</tt> to it) and returned.
      *
+     * <p>This method supports any annotations applicable to Servlets
+     * that may have been specified on the given <tt>servletClass</tt>,
+     * with the exception of {@link javax.servlet.annotation.WebServlet},
+     * which is ignored.
+     *
      * @param servletName the name of the servlet
      * @param servletClass the class object from which the servlet will be
      * instantiated
@@ -850,15 +860,17 @@ public interface ServletContext {
     /**
      * Instantiates the given Servlet class.
      *
-     * <p>This method must support all annotations applicable to Servlets
-     * as defined by the Servlet specification.
-     *
      * <p>The returned Servlet instance may be further customized before it
      * is registered with this ServletContext via a call to 
      * {@link #addServlet(String,Servlet)}.
      *
      * <p>The given Servlet class must define a zero argument constructor,
      * which is used to instantiate it.
+     *
+     * <p>This method supports any annotations applicable to Servlets
+     * that may have been specified on the given <tt>clazz</tt>, with the
+     * exception of {@link javax.servlet.annotation.WebServlet}, which 
+     * is ignored.
      *
      * @param clazz the Servlet class to instantiate
      *
@@ -941,6 +953,11 @@ public interface ServletContext {
      * it will be completed (by assigning the given <tt>className</tt> to it)
      * and returned.
      *
+     * <p>This method supports any annotations applicable to Filters
+     * that may have been specified on the class with the given
+     * <tt>className</tt>, with the exception of
+     * {@link javax.servlet.annotation.WebFilter}, which is ignored.
+     *
      * @param filterName the name of the filter
      * @param className the fully qualified class name of the filter
      *
@@ -1013,6 +1030,11 @@ public interface ServletContext {
      * it will be completed (by assigning the name of the given
      * <tt>filterClass</tt> to it) and returned.
      *
+     * <p>This method supports any annotations applicable to Filters
+     * that may have been specified on the given <tt>filterClass</tt>,
+     * with the exception of {@link javax.servlet.annotation.WebFilter},
+     * which is ignored.
+     *
      * @param filterName the name of the filter
      * @param filterClass the class object from which the filter will be
      * instantiated
@@ -1040,15 +1062,17 @@ public interface ServletContext {
     /**
      * Instantiates the given Filter class.
      *
-     * <p>This method must support all annotations applicable to Filters
-     * as defined by the Servlet specification.
-     *
      * <p>The returned Filter instance may be further customized before it
      * is registered with this ServletContext via a call to 
      * {@link #addFilter(String,Filter)}.
      *
      * <p>The given Filter class must define a zero argument constructor,
      * which is used to instantiate it.
+     *
+     * <p>This method supports any annotations applicable to Filters
+     * that may have been specified on the given <tt>clazz</tt>, with the
+     * exception of {@link javax.servlet.annotation.WebFilter}, which is
+     * ignored.
      *
      * @param clazz the Filter class to instantiate
      *
@@ -1245,6 +1269,11 @@ public interface ServletContext {
      * then the new listener will be added to the end of the ordered list of
      * listeners of that interface.
      *
+     * <p>This method supports any annotations applicable to the above 
+     * types of listeners that may have been specified on the class with the
+     * given <tt>className</tt>, with the exception of
+     * {@link javax.servlet.annotation.WebListener}, which is ignored.
+     *
      * @param className the fully qualified class name of the listener
      *
      * @throws IllegalArgumentException if the class with the given name
@@ -1340,6 +1369,11 @@ public interface ServletContext {
      * then the new listener will be added to the end of the ordered list
      * of listeners of that interface.
      *
+     * <p>This method supports any annotations applicable to the above 
+     * types of listeners that may have been specified on the given
+     * <tt>listenerClass</tt>, with the exception of
+     * {@link javax.servlet.annotation.WebListener}, which is ignored.
+     *
      * @param listenerClass the listener class to be instantiated
      *
      * @throws IllegalArgumentException if the given <tt>listenerClass</tt>
@@ -1373,15 +1407,17 @@ public interface ServletContext {
      * <code>{@link javax.servlet.http.HttpSessionAttributeListener}</code>
      * interfaces.
      *
-     * <p>This method must support all annotations applicable to the above
-     * listener interfaces as defined by the Servlet specification.
-     *
      * <p>The returned EventListener instance may be further customized
      * before it is registered with this ServletContext via a call to
      * {@link #addListener(EventListener)}.
      *
      * <p>The given EventListener class must define a zero argument
      * constructor, which is used to instantiate it.
+     *
+     * <p>This method supports any annotations applicable to the above
+     * types of listeners that may have been specified on the given
+     * <tt>clazz</tt>, with the exception of
+     * {@link javax.servlet.annotation.WebListener}, which is ignored.
      *
      * @param clazz the EventListener class to instantiate
      *
