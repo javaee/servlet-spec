@@ -61,6 +61,6 @@ public @interface WebListener {
     /**
      * Description of the listener
      */
-    String description() default "";
+    String value() default "";
 }
     
