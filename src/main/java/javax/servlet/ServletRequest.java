@@ -605,20 +605,12 @@ public interface ServletRequest {
     /**
      * Puts this request into asynchronous mode, and initializes its
      * {@link AsyncContext} with the original (unwrapped) ServletRequest
-     * and ServletResponse objects and the timeout as returned by
-     * {@link #getAsyncTimeout}.
+     * and ServletResponse objects.
      *
      * <p>Calling this method will cause committal of the associated
      * response to be delayed until {@link AsyncContext#complete} is
      * called on the returned {@link AsyncContext}, or the asynchronous
      * operation has timed out.
-     *
-     * <p>The timer for asynchronous timeouts will not start until the
-     * container-initiated dispatch that called <tt>startAsync</tt>
-     * has returned to the container.
-     *
-     * <p>See {@link AsyncContext} for a description of how timeouts of
-     * asynchronous operations are handled by the container.
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
      * the returned AsyncContext will return <code>true</code>. Any filters
@@ -629,6 +621,12 @@ public interface ServletRequest {
      * operation, and therefore any of their associated resources may be
      * released.
      *
+     * <p>This method clears the list of {@link AsyncListener} instances
+     * (if any) that were registered with the AsyncContext returned by the
+     * previous call to one of the startAsync methods, after calling each
+     * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync}
+     * method.
+     *
      * <p>Subsequent invocations of this method, or its overloaded 
      * variant, will return the same AsyncContext instance, reinitialized
      * as appropriate.
@@ -636,11 +634,13 @@ public interface ServletRequest {
      * @return the (re)initialized AsyncContext
      * 
      * @throws IllegalStateException if this request is within the scope of
-     * a filter or servlet that does not support asynchronous operation,
-     * that is, if {@link #isAsyncSupported} returns false, or if this method
-     * is called again outside the scope of a dispatch resulting from an
-     * {@link AsyncContext#dispatch}, or if the response has already been
-     * closed
+     * a filter or servlet that does not support asynchronous operations
+     * (that is, {@link #isAsyncSupported} returns false),
+     * or if this method is called again without any asynchronous dispatch
+     * (resulting from one of the {@link AsyncContext#dispatch} methods),
+     * is called outside the scope of any such dispatch, or is called again
+     * within the scope of the same dispatch, or if the response has
+     * already been closed
      *
      * @since Servlet 3.0
      */
@@ -649,8 +649,7 @@ public interface ServletRequest {
 
     /**
      * Puts this request into asynchronous mode, and initializes its
-     * {@link AsyncContext} with the given request and response objects
-     * and the timeout as returned by {@link #getAsyncTimeout}.
+     * {@link AsyncContext} with the given request and response objects.
      *
      * <p>The ServletRequest and ServletResponse arguments must be
      * the same instances, or instances of {@link ServletRequestWrapper} and
@@ -663,13 +662,6 @@ public interface ServletRequest {
      * response to be delayed until {@link AsyncContext#complete} is
      * called on the returned {@link AsyncContext}, or the asynchronous
      * operation has timed out.
-     *
-     * <p>The timer for asynchronous timeouts will not start until the
-     * container-initiated dispatch that called <tt>startAsync</tt>
-     * has returned to the container.
-     *
-     * <p>See {@link AsyncContext} for a description of how timeouts of
-     * asynchronous operations are handled by the container.
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
      * the returned AsyncContext will return <code>false</code>,
@@ -689,6 +681,12 @@ public interface ServletRequest {
      * ServletRequestWrapper. The same holds true for ServletResponseWrapper
      * instances. 
      *
+     * <p>This method clears the list of {@link AsyncListener} instances
+     * (if any) that were registered with the AsyncContext returned by the
+     * previous call to one of the startAsync methods, after calling each
+     * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync}
+     * method.
+     *
      * <p>Subsequent invocations of this method, or its zero-argument
      * variant, will return the same AsyncContext instance, reinitialized
      * as appropriate. If a call to this method is followed by a call to its
@@ -704,11 +702,13 @@ public interface ServletRequest {
      * @return the (re)initialized AsyncContext
      * 
      * @throws IllegalStateException if this request is within the scope of
-     * a filter or servlet that does not support asynchronous operation,
-     * that is, if {@link #isAsyncSupported} returns false, or if this method
-     * is called again outside the scope of a dispatch resulting from an
-     * {@link AsyncContext#dispatch}, or if the response has already been
-     * closed
+     * a filter or servlet that does not support asynchronous operations
+     * (that is, {@link #isAsyncSupported} returns false),
+     * or if this method is called again without any asynchronous dispatch
+     * (resulting from one of the {@link AsyncContext#dispatch} methods),
+     * is called outside the scope of any such dispatch, or is called again
+     * within the scope of the same dispatch, or if the response has
+     * already been closed
      *
      * @since Servlet 3.0
      */
@@ -770,110 +770,6 @@ public interface ServletRequest {
      * @since Servlet 3.0
      */
     public AsyncContext getAsyncContext();
-
-
-    /**
-     * Registers the given {@link AsyncListener} with this request.
-     *
-     * <p>If this request is put into asynchronous mode, the given 
-     * AsyncListener will receive an {@link AsyncEvent} when the
-     * asynchronous operation completes, times out, or fails to complete.
-     *
-     * <p>AsyncListener instances will be notified in the order
-     * in which they were added to this request.
-     *
-     * @param listener the AsyncListener to be registered
-     *
-     * @since Servlet 3.0
-     */
-    public void addAsyncListener(AsyncListener listener);
-
-
-    /**
-     * Registers the given {@link AsyncListener} with this request for 
-     * asynchronous complete, timeout, and error events.
-     *
-     * <p>If this request is put into asynchronous mode, the given 
-     * AsyncListener will receive an {@link AsyncEvent} when the
-     * asynchronous operation completes, times out, or fails to complete.
-     *
-     * <p>AsyncListener instances will be notified in the order
-     * in which they were added to this request.
-     *
-     * <p>The given ServletRequest and ServletResponse objects will
-     * be made available to the given AsyncListener via the
-     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
-     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse} methods,
-     * respectively, of the {@link AsyncEvent} delivered to it. These objects
-     * should not be read from or written to, respectively, at the time the
-     * AsyncEvent is delivered, because additional wrapping may have
-     * occurred since the given AsyncListener was registered, but may be used
-     * in order to release any resources associated with them.
-     *
-     * @param listener the AsyncListener to be registered
-     * @param servletRequest the ServletRequest that will be included
-     * in the AsyncEvent
-     * @param servletResponse the ServletResponse that will be included
-     * in the AsyncEvent 
-     *
-     * @since Servlet 3.0
-     */
-    public void addAsyncListener(AsyncListener listener,
-                                 ServletRequest servletRequest,
-                                 ServletResponse servletResponse);
-
-
-    /**
-     * Sets the timeout (in milliseconds) for any asynchronous operations
-     * started on this request by a call to {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)}.
-     *
-     * <p>By default, the container's default timeout for asynchronous
-     * operations, which is available via a call to
-     * {@link #getAsyncTimeout}, will be used.
-     * A timeout value of 0 or less indicates that the asynchronous
-     * operations will never time out.
-     *
-     * <p>See {@link AsyncContext} for a description of how timeouts of
-     * asynchronous operations are handled by the container.
-     *
-     * <p>This method raises an <code>IllegalStateException</code> if
-     * called after {@link #startAsync}, unless it is called within the
-     * scope of an {@link AsyncContext#dispatch}, in which case the specified
-     * timeout will be used to initialize the AsyncContext created by a new
-     * call to {@link #startAsync}, or will be ignored if {@link #startAsync}
-     * is not called again. 
-     *
-     * @param timeout the timeout in milliseconds for any asynchronous
-     * operations started on this request
-     *
-     * @throws IllegalStateException if called after {@link #startAsync},
-     * unless within the scope of a dispatch resulting from an
-     * {@link AsyncContext#dispatch}
-     * 
-     * @since Servlet 3.0
-     */
-    public void setAsyncTimeout(long timeout);
-
-
-    /**
-     * Gets the timeout (in milliseconds) for any asynchronous operations
-     * initiated on this request by a call to {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)}.
-     *
-     * <p>This method returns the container's default timeout for
-     * asynchronous operations, or the timeout value passed to the most
-     * recent invocation of {@link #setAsyncTimeout}.
-     *
-     * <p>A timeout value of 0 or less indicates that the asynchronous
-     * operation will never time out.
-     *
-     * @return the timeout in milliseconds for any asynchronous
-     * operations started on this request
-     * 
-     * @since Servlet 3.0
-     */
-    public long getAsyncTimeout();
 
 
     /**

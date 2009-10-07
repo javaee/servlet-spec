@@ -117,11 +117,11 @@ public class AsyncEvent {
      * Gets the ServletRequest from this AsyncEvent.
      *
      * <p>If the AsyncListener to which this AsyncEvent is being delivered
-     * was added using {@link ServletRequest#addAsyncListener(AsyncListener,
+     * was added using {@link AsyncContext#addListener(AsyncListener,
      * ServletRequest, ServletResponse)}, the returned ServletRequest
      * will be the same as the one supplied to the above method.
      * If the AsyncListener was added via
-     * {@link ServletRequest#addAsyncListener(AsyncListener)}, this method
+     * {@link AsyncContext#addListener(AsyncListener)}, this method
      * must return null.
      *
      * @return the ServletRequest that was used to initialize this AsyncEvent,
@@ -135,11 +135,11 @@ public class AsyncEvent {
      * Gets the ServletResponse from this AsyncEvent.
      *
      * <p>If the AsyncListener to which this AsyncEvent is being delivered
-     * was added using {@link ServletRequest#addAsyncListener(AsyncListener,
+     * was added using {@link AsyncContext#addListener(AsyncListener,
      * ServletRequest, ServletResponse)}, the returned ServletResponse
      * will be the same as the one supplied to the above method.
      * If the AsyncListener was added via
-     * {@link ServletRequest#addAsyncListener(AsyncListener)}, this method
+     * {@link AsyncContext#addListener(AsyncListener)}, this method
      * must return null.
      *
      * @return the ServletResponse that was used to initialize this AsyncEvent,

@@ -396,19 +396,19 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Puts the wrapped request into asynchronous mode, and initializes its
-     * {@link AsyncContext} with the original ServletRequest and 
-     * ServletResponse objects and the timeout derived according to 
-     * the rules laid out in {@link #setAsyncTimeout}.
+     * The default behavior of this method is to invoke
+     * {@link ServletRequest#startAsync} on the wrapped request object.
      *
      * @return the (re)initialized AsyncContext
      * 
-     * @throws IllegalStateException if this request is within the scope of
-     * a filter or servlet that does not support asynchronous operation,
-     * that is, if {@link #isAsyncSupported} returns false, or if this method
-     * is called again outside the scope of a dispatch resulting from an
-     * {@link AsyncContext#dispatch}, or if the response has already been
-     * closed
+     * @throws IllegalStateException if the request is within the scope of
+     * a filter or servlet that does not support asynchronous operations
+     * (that is, {@link #isAsyncSupported} returns false),
+     * or if this method is called again without any asynchronous dispatch
+     * (resulting from one of the {@link AsyncContext#dispatch} methods),
+     * is called outside the scope of any such dispatch, or is called again
+     * within the scope of the same dispatch, or if the response has
+     * already been closed
      *
      * @see ServletRequest#startAsync
      *
@@ -420,10 +420,9 @@ public class ServletRequestWrapper implements ServletRequest {
     
 
     /**
-     * Puts the wrapped request into asynchronous mode, and initializes its
-     * {@link AsyncContext} with the given request and response objects
-     * and the timeout derived according to the rules laid out in
-     * {@link #setAsyncTimeout}.
+     * The default behavior of this method is to invoke
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
+     * on the wrapped request object.
      *
      * @param servletRequest the ServletRequest used to initialize the
      * AsyncContext
@@ -431,13 +430,15 @@ public class ServletRequestWrapper implements ServletRequest {
      * AsyncContext
      *
      * @return the (re)initialized AsyncContext
-     * 
-     * @throws IllegalStateException if this request is within the scope of
-     * a filter or servlet that does not support asynchronous operation,
-     * that is, if {@link #isAsyncSupported} returns false, or if this method
-     * is called again outside the scope of a dispatch resulting from an
-     * {@link AsyncContext#dispatch}, or if the response has already been
-     * closed
+     *
+     * @throws IllegalStateException if the request is within the scope of
+     * a filter or servlet that does not support asynchronous operations
+     * (that is, {@link #isAsyncSupported} returns false),
+     * or if this method is called again without any asynchronous dispatch
+     * (resulting from one of the {@link AsyncContext#dispatch} methods),
+     * is called outside the scope of any such dispatch, or is called again
+     * within the scope of the same dispatch, or if the response has
+     * already been closed
      *
      * @see ServletRequest#startAsync(ServletRequest, ServletResponse)
      *
@@ -501,80 +502,6 @@ public class ServletRequestWrapper implements ServletRequest {
      */
     public AsyncContext getAsyncContext() {
         return request.getAsyncContext();
-    }
-
-
-    /**
-     * Registers the given {@link AsyncListener} with the wrapped request
-     * for asynchronous complete and timeout events.
-     *
-     * @param listener the AsyncListener to be registered
-     *
-     * @see ServletRequest#addAsyncListener(AsyncListener)
-     *
-     * @since Servlet 3.0
-     */
-    public void addAsyncListener(AsyncListener listener) {
-        request.addAsyncListener(listener);
-    }
-
-
-    /**
-     * Registers the given {@link AsyncListener}, {@link ServletRequest},
-     * and {@link ServletResponse} with the wrapped request for asynchronous
-     * complete and timeout events.
-     *
-     * @param listener the AsyncListener to be registered
-     * @param servletRequest the ServletRequest that will be included
-     * in the AsyncEvent
-     * @param servletResponse the ServletResponse that will be included
-     * in the AsyncEvent 
-     *
-     * @see ServletRequest#addAsyncListener(AsyncListener, ServletRequest,
-     * ServletResponse)
-     *
-     * @since Servlet 3.0
-     */
-    public void addAsyncListener(AsyncListener listener,
-                                 ServletRequest servletRequest,
-                                 ServletResponse servletResponse) {
-        request.addAsyncListener(listener, servletRequest, servletResponse);
-    }
-
-
-    /**
-     * Sets the timeout (in milliseconds) for any asynchronous operations
-     * initiated on the wrapped request.
-     *
-     * @param timeout the timeout in milliseconds for any asynchronous
-     * operations initiated on the wrapped request
-     *
-     * @throws IllegalStateException if called after {@link #startAsync},
-     * unless within the scope of a dispatch resulting from an
-     * {@link AsyncContext#dispatch}
-     * 
-     * @see ServletRequest#setAsyncTimeout
-     *
-     * @since Servlet 3.0
-     */
-    public void setAsyncTimeout(long timeout) {
-        request.setAsyncTimeout(timeout);
-    }
-
-
-    /**
-     * Gets the timeout (in milliseconds) for any asynchronous operations
-     * initiated on the wrapped request.
-     *
-     * @return the timeout in milliseconds for any asynchronous
-     * operations initiated on the wrapped request
-     * 
-     * @see ServletRequest#getAsyncTimeout
-     * 
-     * @since Servlet 3.0
-     */
-    public long getAsyncTimeout() {
-        return request.getAsyncTimeout();
     }
 
 
