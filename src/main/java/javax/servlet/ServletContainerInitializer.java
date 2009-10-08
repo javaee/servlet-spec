@@ -64,18 +64,15 @@ import java.util.Set;
  * while at the same time providing a configuration option that would
  * log them. 
  *
- * <p>Implementations of this interface may be declared by a JAR file
+ * <p>Implementations of this interface must be declared by a JAR file
  * resource located inside the <tt>META-INF/services</tt> directory and
  * named for the fully qualified class name of this interface, and will be 
- * discovered using the runtime's service provider lookup mechanism.
- *
- * <p>When an application is deployed, the order in which
- * ServletContainerInitializer implementations are discovered
- * by the runtime's service lookup mechanism must follow the
+ * discovered using the runtime's service provider lookup mechanism
+ * or a container specific mechanism that is semantically equivalent to
+ * it. In either case, ServletContainerInitializer services from web
+ * fragment JAR files excluded from an absolute ordering must be ignored,
+ * and the order in which these services are discovered must follow the
  * application's classloading delegation model.
- * Any ServletContainerInitializer implementations declared in
- * any of the application's web fragment JAR files that are excluded
- * from absolute ordering must be ignored.
  *
  * @see javax.servlet.annotation.HandlesTypes
  *
@@ -93,9 +90,8 @@ public interface ServletContainerInitializer {
      * startup of the bundling application. If this
      * <tt>ServletContainerInitializer</tt> is bundled inside a JAR file
      * outside of any <tt>WEB-INF/lib</tt> directory, but still
-     * discoverable by the runtime's service provider lookup mechanism,
-     * its <tt>onStartup</tt> method will be invoked every time an 
-     * application is started.
+     * discoverable as described above, its <tt>onStartup</tt> method
+     * will be invoked every time an application is started.
      *
      * @param c the Set of application classes that extend, implement, or
      * have been annotated with the class types specified by the 
