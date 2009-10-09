@@ -35,7 +35,7 @@
  */
 package javax.servlet;
 
-import java.util.Collection;
+import java.util.*;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity.EmptyRoleSemantic;
 import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
@@ -75,13 +75,13 @@ public class HttpConstraintElement {
      * Constructor to establish non-empty getRolesAllowed and/or
      * <tt>TransportGuarantee.CONFIDENTIAL</tt>.
      *
-     * @param roleNames the names of the roles that are to be
-     * allowed access
      * @param guarantee <tt>TransportGuarantee.NONE</tt> or
      * <tt>TransportGuarantee.CONFIDENTIAL</tt>
+     * @param roleNames the names of the roles that are to be
+     * allowed access
      */
-    public HttpConstraintElement(String[] roleNames,
-            TransportGuarantee guarantee) {
+    public HttpConstraintElement(TransportGuarantee guarantee,
+            String... roleNames) {
         this.emptyRoleSemantic = EmptyRoleSemantic.PERMIT;
         this.transportGuarantee = guarantee;
         this.rolesAllowed = roleNames;
@@ -93,17 +93,14 @@ public class HttpConstraintElement {
      *
      * @param semantic <tt>EmptyRoleSemantic.DENY</tt> or
      * <tt>EmptyRoleSemantic.PERMIT</tt>
-     *
-     * @param roleNames array containing the names of the roles that
-     * are to be allowed access. The array must be empty if the semantic
-     * is <tt>EmptyRoleSemantic.DENY</tt>
-     *
      * @param guarantee <tt>TransportGuarantee.NONE</tt> or
      * <tt>TransportGuarantee.CONFIDENTIAL<tt>
+     * @param roleNames the names of the roles that are to be allowed
+     * access, or missing if the semantic is <tt>EmptyRoleSemantic.DENY</tt>
      */
     public HttpConstraintElement(EmptyRoleSemantic semantic,
-            String[] roleNames, TransportGuarantee guarantee) {
-        if (semantic == EmptyRoleSemantic.DENY && rolesAllowed.length > 0) {
+            TransportGuarantee guarantee, String... roleNames) {
+        if (semantic == EmptyRoleSemantic.DENY && roleNames.length > 0) {
             throw new IllegalArgumentException(
                 "Deny semantic with rolesAllowed");
         }
@@ -145,17 +142,17 @@ public class HttpConstraintElement {
      * and may be discarded. The String <tt>"*"</tt> has no special meaning
      * as a role name (should it occur in getRolesAllowed).
      *
-     * @return an array of zero or more role names. When the array contains
-     * zero elements, its meaning depends on the value of
-     * <code>getEmptyRoleSemantic</code> field. If its value is <tt>DENY</tt>,
-     * and <code>getRolesAllowed</code> returns a zero length array,
-     * access is to be denied independent of authentication state and identity.
-     * Conversely, if ist value is <code>PERMIT</code>, it
+     * @return a (possibly empty) array of role names. When the
+     * array is empty, its meaning depends on the value of
+     * {@link #getEmptyRoleSemantic}. If its value is <tt>DENY</tt>,
+     * and <code>getRolesAllowed</code> returns an empty array,
+     * access is to be denied independent of authentication state and
+     * identity. Conversely, if its value is <code>PERMIT</code>, it
      * indicates that access is to be allowed independent of authentication
-     * state and identity. When the array contains the names of one or more
-     * roles, it indicates that access is contingent on membership in at
-     * least one of the named roles (independent of the value of the
-     * <code>getEmptyRoleSemantic</code>.
+     * state and identity. When the array contains the names of one or
+     * more roles, it indicates that access is contingent on membership in at
+     * least one of the named roles (independent of the value of
+     * {@link #getEmptyRoleSemantic}).
      */
     public String[] getRolesAllowed() {
         return this.rolesAllowed;

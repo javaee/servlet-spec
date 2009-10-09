@@ -74,8 +74,8 @@ public class HttpMethodConstraintElement extends HttpConstraintElement {
     public HttpMethodConstraintElement(String methodName,
             HttpConstraintElement constraint) {
         super(constraint.getEmptyRoleSemantic(),
-                constraint.getRolesAllowed(),
-                constraint.getTransportGuarantee());
+                constraint.getTransportGuarantee(),
+                constraint.getRolesAllowed());
         if (methodName == null || methodName.length() == 0) {
             throw new IllegalArgumentException("invalid HTTP method name");
         }

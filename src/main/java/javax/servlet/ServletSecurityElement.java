@@ -35,8 +35,7 @@
  */
 package javax.servlet;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import javax.servlet.annotation.HttpMethodConstraint;
 import javax.servlet.annotation.ServletSecurity;
 
@@ -47,8 +46,8 @@ import javax.servlet.annotation.ServletSecurity;
  */
 public class ServletSecurityElement extends HttpConstraintElement {
 
-    private Set<String> methodNames;
-    private HttpMethodConstraintElement[] methodConstraints;
+    private Collection<String> methodNames;
+    private Collection<HttpMethodConstraintElement> methodConstraints;
 
     /**
      * Constructs an instance using the default
@@ -56,7 +55,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * element and with no HTTP Method specific constraint elements.
      */
     public ServletSecurityElement() {
-        methodConstraints = new HttpMethodConstraintElement[0];
+        methodConstraints = new HashSet<HttpMethodConstraintElement>();
         methodNames = new HashSet<String>();
     }
 
@@ -70,47 +69,51 @@ public class ServletSecurityElement extends HttpConstraintElement {
      */
     public ServletSecurityElement(HttpConstraintElement constraint) {
         super(constraint.getEmptyRoleSemantic(),
-                constraint.getRolesAllowed(),
-                constraint.getTransportGuarantee());
-        methodConstraints = new HttpMethodConstraintElement[0];
+                constraint.getTransportGuarantee(),
+                constraint.getRolesAllowed());
+        methodConstraints = new HashSet<HttpMethodConstraintElement>();
         methodNames = new HashSet<String>();
     }
 
     /**
      * Constructs an instance using the default
      * <code>HttpConstraintElement</code> value as the default Constraint
-     * element and with an array of HTTP Method specific constraint elements.
+     * element and with a collection of HTTP Method specific constraint
+     * elements.
      *
-     * @param methodConstraints the array of HTTP method specific constraint
-     * elements
+     * @param methodConstraints the collection of HTTP method specific
+     * constraint elements
      *
      * @throws IllegalArgumentException if duplicate method names are
      * detected
      */
-    public ServletSecurityElement(HttpMethodConstraintElement[] methodConstraints) {
-        this.methodConstraints = (methodConstraints == null ? new HttpMethodConstraintElement[0] : methodConstraints);
+    public ServletSecurityElement(
+            Collection<HttpMethodConstraintElement> methodConstraints) {
+        this.methodConstraints = (methodConstraints == null ?
+            new HashSet<HttpMethodConstraintElement>() : methodConstraints);
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
     /**
      * Constructs an instance with a default Constraint element
-     * and an with array of HTTP Method specific constraint elements
+     * and with a collection of HTTP Method specific constraint elements.
      *
      * @param constraint the HttpConstraintElement to be
      * applied to all HTTP methods other than those represented in the
      * <tt>methodConstraints</tt>
-     * @param methodConstraints the array of HTTP method specific constraint
-     * elements.
+     * @param methodConstraints the collection of HTTP method specific
+     * constraint elements.
      *
      * @throws IllegalArgumentException if duplicate method names are
      * detected
      */
     public ServletSecurityElement(HttpConstraintElement constraint,
-            HttpMethodConstraintElement[] methodConstraints) {
+            Collection<HttpMethodConstraintElement> methodConstraints) {
         super(constraint.getEmptyRoleSemantic(),
-                constraint.getRolesAllowed(),
-                constraint.getTransportGuarantee());
-        this.methodConstraints = (methodConstraints == null ? new HttpMethodConstraintElement[0] : methodConstraints);
+                constraint.getTransportGuarantee(),
+                constraint.getRolesAllowed());
+        this.methodConstraints = (methodConstraints == null ?
+            new HashSet<HttpMethodConstraintElement>() : methodConstraints);
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
@@ -124,24 +127,29 @@ public class ServletSecurityElement extends HttpConstraintElement {
      */
     public ServletSecurityElement(ServletSecurity annotation) {
         super(annotation.value().value(),
-                annotation.value().rolesAllowed(),
-                annotation.value().transportGuarantee());
-        HttpMethodConstraint[] constraints = annotation.httpMethodConstraints();
-        for (int i = 0; i < constraints.length; i++) {
-            this.methodConstraints[i] =
-                    new HttpMethodConstraintElement(constraints[i].value(),
-                    new HttpConstraintElement(constraints[i].emptyRoleSemantic(),
-                    constraints[i].rolesAllowed(), constraints[i].transportGuarantee()));
+                annotation.value().transportGuarantee(),
+                annotation.value().rolesAllowed());
+        this.methodConstraints = new HashSet<HttpMethodConstraintElement>();
+        for (HttpMethodConstraint constraint :
+                annotation.httpMethodConstraints()) {
+            this.methodConstraints.add(
+                new HttpMethodConstraintElement(
+                    constraint.value(),
+                    new HttpConstraintElement(constraint.emptyRoleSemantic(),
+                        constraint.transportGuarantee(),
+                        constraint.rolesAllowed())));
         }
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
     /**
-     * Gets the array of HTTP Method specific constraint elements.
+     * Gets the (possibly empty) collection of HTTP Method specific
+     * constraint elements.
      *
-     * @return the array of HttpMethodConstraintElement objects
+     * @return the (possibly empty) collection of HttpMethodConstraintElement
+     * objects
      */
-    public HttpMethodConstraintElement[] getHttpMethodConstraints() {
+    public Collection<HttpMethodConstraintElement> getHttpMethodConstraints() {
         return methodConstraints;
     }
 
@@ -150,7 +158,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      *
      * @return the set of String method names
      */
-    public Set<String> getMethodNames() {
+    public Collection<String> getMethodNames() {
         return methodNames;
     }
 
@@ -164,15 +172,17 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * @throws IllegalArgumentException if duplicate method names are
      * detected
      */
-    private Set<String> checkMethodNames(
-            HttpMethodConstraintElement[] methodConstraints) {
-        Set<String> methodNames = new HashSet<String>();
-        for (int i = 0; methodConstraints != null && i < methodConstraints.length; i++) {
-            String methodName = methodConstraints[i].getMethodName();
+    private Collection<String> checkMethodNames(
+            Collection<HttpMethodConstraintElement> methodConstraints) {
+        Collection<String> methodNames = new HashSet<String>();
+        for (HttpMethodConstraintElement methodConstraint :
+                        methodConstraints) {
+            String methodName = methodConstraint.getMethodName();
             if (methodNames.contains(methodName)) {
                 throw new IllegalArgumentException(
                     "Duplicate HTTP method name: " + methodName);
             }
+            methodNames.add(methodName);
         }
         return methodNames;
     }
