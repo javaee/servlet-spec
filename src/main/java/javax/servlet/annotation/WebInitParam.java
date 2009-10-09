@@ -43,7 +43,8 @@ import java.lang.annotation.Target;
 import java.lang.annotation.Documented;
 
 /**
- * Used to declare init params in servlets in filters
+ * This annotation is used on a Servlet or Filter implementation class
+ * to specify an initialization parameter.
  * 
  * @since Servlet 3.0
  */
@@ -51,19 +52,19 @@ import java.lang.annotation.Documented;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebInitParam {
+
     /**
-     * Name of the init param
+     * Name of the initialization parameter
      */
     String name();
     
     /**
-     * Value of the init param
-     */
-    
+     * Value of the initialization parameter
+     */    
     String value();
     
     /**
-     * Description of the init param
+     * Description of the initialization parameter
      */
     String description() default "";
 }
