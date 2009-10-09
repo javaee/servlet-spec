@@ -41,7 +41,7 @@ import javax.servlet.annotation.ServletSecurity.EmptyRoleSemantic;
 import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 
 /**
- * Java Class represntation of an {@link HttpConstraint} annotation value.
+ * Java Class representation of an {@link HttpConstraint} annotation value.
  *
  * @since Servlet 3.0
  */

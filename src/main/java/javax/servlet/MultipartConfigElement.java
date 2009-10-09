@@ -100,7 +100,7 @@ public class MultipartConfigElement {
      *
      * @return the directory location where files will be stored
      */
-    public String location() {
+    public String getLocation() {
         return this.location;
     }
 
@@ -109,7 +109,7 @@ public class MultipartConfigElement {
      *
      * @return the maximum size allowed for uploaded files
      */
-    public long maxFileSize() {
+    public long getMaxFileSize() {
         return this.maxFileSize;
     }
 
@@ -118,7 +118,7 @@ public class MultipartConfigElement {
      *
      * @return the maximum size allowed for multipart/form-data requests
      */
-    public long maxRequestSize() {
+    public long getMaxRequestSize() {
         return this.maxRequestSize;
     }
 
@@ -127,7 +127,7 @@ public class MultipartConfigElement {
      *
      * @return the size threshold after which files will be written to disk
      */
-    public int fileSizeThreshold() {
+    public int getFileSizeThreshold() {
         return this.fileSizeThreshold;
     }
 }
