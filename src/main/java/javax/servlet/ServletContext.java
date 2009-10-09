@@ -1512,6 +1512,12 @@ public interface ServletContext {
      *
      * @param roleNames the role names being declared
      *
+     * @throws UnsupportedOperationException if this ServletContext was
+     * passed to the {@link ServletContextListener#contextInitialized} method
+     * of a {@link ServletContextListener} that was neither declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
+     * with {@link javax.servlet.annotation.WebListener}
+     *
      * @throws IllegalArgumentException if any of the argument roleNames is
      * null or the empty string
      *
