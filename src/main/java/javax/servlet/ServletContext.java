@@ -1499,6 +1499,28 @@ public interface ServletContext {
      * @since Servlet 3.0
      */
     public ClassLoader getClassLoader();
+
+
+    /**
+     * Declares role names that are tested using <code>isUserInRole</code>.
+     *
+     * <p>Roles that are implicitly declared as a result of their use within
+     * the {@link ServletRegistration.Dynamic#setServletSecurity
+     * setServletSecurity} or {@link ServletRegistration.Dynamic#setRunAsRole
+     * setRunAsRole} methods of the {@link ServletRegistration} interface need
+     * not be declared.
+     *
+     * @param roleNames the role names being declared
+     *
+     * @throws IllegalArgumentException if any of the argument roleNames is
+     * null or the empty string
+     *
+     * @throws IllegalStateException if the ServletContext has already
+     * been initialized
+     *
+     * @since Servlet 3.0
+     */
+    public void declareRoles(String... roleNames);
 }
 
 

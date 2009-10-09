@@ -78,6 +78,15 @@ public interface ServletRegistration extends Registration {
     public Collection<String> getMappings();
 
     /**
+     * Gets the name of the runAs role of the Servlet represented by this
+     * <code>ServletRegistration</code>.
+     * 
+     * @return the name of the runAs role, or null if the Servlet is
+     * configured to run as its caller
+     */
+    public String getRunAsRole();
+
+    /**
      * Interface through which a {@link Servlet} registered via one of the
      * <tt>addServlet</tt> methods on {@link ServletContext} may be further
      * configured.
@@ -107,10 +116,60 @@ public interface ServletRegistration extends Registration {
          * @param loadOnStartup the initialization priority of the Servlet
          *
          * @throws IllegalStateException if the ServletContext from which
-         * this dynamic ServletRegistration was obtained has already been
-         * initialized
+         * this ServletRegistration was obtained has already been initialized
          */
         public void setLoadOnStartup(int loadOnStartup);
+
+        /**
+         * Sets the {@link ServletSecurityElement} to be applied to the
+         * mappings defined for this <code>ServletRegistration</code>. If this
+         * method is called multiple times, each successive call overrides the
+         * effects of the former.
+         *
+         * @param constraint the {@link ServletSecurityElement} to be applied
+         * to the patterns mapped to the registration
+         *
+         * @throws IllegalArgumentException if <tt>constraint</tt> is null
+         *
+         * @throws IllegalStateException if the {@link ServletContext} from
+	 * which this ServletRegistration was obtained has already been
+	 * initialized
+         */
+        public void setServletSecurity(ServletSecurityElement constraint);
+
+        /**
+         * Sets the {@link MultipartConfigElement} to be applied to the
+         * mappings defined for this <code>ServletRegistration</code>. If this
+         * method is called multiple times, each successive call overrides the
+         * effects of the former.
+         *
+         * @param multipartConfig the {@link MultipartConfigElement} to be
+	 * applied to the patterns mapped to the registration
+         *
+         * @throws IllegalArgumentException if <tt>multipartConfig</tt> is
+         * null
+         *
+         * @throws IllegalStateException if the {@link ServletContext} from
+         * which this ServletRegistration was obtained has already been
+         * initialized
+         */
+        public void setMultipartConfig(
+            MultipartConfigElement multipartConfig);
+
+        /**
+         * Sets the name of the runAs role for the
+         * <code>ServletRegistration</code>.
+         *
+         * @param roleName
+         *
+         * @throws IllegalArgumentException if <tt>roleName</tt> is null
+         *
+         * @throws IllegalStateException if the {@link ServletContext} from
+         * which this ServletRegistration was obtained has already been
+         * initialized
+         */
+        public void setRunAsRole(String roleName);
+
     }
 
 }
