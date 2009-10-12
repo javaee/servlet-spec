@@ -343,18 +343,21 @@ public interface HttpServletResponse extends ServletResponse {
 
     
     /**
-     * Sets the status code for this response.  This method is used to
-     * set the return status code when there is no error (for example,
-     * for the status codes SC_OK or SC_MOVED_TEMPORARILY).  If there
-     * is an error, and the caller wishes to invoke an error-page defined
-     * in the web application, the <code>sendError</code> method should be used
-     * instead. If this method is used to set an error code, then the container
-     * error page mechanism will not be triggered. If the caller wishes to invoke
-     * an error-page defined in the web application then the {@link #sendError} method must
-     * be used.
-     * <p> The container  preserves cookies and other headers.
-     * <p> valid range of status codes includes 2XX, 3XX, 4XX and 5XX. Other status codes are
-     * container specific.
+     * Sets the status code for this response. 
+     *
+     * <p>This method is used to set the return status code when there is
+     * no error (for example, for the SC_OK or SC_MOVED_TEMPORARILY status
+     * codes).
+     *
+     * <p>If this method is used to set an error code, then the container's
+     * error page mechanism will not be triggered. If there is an error and
+     * the caller wishes to invoke an error page defined in the web
+     * application, then {@link #sendError} must be used instead.
+     *
+     * <p>This method preserves any cookies and other response headers. 
+     *
+     * <p>Valid status codes are those in the 2XX, 3XX, 4XX, and 5XX ranges.
+     * Other status codes are treated as container specific.
      *
      * @param	sc	the status code
      *
