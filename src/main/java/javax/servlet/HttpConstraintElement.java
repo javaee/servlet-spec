@@ -55,9 +55,7 @@ public class HttpConstraintElement {
      * Constructs a default HTTP constraint element
      */
     public HttpConstraintElement() {
-        this.emptyRoleSemantic = EmptyRoleSemantic.PERMIT;
-        this.transportGuarantee = TransportGuarantee.NONE;
-        rolesAllowed = new String[0];
+        this(EmptyRoleSemantic.PERMIT);
     }
 
     /**
@@ -66,9 +64,7 @@ public class HttpConstraintElement {
      * @param semantic should be EmptyRoleSemantic.DENY
      */
     public HttpConstraintElement(EmptyRoleSemantic semantic) {
-        this.emptyRoleSemantic = semantic;
-        this.transportGuarantee = TransportGuarantee.NONE;
-        rolesAllowed = new String[0];
+        this(semantic, TransportGuarantee.NONE, new String[0]);
     }
 
     /**
@@ -82,9 +78,7 @@ public class HttpConstraintElement {
      */
     public HttpConstraintElement(TransportGuarantee guarantee,
             String... roleNames) {
-        this.emptyRoleSemantic = EmptyRoleSemantic.PERMIT;
-        this.transportGuarantee = guarantee;
-        this.rolesAllowed = roleNames;
+        this(EmptyRoleSemantic.PERMIT, guarantee, roleNames);
     }
 
     /**
