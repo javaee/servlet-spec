@@ -149,7 +149,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * @return the (possibly empty) collection of HttpMethodConstraintElement
      * objects
      */
-    public Collection<HttpMethodConstraintElement> getHttpMethodConstraints() {
+    public Collection<HttpMethodConstraintElement> getHttpMethodConstraintElements() {
         return methodConstraints;
     }
 
