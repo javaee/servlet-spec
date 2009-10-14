@@ -727,16 +727,16 @@ public interface HttpServletRequest extends ServletRequest {
      * login mechanism has committed, in the response, the message (e.g., 
      * challenge) and HTTP status code to be returned to the user.
      *
-     * @exception       IOException         if an error occurs while writing 
-     *                                      the response.
+     * @throws IOException if an input or output error occurred while
+     * reading from this request or writing to the given response
      *
-     * @exception	ServletException    if the authentication failed and
-     *                                      the caller is responsible for 
-     *                                      handling the error (i.e., the 
-     *                                      underlying login mechanism did 
-     *                                      NOT establish the message and 
-     *                                      HTTP status code to be returned 
-     *                                      to the user).
+     * @throws IllegalStateException if the login mechanism attempted to
+     * modify the response and it was already committed
+     * 
+     * @throws ServletException if the authentication failed and
+     * the caller is responsible for handling the error (i.e., the 
+     * underlying login mechanism did NOT establish the message and 
+     * HTTP status code to be returned to the user)
      *
      * @since Servlet 3.0
      */
