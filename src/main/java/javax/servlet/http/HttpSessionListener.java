@@ -64,7 +64,7 @@ import java.util.EventListener;
  * class must be either declared in the deployment descriptor of the web
  * application, annotated with {@link javax.servlet.annotation.WebListener},
  * or registered via one of the addListener methods defined on
- * {@link ServletContext}.
+ * {@link javax.servlet.ServletContext}.
  *
  * <p>Implementations of this interface are invoked at their
  * {@link #sessionCreated} method in the order in which they have been
