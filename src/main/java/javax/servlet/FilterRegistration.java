@@ -57,6 +57,9 @@ public interface FilterRegistration extends Registration {
      * <i>declared</i> filter mappings of the ServletContext from which this
      * FilterRegistration was obtained.
      *
+     * <p>If this method is called multiple times, each successive call
+     * adds to the effects of the former.
+     *
      * @param dispatcherTypes the dispatcher types of the filter mapping,
      * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
      * @param isMatchAfter true if the given filter mapping should be matched
@@ -98,6 +101,9 @@ public interface FilterRegistration extends Registration {
      * given filter mapping will be considered after or before any
      * <i>declared</i> filter mappings of the ServletContext from which
      * this FilterRegistration was obtained.
+     *
+     * <p>If this method is called multiple times, each successive call
+     * adds to the effects of the former.
      *
      * @param dispatcherTypes the dispatcher types of the filter mapping,
      * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used

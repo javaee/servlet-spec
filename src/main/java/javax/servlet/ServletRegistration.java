@@ -52,6 +52,9 @@ public interface ServletRegistration extends Registration {
      * <p>If any of the specified URL patterns are already mapped to a 
      * different Servlet, no updates will be performed.
      *
+     * <p>If this method is called multiple times, each successive call
+     * adds to the effects of the former.
+     *
      * @param urlPatterns the URL patterns of the servlet mapping
      *
      * @return the (possibly empty) Set of URL patterns that are already
