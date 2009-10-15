@@ -410,6 +410,29 @@ public interface AsyncContext {
 
 
     /**
+     * Instantiates the given {@link AsyncListener} class.
+     *
+     * <p>The returned AsyncListener instance may be further customized
+     * before it is registered with this AsyncContext via a call to one of 
+     * the <code>addListener</code> methods.
+     *
+     * <p>The given AsyncListener class must define a zero argument
+     * constructor, which is used to instantiate it.
+     *
+     * <p>This method supports any annotations applicable to AsyncListener.
+     *
+     * @param clazz the AsyncListener class to instantiate
+     *
+     * @return the new AsyncListener instance
+     *
+     * @throws ServletException if the given <tt>clazz</tt> fails to be
+     * instantiated
+     */
+    public <T extends AsyncListener> T createListener(Class<T> clazz)
+        throws ServletException; 
+
+
+    /**
      * Sets the timeout (in milliseconds) for this AsyncContext.
      *
      * <p>The timeout applies to this AsyncContext once the
