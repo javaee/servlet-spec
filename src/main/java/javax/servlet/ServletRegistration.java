@@ -132,13 +132,18 @@ public interface ServletRegistration extends Registration {
          * @param constraint the {@link ServletSecurityElement} to be applied
          * to the patterns mapped to the registration
          *
+         * @return the (possibly empty) Set of URL patterns that were already
+         * the exact target of a <code>security-constraint</code> that was
+         * established via the portable deployment descriptor. This method
+         * has no effect on the patterns included in the returned set
+         *
          * @throws IllegalArgumentException if <tt>constraint</tt> is null
          *
          * @throws IllegalStateException if the {@link ServletContext} from
-	 * which this ServletRegistration was obtained has already been
-	 * initialized
+         * which this ServletRegistration was obtained has already been
+         * initialized
          */
-        public void setServletSecurity(ServletSecurityElement constraint);
+        public Set<String> setServletSecurity(ServletSecurityElement constraint);
 
         /**
          * Sets the {@link MultipartConfigElement} to be applied to the
