@@ -49,8 +49,9 @@ public interface SessionCookieConfig {
 
     /**
      * Sets the name that will be assigned to any session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * <p>NOTE: Changing the name of session tracking cookies may break
      * other tiers (for example, a load balancing frontend) that assume
@@ -68,8 +69,9 @@ public interface SessionCookieConfig {
 
     /**
      * Gets the name that will be assigned to any session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * <p>By default, <tt>JSESSIONID</tt> will be used as the cookie name.
      *
@@ -83,8 +85,9 @@ public interface SessionCookieConfig {
 
     /**
      * Sets the domain name that will be assigned to any session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * @param domain the cookie domain to use
      *
@@ -99,8 +102,9 @@ public interface SessionCookieConfig {
 
     /**
      * Gets the domain name that will be assigned to any session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * @return the cookie domain set via {@link #setDomain}, or
      * <tt>null</tt> if {@link #setDomain} was never called
@@ -112,8 +116,9 @@ public interface SessionCookieConfig {
 
     /**
      * Sets the path that will be assigned to any session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * @param path the cookie path to use
      *
@@ -128,8 +133,9 @@ public interface SessionCookieConfig {
 
     /**
      * Gets the path that will be assigned to any session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * <p>By default, the context path of the <tt>ServletContext</tt>
      * from which this <tt>SessionCookieConfig</tt> was acquired will
@@ -145,8 +151,9 @@ public interface SessionCookieConfig {
 
     /**
      * Sets the comment that will be assigned to any session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * <p>As a side effect of this call, the session tracking cookies
      * will be marked with a <code>Version</code> attribute equal to
@@ -166,8 +173,9 @@ public interface SessionCookieConfig {
 
     /**
      * Gets the comment that will be assigned to any session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * @return the cookie comment set via {@link #setComment}, or
      * <tt>null</tt> if {@link #setComment} was never called
@@ -179,8 +187,9 @@ public interface SessionCookieConfig {
 
     /**
      * Marks or unmarks the session tracking cookies created on behalf
-     * of the <tt>ServletContext</tt> from which this
-     * <tt>SessionCookieConfig</tt> was acquired as <i>HttpOnly</i>.
+     * of the application represented by the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired as
+     * <i>HttpOnly</i>.
      *
      * <p>A cookie is marked as <tt>HttpOnly</tt> by adding the
      * <tt>HttpOnly</tt> attribute to it. <i>HttpOnly</i> cookies are
@@ -189,9 +198,9 @@ public interface SessionCookieConfig {
      * attacks.
      *
      * @param httpOnly true if the session tracking cookies created
-     * on behalf of the <tt>ServletContext</tt> from which this
-     * <tt>SessionCookieConfig</tt> was acquired shall be marked as
-     * <i>HttpOnly</i>, false otherwise
+     * on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired shall be marked as <i>HttpOnly</i>, false otherwise
      *
      * @throws IllegalStateException if the <tt>ServletContext</tt>
      * from which this <tt>SessionCookieConfig</tt> was acquired has
@@ -204,12 +213,14 @@ public interface SessionCookieConfig {
 
     /**
      * Checks if the session tracking cookies created on behalf of the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired will be marked as <i>HttpOnly</i>.
+     * application represented by the <tt>ServletContext</tt> from which
+     * this <tt>SessionCookieConfig</tt> was acquired will be marked as
+     * <i>HttpOnly</i>.
      *
-     * @return true if the session tracking cookies created on behalf of the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired will be marked as <i>HttpOnly</i>, false otherwise
+     * @return true if the session tracking cookies created on behalf of
+     * the application represented by the <tt>ServletContext</tt> from
+     * which this <tt>SessionCookieConfig</tt> was acquired will be marked
+     * as <i>HttpOnly</i>, false otherwise
      *
      * @see javax.servlet.http.Cookie#isHttpOnly()
      */
@@ -217,9 +228,9 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Marks or unmarks the session tracking cookies created on behalf of the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired as <i>secure</i>.
+     * Marks or unmarks the session tracking cookies created on behalf of
+     * the application represented by the <tt>ServletContext</tt> from which
+     * this <tt>SessionCookieConfig</tt> was acquired as <i>secure</i>.
      *
      * <p>One use case for marking a session tracking cookie as
      * <tt>secure</tt>, even though the request that initiated the session
@@ -230,12 +241,12 @@ public interface SessionCookieConfig {
      * and the web container will be over HTTP.  
      *
      * @param secure true if the session tracking cookies created on
-     * behalf of the <tt>ServletContext</tt> from which this
-     * <tt>SessionCookieConfig</tt> was acquired shall be marked as
-     * <i>secure</i> even if the request that initiated the corresponding
-     * session is using plain HTTP instead of HTTPS, and false if they
-     * shall be marked as <i>secure</i> only if the request that initiated
-     * the corresponding session was also secure
+     * behalf of the application represented by the <tt>ServletContext</tt>
+     * from which this <tt>SessionCookieConfig</tt> was acquired shall be
+     * marked as <i>secure</i> even if the request that initiated the
+     * corresponding session is using plain HTTP instead of HTTPS, and false
+     * if they shall be marked as <i>secure</i> only if the request that
+     * initiated the corresponding session was also secure
      *
      * @throws IllegalStateException if the <tt>ServletContext</tt>
      * from which this <tt>SessionCookieConfig</tt> was acquired has
@@ -249,18 +260,18 @@ public interface SessionCookieConfig {
 
     /**
      * Checks if the session tracking cookies created on behalf of the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired will be marked as <i>secure</i> even if the request
-     * that initiated the corresponding session is using plain HTTP
-     * instead of HTTPS.
+     * application represented by the <tt>ServletContext</tt> from which
+     * this <tt>SessionCookieConfig</tt> was acquired will be marked as
+     * <i>secure</i> even if the request that initiated the corresponding
+     * session is using plain HTTP instead of HTTPS.
      *
      * @return true if the session tracking cookies created on behalf of the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired will be marked as <i>secure</i> even if the request
-     * that initiated the corresponding session is using plain HTTP
-     * instead of HTTPS, and false if they will be marked as <i>secure</i>
-     * only if the request that initiated the corresponding session was
-     * also secure
+     * application represented by the <tt>ServletContext</tt> from which
+     * this <tt>SessionCookieConfig</tt> was acquired will be marked as
+     * <i>secure</i> even if the request that initiated the corresponding
+     * session is using plain HTTP instead of HTTPS, and false if they will
+     * be marked as <i>secure</i> only if the request that initiated the
+     * corresponding session was also secure
      *
      * @see javax.servlet.http.Cookie#getSecure()
      * @see ServletRequest#isSecure()
@@ -270,12 +281,14 @@ public interface SessionCookieConfig {
 
     /**
      * Sets the lifetime (in seconds) for the session tracking cookies
-     * created on behalf of the <tt>ServletContext</tt> from which this
-     * <tt>SessionCookieConfig</tt> was acquired.
+     * created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * @param maxAge the lifetime (in seconds) of the session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from which
-     * this <tt>SessionCookieConfig</tt> was acquired.
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * @throws IllegalStateException if the <tt>ServletContext</tt>
      * from which this <tt>SessionCookieConfig</tt> was acquired has
@@ -288,15 +301,16 @@ public interface SessionCookieConfig {
 
     /**
      * Gets the lifetime (in seconds) of the session tracking cookies
-     * created on behalf of the <tt>ServletContext</tt> from which this
-     * <tt>SessionCookieConfig</tt> was acquired.
+     * created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired.
      *
      * <p>By default, <tt>-1</tt> is returned.
      *
      * @return the lifetime (in seconds) of the session tracking
-     * cookies created on behalf of the <tt>ServletContext</tt> from which
-     * this <tt>SessionCookieConfig</tt> was acquired, or <tt>-1</tt> (the
-     * default)
+     * cookies created on behalf of the application represented by the
+     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
+     * was acquired, or <tt>-1</tt> (the default)
      *
      * @see javax.servlet.http.Cookie#getMaxAge
      */
