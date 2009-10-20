@@ -148,6 +148,10 @@ public interface SessionCookieConfig {
      * cookies created on behalf of the <tt>ServletContext</tt> from
      * which this <tt>SessionCookieConfig</tt> was acquired.
      *
+     * <p>As a side effect of this call, the session tracking cookies
+     * will be marked with a <code>Version</code> attribute equal to
+     * <code>1</code>.
+     * 
      * @param comment the cookie comment to use
      *
      * @throws IllegalStateException if the <tt>ServletContext</tt>
@@ -155,6 +159,7 @@ public interface SessionCookieConfig {
      * already been initialized
      *
      * @see javax.servlet.http.Cookie#setComment(String)
+     * @see javax.servlet.http.Cookie#getVersion
      */
     public void setComment(String comment);
 
