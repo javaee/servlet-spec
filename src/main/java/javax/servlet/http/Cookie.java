@@ -56,6 +56,7 @@
 
 package javax.servlet.http;
 
+import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
@@ -97,12 +98,9 @@ import java.util.ResourceBundle;
  * @author	Various
  */
 
-// XXX would implement java.io.Serializable too, but can't do that
-// so long as sun.servlet.* must run on older JDK 1.02 JVMs which
-// don't include that support.
+public class Cookie implements Cloneable, Serializable {
 
-public class Cookie implements Cloneable {
-
+    private static final long serialVersionUID = -6454587001725327448L;
     private static final String LSTRING_FILE =
 	"javax.servlet.http.LocalStrings";
     private static ResourceBundle lStrings =
@@ -162,7 +160,11 @@ public class Cookie implements Cloneable {
      */
 
     public Cookie(String name, String value) {
-	if (!isToken(name)
+        if (name == null || name.length() == 0) {
+            throw new IllegalArgumentException(
+                    lStrings.getString("err.cookie_name_blank"));
+        }
+        if (!isToken(name)
 		|| name.equalsIgnoreCase("Comment")	// rfc2019
 		|| name.equalsIgnoreCase("Discard")	// 2019++
 		|| name.equalsIgnoreCase("Domain")
@@ -519,15 +521,7 @@ public class Cookie implements Cloneable {
 	version = v;
     }
 
-    // Note -- disabled for now to allow full Netscape compatibility
-    // from RFC 2068, token special case characters
-    // 
-    // private static final String tspecials = "()<>@,;:\\\"/[]?={} \t";
-
-    private static final String tspecials = ",; ";
-    
-    
-    
+    private static final String tspecials = "/()<>@,;:\\\"[]?={} \t";
 
     /*
      * Tests a string and returns true if the string counts as a 
