@@ -125,46 +125,47 @@ public interface ServletRegistration extends Registration {
 
         /**
          * Sets the {@link ServletSecurityElement} to be applied to the
-         * mappings currently assigned to this
-         * <code>ServletRegistration</code>.
+         * mappings defined for this <code>ServletRegistration</code>.
          *
-         * <p>Any mappings added to this ServletRegistration after a call
-         * to this method may be secured by a subsequent call to this method.
-         *
-         * <p>If a url-pattern of this ServletRegistration is an exact
-         * target of a <code>security-constraint</code> that was established
-         * via the portable deployment descriptor, then this method does not
-         * change the <code>security-constraint</code> for that pattern, and
-         * the pattern will be included in the return value.
-         *
-         * <p>If a url-pattern of this ServletRegistration is an exact target
-         * of a security constraint that was established via the
-         * {@link javax.servlet.annotation.ServletSecurity} annotation or a
-         * previous call to this method, then this method replaces the
-         * security constraint for that pattern.
+         * <p>This method applies to all mappings added to this
+         * <code>ServletRegistration</code> up until the point that the
+         * <code>ServletContext</code> from which it was obtained has been
+         * initialized.
          * 
-         * <p>If a url-pattern of this ServletRegistration is neither the
-         * exact target of a security constraint that was established via the
-         * {@link javax.servlet.annotation.ServletSecurity} annotation or
-         * a previous call to this method, nor the exact target of a
-         * </code>security-constraint</code> in the portable deployment
-         * descriptor, then this method establishes the security
-         * constraint for that pattern from the argument
-         * ServletSecurityElement.
+         * <p>If a URL pattern of this ServletRegistration is an exact target
+         * of a <code>security-constraint</code> that was established via
+         * the portable deployment descriptor, then this method does not
+         * change the <code>security-constraint</code> for that pattern,
+         * and the pattern will be included in the return value.
+         * 
+         * <p>If a URL pattern of this ServletRegistration is an exact
+         * target of a security constraint that was established via the
+         * {@link javax.servlet.annotation.ServletSecurity} annotation
+	 * or a previous call to this method, then this method replaces
+         * the security constraint for that pattern.
+         * 
+         * <p>If a URL pattern of this ServletRegistration is neither the
+         * exact target of a security constraint that was established via
+         * the {@link javax.servlet.annotation.ServletSecurity} annotation
+         * or a previous call to this method, nor the exact target of a
+         * <code>security-constraint</code> in the portable deployment
+         * descriptor, then this method establishes the security constraint
+         * for that pattern from the argument
+         * <code>ServletSecurityElement</code>.
          * 
          * @param constraint the {@link ServletSecurityElement} to be applied
-         * to the patterns currently mapped to this ServletRegistration
+	 * to the patterns mapped to this ServletRegistration
          * 
          * @return the (possibly empty) Set of URL patterns that were already
          * the exact target of a <code>security-constraint</code> that was
          * established via the portable deployment descriptor. This method
-         * has no effect on the patterns included in the returned set.
+         * has no effect on the patterns included in the returned set
          * 
          * @throws IllegalArgumentException if <tt>constraint</tt> is null
          * 
          * @throws IllegalStateException if the {@link ServletContext} from
-         * which this ServletRegistration was obtained has already been
-         * initialized
+         * which this <code>ServletRegistration</code> was obtained has
+         * already been initialized 
          */
         public Set<String> setServletSecurity(ServletSecurityElement constraint);
 
