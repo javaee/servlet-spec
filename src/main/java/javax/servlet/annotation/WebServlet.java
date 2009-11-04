@@ -108,4 +108,9 @@ public @interface WebServlet {
      */
     String description() default "";
 
+    /**
+     *      * The display name of the filter
+     */
+    String displayName() default "";
+
 }
