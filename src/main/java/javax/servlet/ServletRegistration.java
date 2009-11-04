@@ -102,9 +102,9 @@ public interface ServletRegistration extends Registration {
          *
          * <p>A <tt>loadOnStartup</tt> value of greater than or equal to
          * zero indicates to the container the initialization priority of
-	 * the Servlet. In this case, the container must instantiate and
+         * the Servlet. In this case, the container must instantiate and
          * initialize the Servlet during the initialization phase of the
-	 * ServletContext, that is, after it has invoked all of the
+         * ServletContext, that is, after it has invoked all of the
          * ServletContextListener objects configured for the ServletContext
          * at their {@link ServletContextListener#contextInitialized}
          * method.
@@ -141,7 +141,7 @@ public interface ServletRegistration extends Registration {
          * <p>If a URL pattern of this ServletRegistration is an exact
          * target of a security constraint that was established via the
          * {@link javax.servlet.annotation.ServletSecurity} annotation
-	 * or a previous call to this method, then this method replaces
+         * or a previous call to this method, then this method replaces
          * the security constraint for that pattern.
          * 
          * <p>If a URL pattern of this ServletRegistration is neither the
@@ -154,7 +154,7 @@ public interface ServletRegistration extends Registration {
          * <code>ServletSecurityElement</code>.
          * 
          * @param constraint the {@link ServletSecurityElement} to be applied
-	 * to the patterns mapped to this ServletRegistration
+         * to the patterns mapped to this ServletRegistration
          * 
          * @return the (possibly empty) Set of URL patterns that were already
          * the exact target of a <code>security-constraint</code> that was
@@ -176,7 +176,7 @@ public interface ServletRegistration extends Registration {
          * effects of the former.
          *
          * @param multipartConfig the {@link MultipartConfigElement} to be
-	 * applied to the patterns mapped to the registration
+         * applied to the patterns mapped to the registration
          *
          * @throws IllegalArgumentException if <tt>multipartConfig</tt> is
          * null
