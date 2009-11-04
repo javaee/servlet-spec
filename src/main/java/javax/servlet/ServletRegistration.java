@@ -189,10 +189,10 @@ public interface ServletRegistration extends Registration {
             MultipartConfigElement multipartConfig);
 
         /**
-         * Sets the name of the runAs role for the
+         * Sets the name of the <code>runAs</code> role for this
          * <code>ServletRegistration</code>.
          *
-         * @param roleName
+         * @param roleName the name of the <code>runAs</code> role
          *
          * @throws IllegalArgumentException if <tt>roleName</tt> is null
          *
