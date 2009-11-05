@@ -421,8 +421,8 @@ public interface AsyncContext {
      *
      * <p>This method supports resource injection if the given
      * <tt>clazz</tt> represents a Managed Bean.
-     * See the class description of {@link ServletContext} for the list
-     * of annotations associated with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
 
      * <p>This method supports any annotations applicable to AsyncListener.
      *

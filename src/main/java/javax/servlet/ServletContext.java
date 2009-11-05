@@ -85,24 +85,6 @@ import javax.servlet.descriptor.JspConfigDescriptor;
  * the {@link ServletConfig} object, which the Web server provides the
  * servlet when the servlet is initialized.
  *
- * <p>The various Servlet, Filter, and listener creation and dynamic 
- * registration methods defined by this class support resource injection
- * if the Servlet, Filter, or listener that they instantiate represents a
- * Managed Bean.
- * Resource injecton is provided via the
- * <tt>javax.inject.Inject</tt>, <tt>javax.annotation.Resource</tt>,
- * <tt>javax.annotation.Resources</tt>, <tt>javax.xml.ws.WebServiceRef</tt>,
- * <tt>javax.xml.ws.WebServiceRefs</tt>, <tt>javax.ejb.EJB</tt>,
- * <tt>javax.ejb.EJBs</tt>, <tt>javax.persistence.PersistenceContext</tt>,
- * <tt>javax.persistence.PersistenceContexts</tt>,
- * <tt>javax.persistence.PersistenceUnit</tt>, and
- * <tt>javax.persistence.PersistenceUnits</tt>
- * resource reference annotations, and the
- * <tt>javax.annotation.PostConstruct</tt> and
- * <tt>javax.annotation.PreDestroy</tt> lifecycle annotations. 
- * See the Java EE platform and JSR 299 specifications for additional
- * details about Managed Beans and resource injection.
- *
  * @author 	Various
  *
  * @see 	Servlet#getServletConfig
@@ -773,8 +755,8 @@ public interface ServletContext {
      * <tt>javax.annotation.security.DeclareRoles</tt> annotations.
      * In addition, this method supports resource injection if the
      * class with the given <tt>className</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param servletName the name of the servlet
      * @param className the fully qualified class name of the servlet
@@ -858,8 +840,8 @@ public interface ServletContext {
      * <tt>javax.annotation.security.DeclareRoles</tt> annotations.
      * In addition, this method supports resource injection if the
      * given <tt>servletClass</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param servletName the name of the servlet
      * @param servletClass the class object from which the servlet will be
@@ -903,8 +885,8 @@ public interface ServletContext {
      * <tt>javax.annotation.security.DeclareRoles</tt>.
      * In addition, this method supports resource injection if the
      * given <tt>clazz</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param clazz the Servlet class to instantiate
      *
@@ -989,8 +971,8 @@ public interface ServletContext {
      *
      * <p>This method supports resource injection if the class with the
      * given <tt>className</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param filterName the name of the filter
      * @param className the fully qualified class name of the filter
@@ -1066,8 +1048,8 @@ public interface ServletContext {
      *
      * <p>This method supports resource injection if the given
      * <tt>filterClass</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param filterName the name of the filter
      * @param filterClass the class object from which the filter will be
@@ -1105,8 +1087,8 @@ public interface ServletContext {
      *
      * <p>This method supports resource injection if the given
      * <tt>clazz</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param clazz the Filter class to instantiate
      *
@@ -1305,8 +1287,8 @@ public interface ServletContext {
      *
      * <p>This method supports resource injection if the class with the
      * given <tt>className</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param className the fully qualified class name of the listener
      *
@@ -1405,8 +1387,8 @@ public interface ServletContext {
      *
      * <p>This method supports resource injection if the given
      * <tt>listenerClass</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param listenerClass the listener class to be instantiated
      *
@@ -1450,8 +1432,8 @@ public interface ServletContext {
      *
      * <p>This method supports resource injection if the given
      * <tt>clazz</tt> represents a Managed Bean.
-     * See the class description for the list of annotations associated
-     * with resource injection.
+     * See the Java EE platform and JSR 299 specifications for additional
+     * details about Managed Beans and resource injection.
      *
      * @param clazz the EventListener class to instantiate
      *
