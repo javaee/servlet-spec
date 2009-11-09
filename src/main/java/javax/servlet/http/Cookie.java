@@ -130,10 +130,8 @@ public class Cookie implements Cloneable, Serializable {
     /**
      * Constructs a cookie with the specified name and value.
      *
-     * <p>The name must conform to RFC 2109. That means it can contain 
-     * only ASCII alphanumeric characters and cannot contain commas, 
-     * semicolons, or white space or begin with a $ character. The cookie's
-     * name cannot be changed after creation.
+     * <p>The name must conform to RFC 2109 and cannot be changed after the
+     * cookie has been created.
      *
      * <p>The value can be anything the server chooses to send. Its
      * value is probably of interest only to the server. The cookie's
