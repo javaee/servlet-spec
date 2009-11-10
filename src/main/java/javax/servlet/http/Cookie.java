@@ -98,14 +98,23 @@ public class Cookie implements Cloneable, Serializable {
 
     private static final long serialVersionUID = -6454587001725327448L;
 
-    // private static final String tspecials = "/()<>@,;:\\\"[]?={} \t";
-    private static final String tspecials = ",; ";
+    private static final String TSPECIALS;
 
     private static final String LSTRING_FILE =
         "javax.servlet.http.LocalStrings";
 
     private static ResourceBundle lStrings =
         ResourceBundle.getBundle(LSTRING_FILE);
+
+    static {
+        if (Boolean.valueOf(System.getProperty(
+                "org.glassfish.web.rfc2109_cookie_names_enforced",
+                "true")).booleanValue()) {
+            TSPECIALS = "/()<>@,;:\\\"[]?={} \t";
+        } else {
+            TSPECIALS = ",; ";
+        }
+    }
     
     //
     // The value of the cookie itself.
@@ -130,8 +139,12 @@ public class Cookie implements Cloneable, Serializable {
     /**
      * Constructs a cookie with the specified name and value.
      *
-     * <p>The name must conform to RFC 2109 and cannot be changed after the
-     * cookie has been created.
+     * <p>The name must conform to RFC 2109. However, vendors may
+     * provide a configuration option that allows cookie names conforming
+     * to the original Netscape Cookie Specification to be accepted.
+     *
+     * <p>The name of a cookie cannot be changed once the cookie has
+     * been created.
      *
      * <p>The value can be anything the server chooses to send. Its
      * value is probably of interest only to the server. The cookie's
@@ -435,7 +448,7 @@ public class Cookie implements Cloneable, Serializable {
         int len = value.length();
         for (int i = 0; i < len; i++) {
             char c = value.charAt(i);
-            if (c < 0x20 || c >= 0x7f || tspecials.indexOf(c) != -1) {
+            if (c < 0x20 || c >= 0x7f || TSPECIALS.indexOf(c) != -1) {
                 return false;
             }
         }
