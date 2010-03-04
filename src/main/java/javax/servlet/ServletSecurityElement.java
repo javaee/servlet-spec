@@ -56,7 +56,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      */
     public ServletSecurityElement() {
         methodConstraints = new HashSet<HttpMethodConstraintElement>();
-        methodNames = new HashSet<String>();
+        methodNames = Collections.emptySet();
     }
 
     /**
@@ -72,7 +72,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
                 constraint.getTransportGuarantee(),
                 constraint.getRolesAllowed());
         methodConstraints = new HashSet<HttpMethodConstraintElement>();
-        methodNames = new HashSet<String>();
+        methodNames = Collections.emptySet();
     }
 
     /**
@@ -150,7 +150,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * objects
      */
     public Collection<HttpMethodConstraintElement> getHttpMethodConstraints() {
-        return methodConstraints;
+        return Collections.unmodifiableCollection(methodConstraints);
     }
 
     /**
@@ -159,7 +159,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * @return the set of String method names
      */
     public Collection<String> getMethodNames() {
-        return methodNames;
+        return Collections.unmodifiableCollection(methodNames);
     }
 
     /**
@@ -178,11 +178,10 @@ public class ServletSecurityElement extends HttpConstraintElement {
         for (HttpMethodConstraintElement methodConstraint :
                         methodConstraints) {
             String methodName = methodConstraint.getMethodName();
-            if (methodNames.contains(methodName)) {
+            if (!methodNames.add(methodName)) {
                 throw new IllegalArgumentException(
                     "Duplicate HTTP method name: " + methodName);
             }
-            methodNames.add(methodName);
         }
         return methodNames;
     }
