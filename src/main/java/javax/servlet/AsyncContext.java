@@ -181,6 +181,10 @@ public interface AsyncContext {
      * <p>This method returns immediately after passing the request
      * and response objects to a container managed thread, on which the
      * dispatch operation will be performed.
+     * If this method is called before the container-initiated dispatch
+     * that called <tt>startAsync</tt> has returned to the container, the
+     * dispatch operation will be delayed until after the container-initiated
+     * dispatch has returned to the container.
      *
      * <p>The dispatcher type of the request is set to
      * <tt>DispatcherType.ASYNC</tt>. Unlike
