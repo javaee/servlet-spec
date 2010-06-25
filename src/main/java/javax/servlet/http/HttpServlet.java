@@ -655,31 +655,31 @@ public abstract class HttpServlet extends GenericServlet
      */
 
     protected void doTrace(HttpServletRequest req, HttpServletResponse resp) 
-	throws ServletException, IOException
+        throws ServletException, IOException
     {
 	
-	int responseLength;
-	
-	String CRLF = "\r\n";
-	String responseString = "TRACE "+ req.getRequestURI()+
-	    " " + req.getProtocol();
-	
-	Enumeration<String> reqHeaderEnum = req.getHeaderNames();
-	
-	while( reqHeaderEnum.hasMoreElements() ) {
-	    String headerName = reqHeaderEnum.nextElement();
-	    responseString += CRLF + headerName + ": " +
-		req.getHeader(headerName); 
-	}
-	
-	responseString += CRLF;
-	
-	responseLength = responseString.length();
-	
-	resp.setContentType("message/http");
-	resp.setContentLength(responseLength);
-	ServletOutputStream out = resp.getOutputStream();
-	out.print(responseString);	
+        int responseLength;
+
+        String CRLF = "\r\n";
+        StringBuilder buffer = new StringBuilder("TRACE ").append(req.getRequestURI())
+            .append(" ").append(req.getProtocol());
+
+        Enumeration<String> reqHeaderEnum = req.getHeaderNames();
+
+        while( reqHeaderEnum.hasMoreElements() ) {
+            String headerName = reqHeaderEnum.nextElement();
+            buffer.append(CRLF).append(headerName).append(": ")
+                .append(req.getHeader(headerName));
+        }
+
+        buffer.append(CRLF);
+
+        responseLength = buffer.length();
+
+        resp.setContentType("message/http");
+        resp.setContentLength(responseLength);
+        ServletOutputStream out = resp.getOutputStream();
+        out.print(buffer.toString());	
     }		
 
 
