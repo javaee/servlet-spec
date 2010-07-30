@@ -56,6 +56,7 @@ package javax.servlet.http;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -237,7 +238,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getDomain
      */
     public void setDomain(String domain) {
-        this.domain = domain.toLowerCase(); // IE allegedly needs this
+        this.domain = domain.toLowerCase(Locale.ENGLISH); // IE allegedly needs this
     }
 
     /**
