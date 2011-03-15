@@ -1381,7 +1381,7 @@ public interface ServletContext {
      * {@link ServletContextListener}, in addition to the interfaces listed
      * above.
      *
-     * <p>If the given <tt>listenerClass</tt<> implements a listener
+     * <p>If the given <tt>listenerClass</tt> implements a listener
      * interface whose invocation order corresponds to the declaration order
      * (i.e., if it implements {@link ServletRequestListener},
      * {@link ServletContextListener}, or
