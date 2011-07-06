@@ -759,12 +759,14 @@ public abstract class HttpServlet extends GenericServlet
         HttpServletRequest  request;
         HttpServletResponse response;
         
-        try {
-            request = (HttpServletRequest) req;
-            response = (HttpServletResponse) res;
-        } catch (ClassCastException e) {
+        if (!(req instanceof HttpServletRequest &&
+                res instanceof HttpServletResponse)) {
             throw new ServletException("non-HTTP request or response");
         }
+
+        request = (HttpServletRequest) req;
+        response = (HttpServletResponse) res;
+
         service(request, response);
     }
 }
