@@ -42,28 +42,32 @@
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <groupId>org.glassfish</groupId>
-        <artifactId>api-pom</artifactId>    
-        <version>3.2-SNAPSHOT</version>
-        <relativePath>../../javaee-api/api-pom/pom.xml</relativePath>
-    </parent>   
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>javax.servlet</artifactId>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
+    <version>3.0.1-SNAPSHOT</version>
+
     <properties>
         <extension.name>javax.servlet</extension.name>
+        <bundle.symbolicName>javax.servlet-api</bundle.symbolicName>
+        <spec.title>Java(TM) Servlet API Design Specification</spec.title>
         <spec.version>3.0</spec.version>
+        <vendor.name>Oracle</vendor.name>
+        <findbugs.version>2.3.1</findbugs.version>
+        <findbugs.exclude/>
+        <findbugs.threshold>High</findbugs.threshold>
     </properties>
-    <name>${extension.name} API v.${spec.version}</name>
-    <url>http://jcp.org/en/jsr/detail?id=315</url>
+    <name>Java Servlet API</name>
+    
+    <url>http://servlet-spec.java.net</url>
 
     <developers>
         <developer>
             <id>mode</id>
             <name>Rajiv Mordani</name>
             <url>http://weblogs.java.net/blog/mode</url>
-            <organization>Oracle, Inc.</organization>
+            <organization>Oracle</organization>
             <roles>
                 <role>lead</role>
             </roles>
@@ -80,8 +84,114 @@
         </developer>
     </developers>
 
+    <organization>
+        <name>GlassFish Community</name>
+        <url>https://glassfish.dev.java.net</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>CDDL + GPLv2 with classpath exception</name>
+            <url>https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <issueManagement>
+        <system>jira</system>
+        <url>http://java.net/jira/browse/SERVLET_SPEC</url>
+    </issueManagement>
+    <mailingLists>
+        <mailingList>
+            <name>Servlet Developer</name>
+            <archive>users@servlet-spec.java.net</archive>
+        </mailingList>
+    </mailingLists>
+
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <compilerArgument>-Xlint:unchecked</compilerArgument>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>1.4.3</version>
+                <configuration>
+                    <supportedProjectTypes>
+                        <supportedProjectType>jar</supportedProjectType>
+                    </supportedProjectTypes>
+                    <instructions>
+                        <Export-Package>${extension.name}.*; version=${spec.version}</Export-Package>
+                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <_include>-osgi.bundle</_include>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+             </plugin>
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <!-- Use the manifest.mf produced by maven-bundle-plugin:manifest -->
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                        <manifestEntries>
+                            <Extension-Name>${extension.name}</Extension-Name>
+                            <Specification-Title>${spec.title}</Specification-Title>
+                            <Specification-Version>${spec.version}</Specification-Version>
+                            <Specification-Vendor>${vendor.name}</Specification-Vendor>
+                            <!--Implementation-Title>${implementationTitle}</Implementation-Title-->
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                            <Implementation-Vendor-Id>org.glassfish</Implementation-Vendor-Id>
+                        </manifestEntries>
+                    </archive>
+                </configuration>    
+            </plugin>
+            <plugin>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <goals>
+                      <goal>process</goal>
+                    </goals>
+                    <configuration>
+                      <resourceBundles>
+                        <resourceBundle>org.glassfish:legal:1.1</resourceBundle>
+                      </resourceBundles>
+                    </configuration>
+                  </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <includePom>true</includePom>
+                </configuration>
+                <executions>
+                    <execution>
+                       <id>attach-sources</id>
+                       <goals>
+                           <goal>jar-no-fork</goal> 
+                       </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -104,10 +214,14 @@
                 </executions>
             </plugin>     
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs.version}</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <threshold>${findbugs.threshold}</threshold>
+                    <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>
+                    <findbugsXmlOutput>true</findbugsXmlOutput>
+                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
                 </configuration>
             </plugin>
         </plugins>
@@ -127,4 +241,17 @@
             </resource>
         </resources>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs.version}</version>
+                <configuration>
+                    <threshold>${findbugs.threshold}</threshold>
+                    <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
