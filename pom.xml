@@ -53,7 +53,7 @@
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.2-SNAPSHOT</version>
+    <version>3.0.1-SNAPSHOT</version>
 
     <properties>
         <extension.name>javax.servlet</extension.name>
@@ -62,7 +62,7 @@
         <spec.version>3.0</spec.version>
         <vendor.name>Oracle</vendor.name>
         <findbugs.version>2.3.1</findbugs.version>
-        <findbugs.exclude />
+        <findbugs.exclude/>
         <findbugs.threshold>High</findbugs.threshold>
     </properties>
     <name>Java Servlet API</name>
