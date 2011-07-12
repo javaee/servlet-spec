@@ -43,6 +43,13 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.java</groupId>
+        <artifactId>jvnet-parent</artifactId>
+        <version>1</version>
+    </parent>
+
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
@@ -162,7 +169,9 @@
                 </configuration>    
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-remote-resources-plugin</artifactId>
+                <version>1.2.1</version>
                 <executions>
                   <execution>
                     <goals>
@@ -254,4 +263,19 @@
             </plugin>
         </plugins>
     </reporting>
+    <!-- for downloading org.glassfish:legal:1.1 resource bundle      -->
+    <!-- referenced in maven-remote-resources-plugin.  Will           -->
+    <!-- remove the repositories element once org.glassfish:legal:1.1 -->
+    <!-- is available in the central repo.                                      -->
+    <repositories>
+        <repository>
+            <id>glassfish-repository</id>
+            <url>http://download.java.net/maven/glassfish</url>
+            <snapshots>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
 </project>
