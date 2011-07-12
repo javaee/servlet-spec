@@ -113,6 +113,11 @@
             <archive>users@servlet-spec.java.net</archive>
         </mailingList>
     </mailingLists>
+    <scm>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</developerConnection>
+        <url>https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</url>
+    </scm>
 
     <build>
         <plugins>
