@@ -65,6 +65,9 @@ package javax.servlet;
  * @since Servlet 2.4
  */
 public class ServletRequestEvent extends java.util.EventObject { 
+
+    private static final long serialVersionUID = -7467864054698729101L;
+
     private final transient ServletRequest request;
 
     /** Construct a ServletRequestEvent for the given ServletContext
