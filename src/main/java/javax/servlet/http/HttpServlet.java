@@ -467,27 +467,29 @@ public abstract class HttpServlet extends GenericServlet
     }
     
 
-    private Method[] getAllDeclaredMethods(Class<?> c) {
+    private Method[] getAllDeclaredMethods(Class<? extends HttpServlet> c) {
 
-        if (c.equals(javax.servlet.http.HttpServlet.class)) {
-            return null;
+        Class<?> clazz = c;
+        Method[] allMethods = null;
+
+        while (!clazz.equals(HttpServlet.class)) {
+            Method[] thisMethods = clazz.getDeclaredMethods();
+            if (allMethods != null && allMethods.length > 0) {
+                Method[] subClassMethods = allMethods;
+                allMethods =
+                    new Method[thisMethods.length + subClassMethods.length];
+                System.arraycopy(thisMethods, 0, allMethods, 0,
+                                 thisMethods.length);
+                System.arraycopy(subClassMethods, 0, allMethods, thisMethods.length,
+                                 subClassMethods.length);
+            } else {
+                allMethods = thisMethods;
+            }
+
+            clazz = clazz.getSuperclass();
         }
 
-        Method[] parentMethods = getAllDeclaredMethods(c.getSuperclass());
-        Method[] thisMethods = c.getDeclaredMethods();
-        
-        if ((parentMethods != null) && (parentMethods.length > 0)) {
-            Method[] allMethods =
-                new Method[parentMethods.length + thisMethods.length];
-            System.arraycopy(parentMethods, 0, allMethods, 0,
-                             parentMethods.length);
-            System.arraycopy(thisMethods, 0, allMethods, parentMethods.length,
-                             thisMethods.length);
-
-            thisMethods = allMethods;
-        }
-
-        return thisMethods;
+        return ((allMethods != null) ? allMethods : new Method[0]);
     }
 
 
