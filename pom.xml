@@ -62,8 +62,8 @@
         <spec.version>3.0</spec.version>
         <vendor.name>Oracle</vendor.name>
         <findbugs.version>2.3.1</findbugs.version>
-        <findbugs.exclude />
-        <findbugs.threshold>High</findbugs.threshold>
+        <findbugs.exclude>exclude.xml</findbugs.exclude>
+        <findbugs.threshold>Low</findbugs.threshold>
     </properties>
     <name>Java Servlet API</name>
     
