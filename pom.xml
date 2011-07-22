@@ -138,7 +138,6 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Export-Package>${extension.name}.*; version=${spec.version}</Export-Package>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <_include>-osgi.bundle</_include>
                     </instructions>
