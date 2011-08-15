@@ -124,7 +124,6 @@ public abstract class ServletInputStream extends InputStream {
      * @exception IOException	if an input or output exception has occurred
      *
      */
-     
     public int readLine(byte[] b, int off, int len) throws IOException {
 
 	if (len <= 0) {

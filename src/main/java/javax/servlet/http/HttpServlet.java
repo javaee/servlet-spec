@@ -776,6 +776,7 @@ public abstract class HttpServlet extends GenericServlet
      * 
      * @see javax.servlet.Servlet#service
      */
+    @Override
     public void service(ServletRequest req, ServletResponse res)
         throws ServletException, IOException
     {
