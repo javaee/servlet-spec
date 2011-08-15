@@ -829,11 +829,13 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         }
     }
 
+    @Override
     public void setContentLength(int len) {
         super.setContentLength(len);
         didSetContentLength = true;
     }
 
+    @Override
     public ServletOutputStream getOutputStream() throws IOException {
 
         if (writer != null) {
@@ -845,6 +847,7 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         return noBody;
     }
 
+    @Override
     public PrintWriter getWriter() throws UnsupportedEncodingException {
 
         if (usingOutputStream) {
@@ -884,10 +887,12 @@ class NoBodyOutputStream extends ServletOutputStream {
         return contentLength;
     }
 
+    @Override
     public void write(int b) {
         contentLength++;
     }
 
+    @Override
     public void write(byte buf[], int offset, int len)
         throws IOException
     {
