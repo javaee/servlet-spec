@@ -644,6 +644,7 @@ public interface ServletRequest {
      * within the scope of the same dispatch, or if the response has
      * already been closed
      *
+     * @see AsyncContext#dispatch()
      * @since Servlet 3.0
      */
     public AsyncContext startAsync() throws IllegalStateException;
@@ -712,6 +713,7 @@ public interface ServletRequest {
      * within the scope of the same dispatch, or if the response has
      * already been closed
      *
+     * @see AsyncContext#dispatch()
      * @since Servlet 3.0
      */
     public AsyncContext startAsync(ServletRequest servletRequest,

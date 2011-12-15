@@ -165,16 +165,18 @@ public interface AsyncContext {
      * ...
      * ac.dispatch(); // ASYNC dispatch to /url/A
      * 
+     * // REQUEST to /ur/A
      * // FORWARD dispatch to /url/B
-     * getRequestDispatcher("/url/B").forward(request,response);
+     * request.getRequestDispatcher("/url/B").forward(request,response);
      * // Start async operation from within the target of the FORWARD
      * // dispatch
      * ac = request.startAsync();
      * ...
      * ac.dispatch(); // ASYNC dispatch to /url/A
      * 
+     * // REQUEST to /ur/A
      * // FORWARD dispatch to /url/B
-     * getRequestDispatcher("/url/B").forward(request,response);
+     * request.getRequestDispatcher("/url/B").forward(request,response);
      * // Start async operation from within the target of the FORWARD
      * // dispatch
      * ac = request.startAsync(request,response);
@@ -364,8 +366,9 @@ public interface AsyncContext {
      * {@link ServletRequest#startAsync} methods.
      *
      * <p>The given AsyncListener will receive an {@link AsyncEvent} when
-     * the asynchronous cycle completes successfully, times out, or results
-     * in an error.
+     * the asynchronous cycle completes successfully, times out, results
+     * in an error, or a new asynchronous cycle is being initiated via
+     * one of the {@link ServletRequest#startAsync} methods.
      *
      * <p>AsyncListener instances will be notified in the order in which
      * they were added.
@@ -386,8 +389,9 @@ public interface AsyncContext {
      * {@link ServletRequest#startAsync} methods.
      *
      * <p>The given AsyncListener will receive an {@link AsyncEvent} when
-     * the asynchronous cycle completes successfully, times out, or results
-     * in an error.
+     * the asynchronous cycle completes successfully, times out, results
+     * in an error, or a new asynchronous cycle is being initiated via
+     * one of the {@link ServletRequest#startAsync} methods.
      *
      * <p>AsyncListener instances will be notified in the order in which
      * they were added.
