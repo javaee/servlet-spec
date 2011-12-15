@@ -904,4 +904,8 @@ class NoBodyOutputStream extends ServletOutputStream {
             throw new IOException(lStrings.getString("err.io.negativelength"));
         }
     }
+
+    public boolean canWrite(int size) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

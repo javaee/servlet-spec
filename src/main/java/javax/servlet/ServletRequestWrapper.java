@@ -575,5 +575,17 @@ public class ServletRequestWrapper implements ServletRequest {
         return request.getDispatcherType();
     }
 
+    public ServletReader getServletReader() {
+        return this.request.getServletReader();
+    }
+
+    public ServletReader getNIOReader() {
+        return this.request.getServletReader();
+    }
+
+    public void addReadListener(ReadListener listener) {
+        this.request.addReadListener(listener);
+    }
+
 }
 

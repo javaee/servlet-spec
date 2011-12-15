@@ -81,7 +81,7 @@ import java.util.ResourceBundle;
  *
  */
 
-public abstract class ServletOutputStream extends OutputStream {
+public abstract class ServletOutputStream extends OutputStream implements AsyncIOOutputSink {
 
     private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
     private static ResourceBundle lStrings =

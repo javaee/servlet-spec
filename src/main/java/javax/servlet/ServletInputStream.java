@@ -84,7 +84,7 @@ import java.io.IOException;
  *
  */
 
-public abstract class ServletInputStream extends InputStream {
+public abstract class ServletInputStream extends InputStream implements AsyncIOInputSource {
 
 
 

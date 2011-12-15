@@ -249,6 +249,14 @@ public class ServletResponseWrapper implements ServletResponse {
 	return this.response.getLocale();
     }
 
+    public ServletWriter getServletWriter() {
+        return this.response.getServletWriter();
+    }
+
+    public void addWriteListener(WriteListener listener) {
+        this.response.addWriteListener(listener);
+    }
+
 
     /**
      * Checks (recursively) if this ServletResponseWrapper wraps the given
