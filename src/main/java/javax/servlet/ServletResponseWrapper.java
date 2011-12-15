@@ -295,7 +295,7 @@ public class ServletResponseWrapper implements ServletResponse {
      *
      * @since Servlet 3.0
      */
-    public boolean isWrapperFor(Class wrappedType) {
+    public boolean isWrapperFor(Class<?> wrappedType) {
         if (!ServletResponse.class.isAssignableFrom(wrappedType)) {
             throw new IllegalArgumentException("Given class " +
                 wrappedType.getName() + " not a subinterface of " +

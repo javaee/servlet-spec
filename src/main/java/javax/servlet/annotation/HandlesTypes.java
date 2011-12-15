@@ -70,5 +70,5 @@ public @interface HandlesTypes {
      * method of the ServletContainerInitializer (if no matching classes
      * are found, <tt>null</tt> must be passed instead)
      */
-    Class[] value();
+    Class<?>[] value();
 }
