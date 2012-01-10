@@ -110,6 +110,10 @@ public interface AsyncContext {
      * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
      *
      * @return the request that was used to initialize this AsyncContext
+     *
+     * @exception IllegalStateException  if {@link #complete} or any of the
+     *                                  {@link #dispatch} methods has been
+     *                                  called in the asynchronous cycle
      */
     public ServletRequest getRequest();
 
@@ -120,6 +124,10 @@ public interface AsyncContext {
      * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
      *
      * @return the response that was used to initialize this AsyncContext
+     *
+     * @exception IllegalStateException  if {@link #complete} or any of the
+     *                                  {@link #dispatch} methods has been
+     *                                  called in the asynchronous cycle
      */
     public ServletResponse getResponse();
 
