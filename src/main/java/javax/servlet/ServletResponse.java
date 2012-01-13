@@ -162,7 +162,8 @@ public interface ServletResponse {
      * <p> Calling flush() on the ServletOutputStream commits the response.
      
      * Either this method or {@link #getWriter} may 
-     * be called to write the body, not both.
+     * be called to write the body, not both, except when {@link #reset}
+     * has been called.
      *
      * @return				a {@link ServletOutputStream} for writing binary data	
      *
@@ -172,6 +173,7 @@ public interface ServletResponse {
      * @exception IOException 		if an input or output exception occurred
      *
      * @see 				#getWriter
+     * @see                 #reset
      *
      */
 
@@ -192,7 +194,8 @@ public interface ServletResponse {
      * <p>Calling flush() on the <code>PrintWriter</code>
      * commits the response.
      * <p>Either this method or {@link #getOutputStream} may be called
-     * to write the body, not both.
+     * to write the body, not both, except when {@link #reset}
+     * has been called.
      *
      * 
      * @return 		a <code>PrintWriter</code> object that 
@@ -212,6 +215,7 @@ public interface ServletResponse {
      *
      * @see 		#getOutputStream
      * @see 		#setCharacterEncoding
+     * @see         #reset
      *
      */
 
@@ -412,8 +416,15 @@ public interface ServletResponse {
     
 
     /**
-     * Clears any data that exists in the buffer as well as the status code and
-     * headers.  If the response has been committed, this method throws an 
+     * Clears any data that exists in the buffer as well as the status code,
+     * headers.  The state of calling {@link #getWriter} or
+     * {@link #getOutputStream} is also cleared.  It is legal, for instance,
+     * to call {@link #getWriter}, {@link #reset} and then
+     * {@link #getOutputStream}.  If {@link #getWriter} or
+     * {@link #getOutputStream} have been called before this method,
+     * then the corrresponding returned Writer or OutputStream will be
+     * staled and the behavior of using the stale object is undefined.
+     * If the response has been committed, this method throws an 
      * <code>IllegalStateException</code>.
      *
      * @exception IllegalStateException  if the response has already been
