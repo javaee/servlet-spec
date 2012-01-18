@@ -70,7 +70,7 @@ package javax.servlet.http;
  * <code>HttpSession.setAttribute</code> and unbinds the object
  * by a call to <code>HttpSession.removeAttribute</code>.
  *
- * @authorVarious
+ * @author Various
  * 
  * @see HttpSession
  * @see HttpSessionBindingListener
