@@ -232,6 +232,11 @@ public interface HttpServletResponse extends ServletResponse {
      * without a leading '/' the container interprets it as relative to
      * the current request URI. If the location is relative with a leading
      * '/' the container interprets it as relative to the servlet container root.
+     * If the location is relative with two leading '/' the container interprets
+     * it as a network-path reference (see
+     * <a href="http://www.ietf.org/rfc/rfc3986.txt">
+     * RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</a>, section 4.2
+     * &quot;Relative Reference&quot;).
      *
      * <p>If the response has already been committed, this method throws 
      * an IllegalStateException.
