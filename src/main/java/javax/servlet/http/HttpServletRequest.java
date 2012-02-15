@@ -114,10 +114,7 @@ public interface HttpServletRequest extends ServletRequest {
      *			not authenticated.     
      *
      */
-   
     public String getAuthType();
-    
-   
     
 
     /**
@@ -132,10 +129,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      *
      */
-
     public Cookie[] getCookies();
-    
-    
     
 
     /**
@@ -172,10 +166,7 @@ public interface HttpServletRequest extends ServletRequest {
      *							to a date
      *
      */
-
     public long getDateHeader(String name);
-    
-    
     
 
     /**
@@ -198,9 +189,7 @@ public interface HttpServletRequest extends ServletRequest {
      *				have a header of that name
      *
      */			
-
     public String getHeader(String name); 
-
 
 
     /**
@@ -230,13 +219,9 @@ public interface HttpServletRequest extends ServletRequest {
      *                  	header information, return null
      *
      */			
-
     public Enumeration<String> getHeaders(String name); 
     
     
-    
-    
-
     /**
      *
      * Returns an enumeration of all the header names
@@ -257,12 +242,9 @@ public interface HttpServletRequest extends ServletRequest {
      *				
      *
      */
-
     public Enumeration<String> getHeaderNames();
     
     
-    
-
     /**
      *
      * Returns the value of the specified request header
@@ -285,12 +267,9 @@ public interface HttpServletRequest extends ServletRequest {
      *							can't be converted
      *							to an <code>int</code>
      */
-
     public int getIntHeader(String name);
     
     
-    
-
     /**
      *
      * Returns the name of the HTTP method with which this 
@@ -303,12 +282,9 @@ public interface HttpServletRequest extends ServletRequest {
      *				this request was made
      *
      */
- 
     public String getMethod();
     
     
-    
-
     /**
      *
      * Returns any extra path information associated with
@@ -332,11 +308,8 @@ public interface HttpServletRequest extends ServletRequest {
      *			any extra path information
      *
      */
-     
     public String getPathInfo();
     
-
- 
 
     /**
      *
@@ -359,11 +332,8 @@ public interface HttpServletRequest extends ServletRequest {
      *
      *
      */
-
     public String getPathTranslated();
     
-
- 
 
     /**
      *
@@ -389,12 +359,9 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @see javax.servlet.ServletContext#getContextPath()
      */
-
     public String getContextPath();
     
     
-    
-
     /**
      *
      * Returns the query string that is contained in the request
@@ -408,10 +375,7 @@ public interface HttpServletRequest extends ServletRequest {
      *			decoded by the container.
      *
      */
-
     public String getQueryString();
-    
-    
     
 
     /**
@@ -428,12 +392,9 @@ public interface HttpServletRequest extends ServletRequest {
      *			if the user login is not known
      *
      */
-
     public String getRemoteUser();
     
     
-    
-
     /**
      *
      * Returns a boolean indicating whether the authenticated user is included
@@ -450,12 +411,9 @@ public interface HttpServletRequest extends ServletRequest {
      *			authenticated
      *
      */
-
     public boolean isUserInRole(String role);
     
     
-    
-
     /**
      *
      * Returns a <code>java.security.Principal</code> object containing
@@ -468,12 +426,9 @@ public interface HttpServletRequest extends ServletRequest {
      *			authenticated
      *
      */
-
     public java.security.Principal getUserPrincipal();
     
     
-    
-
     /**
      *
      * Returns the session ID specified by the client. This may
@@ -490,10 +445,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @see		#isRequestedSessionIdValid
      *
      */
-
     public String getRequestedSessionId();
-    
-    
     
     
     /**
@@ -524,9 +476,9 @@ public interface HttpServletRequest extends ServletRequest {
      * @see		HttpUtils#getRequestURL
      *
      */
-
     public String getRequestURI();
     
+
     /**
      *
      * Reconstructs the URL the client used to make the request.
@@ -574,12 +526,9 @@ public interface HttpServletRequest extends ServletRequest {
      *			using the "/*" pattern.
      *
      */
-
     public String getServletPath();
     
     
-    
-
     /**
      *
      * Returns the current <code>HttpSession</code>
@@ -615,12 +564,8 @@ public interface HttpServletRequest extends ServletRequest {
      *
      *
      */
-
     public HttpSession getSession(boolean create);
     
-    
-    
-   
 
     /**
      *
@@ -633,14 +578,9 @@ public interface HttpServletRequest extends ServletRequest {
      * @see	#getSession(boolean)
      *
      */
-
     public HttpSession getSession();
     
     
-    
-    
-    
-
     /**
      *
      * Checks whether the requested session ID is still valid.
@@ -658,12 +598,9 @@ public interface HttpServletRequest extends ServletRequest {
      * @see			HttpSessionContext
      *
      */
-
     public boolean isRequestedSessionIdValid();
     
     
-    
-
     /**
      *
      * Checks whether the requested session ID came in as a cookie.
@@ -676,12 +613,9 @@ public interface HttpServletRequest extends ServletRequest {
      * @see			#getSession
      *
      */ 
-
     public boolean isRequestedSessionIdFromCookie();
     
     
-    
-
     /**
      *
      * Checks whether the requested session ID came in as part of the 
@@ -695,11 +629,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @see			#getSession
      *
      */
-    
     public boolean isRequestedSessionIdFromURL();
-    
-    
-    
     
     
     /**
@@ -709,7 +639,6 @@ public interface HttpServletRequest extends ServletRequest {
      *				instead.
      *
      */
-
     public boolean isRequestedSessionIdFromUrl();
 
 
