@@ -786,7 +786,19 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public Part getPart(String name) throws IOException, ServletException;
     
+
+    /**
+     * Notifies the servlet container that the given ProtcolHandler
+     * would be used to upgrade the request.
+     *
+     * @param handler The <code>ProtocolHandler</code> used for the upgrade.
+     *
+     * @exception IOException if an I/O error occurred during the upgrade
+     *
+     * @see javax.servlet.http.ProtocolHandler
+     * @see javax.servlet.http.WebConnection
+     *
+     * @since Servlet 3.1
+     */
+    public void upgrade(ProtocolHandler handler) throws IOException;
 }
-
-
-

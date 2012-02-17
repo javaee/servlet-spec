@@ -375,4 +375,15 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
         return this._getHttpServletRequest().getPart(name); 
     
     }
+
+    /**
+     * Notifies the servlet container that the given ProtcolHandler
+     * would be used to upgrade the request.
+     *
+     * @since Servlet 3.1
+     */
+    @Override
+    public void upgrade(ProtocolHandler handler) throws IOException {
+        this._getHttpServletRequest().upgrade(handler);
+    }
 }
