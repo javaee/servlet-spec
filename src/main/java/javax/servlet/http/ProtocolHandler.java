@@ -50,8 +50,8 @@ package javax.servlet.http;
 
 public interface ProtocolHandler {
     /**
-     * Called by the servlet container to indicate that the upgrade has
-     * started.
+     * It is called once the HTTP Upgrade process has been completed and
+     * the upgraded connection is ready to start using the new protocol.
      *
      * @param wc the WebConnection object associated to this upgrade request
      */
