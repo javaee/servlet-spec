@@ -249,6 +249,17 @@ public interface ServletResponse {
     public void setContentLength(int len);
     
     /**
+     * Sets the length of the content body in the response
+     * In HTTP servlets, this method sets the HTTP Content-Length header.
+     *
+     * @param len a long specifying the length of the 
+     * content being returned to the client; sets the Content-Length header
+     *
+     * @since Servlet 3.1
+     */
+    public void setContentLengthLong(long len);
+
+    /**
      * Sets the content type of the response being sent to
      * the client, if the response has not been committed yet.
      * The given content type may include a character encoding
