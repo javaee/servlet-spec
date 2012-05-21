@@ -44,16 +44,12 @@ package javax.servlet;
 import java.util.EventListener;
 
 /**
- * @since Servlet 3.1
- */
-
-/**
  * <p>
  * This class represents a call-back mechanism that will notify implementations
- * as HTTP request data becomes available to read without blocking.
+ * as HTTP request data becomes available to be read without blocking.
  * </p>
  *
-
+ * @since Servlet 3.1
  */
 public interface ReadListener extends EventListener {
 
@@ -62,7 +58,7 @@ public interface ReadListener extends EventListener {
      * Invoked when data is available to be read without blocking.
      *
      */
-    public void onDataAvailable(ServletRequest request);
+    public void onDataAvailable();
 
     /**
      * <p>
@@ -71,7 +67,7 @@ public interface ReadListener extends EventListener {
      *
      */
 
-    public void onAllDataRead(ServletRequest request);
+    public void onAllDataRead();
 
     /**
      * <p>

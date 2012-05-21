@@ -84,7 +84,7 @@ import java.io.IOException;
  *
  */
 
-public abstract class ServletInputStream extends InputStream implements AsyncIOInputSource {
+public abstract class ServletInputStream extends InputStream {
 
 
 
@@ -140,6 +140,41 @@ public abstract class ServletInputStream extends InputStream implements AsyncIOI
 	}
 	return count > 0 ? count : -1;
     }
+
+
+    /**
+     * Returns true when all the data from the stream has been read else
+     * it returns false.
+     *
+     * @return <code>true</code> when all data for this particular request
+     *  has been read, otherwise returns <code>false</code>.
+     *
+     * @since Servlet 3.1
+     */
+    public abstract boolean isFinished();
+
+    /**
+     * Returns true if data can be read without blocking else returns
+     * false.
+     *
+     * @return <code>true</code> if data can be obtained without blocking,
+     *  otherwise returns <code>false</code>.
+     *
+     * @since Servlet 3.1
+     */
+    public abstract boolean isReady();
+
+    /**
+     * Instructs the <code>ServletInputStream</code> to invoke the provided
+     * {@link ReadListener} when it is possible to read
+     *
+     * @param readListener the {@link ReadListener} that should be notified
+     *  when it's possible to read.
+     *
+     * @since Servlet 3.1
+
+     */
+    public abstract void setReadListener(ReadListener readListener);
 }
 
 

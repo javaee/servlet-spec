@@ -81,7 +81,7 @@ import java.util.ResourceBundle;
  *
  */
 
-public abstract class ServletOutputStream extends OutputStream implements AsyncIOOutputSink {
+public abstract class ServletOutputStream extends OutputStream  {
 
     private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
     private static ResourceBundle lStrings =
@@ -402,4 +402,27 @@ public abstract class ServletOutputStream extends OutputStream implements AsyncI
         print(d);
         println();
     }
+
+    /**
+     * This method can be used to determine if data can be written without blocking.
+     *
+     * @return <code>true</code> if a write to this <code>ServletOutputStream</code>
+     *  will succeed, otherwise returns <code>false</code>.
+     *
+     *  @since Servlet 3.1
+     */
+    public abstract boolean canWrite();
+
+    /**
+     * Instructs the <code>NonBlockingOutputSink</code> to invoke the provided
+     * {@link WriteListener} when it is possible to write
+     *
+     *
+     * @param writeListener the {@link WriteListener} that should be notified
+     *  when it's possible to write.
+     *
+     * @since Servlet 3.1
+     */
+    public abstract void setWriteListener(WriteListener writeListener);
+
 }

@@ -185,7 +185,7 @@ public interface ServletResponse {
      * @return a <code>PrintWriter</code> object that 
      * can return character data to the client 
      *
-     * @exception UnsupportedEncodingException
+     * @exception java.io.UnsupportedEncodingException
      * if the character encoding returned
      * by <code>getCharacterEncoding</code> cannot be used
      *
@@ -313,10 +313,10 @@ public interface ServletResponse {
      * @exception IllegalStateException if this method is called after
      * content has been written
      *
-     * @see #getBufferSize
-     * @see #flushBuffer
-     * @see #isCommitted
-     * @see #reset
+     * @see 		#getBufferSize
+     * @see 		#flushBuffer
+     * @see 		#isCommitted
+     * @see 		#reset
      */
     public void setBufferSize(int size);
    
@@ -449,26 +449,6 @@ public interface ServletResponse {
      */
     public Locale getLocale();
 
-    /**
-     * Returns a <code>ServletWriter</code> object that
-     * can send character text to the client.
-     *
-     * @return a <code>ServletWriter</code> object that
-     * can return character data to the client
-     *
-     * @see #getOutputStream
-     *
-     */
-    public ServletWriter getServletWriter();
-
-    /**
-     * Instructs the <code>ServletResponse</code> to invoke the provided
-     * {@link WriteListener} when it is possible to write
-     *
-     * @param listener the {@link WriteListener} that should be notified
-     * when it's possible to write.
-     */
-    public void addWriteListener(WriteListener listener);
 }
 
 

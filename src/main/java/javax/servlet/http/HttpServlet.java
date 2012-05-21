@@ -68,11 +68,7 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 
 
 /**
@@ -905,7 +901,12 @@ class NoBodyOutputStream extends ServletOutputStream {
         }
     }
 
-    public boolean canWrite(int size) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+
+    public boolean canWrite() {
+        return false;
+    }
+
+    public void setWriteListener(WriteListener writeListener) {
+
     }
 }

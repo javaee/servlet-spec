@@ -160,7 +160,7 @@ public class ServletResponseWrapper implements ServletResponse {
     public void setContentLength(int len) {
 	this.response.setContentLength(len);
     }
-    
+
     /**
      * The default behavior of this method is to call setContentLengthLong(long len)
      * on the wrapped response object.
@@ -256,14 +256,6 @@ public class ServletResponseWrapper implements ServletResponse {
      */
     public Locale getLocale() {
 	return this.response.getLocale();
-    }
-
-    public ServletWriter getServletWriter() {
-        return this.response.getServletWriter();
-    }
-
-    public void addWriteListener(WriteListener listener) {
-        this.response.addWriteListener(listener);
     }
 
 

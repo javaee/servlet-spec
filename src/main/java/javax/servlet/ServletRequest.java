@@ -714,31 +714,5 @@ public interface ServletRequest {
      */
     public DispatcherType getDispatcherType();
 
-    /**
-     * Retrieves the body of the request as character data using
-     * a <code>BufferedReader</code>.  The reader translates the character
-     * data according to the character encoding used on the body.
-     * Either this method or {@link #getInputStream} may be called to read the
-     * body, not both.
-     *
-     * @return a <code>ServletReader</code> containing the body of the request
-     *
-     * @exception IllegalStateException if {@link #getInputStream} method
-     * has been called on this request
-     *
-     * @see #getInputStream
-     *
-     * @since Servlet 3.1
-     */
-    public ServletReader getServletReader();
-
-    /**
-     * Instructs the <code>ServletRequest</code> to invoke the provided
-     * {@link ReadListener} when it is possible to write
-     *
-     * @param listener the {@link ReadListener} that should be notified
-     * when it's possible to read.
-     */
-    public void addReadListener(ReadListener listener);
 }
 

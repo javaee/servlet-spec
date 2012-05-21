@@ -46,19 +46,15 @@ import java.util.EventListener;
 /**
  *
  * Callback notification mechanism that signals to the developer it's possible
- * to write content.
+ * to write content without blocking.
  *
  * @since Servlet 3.1
  */
 public interface WriteListener extends EventListener {
 
     /**
-     * This callback will be invoked when data can be written.
+     * This callback will be invoked when data can be written without blocking.
      *
-     *
-     * @throws Exception, {@link Exception} might be thrown by the custom
-     *  handler code. This exception will be delegated for processing to
-     *  {@link #onError(java.lang.Throwable)}.
      */
     public void onWritePossible(ServletResponse response);
 
@@ -69,8 +65,4 @@ public interface WriteListener extends EventListener {
      */
     public void onError(final Throwable t);
 
-    /**
-     * Get the ServletResponse associated
-     * @return
-     */
 }
