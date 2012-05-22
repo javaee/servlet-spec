@@ -56,20 +56,4 @@ public interface ProtocolHandler {
      * @param wc the WebConnection object associated to this upgrade request
      */
     public void init(WebConnection wc);
-
-    /**
-     * Called by the servlet container to indicate that input is available
-     * for processing in this upgrade request.
-     *
-     * @param wc the WebConnection object associated to this upgrade request
-     */
-    public void inputAvailable(WebConnection wc);
-
-    /**
-     * Called by the servlet container to indicate that output can be
-     * written for this upgrade request.
-     *
-     * @param wc the WebConnection object associated to this upgrade request
-     */
-    public void outputReady(WebConnection wc);
 }
