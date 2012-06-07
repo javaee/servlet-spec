@@ -414,7 +414,7 @@ public abstract class ServletOutputStream extends OutputStream  {
     public abstract boolean canWrite();
 
     /**
-     * Instructs the <code>NonBlockingOutputSink</code> to invoke the provided
+     * Instructs the <code>ServletOutputStream</code> to invoke the provided
      * {@link WriteListener} when it is possible to write
      *
      *

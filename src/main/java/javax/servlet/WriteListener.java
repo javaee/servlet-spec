@@ -56,7 +56,7 @@ public interface WriteListener extends EventListener {
      * This callback will be invoked when data can be written without blocking.
      *
      */
-    public void onWritePossible(ServletResponse response);
+    public void onWritePossible();
 
     /**
      * <p>
