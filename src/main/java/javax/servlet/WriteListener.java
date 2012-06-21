@@ -53,8 +53,10 @@ import java.util.EventListener;
 public interface WriteListener extends EventListener {
 
     /**
-     * This callback will be invoked when data can be written without blocking.
-     *
+     * ﻿When an instance of the WriteListener is registered with a {@link ServletOutputStream},
+     * this method will be invoked by the container if and only
+     * if {@link javax.servlet.ServletOutputStream#canWrite()} method
+     * has been called and has returned false.
      */
     public void onWritePossible();
 
