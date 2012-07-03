@@ -53,14 +53,15 @@
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.99-SNAPSHOT</version>
+    <version>3.1-b01-SNAPSHOT</version>
 
     <properties>
+        <spec.version>3.0.99</spec.version>
         <extension.name>javax.servlet</extension.name>
         <bundle.symbolicName>javax.servlet-api</bundle.symbolicName>
-        <spec.title>Java(TM) Servlet API Design Specification</spec.title>
-        <spec.version>3.0</spec.version>
-        <vendor.name>Oracle</vendor.name>
+        <bundle.version>3.0.99.b01</bundle.version>
+        <vendor.name>Oracle Corporation</vendor.name>
+        <implementation.vendor.id>org.glassfish</implementation.vendor.id>
         <findbugs.version>2.3.1</findbugs.version>
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
@@ -140,7 +141,16 @@
                     </supportedProjectTypes>
                     <instructions>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-                        <_include>-osgi.bundle</_include>
+                        <Bundle-Description>
+                            Java(TM) Servlet ${spec.version} API Design Specification
+                        </Bundle-Description>
+                        <Bundle-Version>${bundle.version}</Bundle-Version>
+                        <Extension-Name>${extension.name}</Extension-Name>
+                        <Specification-Version>${spec.version}</Specification-Version>
+                        <Specification-Vendor>${vendor.name}</Specification-Vendor>
+                        <Implementation-Version>${version}</Implementation-Version>
+                        <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                        <Implementation-Vendor-Id>${implementation.vendor.id}</Implementation-Vendor-Id>
                     </instructions>
                 </configuration>
                 <executions>
@@ -152,27 +162,19 @@
                         </goals>
                     </execution>
                 </executions>
-             </plugin>
-             <plugin>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
                     <archive>
-                        <!-- Use the manifest.mf produced by maven-bundle-plugin:manifest -->
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                        <manifestEntries>
-                            <Extension-Name>${extension.name}</Extension-Name>
-                            <Specification-Title>${spec.title}</Specification-Title>
-                            <Specification-Version>${spec.version}</Specification-Version>
-                            <Specification-Vendor>${vendor.name}</Specification-Vendor>
-                            <!--Implementation-Title>${implementationTitle}</Implementation-Title-->
-                            <Implementation-Version>${project.version}</Implementation-Version>
-                            <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-                            <Implementation-Vendor-Id>org.glassfish</Implementation-Vendor-Id>
-                        </manifestEntries>
                     </archive>
-                </configuration>    
+                    <excludes>
+                        <exclude>**/*.java</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
