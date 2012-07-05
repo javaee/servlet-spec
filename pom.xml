@@ -53,7 +53,7 @@
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
-    <version>3.1-b01</version>
+    <version>3.1-b01-SNAPSHOT</version>
 
     <properties>
         <spec.version>3.0.99</spec.version>
@@ -115,9 +115,9 @@
         </mailingList>
     </mailingLists>
     <scm>
-        <connection>scm:svn:svn+ssh://janey@svn.java.net/glassfish~svn/tags/javax.servlet-api-3.1-b01</connection>
-        <developerConnection>scm:svn:svn+ssh://janey@svn.java.net/glassfish~svn/tags/javax.servlet-api-3.1-b01</developerConnection>
-        <url>https://svn.java.net/svn/glassfish~svn/tags/javax.servlet-api-3.1-b01</url>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</developerConnection>
+        <url>http://java.net/projects/glassfish/sources/svn/show/trunk/api/javaee-api/javax.servlet</url>
     </scm>
 
     <build>
@@ -148,7 +148,7 @@
                         <Extension-Name>${extension.name}</Extension-Name>
                         <Specification-Version>${spec.version}</Specification-Version>
                         <Specification-Vendor>${vendor.name}</Specification-Vendor>
-                        <Implementation-Version>${version}</Implementation-Version>
+                        <Implementation-Version>${project.version}</Implementation-Version>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         <Implementation-Vendor-Id>${implementation.vendor.id}</Implementation-Vendor-Id>
                     </instructions>
