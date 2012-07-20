@@ -56,10 +56,10 @@
     <version>3.1-b02-SNAPSHOT</version>
 
     <properties>
-        <spec.version>3.0.99</spec.version>
+        <spec.version>3.0.99.02</spec.version>
         <extension.name>javax.servlet</extension.name>
         <bundle.symbolicName>javax.servlet-api</bundle.symbolicName>
-        <bundle.version>3.0.99.b01</bundle.version>
+        <bundle.version>3.0.99.b02</bundle.version>
         <vendor.name>Oracle Corporation</vendor.name>
         <implementation.vendor.id>org.glassfish</implementation.vendor.id>
         <findbugs.version>2.3.1</findbugs.version>
