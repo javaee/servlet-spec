@@ -732,27 +732,29 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Gets all the {@link Part} components of this request, provided
-     * that it is of type <tt>multipart/form-data</tt>.
+     * that it is of type <code>multipart/form-data</code>.
      *
-     * <p>If this request is of type <tt>multipart/form-data</tt>, but
-     * does not contain any Part components, the returned
-     * <tt>Collection</tt> will be empty.
+     * <p>If this request is of type <code>multipart/form-data</code>, but
+     * does not contain any <code>Part</code> components, the returned
+     * <code>Collection</code> will be empty.
      *
      * <p>Any changes to the returned <code>Collection</code> must not 
      * affect this <code>HttpServletRequest</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the
-     * Part components of this request
+     * <code>Part</code> components of this request
      *
      * @throws IOException if an I/O error occurred during the retrieval
      * of the {@link Part} components of this request
      *
      * @throws ServletException if this request is not of type
-     * <tt>multipart/form-data</tt>
+     * <code>multipart/form-data</code>
      *
      * @throws IllegalStateException if the request body is larger than
-     * <tt>maxRequestSize</tt>, or any Part in the request is larger than
-     * <tt>maxFileSize</tt>
+     * <code>maxRequestSize</code>, or any <code>Part</code> in the
+     * request is larger than <code>maxFileSize</code>, or there is no
+     * <code>@MultipartConfig</code> or <code>multi-config</code> in
+     * deployment descriptors
      *
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
      * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
@@ -765,19 +767,22 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Gets the {@link Part} with the given name.
      *
-     * @param name the name of the requested Part
+     * @param name the name of the requested <code>Part</code>
      *
-     * @return The Part with the given name, or <tt>null</tt> if this
-     * request is of type <tt>multipart/form-data</tt>, but does not
-     * contain the requested Part
+     * @return The <code>Part</code> with the given name, or
+     * <code>null</code> if this request is of type
+     * <code>multipart/form-data</code>, but does not
+     * contain the requested <code>Part</code>
      *
      * @throws IOException if an I/O error occurred during the retrieval
-     * of the requested Part
+     * of the requested <code>Part</code>
      * @throws ServletException if this request is not of type
-     * <tt>multipart/form-data</tt>
+     * <code>multipart/form-data</code>
      * @throws IllegalStateException if the request body is larger than
-     * <tt>maxRequestSize</tt>, or any Part in the request is larger than
-     * <tt>maxFileSize</tt>
+     * <code>maxRequestSize</code>, or any <code>Part</code> in the
+     * request is larger than <code>maxFileSize</code>, or there is no
+     * <code>@MultipartConfig</code> or <code>multi-config</code> in
+     * deployment descriptors
      *
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
      * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
