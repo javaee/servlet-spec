@@ -116,7 +116,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public String getAuthType();
     
-
     /**
      *
      * Returns an array containing all of the <code>Cookie</code>
@@ -130,7 +129,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public Cookie[] getCookies();
-    
 
     /**
      *
@@ -167,7 +165,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public long getDateHeader(String name);
-    
 
     /**
      *
@@ -190,7 +187,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */			
     public String getHeader(String name); 
-
 
     /**
      *
@@ -221,7 +217,6 @@ public interface HttpServletRequest extends ServletRequest {
      */			
     public Enumeration<String> getHeaders(String name); 
     
-    
     /**
      *
      * Returns an enumeration of all the header names
@@ -243,7 +238,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public Enumeration<String> getHeaderNames();
-    
     
     /**
      *
@@ -269,7 +263,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public int getIntHeader(String name);
     
-    
     /**
      *
      * Returns the name of the HTTP method with which this 
@@ -283,7 +276,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public String getMethod();
-    
     
     /**
      *
@@ -309,7 +301,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public String getPathInfo();
-    
 
     /**
      *
@@ -333,7 +324,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public String getPathTranslated();
-    
 
     /**
      *
@@ -361,7 +351,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public String getContextPath();
     
-    
     /**
      *
      * Returns the query string that is contained in the request
@@ -377,7 +366,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public String getQueryString();
     
-
     /**
      *
      * Returns the login of the user making this request, if the
@@ -393,7 +381,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public String getRemoteUser();
-    
     
     /**
      *
@@ -413,7 +400,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public boolean isUserInRole(String role);
     
-    
     /**
      *
      * Returns a <code>java.security.Principal</code> object containing
@@ -427,7 +413,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public java.security.Principal getUserPrincipal();
-    
     
     /**
      *
@@ -446,7 +431,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public String getRequestedSessionId();
-    
     
     /**
      *
@@ -478,7 +462,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public String getRequestURI();
     
-
     /**
      *
      * Reconstructs the URL the client used to make the request.
@@ -503,7 +486,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public StringBuffer getRequestURL();
-    
 
     /**
      *
@@ -527,7 +509,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public String getServletPath();
-    
     
     /**
      *
@@ -565,7 +546,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public HttpSession getSession(boolean create);
-    
 
     /**
      *
@@ -579,7 +559,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public HttpSession getSession();
-    
     
     /**
      *
@@ -600,7 +579,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public boolean isRequestedSessionIdValid();
     
-    
     /**
      *
      * Checks whether the requested session ID came in as a cookie.
@@ -614,7 +592,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */ 
     public boolean isRequestedSessionIdFromCookie();
-    
     
     /**
      *
@@ -631,7 +608,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public boolean isRequestedSessionIdFromURL();
     
-    
     /**
      *
      * @deprecated		As of Version 2.1 of the Java Servlet
@@ -640,7 +616,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public boolean isRequestedSessionIdFromUrl();
-
 
     /**
      * Use the container login mechanism configured for the 
@@ -675,7 +650,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public boolean authenticate(HttpServletResponse response) 
 	throws IOException,ServletException;
-
 
     /**
      * Validate the provided username and password in the password validation 
@@ -717,7 +691,6 @@ public interface HttpServletRequest extends ServletRequest {
     public void login(String username, String password) 
 	throws ServletException;
     
-    
     /**
      * Establish <code>null</code> as the value returned when 
      * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, 
@@ -728,7 +701,6 @@ public interface HttpServletRequest extends ServletRequest {
      * @since Servlet 3.0
      */
     public void logout() throws ServletException;
-
 
     /**
      * Gets all the {@link Part} components of this request, provided
@@ -763,7 +735,6 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public Collection<Part> getParts() throws IOException, ServletException;
 
-
     /**
      * Gets the {@link Part} with the given name.
      *
@@ -790,7 +761,6 @@ public interface HttpServletRequest extends ServletRequest {
      * @since Servlet 3.0
      */
     public Part getPart(String name) throws IOException, ServletException;
-    
 
     /**
      * Notifies the servlet container that the given ProtcolHandler
