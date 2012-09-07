@@ -147,6 +147,8 @@ public interface ServletRequest {
      *
      * @return an integer containing the length of the request body or -1 if
      * the length is not known or is greater than Integer.MAX_VALUE.
+     *
+     * @since Servlet 3.1
      */
     public int getContentLength();
     
