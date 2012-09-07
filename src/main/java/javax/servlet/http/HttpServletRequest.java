@@ -559,6 +559,19 @@ public interface HttpServletRequest extends ServletRequest {
      *
      */
     public HttpSession getSession();
+
+    /**
+     * Change the session id of the current session associated with this
+     * request and return the new session id. 
+     *
+     * @return the original session id
+     *
+     * @throws IllegalStateException if there is no session associated
+     * with the request
+     *
+     * @since Servlet 3.1
+     */
+    public String changeSessionId();
     
     /**
      *

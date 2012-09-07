@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2008-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -36,36 +36,40 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
+ *
  */
 
-package javax.servlet.annotation;
+package javax.servlet.http;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.EventListener;
 
 /**
- * This annotation is used to declare a WebListener.
+ * Interface for receiving notification events about HttpSession
+ * id changes.
  *
- * Any class annotated with WebListener must implement one or more of
- * the {@link javax.servlet.ServletContextListener}, 
- * {@link javax.servlet.ServletContextAttributeListener},
- * {@link javax.servlet.ServletRequestListener},
- * {@link javax.servlet.ServletRequestAttributeListener}, 
- * {@link javax.servlet.http.HttpSessionListener}, or
- * {@link javax.servlet.http.HttpSessionAttributeListener}, or
- * {@link javax.servlet.http.HttpSessionIdListener} interfaces.
- * 
- * @since Servlet 3.0
+ * <p>In order to receive these notification events, the implementation
+ * class must be either declared in the deployment descriptor of the web
+ * application, annotated with {@link javax.servlet.annotation.WebListener},
+ * or registered via one of the addListener methods defined on
+ * {@link javax.servlet.ServletContext}.
+ *
+ * <p>The order in which implementations of this interface are invoked is
+ * unspecified.
+ *
+ * @since Servlet 3.1
  */
-@Target({ElementType.TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-public @interface WebListener {
+
+public interface HttpSessionIdListener extends EventListener {
+
     /**
-     * Description of the listener
+     * Receives notification that session id has been changed in a
+     * session.
+     *
+     * @param event the HttpSessionBindingEvent containing the session
+     * and the name and (old) value of the attribute that was replaced
+     *
+     * @param oldSessionId the old session id
      */
-    String value() default "";
+    public void sessionIdChanged(HttpSessionEvent event, String oldSessionId);
+
 }

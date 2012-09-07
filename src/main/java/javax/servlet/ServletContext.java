@@ -1268,8 +1268,9 @@ public interface ServletContext {
      * <li>{@link ServletContextAttributeListener}</tt>
      * <li>{@link ServletRequestListener}</tt>
      * <li>{@link ServletRequestAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
      * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionIdListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
      * </ul>
      *
      * <p>If this ServletContext was passed to 
@@ -1324,8 +1325,9 @@ public interface ServletContext {
      * <li>{@link ServletContextAttributeListener}</tt>
      * <li>{@link ServletRequestListener}</tt>
      * <li>{@link ServletRequestAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
      * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionIdListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
      * </ul>
      *
      * <p>If this ServletContext was passed to 
@@ -1371,8 +1373,9 @@ public interface ServletContext {
      * <li>{@link ServletContextAttributeListener}</tt>
      * <li>{@link ServletRequestListener}</tt>
      * <li>{@link ServletRequestAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
      * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionIdListener}</tt>
+     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
      * </ul>
      *
      * <p>If this ServletContext was passed to 
@@ -1423,8 +1426,9 @@ public interface ServletContext {
      * <code>{@link ServletContextAttributeListener}</code>,
      * <code>{@link ServletRequestListener}</code>,
      * <code>{@link ServletRequestAttributeListener}</code>,
-     * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
      * <code>{@link javax.servlet.http.HttpSessionAttributeListener}</code>
+     * <code>{@link javax.servlet.http.HttpSessionIdListener}</code>, or
+     * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
      * interfaces.
      *
      * <p>The returned EventListener instance may be further customized
@@ -1458,8 +1462,9 @@ public interface ServletContext {
      * <code>{@link ServletContextAttributeListener}</code>,
      * <code>{@link ServletRequestListener}</code>,
      * <code>{@link ServletRequestAttributeListener}</code>,
-     * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
      * <code>{@link javax.servlet.http.HttpSessionAttributeListener}</code>
+     * <code>{@link javax.servlet.http.HttpSessionIdListener}</code>, or
+     * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
      * interfaces.
      *
      * @since Servlet 3.0
