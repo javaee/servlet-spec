@@ -738,7 +738,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @throws IllegalStateException if the request body is larger than
      * <code>maxRequestSize</code>, or any <code>Part</code> in the
      * request is larger than <code>maxFileSize</code>, or there is no
-     * <code>@MultipartConfig</code> or <code>multi-config</code> in
+     * <code>@MultipartConfig</code> or <code>multipart-config</code> in
      * deployment descriptors
      *
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
@@ -765,7 +765,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @throws IllegalStateException if the request body is larger than
      * <code>maxRequestSize</code>, or any <code>Part</code> in the
      * request is larger than <code>maxFileSize</code>, or there is no
-     * <code>@MultipartConfig</code> or <code>multi-config</code> in
+     * <code>@MultipartConfig</code> or <code>multipart-config</code> in
      * deployment descriptors
      *
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
