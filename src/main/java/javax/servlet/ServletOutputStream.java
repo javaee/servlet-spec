@@ -421,6 +421,8 @@ public abstract class ServletOutputStream extends OutputStream  {
      * @param writeListener the {@link WriteListener} that should be notified
      *  when it's possible to write.
      *
+     * @throws NullPointerException if writeListener is null
+     *
      * @since Servlet 3.1
      */
     public abstract void setWriteListener(WriteListener writeListener);

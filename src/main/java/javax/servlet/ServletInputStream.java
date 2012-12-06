@@ -171,6 +171,8 @@ public abstract class ServletInputStream extends InputStream {
      * @param readListener the {@link ReadListener} that should be notified
      *  when it's possible to read.
      *
+     * @throws NullPointerException if readListener is null
+     *
      * @since Servlet 3.1
 
      */
