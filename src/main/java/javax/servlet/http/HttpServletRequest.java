@@ -776,17 +776,19 @@ public interface HttpServletRequest extends ServletRequest {
     public Part getPart(String name) throws IOException, ServletException;
 
     /**
-     * Notifies the servlet container that the given ProtcolHandler
-     * would be used to upgrade the request.
+     * Create an instance of <code>HttpUpgradeHandler</code> for an given
+     * class and uses it for the http protocol upgrade processing.
      *
-     * @param handler The <code>ProtocolHandler</code> used for the upgrade.
+     * @param handlerClass The <code>ProtocolHandler</code> class used for the upgrade.
+     *
+     * @return an instance of the <code>HttpUpgradeHandler</code>
      *
      * @exception IOException if an I/O error occurred during the upgrade
      *
-     * @see javax.servlet.http.ProtocolHandler
+     * @see javax.servlet.http.HttpUpgradeHandler
      * @see javax.servlet.http.WebConnection
      *
      * @since Servlet 3.1
      */
-    public void upgrade(ProtocolHandler handler) throws IOException;
+    public <T extends HttpUpgradeHandler> T  upgrade(Class<T> handlerClass) throws IOException;
 }

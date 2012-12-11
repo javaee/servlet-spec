@@ -386,13 +386,13 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * Notifies the servlet container that the given ProtcolHandler
-     * would be used to upgrade the request.
+     * Create an instance of <code>HttpUpgradeHandler</code> for an given
+     * class and uses it for the http protocol upgrade processing.
      *
      * @since Servlet 3.1
      */
     @Override
-    public void upgrade(ProtocolHandler handler) throws IOException {
-        this._getHttpServletRequest().upgrade(handler);
+    public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException {
+        return this._getHttpServletRequest().upgrade(handlerClass);
     }
 }

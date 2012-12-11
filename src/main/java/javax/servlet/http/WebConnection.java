@@ -52,7 +52,7 @@ import javax.servlet.ServletOutputStream;
  * @since Servlet 3.1
  */
 
-public interface WebConnection {
+public interface WebConnection extends AutoCloseable {
     /**
      * Returns an input stream for this web connection.
      *
