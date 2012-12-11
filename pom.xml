@@ -53,7 +53,7 @@
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
-    <version>3.1-b04-SNAPSHOT</version>
+    <version>3.1-b03-SNAPSHOT</version>
 
     <properties>
         <spec.version>3.0.99.03</spec.version>
