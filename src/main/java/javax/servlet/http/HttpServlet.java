@@ -902,7 +902,7 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
 
-    public boolean canWrite() {
+    public boolean isReady() {
         return false;
     }
 

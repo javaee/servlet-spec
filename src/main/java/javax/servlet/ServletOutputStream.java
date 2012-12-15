@@ -411,7 +411,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      *  @since Servlet 3.1
      */
-    public abstract boolean canWrite();
+    public abstract boolean isReady();
 
     /**
      * Instructs the <code>ServletOutputStream</code> to invoke the provided
@@ -419,7 +419,10 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      *
      * @param writeListener the {@link WriteListener} that should be notified
-     *  when it's possible to write.
+     *  when it's possible to write
+     *
+     * @exception IllegalStateException if the setWriteListener is called more
+     *            than once within the scope of the same request.
      *
      * @throws NullPointerException if writeListener is null
      *

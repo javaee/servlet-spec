@@ -54,15 +54,16 @@ public interface WriteListener extends EventListener {
 
     /**
      * ﻿When an instance of the WriteListener is registered with a {@link ServletOutputStream},
-     * this method will be invoked by the container if and only
-     * if {@link javax.servlet.ServletOutputStream#canWrite()} method
-     * has been called and has returned false.
+     * this method will be invoked by the container the first time when it is possible
+     * to write data. Subsequently the container will invoke this method if and only
+     * if {@link javax.servlet.ServletOutputStream#isReady()} method
+     * has been called and has returned <code>false</code>.
      */
     public void onWritePossible();
 
     /**
      * <p>
-     * Invoked when an error occurs processing the request asynchronously.
+     * Invoked when an error occurs writing data using the non-blocking APIs.
      * </p>
      */
     public void onError(final Throwable t);

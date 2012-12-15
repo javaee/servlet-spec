@@ -54,8 +54,12 @@ import java.util.EventListener;
 public interface ReadListener extends EventListener {
 
     /**
-     * <p>
-     * Invoked when data is available to be read without blocking.
+     *
+     * ﻿When an instance of the <code>ReadListener</code> is registered with a {@link ServletInputStream},
+     * this method will be invoked by the container the first time when it is possible
+     * to read data. Subsequently the container will invoke this method if and only
+     * if {@link javax.servlet.ServletInputStream#isReady()} method
+     * has been called and has returned <code>false</code>.
      *
      */
     public void onDataAvailable();
