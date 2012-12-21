@@ -421,8 +421,11 @@ public abstract class ServletOutputStream extends OutputStream  {
      * @param writeListener the {@link WriteListener} that should be notified
      *  when it's possible to write
      *
-     * @exception IllegalStateException if the setWriteListener is called more
-     *            than once within the scope of the same request.
+     * @exception IllegalStateException if one of the following conditions is true
+     * <ul>
+     * <li>the associated request is neither upgraded nor the async started
+     * <li>setWriteListener is called more than once within the scope of the same request.
+     * </ul>
      *
      * @throws NullPointerException if writeListener is null
      *

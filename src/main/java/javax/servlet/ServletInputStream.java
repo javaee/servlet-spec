@@ -171,6 +171,12 @@ public abstract class ServletInputStream extends InputStream {
      * @param readListener the {@link ReadListener} that should be notified
      *  when it's possible to read.
      *
+     * @exception IllegalStateException if one of the following conditions is true
+     * <ul>
+     * <li>the associated request is neither upgraded nor the async started
+     * <li>setWriteListener is called more than once within the scope of the same request.
+     * </ul>
+     *
      * @throws NullPointerException if readListener is null
      *
      * @since Servlet 3.1
