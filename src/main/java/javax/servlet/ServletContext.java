@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2011 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -773,6 +773,9 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
+     * @throws IllegalArgumentException if <code>servletName</code> is null
+     * or an empty String
+     *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
@@ -817,7 +820,8 @@ public interface ServletContext {
      * with {@link javax.servlet.annotation.WebListener}
      *
      * @throws IllegalArgumentException if the given servlet instance 
-     * implements {@link SingleThreadModel}
+     * implements {@link SingleThreadModel}, or <code>servletName</code> is null
+     * or an empty String
      *
      * @since Servlet 3.0
      */
@@ -858,6 +862,9 @@ public interface ServletContext {
      *
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
+     *
+     * @throws IllegalArgumentException if <code>servletName</code> is null
+     * or an empty String
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
@@ -989,6 +996,9 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
+     * @throws IllegalArgumentException if <code>filterName</code> is null or
+     * an empty String
+     *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
@@ -1025,6 +1035,9 @@ public interface ServletContext {
      *
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
+     *
+     * @throws IllegalArgumentException if <code>filterName</code> is null or
+     * an empty String
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
@@ -1066,6 +1079,9 @@ public interface ServletContext {
      *
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
+     *
+     * @throws IllegalArgumentException if <code>filterName</code> is null or
+     * an empty String
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
