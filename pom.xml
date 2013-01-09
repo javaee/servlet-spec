@@ -65,6 +65,7 @@
         <findbugs.version>2.3.1</findbugs.version>
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
+        <copyright-plugin.version>1.32</copyright-plugin.version>
     </properties>
     <name>Java Servlet API</name>
     
@@ -226,7 +227,7 @@
                                     <packages>javax.servlet</packages>
                                 </group>
                             </groups>
-                            <bottom>Portions Copyright &amp;copy; 1999-2002 The Apache Software Foundation.  All Rights Reserved. Portions Copyright &amp;copy; 2005-2011 Oracle and/or its affiliates.  All Rights Reserve</bottom>
+                            <bottom>Portions Copyright &amp;copy; 1999-2002 The Apache Software Foundation.  All Rights Reserved. Portions Copyright &amp;copy; 2005-2013 Oracle and/or its affiliates.  All Rights Reserve</bottom>
                         </configuration>
                     </execution>
                 </executions>
@@ -250,6 +251,11 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <arguments>${release.arguments}</arguments>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.glassfish.copyright</groupId>
+                <artifactId>glassfish-copyright-maven-plugin</artifactId>
+                <version>${copyright-plugin.version}</version>
             </plugin>
         </plugins>
         <resources>
