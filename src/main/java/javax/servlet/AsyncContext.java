@@ -381,6 +381,11 @@ public interface AsyncContext {
      * <p>AsyncListener instances will be notified in the order in which
      * they were added.
      *
+     * <p>If {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
+     * or {@link ServletRequest#startAsync} is called,
+     * the exact same request and response objects are available from the
+     * {@link AsyncEvent} when the {@link AsyncListener} is notified.
+     *
      * @param listener the AsyncListener to be registered
      * 
      * @throws IllegalStateException if this method is called after
