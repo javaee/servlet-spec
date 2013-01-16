@@ -56,7 +56,7 @@
     <version>3.1-b06-SNAPSHOT</version>
 
     <properties>
-        <spec.version>3.0.99.05</spec.version>
+        <spec.version>3.0.99.06</spec.version>
         <extension.name>javax.servlet</extension.name>
         <bundle.symbolicName>javax.servlet-api</bundle.symbolicName>
         <bundle.version>3.0.99.b06</bundle.version>
