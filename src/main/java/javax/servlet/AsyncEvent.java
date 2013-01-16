@@ -62,7 +62,7 @@ public class AsyncEvent {
      * @param context the AsyncContex to be delivered with this AsyncEvent
      */
     public AsyncEvent(AsyncContext context) {
-        this(context, null, null, null);
+        this(context, context.getRequest(), context.getResponse(), null);
     }
 
     /**
@@ -86,7 +86,7 @@ public class AsyncEvent {
      * @param throwable the Throwable to be delivered with this AsyncEvent
      */
     public AsyncEvent(AsyncContext context, Throwable throwable) {
-        this(context, null, null, throwable);
+        this(context, context.getRequest(), context.getResponse(), throwable);
     }
 
     /**
