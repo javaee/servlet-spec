@@ -41,6 +41,7 @@
 
 package javax.servlet;
 
+import java.io.IOException;
 import java.util.EventListener;
 
 /**
@@ -54,29 +55,26 @@ import java.util.EventListener;
 public interface ReadListener extends EventListener {
 
     /**
-     *
-     * ﻿When an instance of the <code>ReadListener</code> is registered with a {@link ServletInputStream},
+     * When an instance of the <code>ReadListener</code> is registered with a {@link ServletInputStream},
      * this method will be invoked by the container the first time when it is possible
      * to read data. Subsequently the container will invoke this method if and only
      * if {@link javax.servlet.ServletInputStream#isReady()} method
      * has been called and has returned <code>false</code>.
      *
+     * @throws IOException if an I/O related error has occurred during processing
      */
-    public void onDataAvailable();
+    public void onDataAvailable() throws IOException;
 
     /**
-     * <p>
      * Invoked when all data for the current request has been read.
-     * </p>
      *
+     * @throws IOException if an I/O related error has occurred during processing
      */
 
-    public void onAllDataRead();
+    public void onAllDataRead() throws IOException;
 
     /**
-     * <p>
      * Invoked when an error occurs processing the request.
-     * </p>
      */
     public void onError(Throwable t);
 

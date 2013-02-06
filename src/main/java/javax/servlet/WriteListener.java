@@ -41,6 +41,7 @@
 
 package javax.servlet;
 
+import java.io.IOException;
 import java.util.EventListener;
 
 /**
@@ -53,18 +54,18 @@ import java.util.EventListener;
 public interface WriteListener extends EventListener {
 
     /**
-     * ﻿When an instance of the WriteListener is registered with a {@link ServletOutputStream},
+     * When an instance of the WriteListener is registered with a {@link ServletOutputStream},
      * this method will be invoked by the container the first time when it is possible
      * to write data. Subsequently the container will invoke this method if and only
      * if {@link javax.servlet.ServletOutputStream#isReady()} method
      * has been called and has returned <code>false</code>.
+     *
+     * @throws IOException if an I/O related error has occurred during processing
      */
-    public void onWritePossible();
+    public void onWritePossible() throws IOException;
 
     /**
-     * <p>
      * Invoked when an error occurs writing data using the non-blocking APIs.
-     * </p>
      */
     public void onError(final Throwable t);
 
