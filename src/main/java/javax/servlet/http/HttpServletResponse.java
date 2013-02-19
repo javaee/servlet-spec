@@ -246,7 +246,7 @@ public interface HttpServletResponse extends ServletResponse {
      * @param		location	the redirect location URL
      * @exception	IOException	If an input or output exception occurs
      * @exception	IllegalStateException	If the response was committed or
- if a partial URL is given and cannot be converted into a valid URL
+     *              if a partial URL is given and cannot be converted into a valid URL
      */
 
     public void sendRedirect(String location) throws IOException;
