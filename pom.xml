@@ -47,7 +47,7 @@
     <parent>
         <groupId>net.java</groupId>
         <artifactId>jvnet-parent</artifactId>
-        <version>1</version>
+        <version>3</version>
     </parent>
 
     <groupId>javax.servlet</groupId>
@@ -214,21 +214,29 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.8</version>
+                <configuration>
+                    <groups>
+                        <group>
+                            <title>Servlet API Documentation</title>
+                            <packages>javax.servlet</packages>
+                        </group>
+                    </groups>
+                    <bottom>
+<![CDATA[Copyright &#169; 1999-2013,
+    <a href="http://www.oracle.com">Oracle</a>
+    and/or its affiliates. All Rights Reserved.
+    Use is subject to
+    <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.
+    Portions Copyright &#169; 1999-2002 The Apache Software Foundation.
+]]>
+                    </bottom>
+                </configuration>
                 <executions>
                     <execution>
-                        <phase>javadoc</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>javadoc</goal>
                         </goals>
-                        <configuration>
-                            <groups>
-                                <group>
-                                    <title>Servlet API Documentation</title>
-                                    <packages>javax.servlet</packages>
-                                </group>
-                            </groups>
-                            <bottom>Portions Copyright &amp;copy; 1999-2002 The Apache Software Foundation.  All Rights Reserved. Portions Copyright &amp;copy; 2005-2013 Oracle and/or its affiliates.  All Rights Reserve</bottom>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>     
@@ -300,6 +308,4 @@
             </snapshots>
         </repository>
     </repositories>
-
-
 </project>
