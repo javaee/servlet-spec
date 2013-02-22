@@ -362,6 +362,14 @@ public interface HttpServletRequest extends ServletRequest {
      * defined using deployment descriptors.  If the user has not been
      * authenticated, the method returns <code>false</code>.
      *
+     * <p>If the role-name of the security-role to be tested is “**”, and
+     * the application has NOT declared an application security-role with
+     * role-name “**”, <code>isUserInRole</code> must only return true if
+     * the user has been authenticated; that is, only when
+     * {@link #getRemoteUser} and {@link #getUserPrincipal} would both return
+     * a non-null value. Otherwise, the container must check
+     * the user for membership in the application role.
+     *
      * @param role		a <code>String</code> specifying the name
      *				of the role
      *
