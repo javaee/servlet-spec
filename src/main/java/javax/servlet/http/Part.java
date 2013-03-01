@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -73,6 +73,15 @@ public interface Part {
      * @return The name of this part as a <tt>String</tt>
      */
     public String getName();
+
+    /**
+     * Gets the file name specified by the client
+     *
+     * @return the submitted file name
+     *
+     * @since Servlet 3.1
+     */
+    public String getSubmittedFileName();
 
     /**
      * Returns the size of this fille.
