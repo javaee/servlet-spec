@@ -124,8 +124,10 @@ public interface HttpServletResponse extends ServletResponse {
      * <code>sendRedirect</code> method or, if encoding is not needed,
      * returns the URL unchanged.  The implementation of this method
      * includes the logic to determine whether the session ID
-     * needs to be encoded in the URL.  Because the rules for making
-     * this determination can differ from those used to decide whether to
+     * needs to be encoded in the URL.  For example, if the browser supports
+     * cookies, or session tracking is turned off, URL encoding is
+     * unnecessary.  Because the rules for making this determination can
+     * differ from those used to decide whether to
      * encode a normal link, this method is separated from the
      * <code>encodeURL</code> method.
      * 
