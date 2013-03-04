@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2008-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008-2013 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -53,14 +53,14 @@ import java.util.Set;
  * classes that implement, extend, or have been annotated with the class
  * types specified by the annotation.
  * 
- * <p>If an implementation of this interface does not use this annotation,
- * or none of the application classes match the ones specified
+ * <p>If an implementation of this interface does not use <tt>HandlesTypes</tt>
+ * annotation, or none of the application classes match the ones specified
  * by the annotation, the container must pass a <tt>null</tt> Set of classes
  * to {@link #onStartup}.
  *
- * <p>When examining the classes of an application to
- * see if they match any of the criteria specified by the HandlesTypes
- * annotation of a ServletContainerInitializer, the container may run into
+ * <p>When examining the classes of an application to see if they match
+ * any of the criteria specified by the <tt>HandlesTypes</tt> annontation
+ * of a <tt>ServletContainerInitializer</tt>, the container may run into
  * classloading problems if any of the application's optional JAR
  * files are missing. Because the container is not in a position to decide
  * whether these types of classloading failures will prevent
@@ -73,7 +73,7 @@ import java.util.Set;
  * named for the fully qualified class name of this interface, and will be 
  * discovered using the runtime's service provider lookup mechanism
  * or a container specific mechanism that is semantically equivalent to
- * it. In either case, ServletContainerInitializer services from web
+ * it. In either case, <tt>ServletContainerInitializer</tt> services from web
  * fragment JAR files excluded from an absolute ordering must be ignored,
  * and the order in which these services are discovered must follow the
  * application's classloading delegation model.
