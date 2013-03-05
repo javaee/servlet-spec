@@ -65,7 +65,7 @@
         <findbugs.version>2.3.1</findbugs.version>
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
-        <copyright-plugin.version>1.32</copyright-plugin.version>
+        <copyright-plugin.version>1.33</copyright-plugin.version>
     </properties>
     <name>Java Servlet API</name>
     
@@ -264,6 +264,11 @@
                 <groupId>org.glassfish.copyright</groupId>
                 <artifactId>glassfish-copyright-maven-plugin</artifactId>
                 <version>${copyright-plugin.version}</version>
+                <configuration>
+                    <excludeFile>
+                        ${basedir}/copyright-exclude
+                    </excludeFile>
+                </configuration>
             </plugin>
         </plugins>
         <resources>
