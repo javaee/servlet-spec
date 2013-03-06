@@ -101,7 +101,7 @@ public interface HttpServletResponse extends ServletResponse {
     public boolean containsHeader(String name);
 
     /**
-     * Encodes the specified URL by including the session ID in it,
+     * Encodes the specified URL by including the session ID,
      * or, if encoding is not needed, returns the URL unchanged.
      * The implementation of this method includes the logic to
      * determine whether the session ID needs to be encoded in the URL.
@@ -113,9 +113,13 @@ public interface HttpServletResponse extends ServletResponse {
      * method.  Otherwise, URL rewriting cannot be used with browsers
      * which do not support cookies.
      *
+     * <p>If the URL is relative, it is always relative to the current
+     * HttpServletRequest.
+     *
      * @param	url	the url to be encoded.
      * @return		the encoded URL if encoding is needed;
      * 			the unchanged URL otherwise.
+     * @exception IllegalArgumentException if the url is not valid
      */
     public String encodeURL(String url);
 
@@ -136,9 +140,13 @@ public interface HttpServletResponse extends ServletResponse {
      * rewriting cannot be used with browsers which do not support
      * cookies.
      *
+     * <p>If the URL is relative, it is always relative to the current
+     * HttpServletRequest.
+     *
      * @param	url	the url to be encoded.
      * @return		the encoded URL if encoding is needed;
      * 			the unchanged URL otherwise.
+     * @exception IllegalArgumentException if the url is not valid
      *
      * @see #sendRedirect
      * @see #encodeUrl
@@ -151,6 +159,7 @@ public interface HttpServletResponse extends ServletResponse {
      * @param	url	the url to be encoded.
      * @return		the encoded URL if encoding is needed; 
      * 			the unchanged URL otherwise.
+     * @exception IllegalArgumentException if the url is not valid
      */
     public String encodeUrl(String url);
     
@@ -161,6 +170,7 @@ public interface HttpServletResponse extends ServletResponse {
      * @param	url	the url to be encoded.
      * @return		the encoded URL if encoding is needed; 
      * 			the unchanged URL otherwise.
+     * @exception IllegalArgumentException if the url is not valid
      */
     public String encodeRedirectUrl(String url);
 
