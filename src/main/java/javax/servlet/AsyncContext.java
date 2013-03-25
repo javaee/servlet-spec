@@ -479,6 +479,8 @@ public interface AsyncContext {
      * default timeout, which is available via a call to
      * {@link #getTimeout}, will apply.
      *
+     * <p>The default value is <code>30000</code> ms.
+     *
      * @param timeout the timeout in milliseconds
      *
      * @throws IllegalStateException if this method is called after
