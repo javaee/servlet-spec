@@ -282,6 +282,8 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return changeSessionId()
      * on the wrapped request object.
+     *
+     * @since Servlet 3.1
      */
     @Override
     public String changeSessionId() {
