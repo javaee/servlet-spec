@@ -174,7 +174,7 @@ public abstract class ServletInputStream extends InputStream {
      * @exception IllegalStateException if one of the following conditions is true
      * <ul>
      * <li>the associated request is neither upgraded nor the async started
-     * <li>setWriteListener is called more than once within the scope of the same request.
+     * <li>setReadListener is called more than once within the scope of the same request.
      * </ul>
      *
      * @throws NullPointerException if readListener is null

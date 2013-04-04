@@ -730,7 +730,7 @@ public interface HttpServletRequest extends ServletRequest {
      * Create an instance of <code>HttpUpgradeHandler</code> for an given
      * class and uses it for the http protocol upgrade processing.
      *
-     * @param handlerClass The <code>ProtocolHandler</code> class used for the upgrade.
+     * @param handlerClass The <code>HttpUpgradeHandler</code> class used for the upgrade.
      *
      * @return an instance of the <code>HttpUpgradeHandler</code>
      *
