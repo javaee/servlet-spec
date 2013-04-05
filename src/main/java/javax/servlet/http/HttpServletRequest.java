@@ -735,11 +735,14 @@ public interface HttpServletRequest extends ServletRequest {
      * @return an instance of the <code>HttpUpgradeHandler</code>
      *
      * @exception IOException if an I/O error occurred during the upgrade
+     * @exception ServletException if the given <code>handlerClass</code> fails to
+     * be instantiated
      *
      * @see javax.servlet.http.HttpUpgradeHandler
      * @see javax.servlet.http.WebConnection
      *
      * @since Servlet 3.1
      */
-    public <T extends HttpUpgradeHandler> T  upgrade(Class<T> handlerClass) throws IOException;
+    public <T extends HttpUpgradeHandler> T  upgrade(Class<T> handlerClass)
+        throws IOException, ServletException;
 }
