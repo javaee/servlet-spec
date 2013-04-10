@@ -56,10 +56,10 @@
     <version>3.1-b09-SNAPSHOT</version>
 
     <properties>
-        <spec.version>3.0.99.08</spec.version>
+        <spec.version>3.0.99.09</spec.version>
         <extension.name>javax.servlet</extension.name>
         <bundle.symbolicName>javax.servlet-api</bundle.symbolicName>
-        <bundle.version>3.0.99.b08</bundle.version>
+        <bundle.version>3.0.99.b09</bundle.version>
         <window.title>Java Servlet 3.1</window.title>
         <doc.title>Java Servlet 3.1 API Specification</doc.title>
         <vendor.name>Oracle Corporation</vendor.name>
