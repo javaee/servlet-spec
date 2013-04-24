@@ -832,6 +832,42 @@ class NoBodyResponse extends HttpServletResponseWrapper {
     }
 
     @Override
+    public void setContentLengthLong(long len) {
+        super.setContentLengthLong(len);
+        didSetContentLength = true;
+    }
+
+    @Override
+    public void setHeader(String name, String value) {
+        super.setHeader(name, value);
+        checkHeader(name);
+    }
+
+    @Override
+    public void addHeader(String name, String value) {
+        super.addHeader(name, value);
+        checkHeader(name);
+    }
+
+    @Override
+    public void setIntHeader(String name, int value) {
+        super.setIntHeader(name, value);
+        checkHeader(name);
+    }
+
+    @Override
+    public void addIntHeader(String name, int value) {
+        super.addIntHeader(name, value);
+        checkHeader(name);
+    }
+
+    private void checkHeader(String name) {
+        if ("content-length".equalsIgnoreCase(name)) {
+            didSetContentLength = true;
+        }
+    }
+
+    @Override
     public ServletOutputStream getOutputStream() throws IOException {
 
         if (writer != null) {
@@ -892,13 +928,22 @@ class NoBodyOutputStream extends ServletOutputStream {
     public void write(byte buf[], int offset, int len)
         throws IOException
     {
-        if (len >= 0) {
-            contentLength += len;
-        } else {
-            // This should have thrown an IllegalArgumentException, but
-            // changing this would break backwards compatibility
-            throw new IOException(lStrings.getString("err.io.negativelength"));
+        if (buf == null) {
+            throw new NullPointerException(
+                    lStrings.getString("err.io.nullArray"));
         }
+
+        if (offset < 0 || len < 0 || offset+len > buf.length) {
+            String msg = lStrings.getString("err.io.indexOutOfBounds");
+            Object[] msgArgs = new Object[3];
+            msgArgs[0] = Integer.valueOf(offset);
+            msgArgs[1] = Integer.valueOf(len);
+            msgArgs[2] = Integer.valueOf(buf.length);
+            msg = MessageFormat.format(msg, msgArgs);
+            throw new IndexOutOfBoundsException(msg);
+        }
+
+        contentLength += len;
     }
 
 
