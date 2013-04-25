@@ -53,13 +53,13 @@
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
-    <version>3.1-b10-SNAPSHOT</version>
+    <version>3.1.0-SNAPSHOT</version>
 
     <properties>
-        <spec.version>3.0.99.09</spec.version>
+        <spec.version>3.1</spec.version>
         <extension.name>javax.servlet</extension.name>
         <bundle.symbolicName>javax.servlet-api</bundle.symbolicName>
-        <bundle.version>3.0.99.b09</bundle.version>
+        <bundle.version>3.1.0</bundle.version>
         <window.title>Java Servlet 3.1</window.title>
         <doc.title>Java Servlet 3.1 API Specification</doc.title>
         <vendor.name>Oracle Corporation</vendor.name>
