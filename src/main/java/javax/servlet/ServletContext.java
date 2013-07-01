@@ -224,7 +224,7 @@ public interface ServletContext {
      * supported by the Servlet container.
      *
      * @return the minor version of the Servlet specification that the
-     * application xrepresented by this ServletContext is based on
+     * application represented by this ServletContext is based on
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
