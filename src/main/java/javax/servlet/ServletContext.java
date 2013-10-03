@@ -123,10 +123,10 @@ public interface ServletContext {
      *
      * <p>The context path is the portion of the request URI that is used
      * to select the context of the request. The context path always comes
-     * first in a request URI. If this context is the “default” context
-     * rooted at the base of the Web server’s URL name space, this path
+     * first in a request URI. If this context is the "default" context
+     * rooted at the base of the Web server's URL name space, this path
      * will be an empty string. Otherwise, if the context is not rooted at
-     * the root of the server’s name space, the path starts with a /
+     * the root of the server's name space, the path starts with a /
      * character but does not end with a / character.
      *
      * <p>It is possible that a servlet container may match a context by
