@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2008-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -72,7 +72,7 @@ public @interface HttpConstraint {
      * The default authorization semantic.
      * This value is insignificant when <code>rolesAllowed</code> returns a
      * non-empty array, and should not be specified when a non-empty
-     * array is specified for <tt>rolesAllowed<tt>.
+     * array is specified for <tt>rolesAllowed</tt>.
      *
      * @return the {@link EmptyRoleSemantic} to be applied when
      * <code>rolesAllowed</code> returns an empty (that is, zero-length) array.

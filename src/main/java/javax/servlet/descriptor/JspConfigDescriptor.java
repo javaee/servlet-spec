@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2009-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -62,7 +62,7 @@ public interface JspConfigDescriptor {
      * affect this <code>JspConfigDescriptor</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the
-     * <code>&lt;taglib<&gt;/code> child elements of the
+     * <code>&lt;taglib&gt;</code> child elements of the
      * <code>&lt;jsp-config&gt;</code> element represented by this
      * <code>JspConfigDescriptor</code>
      */

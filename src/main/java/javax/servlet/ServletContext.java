@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -265,7 +265,7 @@ public interface ServletContext {
      *
      * <p>For example, for a web application containing:
      *
-     * <code><pre>
+     * <pre>{@code
      *   /welcome.html
      *   /catalog/index.html
      *   /catalog/products.html
@@ -275,7 +275,7 @@ public interface ServletContext {
      *   /WEB-INF/web.xml
      *   /WEB-INF/classes/com.acme.OrderServlet.class
      *   /WEB-INF/lib/catalog.jar!/META-INF/resources/catalog/moreOffers/books.html
-     * </pre></code>
+     * }</pre>
      * 
      * <tt>getResourcePaths("/")</tt> would return
      * <tt>{"/welcome.html", "/catalog/", "/customer/", "/WEB-INF/"}</tt>,
@@ -1284,12 +1284,12 @@ public interface ServletContext {
      * ServletContext, and must implement one or more of the following
      * interfaces:
      * <ul>
-     * <li>{@link ServletContextAttributeListener}</tt>
-     * <li>{@link ServletRequestListener}</tt>
-     * <li>{@link ServletRequestAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionIdListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
+     * <li>{@link ServletContextAttributeListener}
+     * <li>{@link ServletRequestListener}
+     * <li>{@link ServletRequestAttributeListener}
+     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}
+     * <li>{@link javax.servlet.http.HttpSessionIdListener}
+     * <li>{@link javax.servlet.http.HttpSessionListener}
      * </ul>
      *
      * <p>If this ServletContext was passed to 
@@ -1341,12 +1341,12 @@ public interface ServletContext {
      * <p>The given listener must be an instance of one or more of the
      * following interfaces:
      * <ul>
-     * <li>{@link ServletContextAttributeListener}</tt>
-     * <li>{@link ServletRequestListener}</tt>
-     * <li>{@link ServletRequestAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionIdListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
+     * <li>{@link ServletContextAttributeListener}
+     * <li>{@link ServletRequestListener}
+     * <li>{@link ServletRequestAttributeListener}
+     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}
+     * <li>{@link javax.servlet.http.HttpSessionIdListener}
+     * <li>{@link javax.servlet.http.HttpSessionListener}
      * </ul>
      *
      * <p>If this ServletContext was passed to 
@@ -1389,12 +1389,12 @@ public interface ServletContext {
      * <p>The given <tt>listenerClass</tt> must implement one or more of the
      * following interfaces:
      * <ul>
-     * <li>{@link ServletContextAttributeListener}</tt>
-     * <li>{@link ServletRequestListener}</tt>
-     * <li>{@link ServletRequestAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionIdListener}</tt>
-     * <li>{@link javax.servlet.http.HttpSessionListener}</tt>
+     * <li>{@link ServletContextAttributeListener}
+     * <li>{@link ServletRequestListener}
+     * <li>{@link ServletRequestAttributeListener}
+     * <li>{@link javax.servlet.http.HttpSessionAttributeListener}
+     * <li>{@link javax.servlet.http.HttpSessionIdListener}
+     * <li>{@link javax.servlet.http.HttpSessionListener}
      * </ul>
      *
      * <p>If this ServletContext was passed to 
@@ -1441,13 +1441,13 @@ public interface ServletContext {
      * Instantiates the given EventListener class.
      *
      * <p>The specified EventListener class must implement at least one of
-     * the <code>{@link ServletContextListener}</code>,
-     * <code>{@link ServletContextAttributeListener}</code>,
-     * <code>{@link ServletRequestListener}</code>,
-     * <code>{@link ServletRequestAttributeListener}</code>,
-     * <code>{@link javax.servlet.http.HttpSessionAttributeListener}</code>
-     * <code>{@link javax.servlet.http.HttpSessionIdListener}</code>, or
-     * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
+     * the {@link ServletContextListener},
+     * {@link ServletContextAttributeListener},
+     * {@link ServletRequestListener},
+     * {@link ServletRequestAttributeListener},
+     * {@link javax.servlet.http.HttpSessionAttributeListener},
+     * {@link javax.servlet.http.HttpSessionIdListener}, or
+     * {@link javax.servlet.http.HttpSessionListener}
      * interfaces.
      *
      * <p>The returned EventListener instance may be further customized
@@ -1477,13 +1477,13 @@ public interface ServletContext {
      *
      * @throws IllegalArgumentException if the specified EventListener class
      * does not implement any of the
-     * <code>{@link ServletContextListener}</code>,
-     * <code>{@link ServletContextAttributeListener}</code>,
-     * <code>{@link ServletRequestListener}</code>,
-     * <code>{@link ServletRequestAttributeListener}</code>,
-     * <code>{@link javax.servlet.http.HttpSessionAttributeListener}</code>
-     * <code>{@link javax.servlet.http.HttpSessionIdListener}</code>, or
-     * <code>{@link javax.servlet.http.HttpSessionListener}</code>, or
+     * {@link ServletContextListener},
+     * {@link ServletContextAttributeListener},
+     * {@link ServletRequestListener},
+     * {@link ServletRequestAttributeListener},
+     * {@link javax.servlet.http.HttpSessionAttributeListener},
+     * {@link javax.servlet.http.HttpSessionIdListener}, or
+     * {@link javax.servlet.http.HttpSessionListener}
      * interfaces.
      *
      * @since Servlet 3.0

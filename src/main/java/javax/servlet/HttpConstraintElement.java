@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2008-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -93,7 +93,7 @@ public class HttpConstraintElement {
      * @param semantic <tt>EmptyRoleSemantic.DENY</tt> or
      * <tt>EmptyRoleSemantic.PERMIT</tt>
      * @param guarantee <tt>TransportGuarantee.NONE</tt> or
-     * <tt>TransportGuarantee.CONFIDENTIAL<tt>
+     * <tt>TransportGuarantee.CONFIDENTIAL</tt>
      * @param roleNames the names of the roles that are to be allowed
      * access, or missing if the semantic is <tt>EmptyRoleSemantic.DENY</tt>
      */
@@ -113,7 +113,7 @@ public class HttpConstraintElement {
      *
      * <p>This value is insignificant when <code>getRolesAllowed</code>
      * returns a non-empty array, and should not be specified when a
-     * non-empty array is specified for <tt>getRolesAllowed<tt>.
+     * non-empty array is specified for <tt>getRolesAllowed</tt>.
      *
      * @return the {@link EmptyRoleSemantic} to be applied when
      * <code>getRolesAllowed</code> returns an empty (that is, zero-length)

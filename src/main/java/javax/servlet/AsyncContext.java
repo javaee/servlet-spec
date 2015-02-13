@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2008-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -167,7 +167,7 @@ public interface AsyncContext {
      * last dispatched by the container.
      *
      * <p>The following sequence illustrates how this will work:
-     * <code><pre>
+     * <pre>{@code
      * // REQUEST dispatch to /url/A
      * AsyncContext ac = request.startAsync();
      * ...
@@ -190,7 +190,7 @@ public interface AsyncContext {
      * ac = request.startAsync(request,response);
      * ...
      * ac.dispatch(); // ASYNC dispatch to /url/B
-     * </pre></code>
+     * }</pre>
      *
      * <p>This method returns immediately after passing the request
      * and response objects to a container managed thread, on which the
