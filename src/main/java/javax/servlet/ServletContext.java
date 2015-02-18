@@ -176,9 +176,9 @@ public interface ServletContext {
     /**
      * Returns the major version of the Servlet API that this
      * servlet container supports. All implementations that comply
-     * with Version 3.0 must have this method return the integer 3.
+     * with Version 4.0 must have this method return the integer 4.
      *
-     * @return 3
+     * @return 4
      */
     public int getMajorVersion();
     
