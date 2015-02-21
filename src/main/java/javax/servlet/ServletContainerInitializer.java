@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2008-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -59,7 +59,7 @@ import java.util.Set;
  * to {@link #onStartup}.
  *
  * <p>When examining the classes of an application to see if they match
- * any of the criteria specified by the <tt>HandlesTypes</tt> annontation
+ * any of the criteria specified by the <tt>HandlesTypes</tt> annotation
  * of a <tt>ServletContainerInitializer</tt>, the container may run into
  * classloading problems if any of the application's optional JAR
  * files are missing. Because the container is not in a position to decide
