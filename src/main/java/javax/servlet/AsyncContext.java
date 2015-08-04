@@ -452,6 +452,7 @@ public interface AsyncContext {
 
      * <p>This method supports any annotations applicable to AsyncListener.
      *
+     * @param <T> the class of the object to instantiate
      * @param clazz the AsyncListener class to instantiate
      *
      * @return the new AsyncListener instance

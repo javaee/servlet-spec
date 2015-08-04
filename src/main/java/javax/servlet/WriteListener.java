@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2011-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -66,6 +66,8 @@ public interface WriteListener extends EventListener {
 
     /**
      * Invoked when an error occurs writing data using the non-blocking APIs.
+     *
+     * @param t the throwable to indicate why the write operation failed
      */
     public void onError(final Throwable t);
 
