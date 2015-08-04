@@ -69,6 +69,8 @@ public @interface HandlesTypes {
      * the {@link javax.servlet.ServletContainerInitializer#onStartup}
      * method of the ServletContainerInitializer (if no matching classes
      * are found, <tt>null</tt> must be passed instead)
+     * 
+     * @return the classes in which ServletContainerInitializer has expressed interest
      */
     Class<?>[] value();
 }
