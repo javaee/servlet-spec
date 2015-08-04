@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2008-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -63,6 +63,8 @@ public @interface MultipartConfig {
 
     /**
      * The directory location where files will be stored
+     *
+     * @return the directory location where files will be stored
      */
     String location() default "";
 
@@ -70,6 +72,8 @@ public @interface MultipartConfig {
      * The maximum size allowed for uploaded files.
      * 
      * <p>The default is <tt>-1L</tt>, which means unlimited.
+     *
+     * @return the maximum size allowed for uploaded files
      */
     long maxFileSize() default -1L;
 
@@ -78,11 +82,15 @@ public @interface MultipartConfig {
      * requests
      * 
      * <p>The default is <tt>-1L</tt>, which means unlimited.
+     *
+     * @return the maximum size allowed for <tt>multipart/form-data</tt> requests
      */
     long maxRequestSize() default -1L;
 
     /**
      * The size threshold after which the file will be written to disk
+     *
+     * @return the size threshold after which the file will be written to disk
      */
     int fileSizeThreshold() default 0;
 }

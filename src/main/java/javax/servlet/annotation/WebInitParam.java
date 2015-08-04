@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2008-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -59,16 +59,22 @@ public @interface WebInitParam {
 
     /**
      * Name of the initialization parameter
+     *
+     * @return name of the initialization parameter
      */
     String name();
     
     /**
      * Value of the initialization parameter
+     *
+     * @return value of the initialization parameter
      */    
     String value();
     
     /**
      * Description of the initialization parameter
+     *
+     * @return description of the initialization parameter
      */
     String description() default "";
 }
