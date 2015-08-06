@@ -452,6 +452,11 @@ public interface ServletContext {
      * <p>In lieu of this method, servlets can share information using the 
      * <code>ServletContext</code> class and can perform shared business logic
      * by invoking methods on common non-servlet classes.
+     *
+     * @param name the servlet name
+     * @return the {@code javax.servlet.Servlet Servlet} with the given name
+     * @throws ServletException if an exception has occurred that interfaces
+     *                          with servlet's normal operation
      */
     public Servlet getServlet(String name) throws ServletException;
     
@@ -466,6 +471,8 @@ public interface ServletContext {
      * remains only to preserve binary compatibility. This method
      * will be permanently removed in a future version of the Java
      * Servlet API.
+     *
+     * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet}
      */
     public Enumeration<Servlet> getServlets();
     
@@ -479,6 +486,8 @@ public interface ServletContext {
      * this method always returns an empty <code>Enumeration</code> and 
      * remains only to preserve binary compatibility. This method will 
      * be permanently removed in a future version of the Java Servlet API.
+     *
+     * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet} names
      */
     public Enumeration<String> getServletNames();
     
@@ -503,6 +512,9 @@ public interface ServletContext {
      * <p>This method was originally defined to write an 
      * exception's stack trace and an explanatory error message
      * to the servlet log file.
+     *
+     * @param exception the <code>Exception</code> error
+     * @param msg a <code>String</code> that describes the exception
      */
     public void log(Exception exception, String msg);
     
@@ -902,6 +914,7 @@ public interface ServletContext {
      * See the Java EE platform and JSR 299 specifications for additional
      * details about Managed Beans and resource injection.
      *
+     * @param <T> the class of the Servlet to create
      * @param clazz the Servlet class to instantiate
      *
      * @return the new Servlet instance
@@ -934,6 +947,7 @@ public interface ServletContext {
      * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
      * with {@link javax.servlet.annotation.WebListener}
      *
+     * @param servletName the name of a servlet
      * @since Servlet 3.0
      */
     public ServletRegistration getServletRegistration(String servletName);
@@ -1113,6 +1127,7 @@ public interface ServletContext {
      * See the Java EE platform and JSR 299 specifications for additional
      * details about Managed Beans and resource injection.
      *
+     * @param <T> the class of the Filter to create
      * @param clazz the Filter class to instantiate
      *
      * @return the new Filter instance
@@ -1136,6 +1151,7 @@ public interface ServletContext {
      * Gets the FilterRegistration corresponding to the filter with the
      * given <tt>filterName</tt>.
      *
+     * @param filterName the name of a filter
      * @return the (complete or preliminary) FilterRegistration for the
      * filter with the given <tt>filterName</tt>, or null if no
      * FilterRegistration exists under that name
@@ -1362,6 +1378,7 @@ public interface ServletContext {
      * then the listener will be added to the end of the ordered list of
      * listeners of that interface.
      *
+     * @param <T> the class of the EventListener to add
      * @param t the listener to be added
      *
      * @throws IllegalArgumentException if the given listener is not
@@ -1462,6 +1479,7 @@ public interface ServletContext {
      * See the Java EE platform and JSR 299 specifications for additional
      * details about Managed Beans and resource injection.
      *
+     * @param <T> the class of the EventListener to create
      * @param clazz the EventListener class to instantiate
      *
      * @return the new EventListener instance

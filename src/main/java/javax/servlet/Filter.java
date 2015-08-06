@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -106,6 +106,11 @@ public interface Filter {
      * <li>Throws a ServletException
      * <li>Does not return within a time period defined by the web container
      * </ol>
+     *
+     * @param filterConfig a <code>FilterConfig</code> object containing the
+     *                     filter's configuration and initialization parameters 
+     * @throws ServletException if an exception has occurred that interferes with
+     *                          the filter's normal operation
      */
     public void init(FilterConfig filterConfig) throws ServletException;
 	
@@ -137,6 +142,15 @@ public interface Filter {
      * <li>Directly set headers on the response after invocation of the
      * next entity in the filter chain.
      * </ol>
+     *
+     * @param request the <code>ServletRequest</code> object contains the client's request
+     * @param response the <code>ServletResponse</code> object contains the filter's response
+     * @param chain the <code>FilterChain</code> for invoking the next filter or the resource
+     * @throws IOException if an I/O related error has occurred during the processing
+     * @throws ServletException if an exception occurs that interferes with the
+     *                          filter's normal operation
+     *
+     * @see UnavailableException
      */
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain)
@@ -159,4 +173,3 @@ public interface Filter {
      */
     public void destroy();
 }
-
