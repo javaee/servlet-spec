@@ -70,6 +70,8 @@ public class HttpSessionEvent extends java.util.EventObject {
 
     /**
      * Construct a session event from the given source.
+     *
+     * @param source the {@link HttpSession} corresponding to this event
      */
     public HttpSessionEvent(HttpSession source) {
         super(source);
@@ -77,6 +79,7 @@ public class HttpSessionEvent extends java.util.EventObject {
 
     /**
      * Return the session that changed.
+     * @return the {@link HttpSession} for this event.
      */
     public HttpSession getSession () { 
         return (HttpSession) super.getSource();

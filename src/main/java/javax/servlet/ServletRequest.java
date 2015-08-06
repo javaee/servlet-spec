@@ -457,6 +457,11 @@ public interface ServletRequest {
     public RequestDispatcher getRequestDispatcher(String path);
     
     /**
+     * @param path the path for which the real path is to be returned.
+
+     * @return the <i>real</i> path, or <tt>null</tt> if the
+     * translation cannot be performed.
+
      * @deprecated  As of Version 2.1 of the Java Servlet API,
      *    use {@link ServletContext#getRealPath} instead.
      */

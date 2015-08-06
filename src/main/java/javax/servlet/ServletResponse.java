@@ -342,6 +342,9 @@ public interface ServletResponse {
      * @see #getBufferSize
      * @see #isCommitted
      * @see #reset
+
+     * @throws IOException if the act of flushing the buffer cannot be
+     * completed.
      *
      */
     public void flushBuffer() throws IOException;
@@ -444,6 +447,8 @@ public interface ServletResponse {
      * <code>setLocale</code> after the response is committed
      * have no effect. If no locale has been specified,
      * the container's default locale is returned.
+
+     * @return the Locale for this response.
      * 
      * @see #setLocale
      */

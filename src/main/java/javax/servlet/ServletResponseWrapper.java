@@ -81,6 +81,8 @@ public class ServletResponseWrapper implements ServletResponse {
 	/**
 	* Creates a ServletResponse adaptor wrapping the given response object.
 	* @throws java.lang.IllegalArgumentException if the response is null.
+        * @param response the {@link ServletResponse} to be wrapped
+
 	*/
 
 
@@ -93,6 +95,8 @@ public class ServletResponseWrapper implements ServletResponse {
 
 	/**
 	* Return the wrapped ServletResponse object.
+        *
+        * @return the wrapped {@link ServletResponse}
 	*/
 
 	public ServletResponse getResponse() {
@@ -103,6 +107,8 @@ public class ServletResponseWrapper implements ServletResponse {
 	/**
 	* Sets the response being wrapped. 
 	* @throws java.lang.IllegalArgumentException if the response is null.
+        
+        * @param response the {@link ServletResponse} to be installed 
 	*/
 	
 	public void setResponse(ServletResponse response) {

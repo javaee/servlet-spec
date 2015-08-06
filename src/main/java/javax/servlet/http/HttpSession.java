@@ -212,6 +212,7 @@ public interface HttpSession {
      *			It will be removed in a future
      *			version of the Java Servlet API.
      *
+     * @return the {@link HttpSessionContext} for this session.
      */
     public HttpSessionContext getSessionContext();
     

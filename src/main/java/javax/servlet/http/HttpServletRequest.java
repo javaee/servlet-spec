@@ -578,6 +578,11 @@ public interface HttpServletRequest extends ServletRequest {
      * @deprecated		As of Version 2.1 of the Java Servlet
      *				API, use {@link #isRequestedSessionIdFromURL}
      *				instead.
+     * 
+     * @return			<code>true</code> if the session ID
+     *				came in as part of a URL; otherwise,
+     *				<code>false</code>
+
      */
     public boolean isRequestedSessionIdFromUrl();
 
@@ -727,9 +732,12 @@ public interface HttpServletRequest extends ServletRequest {
     public Part getPart(String name) throws IOException, ServletException;
 
     /**
-     * Create an instance of <code>HttpUpgradeHandler</code> for a given
+     * Creates an instance of <code>HttpUpgradeHandler</code> for a given
      * class and uses it for the http protocol upgrade processing.
      *
+     * @param <T> The {@code Class}, which extends {@link
+     * HttpUpgradeHandler}, of the {@code handlerClass}.
+
      * @param handlerClass The <code>HttpUpgradeHandler</code> class used for the upgrade.
      *
      * @return an instance of the <code>HttpUpgradeHandler</code>

@@ -83,6 +83,8 @@ public class ServletRequestEvent extends java.util.EventObject {
 
     /**
       * Returns the ServletRequest that is changing.
+
+      * @return the {@link ServletRequest} corresponding to this event.
       */
     public ServletRequest getServletRequest () { 
         return this.request;
@@ -90,6 +92,8 @@ public class ServletRequestEvent extends java.util.EventObject {
 
     /**
       * Returns the ServletContext of this web application.
+
+      * @return the {@link ServletContext} for this web application.
       */
     public ServletContext getServletContext () { 
         return (ServletContext) super.getSource();

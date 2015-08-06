@@ -80,6 +80,8 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /** 
      * Constructs a response adaptor wrapping the given response.
      * @throws java.lang.IllegalArgumentException if the response is null
+     *
+     * @param response the {@link HttpServletResponse} to be wrapped.
      */
     public HttpServletResponseWrapper(HttpServletResponse response) {
         super(response);
