@@ -114,6 +114,7 @@ public class HttpSessionBindingEvent extends HttpSessionEvent {
      *
      * @param session the session to which the object is bound or unbound
      * @param name the name with which the object is bound or unbound
+     * @param value the object that is bound or unbound
      *
      * @see #getName
      * @see #getSession
