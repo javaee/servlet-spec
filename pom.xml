@@ -3,7 +3,7 @@
 
     DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-    Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
 
     The contents of this file are subject to the terms of either the GNU
     General Public License Version 2 only ("GPL") or the Common Development
@@ -64,7 +64,7 @@
         <doc.title>Java Servlet 3.1 API Specification</doc.title>
         <vendor.name>Oracle Corporation</vendor.name>
         <implementation.vendor.id>org.glassfish</implementation.vendor.id>
-        <findbugs.version>2.3.1</findbugs.version>
+        <findbugs.version>3.0.1</findbugs.version>
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
         <copyright-plugin.version>1.33</copyright-plugin.version>
@@ -227,7 +227,7 @@
                         </group>
                     </groups>
                     <bottom>
-<![CDATA[Copyright &#169; 1999-2013,
+<![CDATA[Copyright &#169; 1999-2015,
     <a href="http://www.oracle.com">Oracle</a>
     and/or its affiliates. All Rights Reserved.
     Use is subject to
