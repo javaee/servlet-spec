@@ -92,7 +92,7 @@ public class ServletRequestEvent extends java.util.EventObject {
 
     /**
       * Returns the ServletContext of this web application.
-
+      *
       * @return the {@link ServletContext} for this web application.
       */
     public ServletContext getServletContext () { 

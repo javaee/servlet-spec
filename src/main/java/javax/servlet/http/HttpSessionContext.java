@@ -101,7 +101,7 @@ public interface HttpSessionContext {
      *			no replacement. This method must return 
      *			an empty <code>Enumeration</code> and will be removed
      *			in a future version of this API.
-
+     *
      * @return null 
      *
      */

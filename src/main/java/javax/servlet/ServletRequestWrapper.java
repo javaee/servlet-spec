@@ -96,7 +96,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
     /**
      * Return the wrapped request object.
-
+     *
      * @return the wrapped {@link ServletRequest}
      */
     public ServletRequest getRequest() {
@@ -106,11 +106,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
     /**
      * Sets the request object being wrapped. 
-
+     *
      * @param request the {@link ServletRequest} to be installed
-
-
-
+     *
      * @throws java.lang.IllegalArgumentException if the request is null.
      * 
      */

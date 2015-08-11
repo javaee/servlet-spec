@@ -447,7 +447,7 @@ public interface ServletResponse {
      * <code>setLocale</code> after the response is committed
      * have no effect. If no locale has been specified,
      * the container's default locale is returned.
-
+     *
      * @return the Locale for this response.
      * 
      * @see #setLocale
