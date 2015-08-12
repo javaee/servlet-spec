@@ -94,6 +94,18 @@
             </roles>
         </developer>
     </developers>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>jvnet-nexus-snapshots</id>
+            <name>Java.net Nexus Snapshots Repository</name>
+            <url>https://maven.java.net/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>jvnet-nexus-staging</id>
+            <name>Java.net Nexus Staging Repository</name>
+            <url>https://maven.java.net/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <organization>
         <name>GlassFish Community</name>
@@ -244,6 +256,12 @@
                         <goals>
                             <goal>javadoc</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                      <id>attach-javadocs</id>
+                      <goals>
+                        <goal>jar</goal>
+                      </goals>
                     </execution>
                 </executions>
             </plugin>     
