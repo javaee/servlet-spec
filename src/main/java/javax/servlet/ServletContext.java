@@ -613,6 +613,9 @@ public interface ServletContext {
      * is {@code null} the literal String "null" without the quotes must
      * be returned.</span>
      *
+     * @throws NullPointerException <span class="changed_added_4_0">if
+     * the argument {@code name} is {@code null}</span>
+     *
      * @see ServletConfig#getInitParameter
      */
     public String getInitParameter(String name);
@@ -694,6 +697,10 @@ public interface ServletContext {
      *			returned.</span>
      *
      * @see 		ServletContext#getAttributeNames
+     *
+     * @throws NullPointerException <span class="changed_added_4_0">if
+     * the argument {@code name} is {@code null}</span>
+     *
      */
     public Object getAttribute(String name);
     
