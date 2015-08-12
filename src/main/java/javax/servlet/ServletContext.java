@@ -69,9 +69,10 @@ import java.util.Set;
 import javax.servlet.descriptor.JspConfigDescriptor;
 
 /**
- * Defines a set of methods that a servlet uses to communicate with its
- * servlet container, for example, to get the MIME type of a file, dispatch
- * requests, or write to a log file.
+ * <span class="changed_modified_4_0">Defines</span> a set of methods
+ * that a servlet uses to communicate with its servlet container, for
+ * example, to get the MIME type of a file, dispatch requests, or write
+ * to a log file.
  *
  * <p>There is one context per "web application" per Java Virtual Machine.  (A
  * "web application" is a collection of servlets and content installed under a
@@ -590,9 +591,12 @@ public interface ServletContext {
     
 
     /**
-     * Returns a <code>String</code> containing the value of the named
-     * context-wide initialization parameter, or <code>null</code> if the 
-     * parameter does not exist.
+     * <span class="changed_modified_4_0">Returns</span> a
+     * <code>String</code> containing the value of the named
+     * context-wide initialization parameter, or <code>null</code> if
+     * the parameter does not exist. <span class="changed_added_4_0">If
+     * the parameter exists, but is value is {@code null} the literal
+     * String "null" without the quotes must be returned.</span>
      *
      * <p>This method can make available configuration information useful
      * to an entire web application.  For example, it can provide a 
@@ -602,9 +606,12 @@ public interface ServletContext {
      * @param	name	a <code>String</code> containing the name of the
      *                  parameter whose value is requested
      * 
-     * @return 		a <code>String</code> containing the value
-     * of the context's initialization parameter, or <code>null</code> if 
-     * the context's initialization parameter does not exist
+     * @return a <code>String</code> containing the value of the
+     * context's initialization parameter, or <code>null</code> if the
+     * context's initialization parameter does not exist. <span
+     * class="changed_added_4_0">If the parameter exists, but is value
+     * is {@code null} the literal String "null" without the quotes must
+     * be returned.</span>
      *
      * @see ServletConfig#getInitParameter
      */
@@ -653,8 +660,12 @@ public interface ServletContext {
 
 
     /**
-     * Returns the servlet container attribute with the given name, 
-     * or <code>null</code> if there is no attribute by that name.
+     * <span class="changed_modified_4_0">Returns</span> the servlet
+     * container attribute with the given name, or <code>null</code> if
+     * there is no attribute by that name.  <span
+     * class="changed_added_4_0">If the parameter exists, but is value
+     * is {@code null} the literal String "null" without the quotes must
+     * be returned.</span>
      *
      * <p>An attribute allows a servlet container to give the
      * servlet additional information not
@@ -674,10 +685,13 @@ public interface ServletContext {
      * @param name 	a <code>String</code> specifying the name 
      *			of the attribute
      *
-     * @return 		an <code>Object</code> containing the value 
-     *			of the attribute, or <code>null</code>
-     *			if no attribute exists matching the given
-     *			name
+     * @return an <code>Object</code> containing the value of the
+     *			attribute, or <code>null</code> if no attribute
+     *			exists matching the given name <span
+     *			class="changed_added_4_0">If the parameter
+     *			exists, but is value is {@code null} the literal
+     *			String "null" without the quotes must be
+     *			returned.</span>
      *
      * @see 		ServletContext#getAttributeNames
      */

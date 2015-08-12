@@ -53,15 +53,15 @@
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
-    <version>3.1.1-b01-SNAPSHOT</version>
+    <version>4.0.0-m01-SNAPSHOT</version>
 
     <properties>
-        <spec.version>3.1</spec.version>
+        <spec.version>4.0</spec.version>
         <extension.name>javax.servlet</extension.name>
         <bundle.symbolicName>javax.servlet-api</bundle.symbolicName>
-        <bundle.version>3.1.0</bundle.version>
-        <window.title>Java Servlet 3.1</window.title>
-        <doc.title>Java Servlet 3.1 API Specification</doc.title>
+        <bundle.version>4.0.0</bundle.version>
+        <window.title>Java Servlet 4.0</window.title>
+        <doc.title>Java Servlet 4.0 API Specification</doc.title>
         <vendor.name>Oracle Corporation</vendor.name>
         <implementation.vendor.id>org.glassfish</implementation.vendor.id>
         <findbugs.version>3.0.1</findbugs.version>
@@ -97,12 +97,12 @@
 
     <organization>
         <name>GlassFish Community</name>
-        <url>https://glassfish.dev.java.net</url>
+        <url>https://glassfish.java.net</url>
     </organization>
     <licenses>
         <license>
             <name>CDDL + GPLv2 with classpath exception</name>
-            <url>https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html</url>
+            <url>https://glassfish.java.net/nonav/public/CDDL+GPL.html</url>
             <distribution>repo</distribution>
             <comments>A business-friendly OSS license</comments>
         </license>
@@ -129,8 +129,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
@@ -215,11 +215,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8</version>
+                <version>2.10.3</version>
                 <configuration>
                     <sourcepath>src</sourcepath>
                     <doctitle>${doc.title}</doctitle>
                     <windowtitle>${window.title}</windowtitle>
+                    <stylesheetfile>javax.servlet-api.css</stylesheetfile>
+                    <docfilessubdirs>true</docfilessubdirs>
                     <groups>
                         <group>
                             <title>Servlet API Documentation</title>
