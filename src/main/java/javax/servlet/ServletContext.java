@@ -592,9 +592,7 @@ public interface ServletContext {
     /**
      * Returns a <code>String</code> containing the value of the named
      * context-wide initialization parameter, or <code>null</code> if
-     * the parameter does not exist. If the parameter exists, but is
-     * value is {@code null} the literal String "null" without the
-     * quotes must be returned.
+     * the parameter does not exist.
      *
      * <p>This method can make available configuration information useful
      * to an entire web application.  For example, it can provide a 
@@ -606,9 +604,7 @@ public interface ServletContext {
      * 
      * @return a <code>String</code> containing the value of the
      * context's initialization parameter, or <code>null</code> if the
-     * context's initialization parameter does not exist. If the
-     * parameter exists, but is value is {@code null} the literal String
-     * "null" without the quotes must be returned.
+     * context's initialization parameter does not exist.
      *
      * @throws NullPointerException if the argument {@code name} is
      * {@code null}
@@ -648,6 +644,8 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
+     * @throws NullPointerException if the argument value is {@code null}
+     *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
      * of a {@link ServletContextListener} that was neither declared in
@@ -661,9 +659,7 @@ public interface ServletContext {
 
     /**
      * Returns the servlet container attribute with the given name, or
-     * <code>null</code> if there is no attribute by that name.  If the
-     * parameter exists, but is value is {@code null} the literal String
-     * "null" without the quotes must be returned.
+     * <code>null</code> if there is no attribute by that name.
      *
      * <p>An attribute allows a servlet container to give the
      * servlet additional information not
@@ -685,10 +681,7 @@ public interface ServletContext {
      *
      * @return an <code>Object</code> containing the value of the
      *			attribute, or <code>null</code> if no attribute
-     *			exists matching the given name If the parameter
-     *			exists, but is value is {@code null} the literal
-     *			String "null" without the quotes must be
-     *			returned.
+     *			exists matching the given name.
      *
      * @see 		ServletContext#getAttributeNames
      *
@@ -734,6 +727,9 @@ public interface ServletContext {
      *
      * @param object 	an <code>Object</code> representing the
      *			attribute to be bound
+     *
+     * @throws NullPointerException if the argument value is {@code null}
+     *
      */
     public void setAttribute(String name, Object object);
     
