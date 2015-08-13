@@ -69,10 +69,9 @@ import java.util.Set;
 import javax.servlet.descriptor.JspConfigDescriptor;
 
 /**
- * <span class="changed_modified_4_0">Defines</span> a set of methods
- * that a servlet uses to communicate with its servlet container, for
- * example, to get the MIME type of a file, dispatch requests, or write
- * to a log file.
+ * Defines a set of methods that a servlet uses to communicate with its
+ * servlet container, for example, to get the MIME type of a file,
+ * dispatch requests, or write to a log file.
  *
  * <p>There is one context per "web application" per Java Virtual Machine.  (A
  * "web application" is a collection of servlets and content installed under a
@@ -591,12 +590,11 @@ public interface ServletContext {
     
 
     /**
-     * <span class="changed_modified_4_0">Returns</span> a
-     * <code>String</code> containing the value of the named
+     * Returns a <code>String</code> containing the value of the named
      * context-wide initialization parameter, or <code>null</code> if
-     * the parameter does not exist. <span class="changed_added_4_0">If
-     * the parameter exists, but is value is {@code null} the literal
-     * String "null" without the quotes must be returned.</span>
+     * the parameter does not exist. If the parameter exists, but is
+     * value is {@code null} the literal String "null" without the
+     * quotes must be returned.
      *
      * <p>This method can make available configuration information useful
      * to an entire web application.  For example, it can provide a 
@@ -608,13 +606,12 @@ public interface ServletContext {
      * 
      * @return a <code>String</code> containing the value of the
      * context's initialization parameter, or <code>null</code> if the
-     * context's initialization parameter does not exist. <span
-     * class="changed_added_4_0">If the parameter exists, but is value
-     * is {@code null} the literal String "null" without the quotes must
-     * be returned.</span>
+     * context's initialization parameter does not exist. If the
+     * parameter exists, but is value is {@code null} the literal String
+     * "null" without the quotes must be returned.
      *
-     * @throws NullPointerException <span class="changed_added_4_0">if
-     * the argument {@code name} is {@code null}</span>
+     * @throws NullPointerException if the argument {@code name} is
+     * {@code null}
      *
      * @see ServletConfig#getInitParameter
      */
@@ -663,12 +660,10 @@ public interface ServletContext {
 
 
     /**
-     * <span class="changed_modified_4_0">Returns</span> the servlet
-     * container attribute with the given name, or <code>null</code> if
-     * there is no attribute by that name.  <span
-     * class="changed_added_4_0">If the parameter exists, but is value
-     * is {@code null} the literal String "null" without the quotes must
-     * be returned.</span>
+     * Returns the servlet container attribute with the given name, or
+     * <code>null</code> if there is no attribute by that name.  If the
+     * parameter exists, but is value is {@code null} the literal String
+     * "null" without the quotes must be returned.
      *
      * <p>An attribute allows a servlet container to give the
      * servlet additional information not
@@ -690,16 +685,15 @@ public interface ServletContext {
      *
      * @return an <code>Object</code> containing the value of the
      *			attribute, or <code>null</code> if no attribute
-     *			exists matching the given name <span
-     *			class="changed_added_4_0">If the parameter
+     *			exists matching the given name If the parameter
      *			exists, but is value is {@code null} the literal
      *			String "null" without the quotes must be
-     *			returned.</span>
+     *			returned.
      *
      * @see 		ServletContext#getAttributeNames
      *
-     * @throws NullPointerException <span class="changed_added_4_0">if
-     * the argument {@code name} is {@code null}</span>
+     * @throws NullPointerException if the argument {@code name} is
+     * {@code null}
      *
      */
     public Object getAttribute(String name);

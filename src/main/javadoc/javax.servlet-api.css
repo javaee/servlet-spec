@@ -617,8 +617,7 @@ div.contentContainer ul.blockList li.blockList h2{
 
 /* Change bars from http://www.geocities.com/hentaihelper/2atimlin.htm */
 
-/* put a red "change" bar in the left margin			*/
-
+/*
    .changed_added_4_0 { cursor: url(doc-files/changed_added_4_0_cursor.cur), auto;
                  background: url(doc-files/changed_added_4_0.png); 
                  padding-left:0.2em; border-left:solid;
@@ -638,3 +637,4 @@ div.contentContainer ul.blockList li.blockList h2{
                  border-top:none; border-bottom:none; border-color:red;
                  text-decoration: line-through; }
 
+*/
