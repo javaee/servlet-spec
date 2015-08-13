@@ -70,7 +70,7 @@
         <copyright-plugin.version>1.33</copyright-plugin.version>
     </properties>
     <name>Java Servlet API</name>
-    
+
     <url>http://servlet-spec.java.net</url>
 
     <developers>
