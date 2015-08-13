@@ -187,7 +187,7 @@ public interface ServletContext {
     /**
      * Returns the minor version of the Servlet API that this
      * servlet container supports. All implementations that comply
-     * with Version 3.0 must have this method return the integer 0.
+     * with Version 4.0 must have this method return the integer 0.
      *
      * @return 0
      */
