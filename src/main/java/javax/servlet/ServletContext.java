@@ -644,7 +644,7 @@ public interface ServletContext {
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *
-     * @throws NullPointerException if the argument value is {@code null}
+     * @throws NullPointerException if the name parameter is {@code null}
      *
      * @throws UnsupportedOperationException if this ServletContext was
      * passed to the {@link ServletContextListener#contextInitialized} method
@@ -728,7 +728,7 @@ public interface ServletContext {
      * @param object 	an <code>Object</code> representing the
      *			attribute to be bound
      *
-     * @throws NullPointerException if the argument value is {@code null}
+     * @throws NullPointerException if the name parameter is {@code null}
      *
      */
     public void setAttribute(String name, Object object);
