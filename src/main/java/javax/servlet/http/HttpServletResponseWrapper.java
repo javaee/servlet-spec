@@ -134,6 +134,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * @deprecated As of version 2.1, use {@link #encodeURL(String url)}
      * instead
      */
+    @Deprecated
     @Override
     public String encodeUrl(String url) {
         return this._getHttpServletResponse().encodeUrl(url);
@@ -146,6 +147,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * @deprecated As of version 2.1, use 
      * {@link #encodeRedirectURL(String url)} instead
      */
+    @Deprecated
     @Override
     public String encodeRedirectUrl(String url) {
         return this._getHttpServletResponse().encodeRedirectUrl(url);
@@ -250,6 +252,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * use {@link #setStatus(int)}, to send an error with a description
      * use {@link #sendError(int, String)}
      */
+    @Deprecated
     @Override
     public void setStatus(int sc, String sm) {
         this._getHttpServletResponse().setStatus(sc, sm);

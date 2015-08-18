@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -161,6 +161,7 @@ public interface HttpServletResponse extends ServletResponse {
      * 			the unchanged URL otherwise.
      * @exception IllegalArgumentException if the url is not valid
      */
+    @Deprecated
     public String encodeUrl(String url);
     
     /**
@@ -172,6 +173,7 @@ public interface HttpServletResponse extends ServletResponse {
      * 			the unchanged URL otherwise.
      * @exception IllegalArgumentException if the url is not valid
      */
+    @Deprecated
     public String encodeRedirectUrl(String url);
 
     /**
@@ -376,6 +378,7 @@ public interface HttpServletResponse extends ServletResponse {
      * @param	sc	the status code
      * @param	sm	the status message
      */
+    @Deprecated
     public void setStatus(int sc, String sm);
 
     /**

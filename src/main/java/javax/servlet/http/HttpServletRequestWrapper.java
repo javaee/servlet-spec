@@ -322,7 +322,11 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return isRequestedSessionIdFromUrl()
      * on the wrapped request object.
+     *
+     * @deprecated  As of Version 4.0 of the Java Servlet API,
+     *              use {@link #isRequestedSessionIdFromURL} instead.
      */
+    @Deprecated
     @Override
     public boolean isRequestedSessionIdFromUrl() {
         return this._getHttpServletRequest().isRequestedSessionIdFromUrl();

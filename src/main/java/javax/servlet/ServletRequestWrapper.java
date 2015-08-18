@@ -354,6 +354,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * @deprecated As of Version 2.1 of the Java Servlet API,
      * use {@link ServletContext#getRealPath} instead
      */
+    @Deprecated
     public String getRealPath(String path) {
         return this.request.getRealPath(path);
     }

@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -107,7 +107,7 @@ extends ServletException {
      *                  descriptive message
      *
      */
-
+    @Deprecated
     public UnavailableException(Servlet servlet, String msg) {
 	super(msg);
 	this.servlet = servlet;
@@ -130,7 +130,7 @@ extends ServletException {
      *			displayed for the user.
      *
      */
-    
+    @Deprecated
     public UnavailableException(int seconds, Servlet servlet, String msg) {
 	super(msg);
 	this.servlet = servlet;
@@ -218,7 +218,7 @@ extends ServletException {
      *			throwing the <code>UnavailableException</code>
      *
      */
-     
+    @Deprecated
     public Servlet getServlet() {
 	return servlet;
     }

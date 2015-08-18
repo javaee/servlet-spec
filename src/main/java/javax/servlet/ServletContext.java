@@ -458,6 +458,7 @@ public interface ServletContext {
      * @throws ServletException if an exception has occurred that interfaces
      *                          with servlet's normal operation
      */
+    @Deprecated
     public Servlet getServlet(String name) throws ServletException;
     
 
@@ -474,6 +475,7 @@ public interface ServletContext {
      *
      * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet}
      */
+    @Deprecated
     public Enumeration<Servlet> getServlets();
     
 
@@ -489,6 +491,7 @@ public interface ServletContext {
      *
      * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet} names
      */
+    @Deprecated
     public Enumeration<String> getServletNames();
     
 
@@ -516,6 +519,7 @@ public interface ServletContext {
      * @param exception the <code>Exception</code> error
      * @param msg a <code>String</code> that describes the exception
      */
+    @Deprecated
     public void log(Exception exception, String msg);
     
 

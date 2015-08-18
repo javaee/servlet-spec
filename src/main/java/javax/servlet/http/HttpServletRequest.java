@@ -582,8 +582,8 @@ public interface HttpServletRequest extends ServletRequest {
      * @return			<code>true</code> if the session ID
      *				came in as part of a URL; otherwise,
      *				<code>false</code>
-
      */
+    @Deprecated
     public boolean isRequestedSessionIdFromUrl();
 
     /**

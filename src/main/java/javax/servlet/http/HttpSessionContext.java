@@ -75,7 +75,7 @@ import java.util.Enumeration;
  *
  */
 
-
+@Deprecated
 public interface HttpSessionContext {
 
     /**
@@ -84,12 +84,11 @@ public interface HttpSessionContext {
      *			no replacement. This method must 
      *			return null and will be removed in
      *			a future version of this API.
-
      * @param sessionId the id of the session to be returned
      *
      * @return null in all cases
      */
-
+    @Deprecated
     public HttpSession getSession(String sessionId);
     
     
@@ -105,7 +104,7 @@ public interface HttpSessionContext {
      * @return null 
      *
      */
-
+    @Deprecated
     public Enumeration<String> getIds();
 }
 
