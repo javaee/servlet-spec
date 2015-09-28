@@ -196,11 +196,11 @@ public abstract class HttpServlet extends GenericServlet
      *                  contains the response the servlet sends
      *                  to the client
      * 
-     * @exception IOException   if an input or output error is 
+     * @throws IOException   if an input or output error is 
      *                              detected when the servlet handles
      *                              the GET request
      *
-     * @exception ServletException  if the request for the GET
+     * @throws ServletException  if the request for the GET
      *                                  could not be handled
      *
      * @see javax.servlet.ServletResponse#setContentType
@@ -275,9 +275,9 @@ public abstract class HttpServlet extends GenericServlet
      * @param resp  the response object that the servlet
      *                  uses to return the headers to the clien
      *
-     * @exception IOException   if an input or output error occurs
+     * @throws IOException   if an input or output error occurs
      *
-     * @exception ServletException  if the request for the HEAD
+     * @throws ServletException  if the request for the HEAD
      *                                  could not be handled
      */
     protected void doHead(HttpServletRequest req, HttpServletResponse resp)
@@ -338,11 +338,11 @@ public abstract class HttpServlet extends GenericServlet
      *                  contains the response the servlet sends
      *                  to the client
      * 
-     * @exception IOException   if an input or output error is 
+     * @throws IOException   if an input or output error is 
      *                              detected when the servlet handles
      *                              the request
      *
-     * @exception ServletException  if the request for the POST
+     * @throws ServletException  if the request for the POST
      *                                  could not be handled
      *
      * @see javax.servlet.ServletOutputStream
@@ -396,11 +396,11 @@ public abstract class HttpServlet extends GenericServlet
      *                  contains the response the servlet returns
      *                  to the client
      *
-     * @exception IOException   if an input or output error occurs
+     * @throws IOException   if an input or output error occurs
      *                              while the servlet is handling the
      *                              PUT request
      *
-     * @exception ServletException  if the request for the PUT
+     * @throws ServletException  if the request for the PUT
      *                                  cannot be handled
      */
     protected void doPut(HttpServletRequest req, HttpServletResponse resp)
@@ -442,11 +442,11 @@ public abstract class HttpServlet extends GenericServlet
      *                  contains the response the servlet returns
      *                  to the client                                
      *
-     * @exception IOException   if an input or output error occurs
+     * @throws IOException   if an input or output error occurs
      *                              while the servlet is handling the
      *                              DELETE request
      *
-     * @exception ServletException  if the request for the
+     * @throws ServletException  if the request for the
      *                                  DELETE cannot be handled
      */
     protected void doDelete(HttpServletRequest req,
@@ -513,11 +513,11 @@ public abstract class HttpServlet extends GenericServlet
      *                  contains the response the servlet returns
      *                  to the client                                
      *
-     * @exception IOException   if an input or output error occurs
+     * @throws IOException   if an input or output error occurs
      *                              while the servlet is handling the
      *                              OPTIONS request
      *
-     * @exception ServletException  if the request for the
+     * @throws ServletException  if the request for the
      *                                  OPTIONS cannot be handled
      */
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp)
@@ -613,11 +613,11 @@ public abstract class HttpServlet extends GenericServlet
      *                  contains the response the servlet returns
      *                  to the client                                
      *
-     * @exception IOException   if an input or output error occurs
+     * @throws IOException   if an input or output error occurs
      *                              while the servlet is handling the
      *                              TRACE request
      *
-     * @exception ServletException  if the request for the
+     * @throws ServletException  if the request for the
      *                                  TRACE cannot be handled
      */
     protected void doTrace(HttpServletRequest req, HttpServletResponse resp) 
@@ -665,11 +665,11 @@ public abstract class HttpServlet extends GenericServlet
      *                  contains the response the servlet returns
      *                  to the client                                
      *
-     * @exception IOException   if an input or output error occurs
+     * @throws IOException   if an input or output error occurs
      *                              while the servlet is handling the
      *                              HTTP request
      *
-     * @exception ServletException  if the HTTP request
+     * @throws ServletException  if the HTTP request
      *                                  cannot be handled
      * 
      * @see javax.servlet.Servlet#service
@@ -763,12 +763,14 @@ public abstract class HttpServlet extends GenericServlet
      *                  contains the response the servlet returns
      *                  to the client                                
      *
-     * @exception IOException   if an input or output error occurs
+     * @throws IOException   if an input or output error occurs
      *                              while the servlet is handling the
      *                              HTTP request
      *
-     * @exception ServletException  if the HTTP request cannot
-     *                                  be handled
+     * @throws ServletException  if the HTTP request cannot
+     *                                  be handled or if either parameter is not
+     *                           an instance of its respective {@link HttpServletRequest}
+     *                           or {@link HttpServletResponse} counterparts.
      * 
      * @see javax.servlet.Servlet#service
      */
