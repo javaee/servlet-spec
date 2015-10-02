@@ -65,8 +65,8 @@ import javax.servlet.ServletRequest;
 
 /**
  *
- * Extends the {@link javax.servlet.ServletRequest} interface
- * to provide request information for HTTP servlets. 
+ * Extends the {@link javax.servlet.ServletRequest} interface to provide
+ * request information for HTTP servlets.
  *
  * <p>The servlet container creates an <code>HttpServletRequest</code> 
  * object and passes it as an argument to the servlet's service
@@ -303,6 +303,41 @@ public interface HttpServletRequest extends ServletRequest {
      *			information
      */
     public String getPathTranslated();
+
+    /**
+     * Returns a {@link PushBuilder} for issuing server push responses
+     * from the current request.  If the current connection does not
+     * support server push, a valid {@code PushBuilder} must still be
+     * returned, but calling any of the methods on it will have no
+     * effect.
+     *
+     * @return a {@link PushBuilder} for issuing server push responses
+     * from the current request.
+     */
+     default public PushBuilder getPushBuilder() {
+         return new PushBuilder() {
+             public PushBuilder method(String method) { return this; }
+             public PushBuilder queryString(String queryString) { return this; }
+             public PushBuilder sessionId(String sessionId) { return this; }
+             public PushBuilder conditional(boolean conditional) { return this; }
+             public PushBuilder setHeader(String name, String value) { return this; }
+             public PushBuilder addHeader(String name, String value) { return this; }
+             public PushBuilder removeHeader(String name) { return this; }
+             public PushBuilder path(String path) { return this; }
+             public PushBuilder etag(String etag) { return this; }
+             public PushBuilder lastModified(String lastModified) { return this; }
+             public void push() {}
+             public String getMethod() { return ""; }
+             public String getQueryString() { return ""; }
+             public String getSessionId() { return ""; }
+             public boolean isConditional() { return false; }
+             public Set<String> getHeaderNames() { return Collections.emptySet(); }
+             public String getHeader(String name) { return ""; }
+             public String getPath() { return ""; }
+             public String getEtag() { return ""; }
+             public String getLastModified() { return ""; }
+         };
+     }
 
     /**
      * Returns the portion of the request URI that indicates the context
