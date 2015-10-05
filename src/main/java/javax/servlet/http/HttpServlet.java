@@ -65,7 +65,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.Enumeration;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.servlet.*;

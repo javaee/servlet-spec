@@ -315,28 +315,51 @@ public interface HttpServletRequest extends ServletRequest {
      * from the current request.
      */
      default public PushBuilder getPushBuilder() {
-         return new PushBuilder() {
+         return new NoOpPushBuilder();
+     }
+     
+     static class NoOpPushBuilder implements PushBuilder {
+             @Override
              public PushBuilder method(String method) { return this; }
+             @Override
              public PushBuilder queryString(String queryString) { return this; }
+             @Override
              public PushBuilder sessionId(String sessionId) { return this; }
+             @Override
              public PushBuilder conditional(boolean conditional) { return this; }
+             @Override
              public PushBuilder setHeader(String name, String value) { return this; }
+             @Override
              public PushBuilder addHeader(String name, String value) { return this; }
+             @Override
              public PushBuilder removeHeader(String name) { return this; }
+             @Override
              public PushBuilder path(String path) { return this; }
+             @Override
              public PushBuilder etag(String etag) { return this; }
+             @Override
              public PushBuilder lastModified(String lastModified) { return this; }
+             @Override
              public void push() {}
+             @Override
              public String getMethod() { return ""; }
+             @Override
              public String getQueryString() { return ""; }
+             @Override
              public String getSessionId() { return ""; }
+             @Override
              public boolean isConditional() { return false; }
+             @Override
              public Set<String> getHeaderNames() { return Collections.emptySet(); }
+             @Override
              public String getHeader(String name) { return ""; }
+             @Override
              public String getPath() { return ""; }
+             @Override
              public String getEtag() { return ""; }
+             @Override
              public String getLastModified() { return ""; }
-         };
+         
      }
 
     /**
