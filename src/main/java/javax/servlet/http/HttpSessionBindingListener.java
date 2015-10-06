@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -81,8 +81,6 @@ import java.util.EventListener;
 
 public interface HttpSessionBindingListener extends EventListener {
 
-
-
     /**
      *
      * Notifies the object that it is being bound to
@@ -94,10 +92,7 @@ public interface HttpSessionBindingListener extends EventListener {
      * @see #valueUnbound
      *
      */ 
-
-    public void valueBound(HttpSessionBindingEvent event);
-    
-    
+    default public void valueBound(HttpSessionBindingEvent event) {}
 
     /**
      *
@@ -110,9 +105,5 @@ public interface HttpSessionBindingListener extends EventListener {
      * @see #valueBound
      *
      */
-
-    public void valueUnbound(HttpSessionBindingEvent event);
-    
-    
+    default public void valueUnbound(HttpSessionBindingEvent event) {}
 }
-

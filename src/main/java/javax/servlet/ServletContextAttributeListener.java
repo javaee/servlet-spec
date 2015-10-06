@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -88,7 +88,7 @@ public interface ServletContextAttributeListener extends EventListener {
      * ServletContext to which the attribute was added, along with the
      * attribute name and value
      */
-    public void attributeAdded(ServletContextAttributeEvent event);
+    default public void attributeAdded(ServletContextAttributeEvent event) {}
 
     /**
      * Receives notification that an attribute has been removed
@@ -98,7 +98,7 @@ public interface ServletContextAttributeListener extends EventListener {
      * ServletContext from which the attribute was removed, along with
      * the attribute name and value
      */
-    public void attributeRemoved(ServletContextAttributeEvent event);
+    default public void attributeRemoved(ServletContextAttributeEvent event) {}
 
     /*
      * Receives notification that an attribute has been replaced
@@ -108,6 +108,6 @@ public interface ServletContextAttributeListener extends EventListener {
      * ServletContext in which the attribute was replaced, along with
      * the attribute name and its old value
      */
-    public void attributeReplaced(ServletContextAttributeEvent event);
+    default public void attributeReplaced(ServletContextAttributeEvent event) {}
 }
 

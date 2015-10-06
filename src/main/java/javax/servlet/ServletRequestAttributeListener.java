@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -93,7 +93,7 @@ public interface ServletRequestAttributeListener extends EventListener {
      * ServletRequest and the name and value of the attribute that was
      * added
      */
-    public void attributeAdded(ServletRequestAttributeEvent srae);
+    default public void attributeAdded(ServletRequestAttributeEvent srae) {}
 
     /**
      * Receives notification that an attribute has been removed from the
@@ -103,7 +103,7 @@ public interface ServletRequestAttributeListener extends EventListener {
      * ServletRequest and the name and value of the attribute that was
      * removed
      */
-    public void attributeRemoved(ServletRequestAttributeEvent srae);
+    default public void attributeRemoved(ServletRequestAttributeEvent srae) {}
 
     /**
      * Receives notification that an attribute has been replaced on the
@@ -113,6 +113,6 @@ public interface ServletRequestAttributeListener extends EventListener {
      * ServletRequest and the name and (old) value of the attribute
      * that was replaced
      */
-    public void attributeReplaced(ServletRequestAttributeEvent srae);
+    default public void attributeReplaced(ServletRequestAttributeEvent srae) {}
 }
 
