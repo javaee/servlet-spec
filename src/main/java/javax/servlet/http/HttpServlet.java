@@ -105,7 +105,7 @@ import javax.servlet.*;
  * such as files, database connections, and network 
  * connections.
  * See the
- * <a href="http://java.sun.com/Series/Tutorial/java/threads/multithreaded.html">
+ * <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/">
  * Java Tutorial on Multithreaded Programming</a> for more
  * information on handling multiple threads in a Java program.
  *
