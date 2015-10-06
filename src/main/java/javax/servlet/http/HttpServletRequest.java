@@ -307,7 +307,9 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Returns a {@link PushBuilder} for issuing server push responses
      * from the current request.  If the current connection does not
-     * support server push, a valid {@code PushBuilder} must still be
+     * support server push, or server push has been disabled by the
+     * client via a {@code SETTINGS_ENABLE_PUSH} settings frame value of
+     * {@code 0} (zero), a valid {@code PushBuilder} must still be
      * returned, but calling any of the methods on it will have no
      * effect.
      *
