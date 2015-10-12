@@ -47,12 +47,10 @@ import java.util.ResourceBundle;
 
 /**
  *
- * <p class="changed_added_4_0">Defines a generic, protocol-independent
+ * <p>Defines a generic, protocol-independent
  * filter. To write an HTTP filter for use on the
  * Web, extend {@link javax.servlet.http.HttpFilter} instead.</p>
  *
- * <div class="changed_added_4_0">
- * 
  * <p><code>GenericFilter</code> implements the <code>Filter</code>
  * and <code>FilterConfig</code> interfaces. <code>GenericFilter</code>
  * may be directly extended by a filter, although it's more common to extend
@@ -66,8 +64,6 @@ import java.util.ResourceBundle;
  * <p>To write a generic filter, you need only
  * override the abstract <code>doFilter</code> method. 
  *
- * </div>
- * 
  * @author 	Various
  * 
  * @since 4.0
@@ -86,7 +82,7 @@ public abstract class GenericFilter
 
     /**
      *
-     * <p class="changed_added_4_0">Does nothing. All of the filter initialization
+     * <p>Does nothing. All of the filter initialization
      * is done by one of the <code>init</code> methods.</p>
      *
      * @since 4.0
@@ -95,20 +91,7 @@ public abstract class GenericFilter
     
     
     /**
-     * <p class="changed_added_4_0">Called by the servlet container to indicate to a filter that the
-     * filter is being taken out of service.  See {@link Filter#destroy}.</p>
-     *
-     *
-     * @since 4.0
-     * 
-     */
-    @Override
-    public void destroy() {
-    }
-    
-    
-    /**
-     * <p class="changed_added_4_0">Returns a <code>String</code> containing the value of the named
+     * <p>Returns a <code>String</code> containing the value of the named
      * initialization parameter, or <code>null</code> if the parameter does
      * not exist.  See {@link FilterConfig#getInitParameter}.</p>
      *
@@ -138,19 +121,15 @@ public abstract class GenericFilter
     
     
    /**
-    * <p class="changed_added_4_0">Returns the names of the filter's initialization parameters 
+    * <p>Returns the names of the filter's initialization parameters 
     * as an <code>Enumeration</code> of <code>String</code> objects,
     * or an empty <code>Enumeration</code> if the filter has no
     * initialization parameters.  See {@link
     * FilterConfig#getInitParameterNames}.</p>
     *
-    * <div class="changed_added_4_0">
-    * 
     * <p>This method is supplied for convenience. It gets the 
     * parameter names from the filter's <code>FilterConfig</code> object. 
     *
-    * </div>
-    * 
     * @return Enumeration 	an enumeration of <code>String</code>
     *				objects containing the names of 
     *				the filter's initialization parameters
@@ -170,7 +149,7 @@ public abstract class GenericFilter
      
 
     /**
-     * <p class="changed_added_4_0">Returns this servlet's {@link ServletConfig} object.</p>
+     * <p>Returns this servlet's {@link ServletConfig} object.</p>
      *
      * @return FilterConfig 	the <code>FilterConfig</code> object
      *				that initialized this filter
@@ -183,16 +162,12 @@ public abstract class GenericFilter
  
     
     /**
-     * <p class="changed_added_4_0">Returns a reference to the {@link ServletContext} in which this filter
+     * <p>Returns a reference to the {@link ServletContext} in which this filter
      * is running.  See {@link FilterConfig#getServletContext}.</p>
      *
-     * <div class="changed_added_4_0">
-     * 
      * <p>This method is supplied for convenience. It gets the 
      * context from the filter's <code>FilterConfig</code> object.
      *
-     * </div>
-     * 
      * @return ServletContext 	the <code>ServletContext</code> object
      *				passed to this filter by the <code>init</code>
      *				method
@@ -212,18 +187,14 @@ public abstract class GenericFilter
 
 
     /**
-     * <p class="changed_added_4_0">Called by the servlet container to indicate to a filter that
+     * <p>Called by the servlet container to indicate to a filter that
      * it is being placed into service.  See {@link Filter#init}.</p>
      * 
-     * <div class="changed_added_4_0">
-     *
      * <p>This implementation stores the {@link FilterConfig}
      * object it receives from the servlet container for later use.
      * When overriding this form of the method, call 
      * <code>super.init(config)</code>.
      * 
-     * </div>
-     *
      * @param config 			the <code>FilterConfig</code> object
      *					that contains configuration
      *					information for this filter
@@ -243,19 +214,15 @@ public abstract class GenericFilter
     }
 
     /**
-     * <p class="changed_added_4_0">A convenience method which can be overridden so that there's no need
+     * <p>A convenience method which can be overridden so that there's no need
      * to call <code>super.init(config)</code>.</p>
      *
-     * <div class="changed_added_4_0">
-     * 
      * <p>Instead of overriding {@link #init(FilterConfig)}, simply override
      * this method and it will be called by
      * <code>GenericFilter.init(FilterConfig config)</code>.
      * The <code>FilterConfig</code> object can still be retrieved via {@link
      * #getFilterConfig}. 
      * 
-     * </div>
-     *
      * @exception ServletException 	if an exception occurs that
      *					interrupts the servlet's
      *					normal operation
@@ -266,39 +233,9 @@ public abstract class GenericFilter
 
     }
     
-    /**
-     * Called by the servlet container to allow the filter to respond to
-     * a request.  See {@link Filter#doFilter}.
-     * 
-     * <p>This method is declared abstract so subclasses, such as 
-     * <code>HttpFilter</code>, must override it.
-     *
-     * @param req 	the <code>ServletRequest</code> object
-     *			that contains the client's request
-     *
-     * @param res 	the <code>ServletResponse</code> object
-     *			that will contain the servlet's response
-     * 
-     * @param chain     the <code>FilterChain</code> for invoking the next filter or the resource
-     *
-     * @exception ServletException 	if an exception occurs that
-     *					interferes with the servlet's
-     *					normal operation occurred
-     *
-     * @exception IOException 		if an input or output
-     *					exception occurs
-     *
-     * @since 4.0
-     */
-    @Override
-    public abstract void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException;
-    
-    
-
-    
 
     /**
-     * <p class="changed_added_4_0">Returns the name of this filter instance.
+     * <p>Returns the name of this filter instance.
      * See {@link FilterConfig#getFilterName}.</p>
      *
      * @return          the name of this filter instance
