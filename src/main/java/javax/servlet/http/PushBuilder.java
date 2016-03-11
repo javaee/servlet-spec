@@ -236,17 +236,21 @@ public interface PushBuilder
 
     /** Push a resource given the current state of the builder,
      * returning immediately without blocking.
-     * 
+
      * <p>Push a resource based on the current state of the PushBuilder.
-     * If {@link #isConditional()} is true and an etag or lastModified
-     * value is provided, then an appropriate conditional header will be
-     * generated. If both an etag and lastModified value are provided
-     * only an If-None-Match header will be generated. If the builder
-     * has a session ID, then the pushed request will include the
-     * session ID either as a Cookie or as a URI parameter as
-     * appropriate. The builders query string is merged with any passed
-     * query string.</p>
-     *
+     * Calling this method does not guarantee the resource will actually
+     * be pushed, since it is possible the client can decline acceptance
+     * of the pushed resource using the underlying HTTP/2 protocol.</p>
+
+     * <p>If {@link #isConditional()} is true and an etag or
+     * lastModified value is provided, then an appropriate conditional
+     * header will be generated. If both an etag and lastModified value
+     * are provided only an If-None-Match header will be generated. If
+     * the builder has a session ID, then the pushed request will
+     * include the session ID either as a Cookie or as a URI parameter
+     * as appropriate. The builders query string is merged with any
+     * passed query string.</p>
+
      * <p>Before returning from this method, the builder has its path,
      * etag and lastModified fields nulled. All other fields are left as
      * is for possible reuse in another push.</p>
