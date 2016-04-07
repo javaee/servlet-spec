@@ -57,7 +57,7 @@ public interface WriteListener extends EventListener {
      * When an instance of the WriteListener is registered with a {@link ServletOutputStream},
      * this method will be invoked by the container the first time when it is possible
      * to write data. Subsequently the container will invoke this method if and only
-     * if {@link javax.servlet.ServletOutputStream#isReady()} method
+     * if the {@link javax.servlet.ServletOutputStream#isReady()} method
      * has been called and has returned a value of <code>false</code> and a write
      * operation has subsequently become possible.
      *
