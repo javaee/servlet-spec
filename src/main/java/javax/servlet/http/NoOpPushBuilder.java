@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2016 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2017 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -63,7 +63,7 @@ class NoOpPushBuilder implements PushBuilder {
     @Override
         public PushBuilder path(String path) { return this; }
     @Override
-        public PushBuilder etag(String etag) { return this; }
+        public PushBuilder eTag(String etag) { return this; }
     @Override
         public PushBuilder lastModified(String lastModified) { return this; }
     @Override
@@ -83,7 +83,7 @@ class NoOpPushBuilder implements PushBuilder {
     @Override
         public String getPath() { return ""; }
     @Override
-        public String getEtag() { return ""; }
+        public String getETag() { return ""; }
     @Override
         public String getLastModified() { return ""; }
 }

@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2016 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2017 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -110,7 +110,7 @@ import javax.servlet.http.HttpSession;
  * asynchronous push request with the current state of the builder.
  * After the call to {@link #push()}, the builder may be reused for
  * another push, however the implementation must make it so the {@link
- * #path(String)}, {@link #etag(String)} and {@link
+ * #path(String)}, {@link #eTag(String)} and {@link
  * #lastModified(String)} values are cleared before returning from
  * {@link #push}.  All other values are retained over calls to {@link
  * #push()}.
@@ -157,9 +157,9 @@ public interface PushBuilder
     public abstract PushBuilder sessionId(String sessionId);
     
     /** Set if the request is to be conditional.
-     * If the request is conditional, any available values from {@link #etag(String)} or 
+     * If the request is conditional, any available values from {@link #eTag(String)} or 
      * {@link #lastModified(String)} will be set in the appropriate headers. If the request
-     * is not conditional, then etag and lastModified values are ignored.  
+     * is not conditional, then eTag and lastModified values are ignored.  
      * Defaults to true if the associated request was conditional.
      * @param  conditional true if the push request is conditional
      * @return this builder.
@@ -214,14 +214,14 @@ public interface PushBuilder
     public abstract PushBuilder path(String path);
     
     /** 
-     * Set the etag to be used for conditional pushes.  
-     * The etag will be used only if {@link #isConditional()} is true.
-     * Defaults to no etag.  The value is nulled after every call to 
+     * Set the eTag to be used for conditional pushes.  
+     * The eTag will be used only if {@link #isConditional()} is true.
+     * Defaults to no eTag.  The value is nulled after every call to 
      * {@link #push()}
-     * @param etag the etag to be used for the push.
+     * @param eTag the eTag to be used for the push.
      * @return this builder.
      */
-    public abstract PushBuilder etag(String etag);
+    public abstract PushBuilder eTag(String eTag);
 
     /** 
      * Set the last modified date to be used for conditional pushes.
@@ -242,9 +242,9 @@ public interface PushBuilder
      * be pushed, since it is possible the client can decline acceptance
      * of the pushed resource using the underlying HTTP/2 protocol.</p>
 
-     * <p>If {@link #isConditional()} is true and an etag or
+     * <p>If {@link #isConditional()} is true and an eTag or
      * lastModified value is provided, then an appropriate conditional
-     * header will be generated. If both an etag and lastModified value
+     * header will be generated. If both an eTag and lastModified value
      * are provided only an If-None-Match header will be generated. If
      * the builder has a session ID, then the pushed request will
      * include the session ID either as a Cookie or as a URI parameter
@@ -252,7 +252,7 @@ public interface PushBuilder
      * passed query string.</p>
 
      * <p>Before returning from this method, the builder has its path,
-     * etag and lastModified fields nulled. All other fields are left as
+     * eTag and lastModified fields nulled. All other fields are left as
      * is for possible reuse in another push.</p>
      *
      * @throws IllegalArgumentException if the method set expects a
@@ -276,7 +276,7 @@ public interface PushBuilder
     public abstract Set<String> getHeaderNames();
     public abstract String getHeader(String name);
     public abstract String getPath();
-    public abstract String getEtag();
+    public abstract String getETag();
     public abstract String getLastModified();
 
 
