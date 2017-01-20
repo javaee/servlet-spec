@@ -68,7 +68,7 @@ import javax.servlet.ServletRequest;
  * Extends the {@link javax.servlet.ServletRequest} interface to provide
  * request information for HTTP servlets.
  *
- * <p>The servlet container creates an <code>HttpServletRequest</code> 
+ * <p>The servlet container creates an <code>HttpServletRequest</code>
  * object and passes it as an argument to the servlet's service
  * methods (<code>doGet</code>, <code>doPost</code>, etc).
  *
@@ -100,23 +100,23 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Returns the name of the authentication scheme used to protect
-     * the servlet. All servlet containers support basic, form and client 
-     * certificate authentication, and may additionally support digest 
+     * the servlet. All servlet containers support basic, form and client
+     * certificate authentication, and may additionally support digest
      * authentication.
-     * If the servlet is not authenticated <code>null</code> is returned. 
+     * If the servlet is not authenticated <code>null</code> is returned.
      *
      * <p>Same as the value of the CGI variable AUTH_TYPE.
      *
-     * @return		one of the static members BASIC_AUTH, 
+     * @return		one of the static members BASIC_AUTH,
      *			FORM_AUTH, CLIENT_CERT_AUTH, DIGEST_AUTH
      *			(suitable for == comparison) or
      *			the container-specific string indicating
      *			the authentication scheme, or
-     *			<code>null</code> if the request was 
-     *			not authenticated.     
+     *			<code>null</code> if the request was
+     *			not authenticated.
      */
     public String getAuthType();
-    
+
     /**
      * Returns an array containing all of the <code>Cookie</code>
      * objects the client sent with this request.
@@ -130,10 +130,10 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Returns the value of the specified request header
-     * as a <code>long</code> value that represents a 
+     * as a <code>long</code> value that represents a
      * <code>Date</code> object. Use this method with
      * headers that contain dates, such as
-     * <code>If-Modified-Since</code>. 
+     * <code>If-Modified-Since</code>.
      *
      * <p>The date is returned as
      * the number of milliseconds since January 1, 1970 GMT.
@@ -179,8 +179,8 @@ public interface HttpServletRequest extends ServletRequest {
      *				header, or <code>null</code>
      *				if the request does not
      *				have a header of that name
-     */			
-    public String getHeader(String name); 
+     */
+    public String getHeader(String name);
 
     /**
      * Returns all the values of the specified request header
@@ -203,12 +203,12 @@ public interface HttpServletRequest extends ServletRequest {
      *                  	the values of the requested header. If
      *                  	the request does not have any headers of
      *                  	that name return an empty
-     *                  	enumeration. If 
+     *                  	enumeration. If
      *                  	the container does not allow access to
      *                  	header information, return null
-     */			
-    public Enumeration<String> getHeaders(String name); 
-    
+     */
+    public Enumeration<String> getHeaders(String name);
+
     /**
      * Returns an enumeration of all the header names
      * this request contains. If the request has no
@@ -227,7 +227,7 @@ public interface HttpServletRequest extends ServletRequest {
      *				<code>null</code>
      */
     public Enumeration<String> getHeaderNames();
-    
+
     /**
      * Returns the value of the specified request header
      * as an <code>int</code>. If the request does not have a header
@@ -240,7 +240,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @param name		a <code>String</code> specifying the name
      *				of a request header
      *
-     * @return			an integer expressing the value 
+     * @return			an integer expressing the value
      * 				of the request header or -1
      *				if the request doesn't have a
      *				header of this name
@@ -250,19 +250,19 @@ public interface HttpServletRequest extends ServletRequest {
      *							to an <code>int</code>
      */
     public int getIntHeader(String name);
-    
+
     /**
-     * Returns the name of the HTTP method with which this 
+     * Returns the name of the HTTP method with which this
      * request was made, for example, GET, POST, or PUT.
      * Same as the value of the CGI variable REQUEST_METHOD.
      *
-     * @return			a <code>String</code> 
+     * @return			a <code>String</code>
      *				specifying the name
      *				of the method with which
      *				this request was made
      */
     public String getMethod();
-    
+
     /**
      * Returns any extra path information associated with
      * the URL the client sent when it made this request.
@@ -276,7 +276,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>Same as the value of the CGI variable PATH_INFO.
      *
      * @return		a <code>String</code>, decoded by the
-     *			web container, specifying 
+     *			web container, specifying
      *			extra path information that comes
      *			after the servlet path but before
      *			the query string in the request URL;
@@ -315,11 +315,13 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return a {@link PushBuilder} for issuing server push responses
      * from the current request.
+     *
+     * @since 4.0
      */
      default public PushBuilder getPushBuilder() {
          return new NoOpPushBuilder();
      }
-     
+
     /**
      * Returns the portion of the request URI that indicates the context
      * of the request. The context path always comes first in a request
@@ -344,26 +346,26 @@ public interface HttpServletRequest extends ServletRequest {
      * @see javax.servlet.ServletContext#getContextPath()
      */
     public String getContextPath();
-    
+
     /**
      * Returns the query string that is contained in the request
      * URL after the path. This method returns <code>null</code>
      * if the URL does not have a query string. Same as the value
-     * of the CGI variable QUERY_STRING. 
+     * of the CGI variable QUERY_STRING.
      *
      * @return		a <code>String</code> containing the query
-     *			string or <code>null</code> if the URL 
+     *			string or <code>null</code> if the URL
      *			contains no query string. The value is not
      *			decoded by the container.
      */
     public String getQueryString();
-    
+
     /**
      * Returns the login of the user making this request, if the
-     * user has been authenticated, or <code>null</code> if the user 
+     * user has been authenticated, or <code>null</code> if the user
      * has not been authenticated.
      * Whether the user name is sent with each subsequent request
-     * depends on the browser and type of authentication. Same as the 
+     * depends on the browser and type of authentication. Same as the
      * value of the CGI variable REMOTE_USER.
      *
      * @return		a <code>String</code> specifying the login
@@ -371,7 +373,7 @@ public interface HttpServletRequest extends ServletRequest {
      *			if the user login is not known
      */
     public String getRemoteUser();
-    
+
     /**
      * Returns a boolean indicating whether the authenticated user is included
      * in the specified logical "role".  Roles and role membership can be
@@ -394,11 +396,11 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return		a <code>boolean</code> indicating whether
      *			the user making this request belongs to a given role;
-     *			<code>false</code> if the user has not been 
+     *			<code>false</code> if the user has not been
      *			authenticated
      */
     public boolean isUserInRole(String role);
-    
+
     /**
      * Returns a <code>java.security.Principal</code> object containing
      * the name of the current authenticated user. If the user has not been
@@ -406,11 +408,11 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return		a <code>java.security.Principal</code> containing
      *			the name of the user making this request;
-     *			<code>null</code> if the user has not been 
+     *			<code>null</code> if the user has not been
      *			authenticated
      */
     public java.security.Principal getUserPrincipal();
-    
+
     /**
      * Returns the session ID specified by the client. This may
      * not be the same as the ID of the current valid session
@@ -425,13 +427,13 @@ public interface HttpServletRequest extends ServletRequest {
      * @see     #isRequestedSessionIdValid
      */
     public String getRequestedSessionId();
-    
+
     /**
      * Returns the part of this request's URL from the protocol
      * name up to the query string in the first line of the HTTP request.
      * The web container does not decode this String.
      * For example:
-     * 
+     *
      * <table summary="Examples of Returned Values">
      * <tr align=left><th>First line of HTTP request      </th>
      * <th>     Returned Value</th>
@@ -445,13 +447,13 @@ public interface HttpServletRequest extends ServletRequest {
      * {@link HttpUtils#getRequestURL}.
      *
      * @return		a <code>String</code> containing
-     *			the part of the URL from the 
+     *			the part of the URL from the
      *			protocol name up to the query string
      *
      * @see     HttpUtils#getRequestURL
      */
     public String getRequestURI();
-    
+
     /**
      * Reconstructs the URL the client used to make the request.
      * The returned URL contains a protocol, server name, port
@@ -495,11 +497,11 @@ public interface HttpServletRequest extends ServletRequest {
      *			using the "/*" pattern.
      */
     public String getServletPath();
-    
+
     /**
      * Returns the current <code>HttpSession</code>
      * associated with this request or, if there is no
-     * current session and <code>create</code> is true, returns 
+     * current session and <code>create</code> is true, returns
      * a new session.
      *
      * <p>If <code>create</code> is <code>false</code>
@@ -507,17 +509,17 @@ public interface HttpServletRequest extends ServletRequest {
      * this method returns <code>null</code>.
      *
      * <p>To make sure the session is properly maintained,
-     * you must call this method before 
+     * you must call this method before
      * the response is committed. If the container is using cookies
      * to maintain session integrity and is asked to create a new session
      * when the response is committed, an IllegalStateException is thrown.
      *
      * @param create	<code>true</code> to create
-     *			a new session for this request if necessary; 
+     *			a new session for this request if necessary;
      *			<code>false</code> to return <code>null</code>
      *			if there's no current session
      *
-     * @return 		the <code>HttpSession</code> associated 
+     * @return 		the <code>HttpSession</code> associated
      *			with this request or <code>null</code> if
      * 			<code>create</code> is <code>false</code>
      *			and the request has no valid session
@@ -529,7 +531,7 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Returns the current session associated with this request,
      * or if the request does not have a session, creates one.
-     * 
+     *
      * @return		the <code>HttpSession</code> associated
      *			with this request
      *
@@ -539,7 +541,7 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Change the session id of the current session associated with this
-     * request and return the new session id. 
+     * request and return the new session id.
      *
      * @return the new session id
      *
@@ -549,12 +551,12 @@ public interface HttpServletRequest extends ServletRequest {
      * @since Servlet 3.1
      */
     public String changeSessionId();
-    
+
     /**
      * Checks whether the requested session ID is still valid.
      *
      * <p>If the client did not specify any session ID, this method returns
-     * <code>false</code>.     
+     * <code>false</code>.
      *
      * @return			<code>true</code> if this
      *				request has an id for a valid session
@@ -566,7 +568,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @see			HttpSessionContext
      */
     public boolean isRequestedSessionIdValid();
-    
+
     /**
      * Checks whether the requested session ID came in as a cookie.
      *
@@ -575,11 +577,11 @@ public interface HttpServletRequest extends ServletRequest {
      *				cookie; otherwise, <code>false</code>
      *
      * @see         #getSession
-     */ 
+     */
     public boolean isRequestedSessionIdFromCookie();
-    
+
     /**
-     * Checks whether the requested session ID came in as part of the 
+     * Checks whether the requested session ID came in as part of the
      * request URL.
      *
      * @return			<code>true</code> if the session ID
@@ -589,12 +591,12 @@ public interface HttpServletRequest extends ServletRequest {
      * @see         #getSession
      */
     public boolean isRequestedSessionIdFromURL();
-    
+
     /**
      * @deprecated		As of Version 2.1 of the Java Servlet
      *				API, use {@link #isRequestedSessionIdFromURL}
      *				instead.
-     * 
+     *
      * @return			<code>true</code> if the session ID
      *				came in as part of a URL; otherwise,
      *				<code>false</code>
@@ -603,21 +605,21 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdFromUrl();
 
     /**
-     * Use the container login mechanism configured for the 
-     * <code>ServletContext</code> to authenticate the user making 
-     * this request. 
-     * 
-     * <p>This method may modify and commit the argument 
+     * Use the container login mechanism configured for the
+     * <code>ServletContext</code> to authenticate the user making
+     * this request.
+     *
+     * <p>This method may modify and commit the argument
      * <code>HttpServletResponse</code>.
-     * 
-     * @param response The <code>HttpServletResponse</code> 
+     *
+     * @param response The <code>HttpServletResponse</code>
      * associated with this <code>HttpServletRequest</code>
-     * 
+     *
      * @return <code>true</code> when non-null values were or have been
-     * established as the values returned by <code>getUserPrincipal</code>, 
-     * <code>getRemoteUser</code>, and <code>getAuthType</code>. Return 
-     * <code>false</code> if authentication is incomplete and the underlying 
-     * login mechanism has committed, in the response, the message (e.g., 
+     * established as the values returned by <code>getUserPrincipal</code>,
+     * <code>getRemoteUser</code>, and <code>getAuthType</code>. Return
+     * <code>false</code> if authentication is incomplete and the underlying
+     * login mechanism has committed, in the response, the message (e.g.,
      * challenge) and HTTP status code to be returned to the user.
      *
      * @throws IOException if an input or output error occurred while
@@ -625,60 +627,60 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @throws IllegalStateException if the login mechanism attempted to
      * modify the response and it was already committed
-     * 
+     *
      * @throws ServletException if the authentication failed and
-     * the caller is responsible for handling the error (i.e., the 
-     * underlying login mechanism did NOT establish the message and 
+     * the caller is responsible for handling the error (i.e., the
+     * underlying login mechanism did NOT establish the message and
      * HTTP status code to be returned to the user)
      *
      * @since Servlet 3.0
      */
-    public boolean authenticate(HttpServletResponse response) 
+    public boolean authenticate(HttpServletResponse response)
 	throws IOException,ServletException;
 
     /**
-     * Validate the provided username and password in the password validation 
-     * realm used by the web container login mechanism configured for the 
+     * Validate the provided username and password in the password validation
+     * realm used by the web container login mechanism configured for the
      * <code>ServletContext</code>.
-     * 
-     * <p>This method returns without throwing a <code>ServletException</code> 
-     * when the login mechanism configured for the <code>ServletContext</code> 
+     *
+     * <p>This method returns without throwing a <code>ServletException</code>
+     * when the login mechanism configured for the <code>ServletContext</code>
      * supports username password validation, and when, at the time of the
      * call to login, the identity of the caller of the request had
-     * not been established (i.e, all of <code>getUserPrincipal</code>, 
-     * <code>getRemoteUser</code>, and <code>getAuthType</code> return null), 
-     * and when validation of the provided credentials is successful. 
+     * not been established (i.e, all of <code>getUserPrincipal</code>,
+     * <code>getRemoteUser</code>, and <code>getAuthType</code> return null),
+     * and when validation of the provided credentials is successful.
      * Otherwise, this method throws a <code>ServletException</code> as
      * described below.
-     *  
+     *
      * <p>When this method returns without throwing an exception, it must
      * have established non-null values as the values returned by
-     * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, and 
+     * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, and
      * <code>getAuthType</code>.
-     * 
+     *
      * @param username The <code>String</code> value corresponding to
      * the login identifier of the user.
-     * 
+     *
      * @param password The password <code>String</code> corresponding
      * to the identified user.
      *
-     * @exception	ServletException    if the configured login mechanism 
-     *                                      does not support username 
-     *                                      password authentication, or if a 
-     *                                      non-null caller identity had 
-     *                                      already been established (prior 
-     *                                      to the call to login), or if 
-     *                                      validation of the provided 
+     * @exception	ServletException    if the configured login mechanism
+     *                                      does not support username
+     *                                      password authentication, or if a
+     *                                      non-null caller identity had
+     *                                      already been established (prior
+     *                                      to the call to login), or if
+     *                                      validation of the provided
      *                                      username and password fails.
      *
      * @since Servlet 3.0
      */
-    public void login(String username, String password) 
+    public void login(String username, String password)
 	throws ServletException;
-    
+
     /**
-     * Establish <code>null</code> as the value returned when 
-     * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, 
+     * Establish <code>null</code> as the value returned when
+     * <code>getUserPrincipal</code>, <code>getRemoteUser</code>,
      * and <code>getAuthType</code> is called on the request.
      *
      * @exception ServletException if logout fails
@@ -695,7 +697,7 @@ public interface HttpServletRequest extends ServletRequest {
      * does not contain any <code>Part</code> components, the returned
      * <code>Collection</code> will be empty.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
+     * <p>Any changes to the returned <code>Collection</code> must not
      * affect this <code>HttpServletRequest</code>.
      *
      * @return a (possibly empty) <code>Collection</code> of the
