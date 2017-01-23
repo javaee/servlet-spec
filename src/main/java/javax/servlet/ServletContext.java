@@ -1289,10 +1289,6 @@ public interface ServletContext {
      * <p>The session tracking modes in effect are those provided to
      * {@link #setSessionTrackingModes setSessionTrackingModes}.
      *
-     * <p>By default, the session tracking modes returned by
-     * {@link #getDefaultSessionTrackingModes getDefaultSessionTrackingModes}
-     * are in effect.
-     *
      * @return set of the session tracking modes in effect for this
      * <tt>ServletContext</tt>
      *
