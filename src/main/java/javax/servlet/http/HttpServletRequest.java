@@ -309,18 +309,14 @@ public interface HttpServletRequest extends ServletRequest {
      * from the current request.  If the current connection does not
      * support server push, or server push has been disabled by the
      * client via a {@code SETTINGS_ENABLE_PUSH} settings frame value of
-     * {@code 0} (zero), a valid {@code PushBuilder} must still be
-     * returned, but calling any of the methods on it will have no
-     * effect.
+     * {@code 0} (zero), it will return null.
      *
      * @return a {@link PushBuilder} for issuing server push responses
      * from the current request.
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */
-     default public PushBuilder getPushBuilder() {
-         return new NoOpPushBuilder();
-     }
+     public PushBuilder getPushBuilder();
 
     /**
      * Returns the portion of the request URI that indicates the context

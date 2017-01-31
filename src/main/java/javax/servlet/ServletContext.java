@@ -1626,4 +1626,39 @@ public interface ServletContext {
      * @since Servlet 3.1
      */
     public String getVirtualServerName();
+
+
+    /**
+     * Gets the session timeout in minutes that are supported by default for
+     * this <tt>ServletContext</tt>.
+     *
+     * @return the session timeout in minutes that are supported by default for
+     * this <tt>ServletContext</tt>
+     *
+     * @throws UnsupportedOperationException if this ServletContext was
+     * passed to the {@link ServletContextListener#contextInitialized} method
+     * of a {@link ServletContextListener} that was neither declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
+     * with {@link javax.servlet.annotation.WebListener}
+     *
+     * @since Servlet 4.0
+     */
+    public int getSessionTimeout();
+
+
+    /**
+     * Sets the session timeout in minutes for this ServletContext.
+     *
+     * @throws IllegalStateException if this ServletContext has already
+     * been initialized
+     *
+     * @throws UnsupportedOperationException if this ServletContext was
+     * passed to the {@link ServletContextListener#contextInitialized} method
+     * of a {@link ServletContextListener} that was neither declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
+     * with {@link javax.servlet.annotation.WebListener}
+     *
+     * @since Servlet 4.0
+     */
+    public void setSessionTimeout(int sessionTimeout);
 }

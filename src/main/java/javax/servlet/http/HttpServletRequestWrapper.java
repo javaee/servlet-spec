@@ -404,4 +404,15 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
             throws IOException, ServletException {
         return this._getHttpServletRequest().upgrade(handlerClass);
     }
+
+    /**
+     * The default behavior of this method is to call getPushBuilder on the
+     * wrapped request object.
+     *
+     * @since Servlet 4.0
+     */
+    @Override
+    public PushBuilder getPushBuilder() {
+        return this._getHttpServletRequest().getPushBuilder();
+    }
 }
