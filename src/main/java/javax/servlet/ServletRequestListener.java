@@ -91,6 +91,9 @@ public interface ServletRequestListener extends EventListener {
      *
      * @param sre the ServletRequestEvent containing the ServletRequest
      * and the ServletContext representing the web application
+     *
+     * @implSpec
+     * The default implementation takes no action.
      */
     default public void requestDestroyed(ServletRequestEvent sre) {}
 
@@ -100,6 +103,9 @@ public interface ServletRequestListener extends EventListener {
      *
      * @param sre the ServletRequestEvent containing the ServletRequest
      * and the ServletContext representing the web application
+     *
+     * @implSpec
+     * The default implementation takes no action.
      */
     default public void requestInitialized(ServletRequestEvent sre) {}
 }

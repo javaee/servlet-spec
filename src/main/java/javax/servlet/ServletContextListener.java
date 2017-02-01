@@ -91,6 +91,9 @@ public interface ServletContextListener extends EventListener {
      *
      * @param sce the ServletContextEvent containing the ServletContext
      * that is being initialized
+     *
+     * @implSpec
+     * The default implementation takes no action.
      */
     default public void contextInitialized(ServletContextEvent sce) {}
 
@@ -104,6 +107,9 @@ public interface ServletContextListener extends EventListener {
      *
      * @param sce the ServletContextEvent containing the ServletContext
      * that is being destroyed
+     *
+     * @implSpec
+     * The default implementation takes no action.
      */
     default public void contextDestroyed(ServletContextEvent sce) {}
 }
