@@ -86,6 +86,9 @@ public interface HttpSessionBindingListener extends EventListener {
      * Notifies the object that it is being bound to
      * a session and identifies the session.
      *
+     * @implSpec
+     * The default implementation takes no action.
+     * 
      * @param event		the event that identifies the
      *				session 
      *
@@ -98,6 +101,9 @@ public interface HttpSessionBindingListener extends EventListener {
      *
      * Notifies the object that it is being unbound
      * from a session and identifies the session.
+     *
+     * @implSpec
+     * The default implementation takes no action.
      *
      * @param event		the event that identifies
      *				the session 

@@ -84,6 +84,9 @@ public interface HttpSessionListener extends EventListener {
     /** 
      * Receives notification that a session has been created.
      *
+     * @implSpec
+     * The default implementation takes no action.
+     *
      * @param se the HttpSessionEvent containing the session
      */
     default public void sessionCreated(HttpSessionEvent se) {}
@@ -91,8 +94,10 @@ public interface HttpSessionListener extends EventListener {
     /** 
      * Receives notification that a session is about to be invalidated.
      *
+     * @implSpec
+     * The default implementation takes no action.
+     *
      * @param se the HttpSessionEvent containing the session
      */
     default public void sessionDestroyed(HttpSessionEvent se) {}
 }
-
