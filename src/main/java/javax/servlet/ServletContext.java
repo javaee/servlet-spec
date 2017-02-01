@@ -1649,6 +1649,8 @@ public interface ServletContext {
     /**
      * Sets the session timeout in minutes for this ServletContext.
      *
+     * @param sessionTimeout session timeout in minutes
+     *
      * @throws IllegalStateException if this ServletContext has already
      * been initialized
      *

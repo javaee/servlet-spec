@@ -61,7 +61,7 @@ package javax.servlet;
 import java.io.IOException;
 
 /**
- * <p><span class="changed_modified_4_0">A filter</span> is an object that performs 
+ * <p>A filter is an object that performs 
  * filtering tasks on either the request to a resource (a servlet or static content), or on the response
  * from a resource, or both.</p>
  * 
@@ -92,8 +92,8 @@ import java.io.IOException;
 public interface Filter {
 
     /** 
-     * <p><span class="changed_modified_4_0">Called</span> by the web container
-     * to indicate to a filter that it is being placed into service.
+     * <p>Called by the web container
+     * to indicate to a filter that it is being placed into service.</p>
      *
      * <p>The servlet container calls the init
      * method exactly once after instantiating the filter. The init
@@ -107,8 +107,8 @@ public interface Filter {
      * <li>Does not return within a time period defined by the web container
      * </ol>
      * 
-     * <p class="changed_modified_4_0">In version 4.0, a default implementation
-     * has been added that takes no action.</p>
+     * @implSpec
+     * The default implementation takes no action.
      *
      * @param filterConfig a <code>FilterConfig</code> object containing the
      *                     filter's configuration and initialization parameters 
@@ -161,7 +161,7 @@ public interface Filter {
 
 
     /**
-     * <p><span class="changed_modified_4_0">Called</span> by the web container 
+     * <p>Called by the web container 
      * to indicate to a filter that it is being
      * taken out of service.</p>
      *
@@ -175,8 +175,8 @@ public interface Filter {
      * threads) and make sure that any persistent state is synchronized
      * with the filter's current state in memory.</p>
      * 
-     * <p class="changed_modified_4_0">In version 4.0, a default implementation
-     * has been added that takes no action.</p>
+     * @implSpec
+     * The default implementation takes no action.
      */
     default public void destroy() {}
 }

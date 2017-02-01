@@ -51,12 +51,10 @@ import javax.servlet.ServletResponse;
 
 /**
  *
- * <p class="changed_added_4_0">Provides an abstract class to be subclassed to create
+ * <p>Provides an abstract class to be subclassed to create
  * an HTTP filter suitable for a Web site. A subclass of
  * <code>HttpFilter</code> should override {@link #doFilter(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.FilterChain) }.</p>
  *
- * <div class="changed_added_4_0">
- * 
  * <p>Filters typically run on multithreaded servers,
  * so be aware that a filter must handle concurrent
  * requests and be careful to synchronize access to shared resources.
@@ -69,18 +67,16 @@ import javax.servlet.ServletResponse;
  * Java Tutorial on Multithreaded Programming</a> for more
  * information on handling multiple threads in a Java program.
  *
- * </div>
- * 
  * @author  Various
  *
- * @since 4.0
+ * @since Servlet 4.0
  */
 
 public abstract class HttpFilter extends GenericFilter
 {
     
     /**
-     * <p class="changed_added_4_0">Does nothing, because this is an abstract class.</p>
+     * <p>Does nothing, because this is an abstract class.</p>
      * 
      * @since 4.0
      */
@@ -89,14 +85,12 @@ public abstract class HttpFilter extends GenericFilter
 
     /**
      *
-     * <p class="changed_added_4_0">The <code>doFilter</code> method of the Filter is called by the
+     * <p>The <code>doFilter</code> method of the Filter is called by the
      * container each time a request/response pair is passed through the
      * chain due to a client request for a resource at the end of the chain.
      * The FilterChain passed in to this method allows the Filter to pass
      * on the request and response to the next entity in the chain.  There's no need to
      * override this method.</p>
-     * 
-     * <div class="changed_added_4_0">
      * 
      * <p>The default implementation inspects the incoming {@code req} and {@code res}
      * objects to determine if they are instances of {@link HttpServletRequest}
@@ -104,8 +98,6 @@ public abstract class HttpFilter extends GenericFilter
      * Otherwise, the protected {@link #doFilter(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.FilterChain)}
      * method is called.</p>
      *
-     * </div>
-     * 
      * @param req   a {@link ServletRequest} object that
      *                  contains the request the client has made
      *                  of the filter
@@ -124,7 +116,7 @@ public abstract class HttpFilter extends GenericFilter
      * either parameter is not an instance of the respective {@link HttpServletRequest}
      * or {@link HttpServletResponse}.
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
@@ -138,18 +130,14 @@ public abstract class HttpFilter extends GenericFilter
     
     /**
      *
-     * <p class="changed_added_4_0">The <code>doFilter</code> method of the Filter is called by the
+     * <p>The <code>doFilter</code> method of the Filter is called by the
      * container each time a request/response pair is passed through the
      * chain due to a client request for a resource at the end of the chain.
      * The FilterChain passed in to this method allows the Filter to pass
      * on the request and response to the next entity in the chain.</p>
      * 
-     * <div class="changed_added_4_0">
-     * 
-     * <p>The default implementation simply calls {@link FilterChain#doFilter}
+     * <p>The default implementation simply calls {@link FilterChain#doFilter}</p>
      *
-     * </div>
-     * 
      * @param req   a {@link HttpServletRequest} object that
      *                  contains the request the client has made
      *                  of the filter
@@ -166,7 +154,7 @@ public abstract class HttpFilter extends GenericFilter
      *
      * @throws ServletException  if the request for the could not be handled
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         chain.doFilter(req, res);

@@ -66,7 +66,7 @@ import java.util.ResourceBundle;
  *
  * @author 	Various
  * 
- * @since 4.0
+ * @since Servlet 4.0
  */
 
  
@@ -85,7 +85,7 @@ public abstract class GenericFilter
      * <p>Does nothing. All of the filter initialization
      * is done by one of the <code>init</code> methods.</p>
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */
     public GenericFilter() { }
     
@@ -105,7 +105,7 @@ public abstract class GenericFilter
      * @return String 		a <code>String</code> containing the value
      *				of the initialization parameter
      *
-     * @since 4.0
+     * @since Servlet 4.0
      *
      */ 
     @Override
@@ -134,7 +134,7 @@ public abstract class GenericFilter
     *				objects containing the names of 
     *				the filter's initialization parameters
     *
-    * @since 4.0
+    * @since Servlet 4.0
     */
     @Override
     public Enumeration<String> getInitParameterNames() {
@@ -154,7 +154,7 @@ public abstract class GenericFilter
      * @return FilterConfig 	the <code>FilterConfig</code> object
      *				that initialized this filter
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */    
     public FilterConfig getFilterConfig() {
 	return config;
@@ -172,7 +172,7 @@ public abstract class GenericFilter
      *				passed to this filter by the <code>init</code>
      *				method
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */
     @Override
     public ServletContext getServletContext() {
@@ -205,7 +205,7 @@ public abstract class GenericFilter
      * 
      * @see 				UnavailableException
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */
     @Override
     public void init(FilterConfig config) throws ServletException {
@@ -227,7 +227,7 @@ public abstract class GenericFilter
      *					interrupts the servlet's
      *					normal operation
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */
     public void init() throws ServletException {
 
@@ -240,7 +240,7 @@ public abstract class GenericFilter
      *
      * @return          the name of this filter instance
      *
-     * @since 4.0
+     * @since Servlet 4.0
      */
     @Override
     public String getFilterName() {

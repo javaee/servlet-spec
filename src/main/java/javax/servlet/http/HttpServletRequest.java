@@ -311,12 +311,17 @@ public interface HttpServletRequest extends ServletRequest {
      * client via a {@code SETTINGS_ENABLE_PUSH} settings frame value of
      * {@code 0} (zero), it will return null.
      *
+     * @implSpec
+     * The default implementation returns null.
+     *
      * @return a {@link PushBuilder} for issuing server push responses
      * from the current request.
      *
      * @since Servlet 4.0
      */
-     public PushBuilder getPushBuilder();
+     default public PushBuilder getPushBuilder() {
+         return null;
+     }
 
     /**
      * Returns the portion of the request URI that indicates the context
