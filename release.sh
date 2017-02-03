@@ -72,5 +72,5 @@
 # https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt
 # http://aseng-wiki.us.oracle.com/asengwiki/display/GlassFish/Migrating+Maven+deployment+to+maven.java.net
 
-mvn release:prepare -Prelease
-mvn release:perform -Prelease
+mvn -B release:prepare -Prelease
+mvn -B release:perform -Prelease
