@@ -909,6 +909,44 @@ public interface ServletContext {
 
 
     /**
+     * Adds the servlet with the given jsp file to this servlet context.
+     *
+     * <p>The registered servlet may be further configured via the returned
+     * {@link ServletRegistration} object.
+     *
+     * <p>If this ServletContext already contains a preliminary
+     * ServletRegistration for a servlet with the given <tt>servletName</tt>,
+     * it will be completed (by assigning the given <tt>jspFile</tt> to it)
+     * and returned.
+     *
+     * @param servletName the name of the servlet
+     * @param jspFile the full path to a JSP file within the web application
+     *                beginning with a `/'.
+     *
+     * @return a ServletRegistration object that may be used to further
+     * configure the registered servlet, or <tt>null</tt> if this
+     * ServletContext already contains a complete ServletRegistration for
+     * a servlet with the given <tt>servletName</tt>
+     *
+     * @throws IllegalStateException if this ServletContext has already
+     * been initialized
+     *
+     * @throws IllegalArgumentException if <code>servletName</code> is null
+     * or an empty String
+     *
+     * @throws UnsupportedOperationException if this ServletContext was
+     * passed to the {@link ServletContextListener#contextInitialized} method
+     * of a {@link ServletContextListener} that was neither declared in
+     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
+     * with {@link javax.servlet.annotation.WebListener}
+     *
+     * @since Servlet 4.0
+     */
+    public ServletRegistration.Dynamic addJspFile(
+        String servletName, String jspFile);
+
+
+    /**
      * Instantiates the given Servlet class.
      *
      * <p>The returned Servlet instance may be further customized before it
@@ -948,6 +986,7 @@ public interface ServletContext {
     public <T extends Servlet> T createServlet(Class<T> clazz)
         throws ServletException;
 
+
     /**
      * Gets the ServletRegistration corresponding to the servlet with the
      * given <tt>servletName</tt>.
@@ -976,7 +1015,8 @@ public interface ServletContext {
      * <p>The returned Map includes the ServletRegistration objects
      * corresponding to all declared and annotated servlets, as well as the
      * ServletRegistration objects corresponding to all servlets that have
-     * been added via one of the <tt>addServlet</tt> methods.
+     * been added via one of the <tt>addServlet</tt> and <tt>addJspFile</tt>
+     * methods.
      *
      * <p>If permitted, any changes to the returned Map must not affect this
      * ServletContext.
