@@ -117,8 +117,7 @@ import javax.servlet.http.HttpSession;
  *
  * @since Servlet 4.0
  */
-public interface PushBuilder
-{
+public interface PushBuilder {
     /** 
      * <p>Set the method to be used for the push.</p>
      * 
@@ -131,7 +130,7 @@ public interface PushBuilder
      * @param method the method to be used for the push.  
      * @return this builder.
      */
-    public abstract PushBuilder method(String method);
+    public PushBuilder method(String method);
     
     /** Set the query string to be used for the push.  
      *
@@ -143,7 +142,7 @@ public interface PushBuilder
      * @param  queryString the query string to be used for the push. 
      * @return this builder.
      */
-    public abstract PushBuilder queryString(String queryString);
+    public PushBuilder queryString(String queryString);
     
     /** Set the SessionID to be used for the push.
      * The session ID will be set in the same way it was on the associated request (ie
@@ -154,7 +153,7 @@ public interface PushBuilder
      * @param sessionId the SessionID to be used for the push.
      * @return this builder.
      */
-    public abstract PushBuilder sessionId(String sessionId);
+    public PushBuilder sessionId(String sessionId);
     
     /** Set if the request is to be conditional.
      * If the request is conditional, any available values from {@link #eTag(String)} or 
@@ -164,7 +163,7 @@ public interface PushBuilder
      * @param  conditional true if the push request is conditional
      * @return this builder.
      */
-    public abstract PushBuilder conditional(boolean conditional);
+    public PushBuilder conditional(boolean conditional);
     
     /** 
      * <p>Set a header to be used for the push.  If the builder has an
@@ -174,8 +173,7 @@ public interface PushBuilder
      * @param value The header value to set
      * @return this builder.
      */
-    public abstract PushBuilder setHeader(String name, String value);
-
+    public PushBuilder setHeader(String name, String value);
     
     /** 
      * <p>Add a header to be used for the push.</p>
@@ -183,8 +181,7 @@ public interface PushBuilder
      * @param value The header value to add
      * @return this builder.
      */
-    public abstract PushBuilder addHeader(String name, String value);
-
+    public PushBuilder addHeader(String name, String value);
 
     /** 
      * <p>Remove the named header.  If the header does not exist, take
@@ -193,10 +190,8 @@ public interface PushBuilder
      * @param name The name of the header to remove
      * @return this builder.
      */
-    public abstract PushBuilder removeHeader(String name);
+    public PushBuilder removeHeader(String name);
 
-    
-    
     /** 
      * Set the URI path to be used for the push.  The path may start
      * with "/" in which case it is treated as an absolute path,
@@ -211,7 +206,7 @@ public interface PushBuilder
      * query string.
      * @return this builder.
      */
-    public abstract PushBuilder path(String path);
+    public PushBuilder path(String path);
     
     /** 
      * Set the eTag to be used for conditional pushes.  
@@ -221,7 +216,7 @@ public interface PushBuilder
      * @param eTag the eTag to be used for the push.
      * @return this builder.
      */
-    public abstract PushBuilder eTag(String eTag);
+    public PushBuilder eTag(String eTag);
 
     /** 
      * Set the last modified date to be used for conditional pushes.
@@ -231,12 +226,11 @@ public interface PushBuilder
      * @param lastModified the last modified date to be used for the push.
      * @return this builder.
      * */
-    public abstract PushBuilder lastModified(String lastModified);
-
+    public PushBuilder lastModified(String lastModified);
 
     /** Push a resource given the current state of the builder,
      * returning immediately without blocking.
-
+     *
      * <p>Push a resource based on the current state of the PushBuilder.
      * Calling this method does not guarantee the resource will actually
      * be pushed, since it is possible the client can decline acceptance
@@ -263,22 +257,68 @@ public interface PushBuilder
      * last call to {@code push()} that did not throw an
      * IllegalStateException.
      */
-    public abstract void push();
+    public void push();
     
-    
-    
-    
-    
-    public abstract String getMethod();
-    public abstract String getQueryString();
-    public abstract String getSessionId();
-    public abstract boolean isConditional();
-    public abstract Set<String> getHeaderNames();
-    public abstract String getHeader(String name);
-    public abstract String getPath();
-    public abstract String getETag();
-    public abstract String getLastModified();
+    /**
+     * Return the method to be used for the push.
+     *
+     * @return the method to be used for the push.
+     */
+    public String getMethod();
 
+    /**
+     * Return the query string to be used for the push.
+     *
+     * @return the query string to be used for the push.
+     */
+    public String getQueryString();
 
+    /**
+     * Return the SessionID to be used for the push.
+     * 
+     * @return the SessionID to be used for the push.
+     */
+    public String getSessionId();
 
+    /**
+     * Return if the request is to be conditional.
+     *
+     * @return if the request is to be conditional.
+     */
+    public boolean isConditional();
+
+    /**
+     * Return the set of header to be used for the push.
+     *
+     * @return the set of header to be used for the push.
+     */
+    public Set<String> getHeaderNames();
+
+    /**
+     * Return the header of the given name to be used for the push.
+     *
+     * @return the header of the given name to be used for the push.
+     */
+    public String getHeader(String name);
+
+    /**
+     * Return the URI path to be used for the push.
+     *
+     * @return the URI path to be used for the push.
+     */
+    public String getPath();
+
+    /**
+     * Return the eTag to be used for conditional pushes.
+     *
+     * @return the eTag to be used for conditional pushes.
+     */
+    public String getETag();
+
+    /**
+     * Return the last modified date to be used for conditional pushes.
+     *
+     * @return the last modified date to be used for conditional pushes.
+     */
+    public String getLastModified();
 }
