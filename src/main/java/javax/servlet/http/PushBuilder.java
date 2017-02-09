@@ -61,7 +61,7 @@ import javax.servlet.http.HttpSession;
  *
  * <li>The method is initialized to "GET"</li>
  *
- * <li>The existing headers of the current {@link HttpServletRequest}
+ * <li>The existing request headers of the current {@link HttpServletRequest}
  * are added to the builder, except for:
  *
  * <ul>
@@ -166,7 +166,7 @@ public interface PushBuilder {
     public PushBuilder conditional(boolean conditional);
     
     /** 
-     * <p>Set a header to be used for the push.  If the builder has an
+     * <p>Set a request header to be used for the push.  If the builder has an
      * existing header with the same name, its value is overwritten.</p>
      *
      * @param name The header name to set
@@ -176,7 +176,7 @@ public interface PushBuilder {
     public PushBuilder setHeader(String name, String value);
     
     /** 
-     * <p>Add a header to be used for the push.</p>
+     * <p>Add a request header to be used for the push.</p>
      * @param name The header name to add
      * @param value The header value to add
      * @return this builder.
@@ -184,7 +184,7 @@ public interface PushBuilder {
     public PushBuilder addHeader(String name, String value);
 
     /** 
-     * <p>Remove the named header.  If the header does not exist, take
+     * <p>Remove the named request header.  If the header does not exist, take
      * no action.</p>
      *
      * @param name The name of the header to remove
