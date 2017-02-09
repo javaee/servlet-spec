@@ -177,17 +177,22 @@ public interface HttpServletResponse extends ServletResponse {
     public String encodeRedirectUrl(String url);
 
     /**
-     * Sends an error response to the client using the specified
-     * status and clears the buffer.  The server defaults to creating the
-     * response to look like an HTML-formatted server error page
-     * containing the specified message, setting the content type
-     * to "text/html". The server will preserve cookies and may clear or
-     * update any headers needed to serve the error page as a valid response.
+     * <p>Sends an error response to the client using the specified
+     * status and clears the buffer.  The server defaults to creating
+     * the response to look like an HTML-formatted server error page
+     * containing the specified message, setting the content type to
+     * "text/html".  The caller is <strong>not</strong> responsible for
+     * escaping or re-encoding the message to ensure it is safe with
+     * respect to the current response encoding and content type.  This
+     * aspect of safety is the responsibility of the container, as it is
+     * generating the error page containing the message.  The server
+     * will preserve cookies and may clear or update any headers needed
+     * to serve the error page as a valid response.</p>
      *
-     * If an error-page declaration has been made for the web application
-     * corresponding to the status code passed in, it will be served back in 
-     * preference to the suggested msg parameter and the msg parameter will
-     * be ignored. 
+     * <p>If an error-page declaration has been made for the web
+     * application corresponding to the status code passed in, it will
+     * be served back in preference to the suggested msg parameter and
+     * the msg parameter will be ignored.</p>
      *
      * <p>If the response has already been committed, this method throws 
      * an IllegalStateException.
