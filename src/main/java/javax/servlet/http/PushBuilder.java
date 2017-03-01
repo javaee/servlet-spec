@@ -98,9 +98,9 @@ import javax.servlet.http.HttpSession;
  * to the PushBuilder, unless the {@link Cookie#getMaxAge()} is &lt;=0, in which
  * case the Cookie will be removed from the builder.</li>
  *
- * <li>If this request has the conditional headers If-Modified-Since
- * or If-None-Match, then the {@link #isConditional()} header is set to
- * true.</li> 
+ * <li>If this request has either of the conditional headers
+ * "If-Modified-Since" or "If-None-Match", then {@link #isConditional()}
+ * must return {@code true}.</li>
  *
  * </ul> 
  *
