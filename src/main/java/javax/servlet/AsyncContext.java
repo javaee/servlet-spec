@@ -84,6 +84,13 @@ public interface AsyncContext {
 
     /**
      * The name of the request attribute under which the original
+     * {@link javax.servlet.http.ServletMapping} is made available to the target of a
+     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     */
+    static final String ASYNC_MAPPING = "javax.servlet.async.mapping";
+
+    /**
+     * The name of the request attribute under which the original
      * path info is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
      */

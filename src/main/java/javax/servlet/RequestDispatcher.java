@@ -97,6 +97,16 @@ public interface RequestDispatcher {
 
     /**
      * The name of the request attribute under which the original
+     * {@link javax.servlet.http.ServletMapping} is made available
+     * to the target of a 
+     * {@link #forward(ServletRequest,ServletResponse) forward}
+     * 
+     * @since 4.0
+     */
+    static final String FORWARD_MAPPING = "javax.servlet.forward.mapping";
+
+    /**
+     * The name of the request attribute under which the original
      * path info is made available to the target of a 
      * {@link #forward(ServletRequest,ServletResponse) forward}
      */
@@ -136,6 +146,14 @@ public interface RequestDispatcher {
      * include} is stored
      */
     static final String INCLUDE_PATH_INFO = "javax.servlet.include.path_info";
+
+    /**
+     * The name of the request attribute under which the
+     * {@link javax.servlet.http.ServletMapping}
+     * of the target of an {@link #include(ServletRequest,ServletResponse)
+     * include} is stored
+     */
+    static final String INCLUDE_MAPPING = "javax.servlet.include.mapping";
 
     /**
      * The name of the request attribute under which the servlet path

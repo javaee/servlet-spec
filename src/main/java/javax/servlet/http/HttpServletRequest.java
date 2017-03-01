@@ -60,6 +60,7 @@ package javax.servlet.http;
 
 import java.io.IOException;
 import java.util.*;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 
@@ -251,6 +252,77 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public int getIntHeader(String name);
 
+    /**
+     * <p>Return the {@link ServletMapping} by which the {@link
+     * HttpServlet} for this {@code HttpServletRequest} was invoked.
+     * The mappings for any applicable {@link javax.servlet.Filter}s are
+     * not indicated in the result.  If the currently active {@link
+     * javax.servlet.Servlet} invocation was obtained by a call to
+     * {@link ServletRequest#getRequestDispatcher} followed by a call to
+     * {@link RequestDispatcher#forward}, the returned {@code
+     * ServletMapping} is the one corresponding to the path used to
+     * obtain the {@link RequestDispatcher}.  If the currently active
+     * {@code Servlet} invocation was obtained by a call to {@link
+     * ServletRequest#getRequestDispatcher} followed by a call to {@link
+     * RequestDispatcher#include}, the returned {@code ServletMapping}
+     * is the one corresponding path that caused the first {@code
+     * Servlet} in the invocation sequence to be invoked.  If the
+     * currently active {@code Servlet} invocation was obtained by a
+     * call to {@link javax.servlet.AsyncContext#dispatch}, the returned
+     * {@code ServletMapping} is the one corresponding path that caused
+     * the first {@code Servlet} in the invocation sequence to be
+     * invoked.  See sections 9.3.1, 9.4.2 and 9.7.2 of the
+     * specification document for additional request attributes related
+     * to {@code ServletMapping}.</p>
+     * 
+     * <p>The returned object is immutable.  Servlet 4.0 compliant
+     * implementations must override this method.</p>
+     * 
+     * @implSpec The default implementation returns a {@code
+     * ServletMapping} that returns the empty string for the match
+     * value, pattern and servlet name and {@link MappingMatch#UNKNOWN} for the match
+     * type.
+     *
+     * @return An instance of {@code ServletMapping} describing the manner in which
+     * the current request was invoked.
+     * 
+     * @since 4.0
+     */
+    
+    default public ServletMapping getServletMapping() {
+        return new ServletMapping() {
+            @Override
+            public String getMatchValue() {
+                return "";
+            }
+
+            @Override
+            public String getPattern() {
+                return "";
+            }
+
+            @Override
+            public String getServletName() {
+                return "";
+            }
+
+            @Override
+            public MappingMatch getMappingMatch() {
+               return MappingMatch.UNKNOWN;
+            }
+
+            @Override
+            public String toString() {
+                return "MappingImpl{" + "matchValue=" + getMatchValue()
+                        + ", pattern=" + getPattern() + ", servletName=" 
+                        + getServletName() + ", mappingMatch=" + getMappingMatch() + '}';
+            }
+            
+            
+            
+        };
+    }
+    
     /**
      * Returns the name of the HTTP method with which this
      * request was made, for example, GET, POST, or PUT.

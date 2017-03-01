@@ -154,7 +154,16 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      public int getIntHeader(String name) {
         return this._getHttpServletRequest().getIntHeader(name);
     }
-    
+
+    /**
+     * <p>The default behavior of this method is to
+     * return getServletMapping() on the wrapped request object.</p>
+     */
+     @Override
+     public ServletMapping getServletMapping() {
+        return this._getHttpServletRequest().getServletMapping();
+    }
+
     /**
      * The default behavior of this method is to return getMethod()
      * on the wrapped request object.

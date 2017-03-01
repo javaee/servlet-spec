@@ -75,12 +75,13 @@
 
     <developers>
         <developer>
-            <id>mode</id>
-            <name>Rajiv Mordani</name>
-            <url>http://weblogs.java.net/blog/mode</url>
+            <id>edburns</id>
+            <name>Ed Burns</name>
+            <url>http://purl.oclc.org/NET/edburns/</url>
             <organization>Oracle</organization>
             <roles>
-                <role>lead</role>
+              <role>co-lead</role>
+              <role>developer</role>
             </roles>
         </developer>
         <developer>
