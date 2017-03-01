@@ -280,7 +280,7 @@ public interface HttpServletRequest extends ServletRequest {
      * 
      * @implSpec The default implementation returns a {@code
      * ServletMapping} that returns the empty string for the match
-     * value, pattern and servlet name and {@link MappingMatch#UNKNOWN} for the match
+     * value, pattern and servlet name and {@code null} for the match
      * type.
      *
      * @return An instance of {@code ServletMapping} describing the manner in which
@@ -308,7 +308,7 @@ public interface HttpServletRequest extends ServletRequest {
 
             @Override
             public MappingMatch getMappingMatch() {
-               return MappingMatch.UNKNOWN;
+               return null;
             }
 
             @Override

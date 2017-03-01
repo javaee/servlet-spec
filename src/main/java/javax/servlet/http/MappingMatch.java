@@ -72,11 +72,5 @@ public enum MappingMatch {
      * <p>This is used when the mapping was achieved
      * using a path, such as "{@code /faces/*}".</p>
      */
-    PATH,
-    /**
-     * <p>This is only specified to be used in the default
-     * implementation of {@link ServletMapping} returned from {@link
-     * HttpServletRequest#getServletMapping}.</p>
-     */
-    UNKNOWN
+    PATH
 }
