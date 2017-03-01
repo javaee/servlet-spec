@@ -64,7 +64,7 @@
         <doc.title>Java Servlet 4.0 API Specification</doc.title>
         <vendor.name>Oracle Corporation</vendor.name>
         <implementation.vendor.id>org.glassfish</implementation.vendor.id>
-        <findbugs.version>3.0.1</findbugs.version>
+        <findbugs.version>3.0.4</findbugs.version>
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
         <copyright-plugin.version>1.33</copyright-plugin.version>

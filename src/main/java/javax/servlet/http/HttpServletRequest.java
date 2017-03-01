@@ -315,7 +315,9 @@ public interface HttpServletRequest extends ServletRequest {
             public String toString() {
                 return "MappingImpl{" + "matchValue=" + getMatchValue()
                         + ", pattern=" + getPattern() + ", servletName=" 
-                        + getServletName() + ", mappingMatch=" + getMappingMatch() + '}';
+                        + getServletName() + ", mappingMatch=" + getMappingMatch() 
+                        + "} HttpServletRequest {" + HttpServletRequest.this.toString()
+                        + '}';
             }
             
             
