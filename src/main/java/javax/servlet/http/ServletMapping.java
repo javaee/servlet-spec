@@ -91,7 +91,7 @@ package javax.servlet.http;
  *   <tr>
  *     <td>"/foo.extension"</td>
  *     <td>foo</td>
- *     <td>/*.extension</td>
+ *     <td>*.extension</td>
  *     <td>EXTENSION</td>
  *   </tr>
  *   <tr>
