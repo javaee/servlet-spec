@@ -53,7 +53,7 @@
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
-    <version>4.0.0-b03-SNAPSHOT</version>
+    <version>4.0.0-b03</version>
 
     <properties>
         <spec.version>4.0</spec.version>
@@ -131,9 +131,9 @@
         </mailingList>
     </mailingLists>
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</developerConnection>
-        <url>http://java.net/projects/glassfish/sources/svn/show/trunk/api/javaee-api/javax.servlet</url>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/javax.servlet-api-4.0.0-b03</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/javax.servlet-api-4.0.0-b03</developerConnection>
+        <url>http://java.net/projects/glassfish/sources/svn/show/tags/javax.servlet-api-4.0.0-b03</url>
     </scm>
 
     <build>
