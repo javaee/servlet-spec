@@ -232,8 +232,9 @@ public interface PushBuilder {
      * */
     public PushBuilder lastModified(String lastModified);
 
-    /** Push a resource given the current state of the builder,
-     * returning immediately without blocking.
+    /**
+     * Push a resource given the current state of the builder,
+     * the method must be non-blocking.
      *
      * <p>Push a resource based on the current state of the PushBuilder.
      * Calling this method does not guarantee the resource will actually
