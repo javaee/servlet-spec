@@ -79,8 +79,14 @@ package javax.servlet.http;
  *   <tr>
  *     <td>""</td>
  *     <td>""</td>
- *     <td>/</td>
+ *     <td>""</td>
  *     <td>CONTEXT_ROOT</td>
+ *   </tr>
+ *   <tr>
+ *     <td>"/"</td>
+ *     <td>""</td>
+ *     <td>"/"</td>
+ *     <td>DEFAULT</td>
  *   </tr>
  *   <tr>
  *     <td>"/MyServlet"</td>
