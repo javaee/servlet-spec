@@ -301,6 +301,7 @@ public interface PushBuilder {
 
     /**
      * Return the header of the given name to be used for the push.
+     * @param name the name of the header
      *
      * @return the header of the given name to be used for the push.
      */
