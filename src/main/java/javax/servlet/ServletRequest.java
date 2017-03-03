@@ -116,8 +116,12 @@ public interface ServletRequest {
     
     /**
      * Returns the name of the character encoding used in the body of this
-     * request. This method returns <code>null</code> if the request
-     * does not specify a character encoding
+     * request. This method returns <code>null</code> if no request encoding
+     * character encoding has been specified. The following methods for
+     * specifying the request character encoding are consulted, in decreasing
+     * order of priority: per request, per web app (using
+     * {@link ServletContext#setRequestCharacterEncoding}, deployment
+     * descriptor), and per container (using vendor specific configuration).
      * 
      * @return a <code>String</code> containing the name of the character
      * encoding, or <code>null</code> if the request does not specify a
