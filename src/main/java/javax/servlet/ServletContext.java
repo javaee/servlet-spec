@@ -1708,7 +1708,8 @@ public interface ServletContext {
     /**
      * Gets the request character encoding that are supported by default for
      * this <tt>ServletContext</tt>. This method returns null if no request
-     * encoding character encoding has been specified.
+     * encoding character encoding has been specified in deployment descriptor
+     * or container specific configuration.
      *
      * @return the request character encoding that are supported by default for
      * this <tt>ServletContext</tt>
@@ -1746,7 +1747,8 @@ public interface ServletContext {
     /**
      * Gets the response character encoding that are supported by default for
      * this <tt>ServletContext</tt>. This method returns null if no response
-     * encoding character encoding has been specified.
+     * encoding character encoding has been specified in deployment descriptor
+     * or container specific configuration.
      *
      * @return the request character encoding that are supported by default for
      * this <tt>ServletContext</tt>
