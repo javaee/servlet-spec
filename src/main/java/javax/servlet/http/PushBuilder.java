@@ -254,9 +254,6 @@ public interface PushBuilder {
      * eTag and lastModified fields nulled. All other fields are left as
      * is for possible reuse in another push.</p>
      *
-     * @throws IllegalArgumentException if the method set expects a
-     * request body (eg POST)
-     *
      * @throws IllegalStateException if there was no call to {@link
      * #path} on this instance either between its instantiation or the
      * last call to {@code push()} that did not throw an
