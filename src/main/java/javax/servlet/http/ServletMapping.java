@@ -41,11 +41,11 @@
 package javax.servlet.http;
 
 /**
- * <p>Allows runtime discovery of the manner in 
- * which the {@link HttpServlet} for the current {@link HttpServletRequest} was 
- * invoked.  Invoking any of the methods must not block the caller.  The 
- * implementation must be thread safe.  Instances are returned from 
- * {@link HttpServletRequest#getServletMapping}.</p>
+ * <p>Allows runtime discovery of the manner in which the {@link
+ * HttpServlet} for the current {@link HttpServletRequest} was invoked.
+ * Invoking any of the methods must not block the caller.  The
+ * implementation must be thread safe.  Instances are immetable and are
+ * returned from {@link HttpServletRequest#getServletMapping}.</p>
  *
  * <p>Following are some illustrative examples for various combinations
  * of mappings.  Consider the following Servlet declaration:</p>
@@ -83,9 +83,9 @@ package javax.servlet.http;
  *     <td>CONTEXT_ROOT</td>
  *   </tr>
  *   <tr>
- *     <td>"/"</td>
+ *     <td>"/index.html"</td>
  *     <td>""</td>
- *     <td>"/"</td>
+ *     <td>/</td>
  *     <td>DEFAULT</td>
  *   </tr>
  *   <tr>
@@ -116,8 +116,16 @@ public interface ServletMapping {
 
     
     /**
-     * <p>Return the actual value that caused this request
-     * to be matched or the empty String if not known or not knowable.</p> 
+     * <p>Return the portion of the URI path that caused this request to
+     * be matched or the empty String if not known or not knowable.  If
+     * the {@link getMappingMatch} value is {@code CONTEXT_ROOT} or
+     * {@code DEFAULT}, this method must return the empty string.  If
+     * the {@link getMappingMatch} value is {@code EXACT}, this method
+     * must return the portion of the path that matched the servlet,
+     * omitting any leading slash.  If the {@link getMappingMatch} value
+     * is {@code EXTENSION} or {@code PATH}, this method must return the
+     * value that matched the '*'.  See the class javadoc for
+     * examples. </p>
      * 
      * @return the match.
      * 
@@ -126,9 +134,14 @@ public interface ServletMapping {
     public String getMatchValue();
 
     /**
-     * <p>Return the String representation for the
-     * {@code url-pattern} for this mapping or the empty String if not known
-     * or not knowable.</p>
+     * <p>Return the String representation for the {@code url-pattern}
+     * for this mapping or the empty String if not known or not
+     * knowable.  If the {@link getMappingMatch} value is {@code
+     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the
+     * empty string. If the {@link getMappingMatch} value is {@code
+     * EXTENSION}, this method must return the pattern, without any
+     * leading slash.  Otherwise, this method returns the pattern
+     * exactly as specified in the descriptor or Java configuration.</p>
      * 
      * @return the String representation for the
      * {@code url-pattern} for this mapping or the empty String if not known

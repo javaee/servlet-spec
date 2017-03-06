@@ -82,12 +82,18 @@ import javax.servlet.http.HttpSession;
  * be set with a container generated token that will result in equivalent
  * Authorization for the pushed request.</li>
  *
- * <li>The {@link HttpServletRequest#getRequestedSessionId()} value,
- * unless at the time of the call {@link
+ * <li>The session ID will be the value returned from {@link
+ * HttpServletRequest#getRequestedSessionId()}, unless {@link
  * HttpServletRequest#getSession(boolean)} has previously been called to
- * create a new {@link HttpSession}, in which case the new session ID
- * will be used as the PushBuilder's requested session ID. The source of
- * the requested session id will be the same as for the request</li>
+ * create a new {@link HttpSession} prior to the call to create the
+ * {@code PushBuilder}, in which case the new session ID will be used as
+ * the PushBuilder's requested session ID.  Note that the session ID
+ * returned from the request can effectively come from one of two
+ * "sources": a cookie or the URL (as specified in {@link
+ * HttpServletRequest#isRequestedSessionIdFromCookie} and {@link
+ * HttpServletRequest#isRequestedSessionIdFromURL}, respectively).  The
+ * session ID for the {@code PushBuilder} will also come from the same
+ * source as the request.</li>
  *
  * <li>The Referer(sic) header will be set to {@link
  * HttpServletRequest#getRequestURL()} plus any {@link

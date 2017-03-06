@@ -271,9 +271,11 @@ public interface HttpServletRequest extends ServletRequest {
      * call to {@link javax.servlet.AsyncContext#dispatch}, the returned
      * {@code ServletMapping} is the one corresponding path that caused
      * the first {@code Servlet} in the invocation sequence to be
-     * invoked.  See sections 9.3.1, 9.4.2 and 9.7.2 of the
-     * specification document for additional request attributes related
-     * to {@code ServletMapping}.</p>
+     * invoked.  See {@link
+     * javax.servlet.RequestDispatcher#FORWARD_MAPPING}, {@link
+     * javax.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link
+     * javax.servlet.AsyncContext#ASYNC_MAPPING} for additional request
+     * attributes related to {@code ServletMapping}.</p>
      * 
      * <p>The returned object is immutable.  Servlet 4.0 compliant
      * implementations must override this method.</p>
@@ -645,10 +647,11 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdValid();
 
     /**
-     * Checks whether the requested session ID came in as a cookie.
+     * <p>Checks whether the requested session ID was conveyed to the
+     * server as an HTTP cookie.</p>
      *
      * @return			<code>true</code> if the session ID
-     *				came in as a
+     *				was conveyed to the server an an HTTP
      *				cookie; otherwise, <code>false</code>
      *
      * @see         #getSession
@@ -656,11 +659,11 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdFromCookie();
 
     /**
-     * Checks whether the requested session ID came in as part of the
-     * request URL.
+     * <p>Checks whether the requested session ID was conveyed to the
+     * server as part of the request URL.</p>
      *
-     * @return			<code>true</code> if the session ID
-     *				came in as part of a URL; otherwise,
+     * @return <code>true</code> if the session ID was conveyed to the
+     *				server as part of a URL; otherwise,
      *				<code>false</code>
      *
      * @see         #getSession
@@ -672,8 +675,8 @@ public interface HttpServletRequest extends ServletRequest {
      *				API, use {@link #isRequestedSessionIdFromURL}
      *				instead.
      *
-     * @return			<code>true</code> if the session ID
-     *				came in as part of a URL; otherwise,
+     * @return <code>true</code> if the session ID was conveyed to the
+     *				server as part of a URL; otherwise,
      *				<code>false</code>
      */
     @Deprecated
