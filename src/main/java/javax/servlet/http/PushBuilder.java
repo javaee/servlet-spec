@@ -69,7 +69,7 @@ import javax.servlet.http.HttpSession;
  * are added to the builder, except for:
  *
  * <ul>
- *   <li>Conditional headers (eg. If-Modified-Since)
+ *   <li>Conditional headers (defined in RFC 7232)
  *   <li>Range headers
  *   <li>Expect headers
  *   <li>Authorization headers
@@ -104,10 +104,6 @@ import javax.servlet.http.HttpSession;
  * to the PushBuilder, unless the {@link Cookie#getMaxAge()} is &lt;=0, in which
  * case the Cookie will be removed from the builder.</li>
  *
- * <li>If this request has any of the conditional headers defined in
- * defined in RFC 7232, then {@link #isConditional()}
- * must return {@code true}.</li>
- *
  * </ul> 
  *
  * <p>The {@link #path} method must be called on the {@code PushBuilder}
@@ -120,10 +116,9 @@ import javax.servlet.http.HttpSession;
  * asynchronous push request with the current state of the builder.
  * After the call to {@link #push()}, the builder may be reused for
  * another push, however the implementation must make it so the {@link
- * #path(String)}, {@link #eTag(String)} and {@link
- * #lastModified(String)} values are cleared before returning from
- * {@link #push}.  All other values are retained over calls to {@link
- * #push()}.
+ * #path(String)} and conditional headers (defined in RFC 7232) 
+ * values are cleared before returning from {@link #push}.
+ * All other values are retained over calls to {@link #push()}.
  *
  * @since Servlet 4.0
  */
@@ -142,11 +137,12 @@ public interface PushBuilder {
      */
     public PushBuilder method(String method);
     
-    /** Set the query string to be used for the push.  
+    /**
+     * Set the query string to be used for the push.  
      *
-     * Will be appended to any query String included in a call to {@link
-     * #path(String)}.  Any duplicate parameters must be preserved. This
-     * method should be used instead of a query in {@link #path(String)}
+     * The query string will be appended to any query String included in a call
+     * to {@link #path(String)}.  Any duplicate parameters must be preserved.
+     * This method should be used instead of a query in {@link #path(String)}
      * when multiple {@link #push()} calls are to be made with the same
      * query string.
      * @param  queryString the query string to be used for the push. 
@@ -154,7 +150,8 @@ public interface PushBuilder {
      */
     public PushBuilder queryString(String queryString);
     
-    /** Set the SessionID to be used for the push.
+    /**
+     * Set the SessionID to be used for the push.
      * The session ID will be set in the same way it was on the associated request (ie
      * as a cookie if the associated request used a cookie, or as a url parameter if
      * the associated request used a url parameter).
@@ -164,16 +161,6 @@ public interface PushBuilder {
      * @return this builder.
      */
     public PushBuilder sessionId(String sessionId);
-    
-    /** Set if the request is to be conditional.
-     * If the request is conditional, any available values from {@link #eTag(String)} or 
-     * {@link #lastModified(String)} will be set in the appropriate headers. If the request
-     * is not conditional, then eTag and lastModified values are ignored.  
-     * Defaults to true if the associated request was conditional.
-     * @param  conditional true if the push request is conditional
-     * @return this builder.
-     */
-    public PushBuilder conditional(boolean conditional);
     
     /** 
      * <p>Set a request header to be used for the push.  If the builder has an
@@ -218,26 +205,6 @@ public interface PushBuilder {
      */
     public PushBuilder path(String path);
     
-    /** 
-     * Set the eTag to be used for conditional pushes.  
-     * The eTag will be used only if {@link #isConditional()} is true.
-     * Defaults to no eTag.  The value is nulled after every call to 
-     * {@link #push()}
-     * @param eTag the eTag to be used for the push.
-     * @return this builder.
-     */
-    public PushBuilder eTag(String eTag);
-
-    /** 
-     * Set the last modified date to be used for conditional pushes.
-     * The last modified date will be used only if {@link
-     * #isConditional()} is true.  Defaults to no date.  The value is
-     * nulled after every call to {@link #push()}
-     * @param lastModified the last modified date to be used for the push.
-     * @return this builder.
-     * */
-    public PushBuilder lastModified(String lastModified);
-
     /**
      * Push a resource given the current state of the builder,
      * the method must be non-blocking.
@@ -246,19 +213,15 @@ public interface PushBuilder {
      * Calling this method does not guarantee the resource will actually
      * be pushed, since it is possible the client can decline acceptance
      * of the pushed resource using the underlying HTTP/2 protocol.</p>
-
-     * <p>If {@link #isConditional()} is true and an eTag or
-     * lastModified value is provided, then an appropriate conditional
-     * header will be generated. If both an eTag and lastModified value
-     * are provided only an If-None-Match header will be generated. If
-     * the builder has a session ID, then the pushed request will
+     *
+     * <p>If the builder has a session ID, then the pushed request will
      * include the session ID either as a Cookie or as a URI parameter
      * as appropriate. The builders query string is merged with any
      * passed query string.</p>
-
+     *
      * <p>Before returning from this method, the builder has its path,
-     * eTag and lastModified fields nulled. All other fields are left as
-     * is for possible reuse in another push.</p>
+     * conditional headers (defined in RFC 7232) nulled. All other fields
+     * are left as is for possible reuse in another push.</p>
      *
      * @throws IllegalStateException if there was no call to {@link
      * #path} on this instance either between its instantiation or the
@@ -289,13 +252,6 @@ public interface PushBuilder {
     public String getSessionId();
 
     /**
-     * Return if the request is to be conditional.
-     *
-     * @return if the request is to be conditional.
-     */
-    public boolean isConditional();
-
-    /**
      * Return the set of header to be used for the push.
      *
      * @return the set of header to be used for the push.
@@ -316,18 +272,4 @@ public interface PushBuilder {
      * @return the URI path to be used for the push.
      */
     public String getPath();
-
-    /**
-     * Return the eTag to be used for conditional pushes.
-     *
-     * @return the eTag to be used for conditional pushes.
-     */
-    public String getETag();
-
-    /**
-     * Return the last modified date to be used for conditional pushes.
-     *
-     * @return the last modified date to be used for conditional pushes.
-     */
-    public String getLastModified();
 }
