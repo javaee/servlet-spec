@@ -129,6 +129,10 @@ public interface Registration {
      * updates will be performed, and an IllegalArgumentException will be
      * thrown.
      *
+     * <p>The returned set is not backed by the {@code Registration} object,
+     * so changes in the returned set are not reflected in the
+     * {@code Registration} object, and vice-versa.</p>
+     *
      * @param initParameters the initialization parameters
      *
      * @return the (possibly empty) Set of initialization parameter names

@@ -59,6 +59,10 @@ public interface ServletRegistration extends Registration {
      * <p>If this method is called multiple times, each successive call
      * adds to the effects of the former.
      *
+     * <p>The returned set is not backed by the {@code ServletRegistration}
+     * object, so changes in the returned set are not reflected in the
+     * {@code ServletRegistration} object, and vice-versa.</p>
+     *
      * @param urlPatterns the URL patterns of the servlet mapping
      *
      * @return the (possibly empty) Set of URL patterns that are already
@@ -156,6 +160,10 @@ public interface ServletRegistration extends Registration {
          * descriptor, then this method establishes the security constraint
          * for that pattern from the argument
          * <code>ServletSecurityElement</code>.
+         *
+         * <p>The returned set is not backed by the {@code Dynamic} object,
+         * so changes in the returned set are not reflected in the
+         * {@code Dynamic} object, and vice-versa.</p>
          * 
          * @param constraint the {@link ServletSecurityElement} to be applied
          * to the patterns mapped to this ServletRegistration

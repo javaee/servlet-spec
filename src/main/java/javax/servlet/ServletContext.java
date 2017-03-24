@@ -263,6 +263,10 @@ public interface ServletContext {
      * directory of a JAR file inside the web application's
      * <tt>/WEB-INF/lib</tt> directory, and have a leading <tt>/</tt>.
      *
+     * <p>The returned set is not backed by the {@code ServletContext} object,
+     * so changes in the returned set are not reflected in the
+     * {@code ServletContext} object, and vice-versa.</p>
+     *
      * <p>For example, for a web application containing:
      *
      * <pre>{@code
@@ -1308,6 +1312,10 @@ public interface ServletContext {
      * Gets the session tracking modes that are supported by default for this
      * <tt>ServletContext</tt>.
      *
+     * <p>The returned set is not backed by the {@code ServletContext} object,
+     * so changes in the returned set are not reflected in the
+     * {@code ServletContext} object, and vice-versa.</p>
+     *
      * @return set of the session tracking modes supported by default for
      * this <tt>ServletContext</tt>
      *
@@ -1328,6 +1336,10 @@ public interface ServletContext {
      *
      * <p>The session tracking modes in effect are those provided to
      * {@link #setSessionTrackingModes setSessionTrackingModes}.
+     *
+     * <p>The returned set is not backed by the {@code ServletContext} object,
+     * so changes in the returned set are not reflected in the
+     * {@code ServletContext} object, and vice-versa.</p>
      *
      * @return set of the session tracking modes in effect for this
      * <tt>ServletContext</tt>

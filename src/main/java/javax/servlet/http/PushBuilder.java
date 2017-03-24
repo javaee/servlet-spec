@@ -254,6 +254,10 @@ public interface PushBuilder {
     /**
      * Return the set of header to be used for the push.
      *
+     * <p>The returned set is not backed by the {@code PushBuilder} object,
+     * so changes in the returned set are not reflected in the
+     * {@code PushBuilder} object, and vice-versa.</p>
+     *
      * @return the set of header to be used for the push.
      */
     public Set<String> getHeaderNames();
