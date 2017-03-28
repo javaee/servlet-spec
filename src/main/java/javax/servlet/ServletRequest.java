@@ -121,7 +121,8 @@ public interface ServletRequest {
      * specifying the request character encoding are consulted, in decreasing
      * order of priority: per request, per web app (using
      * {@link ServletContext#setRequestCharacterEncoding}, deployment
-     * descriptor), and per container (using vendor specific configuration).
+     * descriptor), and per container (for all web applications deployed in 
+     * that container, using vendor specific configuration).
      * 
      * @return a <code>String</code> containing the name of the character
      * encoding, or <code>null</code> if the request does not specify a

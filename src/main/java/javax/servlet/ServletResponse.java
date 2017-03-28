@@ -79,7 +79,8 @@ import java.util.Locale;
  * <p>The charset for the MIME body response can be specified explicitly
  * using any of the following techniques: per request, per web-app (using
  * {@link ServletContext#setRequestCharacterEncoding}, deployment descriptor),
- * and per container (using vendor specific configuration).
+ * and per container (for all web applications deployed in that container, 
+ * using vendor specific configuration).
  * If multiple of the preceding techniques have been employed, the priority is
  * the order listed.
  * For per request, the charset for the response can be specified explicitly
@@ -111,7 +112,8 @@ public interface ServletResponse {
      * The following methods for specifying the response character encoding are
      * consulted, in decreasing order of priority: per request, perweb-app
      * (using {@link ServletContext#setResponseCharacterEncoding}, deployment
-     * descriptor), and per container (using vendor specific configuration).
+     * descriptor), and per container (for all web applications deployed in
+     * that container, using vendor specific configuration).
      * The first one of these methods that yields a result is returned.
      * Per-request, the charset for the response can be specified explicitly
      * using the {@link setCharacterEncoding} and {@link setContentType}
