@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -54,9 +54,9 @@ import javax.servlet.http.HttpSession;
  * safe without a request body.
  *
  * <p>A PushBuilder is obtained by calling {@link
- * HttpServletRequest#getPushBuilder()}.  Each call to this method will
- * return a new instance of a PushBuilder based off the current {@code
- * HttpServletRequest}.  Any mutations to the returned PushBuilder are
+ * HttpServletRequest#newPushBuilder()}.  Each call to this method will
+ * a new instance of a PushBuilder based off the current {@code
+ * HttpServletRequest}, or null.  Any mutations to the returned PushBuilder are
  * not reflected on future returns.</p>
  *
  * <p>The instance is initialized as follows:</p>

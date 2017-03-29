@@ -381,21 +381,21 @@ public interface HttpServletRequest extends ServletRequest {
     public String getPathTranslated();
 
     /**
-     * Returns a {@link PushBuilder} for issuing server push responses
-     * from the current request.  If the current connection does not
-     * support server push, or server push has been disabled by the
-     * client via a {@code SETTINGS_ENABLE_PUSH} settings frame value of
-     * {@code 0} (zero), it will return null.
+     * Instantiates a new instance of {@link PushBuilder} for issuing server
+     * push responses from the current request. This method returns null
+     * if the current connection does not support server push, or server
+     * push has been disabled by the client via a
+     * {@code SETTINGS_ENABLE_PUSH} settings frame value of {@code 0} (zero).
      *
      * @implSpec
      * The default implementation returns null.
      *
      * @return a {@link PushBuilder} for issuing server push responses
-     * from the current request.
+     * from the current request, or null if push is not supported
      *
      * @since Servlet 4.0
      */
-     default public PushBuilder getPushBuilder() {
+     default public PushBuilder newPushBuilder() {
          return null;
      }
 

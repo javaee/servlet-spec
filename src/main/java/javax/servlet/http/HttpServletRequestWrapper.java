@@ -415,13 +415,13 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call getPushBuilder on the
+     * The default behavior of this method is to call newPushBuilder on the
      * wrapped request object.
      *
      * @since Servlet 4.0
      */
     @Override
-    public PushBuilder getPushBuilder() {
-        return this._getHttpServletRequest().getPushBuilder();
+    public PushBuilder newPushBuilder() {
+        return this._getHttpServletRequest().newPushBuilder();
     }
 }
