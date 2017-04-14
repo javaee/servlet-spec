@@ -60,6 +60,8 @@ package javax.servlet.http;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Map;
+import java.util.function.Supplier;
 import javax.servlet.ServletResponse;
 
 /**
@@ -454,7 +456,26 @@ public interface HttpServletResponse extends ServletResponse {
      */
     public Collection<String> getHeaderNames();
 
-    
+    /**
+     * Set the supplier of trailer headers.
+     * The supplier will be called within the scope of whatever thread/call
+     * causes the response content to be completed. Typically this will
+     * be any thread calling close() on the output stream or writer.
+     *
+     * The trailers that run afoul of the provisions of section 4.1.2 of
+     * RFC 7230 are ignored.
+     *
+     * @implSpec
+     * The default implementation is a no-op.
+     *
+     * @param supplier the supplier of trailer headers
+     *
+     * @since Servlet 4.0
+     */
+    default public void setTrailers(Supplier<Map<String, String>> supplier) {
+    }
+
+
     /*
      * Server status codes; see RFC 2068.
      */

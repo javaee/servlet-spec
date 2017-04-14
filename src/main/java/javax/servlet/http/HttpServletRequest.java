@@ -849,4 +849,25 @@ public interface HttpServletRequest extends ServletRequest {
      */
     public <T extends HttpUpgradeHandler> T  upgrade(Class<T> handlerClass)
         throws IOException, ServletException;
+
+    /**
+     * Get the request trailer.
+     * This method can only be called after the application reads all
+     * the request content.
+     *
+     * @implSpec
+     * The default implementation returns null.
+     * 
+     * @return A map of trailers or null if the request did not contain any
+     *
+     * @throws IllegalStateException if neither
+     * {@link javax.servlet.ReadListener#onAllDataRead} has been called nor
+     * an EOF indication has been returned from the 
+     * {@link #getReader} or {@link #getInputStream}
+     *
+     * @since Servlet 4.0
+     */
+    default public Map<String, String> getTrailers() {
+        return null;
+    }
 }

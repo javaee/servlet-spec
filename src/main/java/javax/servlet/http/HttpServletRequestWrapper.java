@@ -424,4 +424,15 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     public PushBuilder newPushBuilder() {
         return this._getHttpServletRequest().newPushBuilder();
     }
+
+    /**
+     * The default behavior of this method is to call getTrailers on the
+     * wrapped request object.
+     *
+     * @since Servlet 4.0
+     */
+    @Override
+    public Map<String, String> getTrailers() {
+        return this._getHttpServletRequest().getTrailers();
+    }
 }
