@@ -315,6 +315,8 @@
                 <artifactId>glassfish-copyright-maven-plugin</artifactId>
                 <version>${copyright-plugin.version}</version>
                 <configuration>
+                    <scm>git</scm>
+                    <scmOnly>true</scmOnly>
                     <excludeFile>
                         ${basedir}/copyright-exclude
                     </excludeFile>
