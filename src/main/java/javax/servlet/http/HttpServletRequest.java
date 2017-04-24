@@ -851,14 +851,22 @@ public interface HttpServletRequest extends ServletRequest {
         throws IOException, ServletException;
 
     /**
-     * Get the request trailer.
-     * This method can only be called after the application reads all
-     * the request content.
+     * Get the request trailers.
+     *
+     * <p>The returned map is not backed by the {@code HttpServletRequest} object,
+     * so changes in the returned map are not reflected in the
+     * {@code HttpServletRequest} object, and vice-versa.</p>
+     * 
+     * <p>This method should only be called after all the request content is read.
+     * Calling this method before that point will cause the action described in the
+     * throws clause below.</p>
      *
      * @implSpec
-     * The default implementation returns null.
+     * The default implementation returns empty Map.
      * 
-     * @return A map of trailers or null if the request did not contain any
+     * @return A map of trailers in which all the keys are in lowercase,
+     * regardless of the case they had at the protocol level, or the empty map
+     * if there are no trailers or the underlying transport does not support trailers.
      *
      * @throws IllegalStateException if neither
      * {@link javax.servlet.ReadListener#onAllDataRead} has been called nor
@@ -868,6 +876,6 @@ public interface HttpServletRequest extends ServletRequest {
      * @since Servlet 4.0
      */
     default public Map<String, String> getTrailers() {
-        return null;
+        return Collections.emptyMap();
     }
 }
