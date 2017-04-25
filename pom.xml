@@ -352,17 +352,4 @@
             </plugin>
         </plugins>
     </reporting>
-    <!-- for downloading org.glassfish:legal:1.1 resource bundle      -->
-    <!-- referenced in maven-remote-resources-plugin.  Will           -->
-    <!-- remove the repositories element once org.glassfish:legal:1.1 -->
-    <!-- is available in the central repo.                                      -->
-    <repositories>
-        <repository>
-            <id>glassfish-repository</id>
-            <url>http://download.java.net/maven/glassfish</url>
-            <snapshots>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
