@@ -9,7 +9,7 @@ Prerequisites:
 * JDK8+
 * Maven 3.0.3+
 
-Run the build:
+Run the build: 
 
 `mvn install`
 
