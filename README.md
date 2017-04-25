@@ -1,5 +1,5 @@
-Servlet API
-===========
+Java Servlet API
+================
 
 Building
 --------
