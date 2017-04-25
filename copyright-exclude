@@ -1,12 +1,6 @@
 copyright-exclude
 LICENSE
 README.md
-src/main/javadoc/doc-files/changed_added_4_0.png
-src/main/javadoc/doc-files/changed_added_4_0_cursor.cur
-src/main/javadoc/doc-files/changed_deleted_4_0.png
-src/main/javadoc/doc-files/changed_deleted_4_0_cursor.cur
-src/main/javadoc/doc-files/changed_modified_4_0.png
-src/main/javadoc/doc-files/changed_modified_4_0_cursor.cur
 src/main/javadoc/doc-files/expert-draft-bg-blank.graffle
 src/main/javadoc/doc-files/expert-draft-bg-blank.png
 src/main/javadoc/doc-files/expert-draft-bg-non-blank.graffle
