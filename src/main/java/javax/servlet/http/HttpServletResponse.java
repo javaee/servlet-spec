@@ -472,7 +472,7 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @since Servlet 4.0
      */
-    default public void setTrailers(Supplier<Map<String, String>> supplier) {
+    default public void setTrailerFields(Supplier<Map<String, String>> supplier) {
     }
 
 

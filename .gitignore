@@ -1,1 +1,11 @@
+*.ipr
+*.iml
+*.iws
+*.swp
+*~
 /target/
+.idea
+nbactions.xml
+.classpath
+.project
+.settings/

@@ -851,7 +851,7 @@ public interface HttpServletRequest extends ServletRequest {
         throws IOException, ServletException;
 
     /**
-     * Get the request trailers.
+     * Get the request trailer fields.
      *
      * <p>The returned map is not backed by the {@code HttpServletRequest} object,
      * so changes in the returned map are not reflected in the
@@ -864,9 +864,9 @@ public interface HttpServletRequest extends ServletRequest {
      * @implSpec
      * The default implementation returns empty Map.
      * 
-     * @return A map of trailers in which all the keys are in lowercase,
+     * @return A map of trailer fields in which all the keys are in lowercase,
      * regardless of the case they had at the protocol level, or the empty map
-     * if there are no trailers or the underlying transport does not support trailers.
+     * if there is no trailer or the underlying transport does not support trailer.
      *
      * @throws IllegalStateException if neither
      * {@link javax.servlet.ReadListener#onAllDataRead} has been called nor
@@ -875,7 +875,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 4.0
      */
-    default public Map<String, String> getTrailers() {
+    default public Map<String, String> getTrailerFields() {
         return Collections.emptyMap();
     }
 }
