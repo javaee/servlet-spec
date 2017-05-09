@@ -458,12 +458,16 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Set the supplier of trailer headers.
-     * The supplier will be called within the scope of whatever thread/call
-     * causes the response content to be completed. Typically this will
-     * be any thread calling close() on the output stream or writer.
      *
-     * The trailers that run afoul of the provisions of section 4.1.2 of
-     * RFC 7230 are ignored.
+     * <p>The trailer header field value is defined as a comma-separated list
+     * (see Section 3.2.2 and Section 4.1.2 of RFC 7230).</p>
+     *
+     * <p>The supplier will be called within the scope of whatever thread/call
+     * causes the response content to be completed. Typically this will
+     * be any thread calling close() on the output stream or writer.</p>
+     *
+     * <p>The trailers that run afoul of the provisions of section 4.1.2 of
+     * RFC 7230 are ignored.</p>
      *
      * @implSpec
      * The default implementation is a no-op.
