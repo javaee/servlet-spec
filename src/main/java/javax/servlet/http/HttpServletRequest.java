@@ -857,7 +857,8 @@ public interface HttpServletRequest extends ServletRequest {
      * so changes in the returned map are not reflected in the
      * {@code HttpServletRequest} object, and vice-versa.</p>
      * 
-     * <p>This method should only be called after all the request content is read.
+     * <p>This method should only be called after the application has read all
+     * the request data or there is no content to read, i.e. zero content length. 
      * Calling this method before that point will cause the action described in the
      * throws clause below.</p>
      *
