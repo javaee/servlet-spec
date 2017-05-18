@@ -44,8 +44,8 @@ package javax.servlet.http;
  * <p>Allows runtime discovery of the manner in which the {@link
  * HttpServlet} for the current {@link HttpServletRequest} was invoked.
  * Invoking any of the methods must not block the caller.  The
- * implementation must be thread safe.  Instances are immetable and are
- * returned from {@link HttpServletRequest#getServletMapping}.</p>
+ * implementation must be thread safe.  Instances are immutable and are
+ * returned from {@link HttpServletRequest#getHttpServletMapping}.</p>
  *
  * <p>Following are some illustrative examples for various combinations
  * of mappings.  Consider the following Servlet declaration:</p>
@@ -111,7 +111,7 @@ package javax.servlet.http;
  * 
  * @since 4.0
  */
-public interface ServletMapping {
+public interface HttpServletMapping {
 
 
     

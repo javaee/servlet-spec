@@ -253,46 +253,46 @@ public interface HttpServletRequest extends ServletRequest {
     public int getIntHeader(String name);
 
     /**
-     * <p>Return the {@link ServletMapping} by which the {@link
+     * <p>Return the {@link HttpServletMapping} by which the {@link
      * HttpServlet} for this {@code HttpServletRequest} was invoked.
      * The mappings for any applicable {@link javax.servlet.Filter}s are
      * not indicated in the result.  If the currently active {@link
      * javax.servlet.Servlet} invocation was obtained by a call to
      * {@link ServletRequest#getRequestDispatcher} followed by a call to
      * {@link RequestDispatcher#forward}, the returned {@code
-     * ServletMapping} is the one corresponding to the path used to
+     * HttpServletMapping} is the one corresponding to the path used to
      * obtain the {@link RequestDispatcher}.  If the currently active
      * {@code Servlet} invocation was obtained by a call to {@link
      * ServletRequest#getRequestDispatcher} followed by a call to {@link
-     * RequestDispatcher#include}, the returned {@code ServletMapping}
+     * RequestDispatcher#include}, the returned {@code HttpServletMapping}
      * is the one corresponding path that caused the first {@code
      * Servlet} in the invocation sequence to be invoked.  If the
      * currently active {@code Servlet} invocation was obtained by a
      * call to {@link javax.servlet.AsyncContext#dispatch}, the returned
-     * {@code ServletMapping} is the one corresponding path that caused
+     * {@code HttpServletMapping} is the one corresponding path that caused
      * the first {@code Servlet} in the invocation sequence to be
      * invoked.  See {@link
      * javax.servlet.RequestDispatcher#FORWARD_MAPPING}, {@link
      * javax.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link
      * javax.servlet.AsyncContext#ASYNC_MAPPING} for additional request
-     * attributes related to {@code ServletMapping}.</p>
+     * attributes related to {@code HttpServletMapping}.</p>
      * 
      * <p>The returned object is immutable.  Servlet 4.0 compliant
      * implementations must override this method.</p>
      * 
      * @implSpec The default implementation returns a {@code
-     * ServletMapping} that returns the empty string for the match
+     * HttpServletMapping} that returns the empty string for the match
      * value, pattern and servlet name and {@code null} for the match
      * type.
      *
-     * @return An instance of {@code ServletMapping} describing the manner in which
+     * @return An instance of {@code HttpServletMapping} describing the manner in which
      * the current request was invoked.
      * 
      * @since 4.0
      */
     
-    default public ServletMapping getServletMapping() {
-        return new ServletMapping() {
+    default public HttpServletMapping getHttpServletMapping() {
+        return new HttpServletMapping() {
             @Override
             public String getMatchValue() {
                 return "";

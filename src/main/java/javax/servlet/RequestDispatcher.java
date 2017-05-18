@@ -97,7 +97,7 @@ public interface RequestDispatcher {
 
     /**
      * The name of the request attribute under which the original
-     * {@link javax.servlet.http.ServletMapping} is made available
+     * {@link javax.servlet.http.HttpServletMapping} is made available
      * to the target of a 
      * {@link #forward(ServletRequest,ServletResponse) forward}
      * 
@@ -149,7 +149,7 @@ public interface RequestDispatcher {
 
     /**
      * The name of the request attribute under which the
-     * {@link javax.servlet.http.ServletMapping}
+     * {@link javax.servlet.http.HttpServletMapping}
      * of the target of an {@link #include(ServletRequest,ServletResponse)
      * include} is stored
      */
