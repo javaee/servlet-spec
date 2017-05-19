@@ -857,26 +857,46 @@ public interface HttpServletRequest extends ServletRequest {
      * so changes in the returned map are not reflected in the
      * {@code HttpServletRequest} object, and vice-versa.</p>
      * 
-     * <p>This method should only be called after the application has read all
-     * the request data or there is no content to read, i.e. zero content length. 
-     * Calling this method before that point will cause the action described in the
-     * throws clause below.</p>
+     * <p>{@link #isTrailerFieldsAvailable()} should be called first to determine
+     * if it is safe to call this method without causing an exception.</p>
      *
      * @implSpec
-     * The default implementation returns empty Map.
+     * The default implementation throws IllegalStateException.
      * 
      * @return A map of trailer fields in which all the keys are in lowercase,
-     * regardless of the case they had at the protocol level, or the empty map
-     * if there is no trailer or the underlying transport does not support trailer.
+     * regardless of the case they had at the protocol level. If there are no
+     * trailer fields, yet {@link #isTrailerFieldsAvailable} is returning true,
+     * the empty map is returned.
      *
-     * @throws IllegalStateException if neither
-     * {@link javax.servlet.ReadListener#onAllDataRead} has been called nor
-     * an EOF indication has been returned from the 
-     * {@link #getReader} or {@link #getInputStream}
+     * @throws IllegalStateException if {@link #isTrailerFieldsAvailable()} is false
      *
      * @since Servlet 4.0
      */
     default public Map<String, String> getTrailerFields() {
-        return Collections.emptyMap();
+        throw new IllegalStateException();
+    }
+
+    /**
+     * Return a boolean indicating whether trailer fields are available.
+     *
+     * This method returns true if and only if both of the following conditions
+     * are satisfied:
+     * <ol type="a">
+     *   <li> the application has read all the request data and an EOF
+     *        indication has been returned from the {@link #getReader}
+     *        or {@link #getInputStream}
+     *   <li> all the trailer fields sent by the client have been received.
+     *        Note that it is possible that the client has sent no trailer fields.
+     * </ol>
+     *
+     * @implSpec
+     * The default implementation returns false.
+     *
+     * @return a boolean whether trailer fields are available
+     *
+     * @since Servlet 4.0
+     */
+    default public boolean isTrailerFieldsAvailable() {
+        return false;
     }
 }
