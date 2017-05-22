@@ -857,7 +857,7 @@ public interface HttpServletRequest extends ServletRequest {
      * so changes in the returned map are not reflected in the
      * {@code HttpServletRequest} object, and vice-versa.</p>
      * 
-     * <p>{@link #isTrailerFieldsAvailable()} should be called first to determine
+     * <p>{@link #isTrailerFieldsReady()} should be called first to determine
      * if it is safe to call this method without causing an exception.</p>
      *
      * @implSpec
@@ -865,7 +865,7 @@ public interface HttpServletRequest extends ServletRequest {
      * 
      * @return A map of trailer fields in which all the keys are in lowercase,
      * regardless of the case they had at the protocol level. If there are no
-     * trailer fields, yet {@link #isTrailerFieldsAvailable} is returning true,
+     * trailer fields, yet {@link #isTrailerFieldsReady} is returning true,
      * the empty map is returned.
      *
      * @throws IllegalStateException if {@link #isTrailerFieldsReady()} is false
