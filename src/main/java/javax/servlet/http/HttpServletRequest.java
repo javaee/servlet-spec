@@ -868,7 +868,7 @@ public interface HttpServletRequest extends ServletRequest {
      * trailer fields, yet {@link #isTrailerFieldsAvailable} is returning true,
      * the empty map is returned.
      *
-     * @throws IllegalStateException if {@link #isTrailerFieldsAvailable()} is false
+     * @throws IllegalStateException if {@link #isTrailerFieldsReady()} is false
      *
      * @since Servlet 4.0
      */
@@ -877,14 +877,17 @@ public interface HttpServletRequest extends ServletRequest {
     }
 
     /**
-     * Return a boolean indicating whether trailer fields are available.
+     * Return a boolean indicating whether trailer fields are ready to read
+     * using {@link #getTrailerFields}.
      *
-     * This method returns true if and only if both of the following conditions
+     * This method returns true if and only if all of the following conditions
      * are satisfied:
      * <ol type="a">
+     *   <li> the underlying protocol supports trailer fields. HTTP versions
+     *        less than 1.1 do not support trailer fields.
      *   <li> the application has read all the request data and an EOF
      *        indication has been returned from the {@link #getReader}
-     *        or {@link #getInputStream}
+     *        or {@link #getInputStream}, or the content length is zero,
      *   <li> all the trailer fields sent by the client have been received.
      *        Note that it is possible that the client has sent no trailer fields.
      * </ol>
@@ -892,11 +895,11 @@ public interface HttpServletRequest extends ServletRequest {
      * @implSpec
      * The default implementation returns false.
      *
-     * @return a boolean whether trailer fields are available
+     * @return a boolean whether trailer fields are ready to read
      *
      * @since Servlet 4.0
      */
-    default public boolean isTrailerFieldsAvailable() {
+    default public boolean isTrailerFieldsReady() {
         return false;
     }
 }
