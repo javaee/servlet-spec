@@ -861,7 +861,7 @@ public interface HttpServletRequest extends ServletRequest {
      * if it is safe to call this method without causing an exception.</p>
      *
      * @implSpec
-     * The default implementation throws IllegalStateException.
+     * The default implementation returns an empty map.
      * 
      * @return A map of trailer fields in which all the keys are in lowercase,
      * regardless of the case they had at the protocol level. If there are no
@@ -873,21 +873,23 @@ public interface HttpServletRequest extends ServletRequest {
      * @since Servlet 4.0
      */
     default public Map<String, String> getTrailerFields() {
-        throw new IllegalStateException();
+        return Collections.emptyMap();
     }
 
     /**
      * Return a boolean indicating whether trailer fields are ready to read
      * using {@link #getTrailerFields}.
      *
-     * This method returns true if and only if all of the following conditions
+     * This methods returns true immediately if it is known that there is no
+     * trailer in the request, for instance, the underlying protocol (such
+     * as HTTP 1.0) does not supports the trailer fields, or the request is
+     * not in chunked encoding in HTTP 1.1.
+     * And the method also returns true if both of the following conditions
      * are satisfied:
      * <ol type="a">
-     *   <li> the underlying protocol supports trailer fields. HTTP versions
-     *        less than 1.1 do not support trailer fields.
      *   <li> the application has read all the request data and an EOF
      *        indication has been returned from the {@link #getReader}
-     *        or {@link #getInputStream}, or the content length is zero.
+     *        or {@link #getInputStream}.
      *   <li> all the trailer fields sent by the client have been received.
      *        Note that it is possible that the client has sent no trailer fields.
      * </ol>
@@ -900,6 +902,6 @@ public interface HttpServletRequest extends ServletRequest {
      * @since Servlet 4.0
      */
     default public boolean isTrailerFieldsReady() {
-        return false;
+        return true;
     }
 }
