@@ -53,7 +53,7 @@
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <packaging>jar</packaging>
-    <version>4.0.0-b06-SNAPSHOT</version>
+    <version>4.0.0-b06</version>
 
     <properties>
         <spec.version>4.0</spec.version>
@@ -133,7 +133,8 @@
         <connection>scm:git:https://github.com/javaee/servlet-spec.git</connection>
         <developerConnection>scm:git:git@github.com:javaee/servlet-spec.git</developerConnection>
         <url>https://github.com/javaee/servlet-spec</url>
-    </scm>
+      <tag>javax.servlet-api-4.0.0-b06</tag>
+  </scm>
 
     <build>
         <plugins>
