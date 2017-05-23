@@ -887,7 +887,7 @@ public interface HttpServletRequest extends ServletRequest {
      *        less than 1.1 do not support trailer fields.
      *   <li> the application has read all the request data and an EOF
      *        indication has been returned from the {@link #getReader}
-     *        or {@link #getInputStream}, or the content length is zero,
+     *        or {@link #getInputStream}, or the content length is zero.
      *   <li> all the trailer fields sent by the client have been received.
      *        Note that it is possible that the client has sent no trailer fields.
      * </ol>
