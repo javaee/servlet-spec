@@ -1,0 +1,16 @@
+theme: jekyll-theme-architect
+
+title: Java Servlet Specification
+description: Collaboration home for Java Servlet Specification
+
+# sidebar links url
+links:
+  download: https://github.com/javaee/servlet-spec/tree/gh-pages
+  source: https://github.com/javaee/servlet-spec
+  #mailinglist:
+  #javadocs:
+  #docs:
+  #faq:
+  mailinglist: https://javaee.groups.io/g/servlet-spec
+  #hide_issuetracker: true #set explicitly to 'true' if you don't want to have the issue tracker link displayed
+
