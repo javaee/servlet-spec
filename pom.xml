@@ -308,6 +308,7 @@
                 <configuration>
                     <mavenExecutorId>forked-path</mavenExecutorId>
                     <useReleaseProfile>false</useReleaseProfile>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
                     <arguments>${release.arguments}</arguments>
                 </configuration>
                 <dependencies>
