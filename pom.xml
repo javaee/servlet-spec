@@ -71,7 +71,7 @@
     </properties>
     <name>Java Servlet API</name>
 
-    <url>http://servlet-spec.java.net</url>
+    <url>https://javaee.github.io/servlet-spec/</url>
 
     <developers>
         <developer>
@@ -109,7 +109,7 @@
 
     <organization>
         <name>GlassFish Community</name>
-        <url>https://glassfish.java.net</url>
+        <url>https://javaee.github.io</url>
     </organization>
     <licenses>
         <license>
@@ -120,19 +120,19 @@
         </license>
     </licenses>
     <issueManagement>
-        <system>jira</system>
-        <url>http://java.net/jira/browse/SERVLET_SPEC</url>
+        <system>github</system>
+        <url>https://github.com/javaee/servlet-spec/issues</url>
     </issueManagement>
     <mailingLists>
         <mailingList>
             <name>Servlet Developer</name>
-            <archive>users@servlet-spec.java.net</archive>
+            <archive>servlet-spec@javaee.groups.io</archive>
         </mailingList>
     </mailingLists>
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/trunk/api/javaee-api/javax.servlet</developerConnection>
-        <url>http://java.net/projects/glassfish/sources/svn/show/trunk/api/javaee-api/javax.servlet</url>
+        <connection>scm:git:https://github.com/javaee/servlet-spec.git</connection>
+        <developerConnection>scm:git:git@github.com:javaee/servlet-spec.git</developerConnection>
+        <url>https://github.com/javaee/servlet-spec</url>
     </scm>
 
     <build>
