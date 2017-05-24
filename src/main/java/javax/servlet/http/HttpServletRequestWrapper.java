@@ -435,4 +435,15 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     public Map<String, String> getTrailerFields() {
         return this._getHttpServletRequest().getTrailerFields();
     }
+
+    /**
+     * The default behavior of this method is to call isTrailerFieldsReady on the
+     * wrapped request object.
+     *
+     * @since Servlet 4.0
+     */
+    @Override
+    public boolean isTrailerFieldsReady() {
+        return this._getHttpServletRequest().isTrailerFieldsReady();
+    }
 }
