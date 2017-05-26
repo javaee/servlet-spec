@@ -474,6 +474,12 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @param supplier the supplier of trailer headers
      *
+     * @exception IllegalStateException if it is invoked after the response has
+     *         has been committed,
+     *         or the trailer is not supported in the request, for instance,
+     *         the underlying protocol is HTTP 1.0, or the response is not
+     *         in chunked encoding in HTTP 1.1.
+     *
      * @since Servlet 4.0
      */
     default public void setTrailerFields(Supplier<Map<String, String>> supplier) {
