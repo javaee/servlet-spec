@@ -457,7 +457,7 @@ public interface HttpServletResponse extends ServletResponse {
     public Collection<String> getHeaderNames();
 
     /**
-     * Set the supplier of trailer headers.
+     * Sets the supplier of trailer headers.
      *
      * <p>The trailer header field value is defined as a comma-separated list
      * (see Section 3.2.2 and Section 4.1.2 of RFC 7230).</p>
@@ -483,6 +483,20 @@ public interface HttpServletResponse extends ServletResponse {
      * @since Servlet 4.0
      */
     default public void setTrailerFields(Supplier<Map<String, String>> supplier) {
+    }
+
+    /**
+     * Gets the supplier of trailer headers.
+     *
+     * @implSpec
+     * The default implememtation return null.
+     *
+     * @return <code>Supplier</code> of trailer headers
+     * 
+     * @since Servlet 4.0
+     */
+    default public Supplier<Map<String, String>> getTrailerFields() {
+        return null;
     }
 
 

@@ -333,10 +333,26 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * {@link HttpServletResponse#setTrailerFields} on the wrapped response
      * object.
      *
+     * @param supplier of trailer headers
+     *
      * @since Servlet 4.0
      */
     @Override
     public void setTrailerFields(Supplier<Map<String, String>> supplier) {
         _getHttpServletResponse().setTrailerFields(supplier);
+    }
+
+    /**
+     * The default behaviour of this method is to call
+     * {@link HttpServletResponse#getTrailerFields} on the wrapped response
+     * object.
+     *
+     * @return supplier of trailer headers
+     *
+     * @since Servlet 4.0
+     */
+    @Override
+    public Supplier<Map<String, String>> getTrailerFields() {
+        return _getHttpServletResponse().getTrailerFields();
     }
 }
