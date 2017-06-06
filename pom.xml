@@ -330,6 +330,16 @@
                         ${basedir}/copyright-exclude
                     </excludeFile>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>check-copyright</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>copyright</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
         <resources>
