@@ -276,6 +276,10 @@ public interface HttpServletRequest extends ServletRequest {
      * javax.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link
      * javax.servlet.AsyncContext#ASYNC_MAPPING} for additional request
      * attributes related to {@code HttpServletMapping}.</p>
+     *
+     * <p>If the {@code Servlet} corresponding to this request was
+     * obtained using {@link javax.servlet.ServletContext#getNamedDispatcher}, this
+     * method must return {@code null}.</p>
      * 
      * <p>The returned object is immutable.  Servlet 4.0 compliant
      * implementations must override this method.</p>

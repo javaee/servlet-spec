@@ -1,6 +1,7 @@
 copyright-exclude
 LICENSE
 README.md
+CONTRIBUTING.md
 src/main/javadoc/doc-files/expert-draft-bg-blank.graffle
 src/main/javadoc/doc-files/expert-draft-bg-blank.png
 src/main/javadoc/doc-files/expert-draft-bg-non-blank.graffle
