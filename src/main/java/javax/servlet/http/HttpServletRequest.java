@@ -278,8 +278,10 @@ public interface HttpServletRequest extends ServletRequest {
      * attributes related to {@code HttpServletMapping}.</p>
      *
      * <p>If the {@code Servlet} corresponding to this request was
-     * obtained using {@link javax.servlet.ServletContext#getNamedDispatcher}, this
-     * method must return {@code null}.</p>
+     * obtained using {@link
+     * javax.servlet.ServletContext#getNamedDispatcher}, the returned
+     * {@code HttpServletMapping} instance must have properties that
+     * reflect the mapping last applied to this request.</p>
      * 
      * <p>The returned object is immutable.  Servlet 4.0 compliant
      * implementations must override this method.</p>
