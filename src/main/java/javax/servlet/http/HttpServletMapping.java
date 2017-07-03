@@ -117,15 +117,14 @@ public interface HttpServletMapping {
     
     /**
      * <p>Return the portion of the URI path that caused this request to
-     * be matched or the empty String if not known or not knowable.  If
-     * the {@link getMappingMatch} value is {@code CONTEXT_ROOT} or
-     * {@code DEFAULT}, this method must return the empty string.  If
-     * the {@link getMappingMatch} value is {@code EXACT}, this method
-     * must return the portion of the path that matched the servlet,
-     * omitting any leading slash.  If the {@link getMappingMatch} value
-     * is {@code EXTENSION} or {@code PATH}, this method must return the
-     * value that matched the '*'.  See the class javadoc for
-     * examples. </p>
+     * be matched.  If the {@link getMappingMatch} value is {@code
+     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the
+     * empty string.  If the {@link getMappingMatch} value is {@code
+     * EXACT}, this method must return the portion of the path that
+     * matched the servlet, omitting any leading slash.  If the {@link
+     * getMappingMatch} value is {@code EXTENSION} or {@code PATH}, this
+     * method must return the value that matched the '*'.  See the class
+     * javadoc for examples. </p>
      * 
      * @return the match.
      * 
@@ -135,8 +134,7 @@ public interface HttpServletMapping {
 
     /**
      * <p>Return the String representation for the {@code url-pattern}
-     * for this mapping or the empty String if not known or not
-     * knowable.  If the {@link getMappingMatch} value is {@code
+     * for this mapping.  If the {@link getMappingMatch} value is {@code
      * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the
      * empty string. If the {@link getMappingMatch} value is {@code
      * EXTENSION}, this method must return the pattern, without any
@@ -144,21 +142,19 @@ public interface HttpServletMapping {
      * exactly as specified in the descriptor or Java configuration.</p>
      * 
      * @return the String representation for the
-     * {@code url-pattern} for this mapping or the empty String if not known
-     * or not knowable. 
+     * {@code url-pattern} for this mapping. 
      * 
      * @since 4.0
      */
     public String getPattern();
     
     /**
-     * <p>Return the String representation for the
-     * {@code servlet-name} for this mapping or the empty String if not known
-     * or not knowable.</p>
+     * <p>Return the String representation for the {@code servlet-name}
+     * for this mapping.  In the case of a {@code DEFAULT MappingMatch},
+     * the return from this method is unspecified.</p>
      * 
-     * @return the String representation for the
-     * {@code servlet-name} for this mapping or the empty String if not known
-     * or not knowable. 
+     * @return the String representation for the {@code servlet-name}
+     * for this mapping.
      * 
      * @since 4.0
      */
