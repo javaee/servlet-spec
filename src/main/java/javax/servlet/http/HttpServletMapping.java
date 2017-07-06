@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -150,8 +150,9 @@ public interface HttpServletMapping {
     
     /**
      * <p>Return the String representation for the {@code servlet-name}
-     * for this mapping.  In the case of a {@code DEFAULT MappingMatch},
-     * the return from this method is unspecified.</p>
+     * for this mapping.  If the Servlet providing the response is the
+     * default servlet, the return from this method is the name of the
+     * defautl servlet, which is container specific.</p>
      * 
      * @return the String representation for the {@code servlet-name}
      * for this mapping.
