@@ -469,6 +469,12 @@ public interface HttpServletResponse extends ServletResponse {
      * <p>The trailers that run afoul of the provisions of section 4.1.2 of
      * RFC 7230 are ignored.</p>
      *
+     * <p>The RFC requires the name of every key that is to be in the
+     * supplied Map is included in the comma separated list that is the value
+     * of the "Trailer" response header.  The application is responsible for
+     * ensuring this requirement is met.  Failure to do so may lead to
+     * interoperability failures.</p>
+     *
      * @implSpec
      * The default implementation is a no-op.
      *
