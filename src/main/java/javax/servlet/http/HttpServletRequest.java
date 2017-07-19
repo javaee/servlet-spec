@@ -265,11 +265,11 @@ public interface HttpServletRequest extends ServletRequest {
      * {@code Servlet} invocation was obtained by a call to {@link
      * ServletRequest#getRequestDispatcher} followed by a call to {@link
      * RequestDispatcher#include}, the returned {@code HttpServletMapping}
-     * is the one corresponding path that caused the first {@code
+     * is the one corresponding to the path that caused the first {@code
      * Servlet} in the invocation sequence to be invoked.  If the
      * currently active {@code Servlet} invocation was obtained by a
      * call to {@link javax.servlet.AsyncContext#dispatch}, the returned
-     * {@code HttpServletMapping} is the one corresponding path that caused
+     * {@code HttpServletMapping} is the one corresponding to the path that caused
      * the first {@code Servlet} in the invocation sequence to be
      * invoked.  See {@link
      * javax.servlet.RequestDispatcher#FORWARD_MAPPING}, {@link
