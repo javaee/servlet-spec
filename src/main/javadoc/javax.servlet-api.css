@@ -45,9 +45,10 @@ Overall document style
 
 @import url('resources/fonts/dejavu.css');
 
+/*    background: url(doc-files/expert-draft-bg.png); */
+
 body {
     background-color:#ffffff;
-    background: url(doc-files/expert-draft-bg.png); 
     color:#353833;
     font-family:'DejaVu Sans', Arial, Helvetica, sans-serif;
     font-size:14px;

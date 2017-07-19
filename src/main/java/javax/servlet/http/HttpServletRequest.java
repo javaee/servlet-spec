@@ -264,24 +264,23 @@ public interface HttpServletRequest extends ServletRequest {
      * obtain the {@link RequestDispatcher}.  If the currently active
      * {@code Servlet} invocation was obtained by a call to {@link
      * ServletRequest#getRequestDispatcher} followed by a call to {@link
-     * RequestDispatcher#include}, the returned {@code HttpServletMapping}
-     * is the one corresponding to the path that caused the first {@code
-     * Servlet} in the invocation sequence to be invoked.  If the
-     * currently active {@code Servlet} invocation was obtained by a
-     * call to {@link javax.servlet.AsyncContext#dispatch}, the returned
-     * {@code HttpServletMapping} is the one corresponding to the path that caused
-     * the first {@code Servlet} in the invocation sequence to be
+     * RequestDispatcher#include}, the returned {@code
+     * HttpServletMapping} is the one corresponding to the path that
+     * caused the first {@code Servlet} in the invocation sequence to be
+     * invoked.  If the currently active {@code Servlet} invocation was
+     * obtained by a call to {@link
+     * javax.servlet.AsyncContext#dispatch}, the returned {@code
+     * HttpServletMapping} is the one corresponding to the path that
+     * caused the first {@code Servlet} in the invocation sequence to be
      * invoked.  See {@link
      * javax.servlet.RequestDispatcher#FORWARD_MAPPING}, {@link
      * javax.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link
      * javax.servlet.AsyncContext#ASYNC_MAPPING} for additional request
-     * attributes related to {@code HttpServletMapping}.</p>
-     *
-     * <p>If the {@code Servlet} corresponding to this request was
-     * obtained using {@link
-     * javax.servlet.ServletContext#getNamedDispatcher}, the returned
-     * {@code HttpServletMapping} instance must have properties that
-     * reflect the mapping last applied to this request.</p>
+     * attributes related to {@code HttpServletMapping}. If the
+     * currently active {@code Servlet} invocation was obtained by a
+     * call to {@link javax.servlet.ServletContext#getNamedDispatcher},
+     * the returned {@code HttpServletMapping} is the one corresponding
+     * to the path for the mapping last applied to this request.</p>
      * 
      * <p>The returned object is immutable.  Servlet 4.0 compliant
      * implementations must override this method.</p>
