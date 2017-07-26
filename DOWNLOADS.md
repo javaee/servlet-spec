@@ -15,4 +15,3 @@
 * [downloads/servlet-4.0/servlet-4_0_PR.pdf](./downloads/servlet-4.0/servlet-4_0_PR.pdf)
 * [downloads/servlet-4.0/servlet-4_0_PFD.pdf](./downloads/servlet-4.0/servlet-4_0_PFD.pdf)
 * [downloads/servlet-4.0/servlet-4_0_FINAL_RC1.pdf](./downloads/servlet-4.0/servlet-4_0_FINAL_RC1.pdf)
-* [downloads/servlet-4.0/servlet-4_0_FINAL.pdf](./downloads/servlet-4.0/servlet-4_0_FINAL.pdf)
