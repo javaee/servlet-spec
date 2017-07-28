@@ -18,5 +18,5 @@ The build runs copyright check and generates the jar, sources-jar and javadoc-ja
 Checking findbugs
 -----------------
 
-`mvn -DskipTests-true -Dfindbugs.threshold=Low findbugs:findbugs`
+`mvn -DskipTests -Dfindbugs.threshold=Low findbugs:findbugs`
 
