@@ -24,7 +24,7 @@ status.  See [jcp.org](https://jcp.org/en/jsr/detail?id=369).
 
 Java EE 8 is still under development.  The maven artifacts of Servlet
 milestones as well as other versions are available in the
-[javax.servlet repository](https://maven.java.net/content/repositories/releases/javax/servlet/javax.servlet-api/4.0.0-b05/).
+[javax.servlet repository](https://maven.java.net/content/repositories/releases/javax/servlet/javax.servlet-api/4.0.0/).
 This release is included in
 [GlssFish 5 Builds](https://javaee.github.io/glassfish/download).
 
@@ -35,7 +35,7 @@ The implementation is also available at maven central at these coordinates.
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.0-b05</version>
+      <version>4.0.0</version>
       <scope>provided</scope>
     </dependency>
 
