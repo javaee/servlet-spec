@@ -40,7 +40,6 @@
 
 package javax.servlet;
 
-import java.io.IOException;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 
