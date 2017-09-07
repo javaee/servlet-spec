@@ -138,9 +138,7 @@ public class HttpUtils {
         if (ht.containsKey(key)) {
             String oldVals[] = ht.get(key);
             valArray = new String[oldVals.length + 1];
-            for (int i = 0; i < oldVals.length; i++) {
-                valArray[i] = oldVals[i];
-            }
+            System.arraycopy(oldVals, 0, valArray, 0, oldVals.length);
             valArray[oldVals.length] = val;
         } else {
             valArray = new String[1];
