@@ -116,7 +116,7 @@ public class HttpUtils {
      */
     public static Hashtable<String, String[]> parseQueryString(String s) {
 
-        String valArray[] = null;
+        String valArray[];
 	
         if (s == null) {
             throw new IllegalArgumentException();
