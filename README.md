@@ -41,7 +41,7 @@ The implementation is also available at maven central at these coordinates.
 
 ## Servlet 3.1
 
-The executable implementation of JSF Servlet 3.1 is included in
+The executable implementation of Servlet 3.1 is included in
 [GlassFish 4.x](https://javaee.github.io/glassfish/).
 
 The human readable specification may be downloaded from
@@ -52,7 +52,7 @@ The binary specification is available at maven central at these coordinates.
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>3.1</version>
+      <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
 
