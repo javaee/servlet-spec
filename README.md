@@ -25,10 +25,9 @@ status.  See [jcp.org](https://jcp.org/en/jsr/detail?id=369).
 Java EE 8 is still under development.  The maven artifacts of Servlet
 milestones as well as other versions are available in the
 [javax.servlet repository](https://maven.java.net/content/repositories/releases/javax/servlet/javax.servlet-api/4.0.0/).
-This release is included in
-[GlssFish 5 Builds](https://javaee.github.io/glassfish/download).
+This release is included in [GlassFish 5 Builds](https://javaee.github.io/glassfish/download).
 
-The human readable specification may be downloaded from &lt;[http://jcp.org/](http://jcp.org/en/jsr/detail?id=369)&gt;.</p>
+The human readable specification may be downloaded from [jcp.org](https://jcp.org/en/jsr/detail?id=369).
 
 The implementation is also available at maven central at these coordinates.
 
@@ -44,8 +43,7 @@ The implementation is also available at maven central at these coordinates.
 The executable implementation of Servlet 3.1 is included in
 [GlassFish 4.x](https://javaee.github.io/glassfish/).
 
-The human readable specification may be downloaded from
-&lt;[http://jcp.org/](http://jcp.org/en/jsr/detail?id=340)&gt;.
+The human readable specification may be downloaded from [jcp.org](https://jcp.org/en/jsr/detail?id=369).
 
 The binary specification is available at maven central at these coordinates.
 
@@ -58,5 +56,5 @@ The binary specification is available at maven central at these coordinates.
 
 ## Miscellaneous Downloads
 
-Additional project related downloads are available [here](./DOWNLOADS.md)
+Additional project related downloads are available [here](./DOWNLOADS.md).
 
