@@ -67,7 +67,7 @@
         <findbugs.version>3.0.4</findbugs.version>
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
-        <copyright-plugin.version>1.41</copyright-plugin.version>
+        <copyright-plugin.version>1.49</copyright-plugin.version>
     </properties>
     <name>Java Servlet API</name>
 
@@ -329,6 +329,7 @@
                     <excludeFile>
                         ${basedir}/copyright-exclude
                     </excludeFile>
+                    <ignoreYear>true</ignoreYear>
                 </configuration>
                 <executions>
                     <execution>
