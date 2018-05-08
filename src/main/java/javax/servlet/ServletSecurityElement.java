@@ -181,7 +181,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      *
      * @param methodConstraints
      *
-     * @retrun Set of method names
+     * @return Set of method names
      *
      * @throws IllegalArgumentException if duplicate method names are
      * detected
